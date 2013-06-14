@@ -81,8 +81,6 @@ namespace Presentación
                     zona.Cod_Zona = Grid_Zonas.Rows[indice].Cells[0].Value.ToString();
 
                     ZonaBL.BorrarZona(zona);
-
-
                 }
             }
         }

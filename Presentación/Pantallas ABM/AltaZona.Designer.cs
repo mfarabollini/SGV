@@ -129,6 +129,7 @@
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Name = "Fr_NuevaZona";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nueva Zona";
             this.Load += new System.EventHandler(this.Fr_NuevaZona_Load);
             this.groupBox1.ResumeLayout(false);

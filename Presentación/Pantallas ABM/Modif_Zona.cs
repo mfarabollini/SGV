@@ -46,10 +46,14 @@ namespace Presentación.Pantallas_ABM
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
             zonas zona = new zonas();
+            
             zona.Cod_Zona = Tx_CodZona.Text;   // Código de Zona
             zona.Desc_Zona = Tx_DescZona.Text; // Descripción de Zona
 
             ZonaBL.ActualizarZona(zona);
+
+
+
         }
     }
 }

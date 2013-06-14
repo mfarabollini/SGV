@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="ChequesModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="ChequesModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.0" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="ChequesModelStoreContainer">
           <EntitySet Name="bancos" EntityType="ChequesModel.Store.bancos" store:Type="Tables" Schema="gestion_cheques" />
           <EntitySet Name="cheques" EntityType="ChequesModel.Store.cheques" store:Type="Tables" Schema="gestion_cheques" />
@@ -49,6 +49,7 @@
           <Property Name="codigo_postal" Type="varchar" MaxLength="10" />
           <Property Name="cod_localidad" Type="varchar" MaxLength="8" />
           <Property Name="Cod_Viajante" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Cod_Zona" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="CUIT" Type="decimal" />
           <Property Name="contacto" Type="varchar" MaxLength="20" />
           <Property Name="telefono" Type="varchar" MaxLength="20" />
@@ -79,7 +80,6 @@
           <Property Name="Cod_Localidad" Type="varchar" MaxLength="8" />
           <Property Name="CUIT" Type="varchar" MaxLength="8" />
           <Property Name="Telefono" Type="varchar" MaxLength="20" />
-          <Property Name="Cod_Zona" Type="varchar" MaxLength="3" />
         </EntityType>
         <EntityType Name="zonas">
           <Key>
@@ -88,8 +88,7 @@
           <Property Name="Cod_Zona" Type="varchar" Nullable="false" MaxLength="3" />
           <Property Name="Desc_Zona" Type="varchar" MaxLength="20" />
         </EntityType>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="ChequesModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -141,6 +140,7 @@
           <Property Name="contacto" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="telefono" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="delete" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />
+          <Property Type="String" Name="Cod_Zona" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="localidades">
           <Key>
@@ -167,7 +167,6 @@
           <Property Name="Cod_Localidad" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
           <Property Name="CUIT" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
           <Property Name="Telefono" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="Cod_Zona" Type="String" MaxLength="3" Unicode="false" FixedLength="false" />
         </EntityType>
         <EntityType Name="zonas">
           <Key>
@@ -212,6 +211,7 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="ChequesModel.clientes">
               <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="Cod_Zona" ColumnName="Cod_Zona" />
                 <ScalarProperty Name="Cod_Cliente" ColumnName="Cod_Cliente" />
                 <ScalarProperty Name="razon_social" ColumnName="razon_social" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />
@@ -251,7 +251,6 @@
                 <ScalarProperty Name="Cod_Localidad" ColumnName="Cod_Localidad" />
                 <ScalarProperty Name="CUIT" ColumnName="CUIT" />
                 <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-                <ScalarProperty Name="Cod_Zona" ColumnName="Cod_Zona" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

@@ -42,16 +42,18 @@ namespace AccesoADatos
         {
             using (ChequeEntidades bd = new ChequeEntidades())
             {
+                // Realiza la actualización a la tabla
                 var query = (from n in bd.zonas
                              where n.Cod_Zona == zon.Cod_Zona
                              select n).Single();
-                
-                query.Cod_Zona  = zon.Cod_Zona;
+
+                query.Cod_Zona = zon.Cod_Zona;
                 query.Desc_Zona = zon.Desc_Zona;
+
                 bd.SaveChanges();
 
-            }
-            return zon;
+                return zon;
+            }   
         }
         // Borrar una Zona
         public static zonas BorrarZona(zonas zon)
@@ -59,11 +61,12 @@ namespace AccesoADatos
             using (ChequeEntidades bd = new ChequeEntidades())
             {
                 zonas zona = new zonas();
-                
-                zona.Cod_Zona = zon.Cod_Zona;
 
-               // bd.zonas.DeleteObject(zon);
-                    
+                var query = (from n in bd.zonas
+                             where n.Cod_Zona == zon.Cod_Zona
+                             select n).Single();
+                
+                bd.zonas.Remove(zona);
                 bd.SaveChanges();
             }
             return zon;
@@ -85,5 +88,3 @@ namespace AccesoADatos
         }
     }
 }
-
-
