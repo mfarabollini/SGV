@@ -58,7 +58,10 @@
       <DependentUpon>ChequesModelos.edmx</DependentUpon>
     </Compile>
     <Compile Include="ConsultasZona.cs" />
+    <Compile Include="LocalidadesDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinciaDAL.cs" />
+    <Compile Include="ViajanteDAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="ChequesModelos.edmx">

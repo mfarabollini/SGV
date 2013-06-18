@@ -59,16 +59,17 @@
           <Key>
             <PropertyRef Name="Cod_Localidad" />
           </Key>
-          <Property Name="Cod_Localidad" Type="varchar" Nullable="false" MaxLength="8" />
-          <Property Name="Desc_Localidad" Type="varchar" MaxLength="30" />
-          <Property Name="Cod_Provincia" Type="varchar" MaxLength="4" />
+          <Property Name="Cod_Localidad" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Desc_Localidad" Type="varchar" MaxLength="60" />
+          <Property Name="C_Postal" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Cod_Provincia" Type="varchar" MaxLength="2" />
         </EntityType>
         <EntityType Name="provincias">
           <Key>
             <PropertyRef Name="Cod_Provincia" />
           </Key>
-          <Property Name="Cod_Provincia" Type="varchar" Nullable="false" MaxLength="4" />
-          <Property Name="Desc_Provincia" Type="varchar" MaxLength="20" />
+          <Property Name="Cod_Provincia" Type="varchar" Nullable="false" MaxLength="2" />
+          <Property Name="Desc_Provincia" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="viajantes">
           <Key>
@@ -78,7 +79,7 @@
           <Property Name="Nombre" Type="varchar" MaxLength="40" />
           <Property Name="Direccion" Type="varchar" MaxLength="20" />
           <Property Name="Cod_Localidad" Type="varchar" MaxLength="8" />
-          <Property Name="CUIT" Type="varchar" MaxLength="8" />
+          <Property Name="CUIT" Type="varchar" MaxLength="11" />
           <Property Name="Telefono" Type="varchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="zonas">
@@ -149,6 +150,7 @@
           <Property Name="Cod_Localidad" Type="String" Nullable="false" MaxLength="8" Unicode="false" FixedLength="false" />
           <Property Name="Desc_Localidad" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
           <Property Name="Cod_Provincia" Type="String" MaxLength="4" Unicode="false" FixedLength="false" />
+          <Property Type="String" Name="C_Postal" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="provincias">
           <Key>
@@ -228,6 +230,7 @@
           <EntitySetMapping Name="localidades">
             <EntityTypeMapping TypeName="ChequesModel.localidades">
               <MappingFragment StoreEntitySet="localidades">
+                <ScalarProperty Name="C_Postal" ColumnName="C_Postal" />
                 <ScalarProperty Name="Cod_Localidad" ColumnName="Cod_Localidad" />
                 <ScalarProperty Name="Desc_Localidad" ColumnName="Desc_Localidad" />
                 <ScalarProperty Name="Cod_Provincia" ColumnName="Cod_Provincia" />

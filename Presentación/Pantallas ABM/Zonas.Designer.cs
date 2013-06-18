@@ -59,6 +59,7 @@
             this.Grid_Zonas.ReadOnly = true;
             this.Grid_Zonas.Size = new System.Drawing.Size(489, 278);
             this.Grid_Zonas.TabIndex = 0;
+            
             // 
             // Cod_Zona
             // 

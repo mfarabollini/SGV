@@ -44,11 +44,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pantallas ABM\AltaViajante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas ABM\AltaViajante.Designer.cs">
+      <DependentUpon>AltaViajante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas ABM\AltaZona.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Pantallas ABM\AltaZona.Designer.cs">
       <DependentUpon>AltaZona.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas ABM\Viajantes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas ABM\Viajantes.Designer.cs">
+      <DependentUpon>Viajantes.cs</DependentUpon>
     </Compile>
     <Compile Include="Pantallas ABM\Modif_Zona.cs">
       <SubType>Form</SubType>
@@ -64,8 +76,14 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pantallas ABM\AltaViajante.resx">
+      <DependentUpon>AltaViajante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pantallas ABM\AltaZona.resx">
       <DependentUpon>AltaZona.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas ABM\Viajantes.resx">
+      <DependentUpon>Viajantes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas ABM\Modif_Zona.resx">
       <DependentUpon>Modif_Zona.cs</DependentUpon>

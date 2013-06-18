@@ -44,6 +44,7 @@
             this.Tx_CodZona.Enabled = false;
             this.Tx_CodZona.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_CodZona.Location = new System.Drawing.Point(119, 21);
+            this.Tx_CodZona.MaxLength = 3;
             this.Tx_CodZona.Name = "Tx_CodZona";
             this.Tx_CodZona.Size = new System.Drawing.Size(44, 23);
             this.Tx_CodZona.TabIndex = 1;
@@ -62,8 +63,9 @@
             // 
             this.Tx_DescZona.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_DescZona.Location = new System.Drawing.Point(118, 51);
+            this.Tx_DescZona.MaxLength = 20;
             this.Tx_DescZona.Name = "Tx_DescZona";
-            this.Tx_DescZona.Size = new System.Drawing.Size(213, 23);
+            this.Tx_DescZona.Size = new System.Drawing.Size(201, 23);
             this.Tx_DescZona.TabIndex = 2;
             // 
             // groupBox1
@@ -72,12 +74,13 @@
             this.groupBox1.Controls.Add(this.Tx_CodZona);
             this.groupBox1.Controls.Add(this.Lb_CodZona);
             this.groupBox1.Controls.Add(this.Tx_DescZona);
-            this.groupBox1.Location = new System.Drawing.Point(10, 11);
+            this.groupBox1.Location = new System.Drawing.Point(9, 15);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(341, 88);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Zona";
+            
             // 
             // label1
             // 
@@ -92,16 +95,17 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(313, 108);
+            this.Bt_Salir.Location = new System.Drawing.Point(312, 112);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 6;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(269, 108);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(268, 112);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 5;
@@ -112,11 +116,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(361, 151);
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.ClientSize = new System.Drawing.Size(355, 153);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Name = "Fr_Modif_Zona";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificación Zona";
             this.Load += new System.EventHandler(this.Fr_Modif_Zona_Load);
             this.groupBox1.ResumeLayout(false);

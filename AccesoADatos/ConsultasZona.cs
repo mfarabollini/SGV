@@ -62,11 +62,8 @@ namespace AccesoADatos
             {
                 zonas zona = new zonas();
 
-                var query = (from n in bd.zonas
-                             where n.Cod_Zona == zon.Cod_Zona
-                             select n).Single();
-                
-                bd.zonas.Remove(zona);
+                bd.zonas.Attach(zon);
+                bd.zonas.Remove(zon);
                 bd.SaveChanges();
             }
             return zon;

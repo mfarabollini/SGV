@@ -14,15 +14,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
 using Entidades;
+using Presentación;
 
 /// PRESENTACIÓN ///
 namespace Presentación.Pantallas_ABM
-{
+{   
+ 
     public partial class Fr_NuevaZona : Form
     {
         public Fr_NuevaZona()
         {
-            InitializeComponent();
+            InitializeComponent();            
         }
 
         #region Botón_Aceptar
@@ -41,6 +43,8 @@ namespace Presentación.Pantallas_ABM
                 
                 MessageBox.Show("Zona cargada correctamente",  "Alta Zona", 
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+                
+                
             }
         }
         #endregion

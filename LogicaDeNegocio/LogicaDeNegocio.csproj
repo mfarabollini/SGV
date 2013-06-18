@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="LocalidadesBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ProvinciaBL.cs" />
+    <Compile Include="ViajanteBL.cs" />
     <Compile Include="ZonaBL.cs" />
   </ItemGroup>
   <ItemGroup>
