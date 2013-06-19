@@ -64,6 +64,7 @@
     <Compile Include="viajantes.cs">
       <DependentUpon>ChequesModelos.tt</DependentUpon>
     </Compile>
+    <Compile Include="viajantes_view.cs" />
     <Compile Include="zonas.cs">
       <DependentUpon>ChequesModelos.tt</DependentUpon>
     </Compile>

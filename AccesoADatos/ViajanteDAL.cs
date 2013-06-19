@@ -13,11 +13,11 @@ namespace AccesoADatos
     {
     
         // Recupera todas los Viajantes de la base de datos
-        public static List<viajantes> Cargar_Viajantes()
+        public static List<viajantes_view> Cargar_Viajantes()
         {
             using (ChequeEntidades bd = new ChequeEntidades())
             {
-                return bd.viajantes.ToList();
+                return bd.viajantes_view.ToList();
             }
         }
 
@@ -71,6 +71,19 @@ namespace AccesoADatos
             }
             return Viaj;
         }
-}
 
+        // Borrar un Viajante
+        public static viajantes Borrar_Viajante(viajantes Viaj)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                viajantes Viajante = new viajantes();
+
+                bd.viajantes.Attach(Viaj);
+                bd.viajantes.Remove(Viaj);
+                bd.SaveChanges();
+            }
+            return Viaj;
+        }
+    }
 }

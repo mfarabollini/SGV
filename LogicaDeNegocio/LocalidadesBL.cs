@@ -15,5 +15,10 @@ namespace LogicaDeNegocio
         {
             return LocalidadesDAL.CargarLocalidades(Cod_Prov);
         }
+
+        public static string Obtener_Provincia(string CodLoc, string CodProv)
+        {
+            return LocalidadesDAL.Obtener_Provincia(CodLoc, CodProv);    
+        }
     }
 }

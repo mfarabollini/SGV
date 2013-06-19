@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using LogicaDeNegocio;
 
 namespace Presentación
 {
@@ -16,7 +17,7 @@ namespace Presentación
         #region Definiciones
         // Constantes para recuperar los datos envíados desde el formulario
         // Viajantes.
-        private String _codigo;
+        private string _codigo;
         private String _nombre;
         private String _direccion;
         private String _provincia;
@@ -80,14 +81,25 @@ namespace Presentación
             Tx_Nombre.Text = this.Nombre;
             //Dirección
             Tx_Direccion.Text = this.Direccion;
-            // Provincia
-
-            // Localidad
-            
             //CUIT
             Tx_CUIT.Text = this.Cuit;
             //Teléfono
             Tx_Telefono.Text = this.Telefono;
+
+            // LLenar el ListBox de provincia
+            Cb_Provincia.DisplayMember  = "Desc_Provincia";
+            Cb_Provincia.ValueMember    = "Cod_Provincia";
+            Cb_Provincia.DataSource     = ProvinciaBL.CargarProvincias();
+            Cb_Provincia.SelectedIndex  = -1;
+
+            if (this.Localidad != null)
+            {
+                string CodProv = "1";
+                CodProv = LocalidadesBL.Obtener_Provincia(this.Localidad, CodProv);
+                Cb_Provincia.SelectedValue = CodProv;
+            }
+
         }
+
     }
 }

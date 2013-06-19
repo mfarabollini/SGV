@@ -33,5 +33,6 @@ namespace AccesoADatos
         public DbSet<provincias> provincias { get; set; }
         public DbSet<zonas> zonas { get; set; }
         public DbSet<viajantes> viajantes { get; set; }
+        public DbSet<viajantes_view> viajantes_view { get; set; }
     }
 }

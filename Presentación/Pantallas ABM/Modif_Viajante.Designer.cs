@@ -246,6 +246,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Name = "Modif_Viajante";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modif_Viajante";
             this.Load += new System.EventHandler(this.Modif_Viajante_Load);
             this.groupBox2.ResumeLayout(false);

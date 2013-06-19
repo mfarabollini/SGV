@@ -21,5 +21,18 @@ namespace AccesoADatos
                 return query.ToList();               
             }
         }
+
+        public static string Obtener_Provincia(string CodLoc, string CodProv)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                var query = (from n in bd.localidades
+                             where n.Cod_Localidad == CodLoc
+                             select n).Single();
+
+                CodProv = query.Cod_Provincia;
+            }
+            return CodProv;
+        }
     }
 }

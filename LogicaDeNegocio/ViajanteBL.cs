@@ -11,7 +11,7 @@ namespace LogicaDeNegocio
     public class ViajanteBL
     {
         // Cargar todos los viajantes
-        public static List<viajantes> Cargar_Viajantes()
+        public static List<viajantes_view> Cargar_Viajantes()
         {
             return ViajanteDAL.Cargar_Viajantes();
         }
@@ -22,6 +22,11 @@ namespace LogicaDeNegocio
             return ViajanteDAL.Alta_Viajante(Viaj);
         }
 
+        // Borrar Viajante
+        public static viajantes Borrar_Viajante(viajantes Viaj)
+        {
+            return ViajanteDAL.Borrar_Viajante(Viaj);
+        }
 
     }
 }

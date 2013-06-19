@@ -44,11 +44,11 @@ namespace Presentación.Pantallas_ABM
         #region Carga_Localidades
         // Recupera las localidades de acuerdo a la provincia
         private void Carga_Localidades(object sender, EventArgs e)
-        {
-            string Cod_Prov = Cb_Provincia.SelectedValue.ToString();
-
-            if (Cod_Prov != null)
+        {   
+            if (Cb_Provincia.SelectedValue != null)
             {
+                string Cod_Prov = Cb_Provincia.SelectedValue.ToString();
+
                 Cb_Localidad.ValueMember = "Cod_Localidad";    
                 Cb_Localidad.DisplayMember = "Desc_Localidad";
                 Cb_Localidad.DataSource = LocalidadesBL.CargarLocalidades(Cod_Prov);
