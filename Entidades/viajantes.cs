@@ -14,12 +14,11 @@ namespace Entidades
     
     public partial class viajantes
     {
-        public string Cod_Viajante { get; set; }
+        public int Cod_Viajante { get; set; }
         public string Nombre { get; set; }
         public string Direccion { get; set; }
         public string Cod_Localidad { get; set; }
         public string CUIT { get; set; }
         public string Telefono { get; set; }
-        public string Cod_Zona { get; set; }
     }
 }

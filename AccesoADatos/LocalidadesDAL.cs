@@ -18,9 +18,8 @@ namespace AccesoADatos
                              where n.Cod_Provincia == Cod_Prov
                              select n);
 
-                return bd.localidades.ToList();
+                return query.ToList();               
             }
         }
-
     }
 }

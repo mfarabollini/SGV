@@ -16,7 +16,7 @@ namespace Presentación
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Presentación.Pantallas_ABM.AltaViajante());
+            Application.Run(new Presentación.Pantallas_ABM.Viajantes());
         }
     }
 }

@@ -75,7 +75,7 @@
           <Key>
             <PropertyRef Name="Cod_Viajante" />
           </Key>
-          <Property Name="Cod_Viajante" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Cod_Viajante" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="Nombre" Type="varchar" MaxLength="40" />
           <Property Name="Direccion" Type="varchar" MaxLength="20" />
           <Property Name="Cod_Localidad" Type="varchar" MaxLength="8" />
@@ -99,8 +99,8 @@
           <EntitySet Name="clientes" EntityType="ChequesModel.clientes" />
           <EntitySet Name="localidades" EntityType="ChequesModel.localidades" />
           <EntitySet Name="provincias" EntityType="ChequesModel.provincias" />
-          <EntitySet Name="viajantes" EntityType="ChequesModel.viajantes" />
           <EntitySet Name="zonas" EntityType="ChequesModel.zonas" />
+          <EntitySet Name="viajantes" EntityType="ChequesModel.viajantes" />
         </EntityContainer>
         <EntityType Name="bancos">
           <Key>
@@ -159,23 +159,23 @@
           <Property Name="Cod_Provincia" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
           <Property Name="Desc_Provincia" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
         </EntityType>
-        <EntityType Name="viajantes">
-          <Key>
-            <PropertyRef Name="Cod_Viajante" />
-          </Key>
-          <Property Name="Cod_Viajante" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
-          <Property Name="Nombre" Type="String" MaxLength="40" Unicode="false" FixedLength="false" />
-          <Property Name="Direccion" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="Cod_Localidad" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
-          <Property Name="CUIT" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
-          <Property Name="Telefono" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
-        </EntityType>
         <EntityType Name="zonas">
           <Key>
             <PropertyRef Name="Cod_Zona" />
           </Key>
           <Property Name="Cod_Zona" Type="String" Nullable="false" MaxLength="3" Unicode="true" FixedLength="false" />
           <Property Name="Desc_Zona" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="viajantes">
+          <Key>
+            <PropertyRef Name="Cod_Viajante" />
+          </Key>
+          <Property Type="Int32" Name="Cod_Viajante" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="Nombre" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Direccion" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cod_Localidad" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CUIT" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Telefono" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -245,23 +245,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="viajantes">
-            <EntityTypeMapping TypeName="ChequesModel.viajantes">
-              <MappingFragment StoreEntitySet="viajantes">
-                <ScalarProperty Name="Cod_Viajante" ColumnName="Cod_Viajante" />
-                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
-                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
-                <ScalarProperty Name="Cod_Localidad" ColumnName="Cod_Localidad" />
-                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
-                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="zonas">
             <EntityTypeMapping TypeName="ChequesModel.zonas">
               <MappingFragment StoreEntitySet="zonas">
                 <ScalarProperty Name="Cod_Zona" ColumnName="Cod_Zona" />
                 <ScalarProperty Name="Desc_Zona" ColumnName="Desc_Zona" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="viajantes">
+            <EntityTypeMapping TypeName="ChequesModel.viajantes">
+              <MappingFragment StoreEntitySet="viajantes">
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="Cod_Localidad" ColumnName="Cod_Localidad" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cod_Viajante" ColumnName="Cod_Viajante" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

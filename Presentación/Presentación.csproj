@@ -44,6 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Pantallas ABM\Modif_Viajante.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas ABM\Modif_Viajante.Designer.cs">
+      <DependentUpon>Modif_Viajante.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas ABM\AltaViajante.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Pantallas ABM\Modif_Viajante.resx">
+      <DependentUpon>Modif_Viajante.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pantallas ABM\AltaViajante.resx">
       <DependentUpon>AltaViajante.cs</DependentUpon>
     </EmbeddedResource>

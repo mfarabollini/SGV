@@ -17,5 +17,6 @@ namespace Entidades
         public string Cod_Localidad { get; set; }
         public string Desc_Localidad { get; set; }
         public string Cod_Provincia { get; set; }
+        public string C_Postal { get; set; }
     }
 }

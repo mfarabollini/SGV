@@ -1,6 +1,6 @@
-﻿namespace Presentación.Pantallas_ABM
+﻿namespace Presentación
 {
-    partial class AltaViajante
+    partial class Modif_Viajante
     {
         /// <summary>
         /// Required designer variable.
@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AltaViajante));
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Lb_CodZona = new System.Windows.Forms.Label();
-            this.Tx_Codigo = new System.Windows.Forms.TextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Modif_Viajante));
+            this.Bt_Salir = new System.Windows.Forms.Button();
+            this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -46,46 +44,30 @@
             this.Tx_CUIT = new System.Windows.Forms.TextBox();
             this.Tx_Direccion = new System.Windows.Forms.TextBox();
             this.Tx_Nombre = new System.Windows.Forms.TextBox();
-            this.Bt_Salir = new System.Windows.Forms.Button();
-            this.Bt_Aceptar = new System.Windows.Forms.Button();
-            this.ToolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.ErrorPriveder = new System.Windows.Forms.ErrorProvider(this.components);
-            this.groupBox1.SuspendLayout();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Lb_CodZona = new System.Windows.Forms.Label();
+            this.Tx_Codigo = new System.Windows.Forms.TextBox();
             this.groupBox2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ErrorPriveder)).BeginInit();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // Bt_Salir
             // 
-            this.groupBox1.Controls.Add(this.Lb_CodZona);
-            this.groupBox1.Controls.Add(this.Tx_Codigo);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(413, 54);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Viajante";
+            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
+            this.Bt_Salir.Location = new System.Drawing.Point(375, 288);
+            this.Bt_Salir.Name = "Bt_Salir";
+            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Salir.TabIndex = 18;
+            this.Bt_Salir.UseVisualStyleBackColor = true;
             // 
-            // Lb_CodZona
+            // Bt_Aceptar
             // 
-            this.Lb_CodZona.AutoSize = true;
-            this.Lb_CodZona.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_CodZona.Location = new System.Drawing.Point(6, 22);
-            this.Lb_CodZona.Name = "Lb_CodZona";
-            this.Lb_CodZona.Size = new System.Drawing.Size(105, 17);
-            this.Lb_CodZona.TabIndex = 1;
-            this.Lb_CodZona.Text = "Código Viajante:";
-            // 
-            // Tx_Codigo
-            // 
-            this.Tx_Codigo.Enabled = false;
-            this.Tx_Codigo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tx_Codigo.Location = new System.Drawing.Point(111, 18);
-            this.Tx_Codigo.MaxLength = 4;
-            this.Tx_Codigo.Name = "Tx_Codigo";
-            this.Tx_Codigo.Size = new System.Drawing.Size(49, 23);
-            this.Tx_Codigo.TabIndex = 0;
-            this.Tx_Codigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
+            this.Bt_Aceptar.Location = new System.Drawing.Point(331, 288);
+            this.Bt_Aceptar.Name = "Bt_Aceptar";
+            this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Aceptar.TabIndex = 17;
+            this.Bt_Aceptar.UseVisualStyleBackColor = true;
             // 
             // groupBox2
             // 
@@ -101,10 +83,10 @@
             this.groupBox2.Controls.Add(this.Tx_CUIT);
             this.groupBox2.Controls.Add(this.Tx_Direccion);
             this.groupBox2.Controls.Add(this.Tx_Nombre);
-            this.groupBox2.Location = new System.Drawing.Point(13, 73);
+            this.groupBox2.Location = new System.Drawing.Point(9, 71);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(412, 211);
-            this.groupBox2.TabIndex = 1;
+            this.groupBox2.TabIndex = 16;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del Viajante";
             // 
@@ -155,7 +137,6 @@
             this.Cb_Provincia.Name = "Cb_Provincia";
             this.Cb_Provincia.Size = new System.Drawing.Size(174, 23);
             this.Cb_Provincia.TabIndex = 8;
-            this.Cb_Provincia.SelectedIndexChanged += new System.EventHandler(this.Carga_Localidades);
             // 
             // label3
             // 
@@ -204,7 +185,6 @@
             this.Tx_CUIT.Name = "Tx_CUIT";
             this.Tx_CUIT.Size = new System.Drawing.Size(115, 23);
             this.Tx_CUIT.TabIndex = 3;
-            this.Tx_CUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tx_CUIT_KeyPress);
             // 
             // Tx_Direccion
             // 
@@ -224,74 +204,77 @@
             this.Tx_Nombre.Size = new System.Drawing.Size(307, 23);
             this.Tx_Nombre.TabIndex = 0;
             // 
-            // Bt_Salir
+            // groupBox1
             // 
-            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(379, 290);
-            this.Bt_Salir.Name = "Bt_Salir";
-            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Salir.TabIndex = 14;
-            this.Bt_Salir.UseVisualStyleBackColor = true;
-            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
+            this.groupBox1.Controls.Add(this.Lb_CodZona);
+            this.groupBox1.Controls.Add(this.Tx_Codigo);
+            this.groupBox1.Location = new System.Drawing.Point(8, 10);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(413, 54);
+            this.groupBox1.TabIndex = 15;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Viajante";
             // 
-            // Bt_Aceptar
+            // Lb_CodZona
             // 
-            this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(335, 290);
-            this.Bt_Aceptar.Name = "Bt_Aceptar";
-            this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Aceptar.TabIndex = 13;
-            this.Bt_Aceptar.UseVisualStyleBackColor = true;
-            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
+            this.Lb_CodZona.AutoSize = true;
+            this.Lb_CodZona.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_CodZona.Location = new System.Drawing.Point(6, 22);
+            this.Lb_CodZona.Name = "Lb_CodZona";
+            this.Lb_CodZona.Size = new System.Drawing.Size(105, 17);
+            this.Lb_CodZona.TabIndex = 1;
+            this.Lb_CodZona.Text = "Código Viajante:";
             // 
-            // ErrorPriveder
+            // Tx_Codigo
             // 
-            this.ErrorPriveder.ContainerControl = this;
+            this.Tx_Codigo.Enabled = false;
+            this.Tx_Codigo.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_Codigo.Location = new System.Drawing.Point(111, 18);
+            this.Tx_Codigo.MaxLength = 4;
+            this.Tx_Codigo.Name = "Tx_Codigo";
+            this.Tx_Codigo.Size = new System.Drawing.Size(49, 23);
+            this.Tx_Codigo.TabIndex = 0;
+            this.Tx_Codigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // AltaViajante
+            // Modif_Viajante
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(429, 337);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
-            this.Name = "AltaViajante";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Nuevo Viajante";
-            this.Load += new System.EventHandler(this.AltaViajante_Load);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.Name = "Modif_Viajante";
+            this.Text = "Modif_Viajante";
+            this.Load += new System.EventHandler(this.Modif_Viajante_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.ErrorPriveder)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox Tx_Codigo;
-        private System.Windows.Forms.Label Lb_CodZona;
+        private System.Windows.Forms.Button Bt_Salir;
+        private System.Windows.Forms.Button Bt_Aceptar;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.ComboBox Cb_Localidad;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ComboBox Cb_Provincia;
+        private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Tx_Telefono;
         private System.Windows.Forms.TextBox Tx_CUIT;
         private System.Windows.Forms.TextBox Tx_Direccion;
         private System.Windows.Forms.TextBox Tx_Nombre;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.ComboBox Cb_Localidad;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.ComboBox Cb_Provincia;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button Bt_Salir;
-        private System.Windows.Forms.Button Bt_Aceptar;
-        private System.Windows.Forms.ToolTip ToolTip;
-        private System.Windows.Forms.ErrorProvider ErrorPriveder;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label Lb_CodZona;
+        private System.Windows.Forms.TextBox Tx_Codigo;
     }
 }

@@ -10,10 +10,18 @@ namespace LogicaDeNegocio
 {
     public class ViajanteBL
     {
-        // Obtener el último ID
-        public static viajantes Obtener_Id(viajantes viaj)
+        // Cargar todos los viajantes
+        public static List<viajantes> Cargar_Viajantes()
         {
-            return ViajanteDAL.Obtener_Id(viaj);
+            return ViajanteDAL.Cargar_Viajantes();
         }
+
+        // Cargar Viajante
+        public static viajantes Alta_Viajante(viajantes Viaj)
+        {
+            return ViajanteDAL.Alta_Viajante(Viaj);
+        }
+
+
     }
 }
