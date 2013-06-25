@@ -40,6 +40,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BancosBL.cs" />
+    <Compile Include="ChequesBL.cs" />
+    <Compile Include="ClientesBL.cs" />
     <Compile Include="LocalidadesBL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ProvinciaBL.cs" />

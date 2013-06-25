@@ -20,6 +20,7 @@ namespace Entidades
         public string codigo_postal { get; set; }
         public string cod_localidad { get; set; }
         public string Cod_Viajante { get; set; }
+        public string Cod_Zona { get; set; }
         public Nullable<decimal> CUIT { get; set; }
         public string contacto { get; set; }
         public string telefono { get; set; }

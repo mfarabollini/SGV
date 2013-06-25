@@ -59,6 +59,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ChequesModelos.edmx</DependentUpon>
     </Compile>
+    <Compile Include="ChequesDAL.cs" />
+    <Compile Include="ClientesDAL.cs" />
     <Compile Include="ConsultasZona.cs" />
     <Compile Include="LocalidadesDAL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
