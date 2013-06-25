@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
+using Entidades;
 
 namespace Presentación
 {
@@ -73,6 +74,7 @@ namespace Presentación
             InitializeComponent();
         }
 
+        #region Load Formulario
         private void Modif_Viajante_Load(object sender, EventArgs e)
         {
             //Código de Viajante
@@ -98,8 +100,75 @@ namespace Presentación
                 CodProv = LocalidadesBL.Obtener_Provincia(this.Localidad, CodProv);
                 Cb_Provincia.SelectedValue = CodProv;
             }
-
         }
+        #endregion
+
+        #region Carga_Localidades
+        // Recupera las localidades de acuerdo a la provincia
+        private void Carga_Localidades(object sender, EventArgs e)
+        {
+            if (Cb_Provincia.SelectedValue != null)
+            {
+                string Cod_Prov = Cb_Provincia.SelectedValue.ToString();
+
+                Cb_Localidad.ValueMember = "Cod_Localidad";
+                Cb_Localidad.DisplayMember = "Desc_Localidad";
+                Cb_Localidad.DataSource = LocalidadesBL.CargarLocalidades(Cod_Prov);
+                Cb_Localidad.SelectedIndex = -1;
+                if (this.Localidad != null)
+                {
+                    Cb_Localidad.SelectedValue = this.Localidad;
+                }
+            }
+        }
+        #endregion
+
+        #region Botón Aceptar
+        private void Bt_Aceptar_Click(object sender, EventArgs e)
+        {
+            viajantes Viaj = new viajantes();
+            
+            // Código Viajante
+            Viaj.Cod_Viajante = Convert.ToInt16(Tx_Codigo.Text);
+            // Nombre
+            Viaj.Nombre = Tx_Nombre.Text;
+            // Dirección
+            Viaj.Direccion = Tx_Direccion.Text;
+            // Si se seleccionó localidades
+            if (Cb_Localidad.SelectedValue != null)
+            {
+                Viaj.Cod_Localidad = Cb_Localidad.SelectedValue.ToString();
+            }
+            // Cuit
+            Viaj.CUIT = Tx_CUIT.Text;
+            // Teléfono
+            Viaj.Telefono = Tx_Telefono.Text;
+
+            // Se da de alta el viajante
+            ViajanteBL.ActualizarViajante(Viaj);
+
+            // Mensaje
+            MessageBox.Show("Viajante actualizado correctamente", "Modifiación Viajante",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            // Cierra la ventana
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+        #endregion
+
+        #region Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
+                              "Salir", MessageBoxButtons.YesNo,
+                               MessageBoxIcon.Warning,
+                               MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+        #endregion
 
     }
 }

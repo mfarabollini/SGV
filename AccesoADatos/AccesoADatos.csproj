@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BancosDAL.cs" />
     <Compile Include="ChequesModelos.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

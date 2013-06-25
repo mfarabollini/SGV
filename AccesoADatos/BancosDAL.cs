@@ -7,15 +7,15 @@ using Entidades;
 
 namespace AccesoADatos
 {
-    public class ProvinciaDAL
+    public class BancosDAL
     {
-        // Recupera todas las provincias de la base de datos
-        public static List<provincias> CargarProvincias()
+        // Recupera todos los bancos de la base de datos
+        public static List<bancos> CargarBancos()
         {
             using (ChequeEntidades bd = new ChequeEntidades())
             {
-                return bd.provincias.ToList();
+                return bd.bancos.ToList();
             }
-        }        
+        }    
     }
 }

@@ -22,6 +22,12 @@ namespace LogicaDeNegocio
             return ViajanteDAL.Alta_Viajante(Viaj);
         }
 
+        // Actualizar Viajante
+        public static viajantes ActualizarViajante(viajantes Viaj)
+        {
+            return ViajanteDAL.ActualizarViajante(Viaj);
+        }
+        
         // Borrar Viajante
         public static viajantes Borrar_Viajante(viajantes Viaj)
         {

@@ -72,6 +72,41 @@ namespace AccesoADatos
             return Viaj;
         }
 
+        // Actualizar Viajante
+        public static viajantes ActualizarViajante(viajantes Viaj)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                viajantes Viajante = new viajantes();
+
+                var query = (from n in bd.viajantes
+                             where n.Cod_Viajante == Viaj.Cod_Viajante
+                             select n).Single();
+
+                query.Nombre = Viaj.Nombre;
+                query.Direccion = Viaj.Direccion;
+                query.Cod_Localidad = Viaj.Cod_Localidad;
+                query.CUIT = Viaj.CUIT;
+                query.Telefono = Viaj.Telefono;
+
+                try
+                {
+                    bd.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    // Captura las Excepciones del insert
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                }
+            }
+            return Viaj;
+        }
+                
         // Borrar un Viajante
         public static viajantes Borrar_Viajante(viajantes Viaj)
         {

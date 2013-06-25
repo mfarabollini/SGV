@@ -59,6 +59,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 18;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
@@ -68,6 +69,7 @@
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 17;
             this.Bt_Aceptar.UseVisualStyleBackColor = true;
+            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
             // groupBox2
             // 
@@ -117,7 +119,7 @@
             this.Cb_Localidad.Location = new System.Drawing.Point(80, 114);
             this.Cb_Localidad.Name = "Cb_Localidad";
             this.Cb_Localidad.Size = new System.Drawing.Size(174, 23);
-            this.Cb_Localidad.TabIndex = 10;
+            this.Cb_Localidad.TabIndex = 3;
             // 
             // label4
             // 
@@ -136,7 +138,8 @@
             this.Cb_Provincia.Location = new System.Drawing.Point(80, 84);
             this.Cb_Provincia.Name = "Cb_Provincia";
             this.Cb_Provincia.Size = new System.Drawing.Size(174, 23);
-            this.Cb_Provincia.TabIndex = 8;
+            this.Cb_Provincia.TabIndex = 2;
+            this.Cb_Provincia.SelectedIndexChanged += new System.EventHandler(this.Carga_Localidades);
             // 
             // label3
             // 
@@ -175,7 +178,7 @@
             this.Tx_Telefono.MaxLength = 20;
             this.Tx_Telefono.Name = "Tx_Telefono";
             this.Tx_Telefono.Size = new System.Drawing.Size(162, 23);
-            this.Tx_Telefono.TabIndex = 4;
+            this.Tx_Telefono.TabIndex = 5;
             // 
             // Tx_CUIT
             // 
@@ -184,7 +187,7 @@
             this.Tx_CUIT.MaxLength = 11;
             this.Tx_CUIT.Name = "Tx_CUIT";
             this.Tx_CUIT.Size = new System.Drawing.Size(115, 23);
-            this.Tx_CUIT.TabIndex = 3;
+            this.Tx_CUIT.TabIndex = 4;
             // 
             // Tx_Direccion
             // 
@@ -247,7 +250,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "Modif_Viajante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Modif_Viajante";
+            this.Text = "Modificar Viajante";
             this.Load += new System.EventHandler(this.Modif_Viajante_Load);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();

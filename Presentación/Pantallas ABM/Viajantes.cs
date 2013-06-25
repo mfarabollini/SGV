@@ -95,12 +95,31 @@ namespace Presentación.Pantallas_ABM
                 int indice         = Grid_Viajantes.SelectedRows[0].Index;
                 Viaj.Cod_Viajante  = Convert.ToInt16(Grid_Viajantes.Rows[indice].Cells[0].Value);
                 Viaj.Nombre        = Grid_Viajantes.Rows[indice].Cells[1].Value.ToString();
-                Viaj.Direccion     = Grid_Viajantes.Rows[indice].Cells[2].Value.ToString();
-                Viaj.CUIT          = Grid_Viajantes.Rows[indice].Cells[5].Value.ToString();
-                Viaj.Telefono      = Grid_Viajantes.Rows[indice].Cells[6].Value.ToString();
-                Viaj.Cod_Localidad = Grid_Viajantes.Rows[indice].Cells[7].Value.ToString();
 
+                // Dirección puede ser nulo. Controla.
+                if (Grid_Viajantes.Rows[indice].Cells[2].Value != null)
+                {
+                    Viaj.Direccion = Grid_Viajantes.Rows[indice].Cells[2].Value.ToString();
+                }
 
+                // CUIT puede ser nulo. Controla.
+                if (Grid_Viajantes.Rows[indice].Cells[5].Value != null)
+                {
+                    Viaj.CUIT = Grid_Viajantes.Rows[indice].Cells[5].Value.ToString();
+                }
+
+                // Teléfono puede ser nulo. Controla.
+                if (Grid_Viajantes.Rows[indice].Cells[6].Value != null)
+                {
+                    Viaj.Telefono = Grid_Viajantes.Rows[indice].Cells[6].Value.ToString();
+                }
+                
+                // Localidad puede ser nulo. Controla.
+                if (Grid_Viajantes.Rows[indice].Cells[7].Value != null)
+                {
+                    Viaj.Cod_Localidad = Grid_Viajantes.Rows[indice].Cells[7].Value.ToString();
+                }
+                
                 Modif_Viajante Fr_Modif = new Modif_Viajante();
                 // Código
                 Fr_Modif.Codigo     = Viaj.Cod_Viajante.ToString();

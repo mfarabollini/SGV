@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Presentación.Pantallas_Principal;
 
 namespace Presentación
 {
@@ -16,7 +17,7 @@ namespace Presentación
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Presentación.Pantallas_ABM.Viajantes());
+            Application.Run(new Busqueda_Banco());
         }
     }
 }
