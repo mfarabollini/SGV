@@ -18,11 +18,18 @@ namespace Presentación.Pantallas_Principal
         #region Declaración Variables
         // Declaraciones de variables
         private String _codigo;
+        private String _DescCliente;
 
         public String Codigo
         {
             get { return _codigo; }
             set { _codigo = value; }
+        }
+
+        public String DescCliente
+        {
+            get { return _DescCliente; }
+            set { _DescCliente = value; }
         }
         #endregion
 
@@ -30,24 +37,30 @@ namespace Presentación.Pantallas_Principal
         {
             InitializeComponent();
         }
-
-        private void textBox5_TextChanged(object sender, EventArgs e)
-        {
-
-
-        }
-
-        public void Bt_Banco_Click(object sender, EventArgs e)
-        {
-            Busqueda_Banco Busqueda = new Busqueda_Banco();
-            Busqueda.Show();
-          
-        }
-
+        
+        #region Load de Formulario
         private void IngresoManual_Load(object sender, EventArgs e)
         {
+            // Valorización del Cliente, en caso que esté valorizado en el Form Anterior
+            Tx_CodCliente.Text = this.Codigo;
+            Tx_DescCliente.Text = this.DescCliente;
+            
+            // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
+            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
+            Tx_FechaVen.CustomFormat = " ";
 
+            // En caso que no esté valorizado el cliente anteriormente, 
+            // pone el foco en el campo Cliente
+            if (Tx_CodCliente.Text == "")
+            {
+                Tx_CodCliente.Focus();
+            }
+            else 
+            {
+                Tx_CodBanco.Focus();    
+            }
         }
+        #endregion
 
         #region Buscar Banco
         // Busca el banco ingresado luego de la perdida de foco del Tx_CodBanco
@@ -79,6 +92,13 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        public void Bt_Banco_Click(object sender, EventArgs e)
+        {
+            Busqueda_Banco Busqueda = new Busqueda_Banco();
+            Busqueda.Show();
+
+        }
+
         #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
@@ -89,27 +109,50 @@ namespace Presentación.Pantallas_Principal
                 cheques Cheque = new cheques();
                 
                 // Valorización de los datos del cheque
-                Cheque.Cod_Banco    = Tx_CodBanco.Text;
-                Cheque.Cod_Sucursal = Tx_Sucursal.Text;
-                Cheque.Cod_Postal   = Tx_CodPostal.Text;
-                Cheque.Num_Cheque   = Tx_NumCheque.Text;
-                Cheque.Num_Cuenta   = Tx_NumCuenta.Text;
-                Cheque.Cod_Cliente  = Convert.ToInt16(Tx_CodCliente.Text);
+                Cheque.Cod_Banco     = Tx_CodBanco.Text;
+                Cheque.Cod_Sucursal  = Tx_Sucursal.Text;
+                Cheque.Cod_Postal    = Tx_CodPostal.Text;
+                Cheque.Num_Cheque    = Tx_NumCheque.Text;
+                Cheque.Num_Cuenta    = Tx_NumCuenta.Text;
+                Cheque.Cod_Cliente   = Convert.ToInt16(Tx_CodCliente.Text);
                 Cheque.Fecha_Entrada = DateTime.Now;
-                //Cheque.Importe      = Convert.ToDouble(Tx_Importe.Text);
-                Cheque.CUIT_Cheque  = Tx_Cuit.Text;
-                //Cheque.Fecha_Vec    = Tx_FechaVen;   
+                Cheque.Importe       = float.Parse(Tx_Importe.Text);
+                Cheque.CUIT_Cheque   = Tx_Cuit.Text;
+                Cheque.Fecha_Vec     = Tx_FechaVen.Value;
 
-                // Llamar al método que añade el registro
-                
+                if (ChequesBL.Exite_Cheque(Cheque) == false)
+                {
+                    // Llamar al método que añade el registro
+                    ChequesBL.Agregar_Cheque(Cheque);
 
-
+                    if (Cheque.Cod_Cheques != 0)
+                    {
+                        MessageBox.Show("Cheque cargado correctamente", "Registro de Cheque",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //Limpiar los TextBox
+                        Limpiar();
+                        Tx_CodCliente.Focus();
+                        Tx_CodCliente.SelectionStart = 0;
+                        Tx_CodCliente.SelectionLength = Tx_CodCliente.Text.Length;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Ha ocurrido un error guardando el Cheque", "Registro de Cheque",
+                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("El cheque que está intentando ingresar, ya fue registrado",
+                                    "Registro de Cheque",
+                    MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
         #endregion
 
-        #region Validaciones
-        
+        #region Validaciones            
+
         // Valida que en el Código de Banco sea númerico
         private void Valida_Numeros(object sender, KeyPressEventArgs e)
         {
@@ -128,14 +171,22 @@ namespace Presentación.Pantallas_Principal
                     //el resto de teclas pulsadas se desactivan 
                     e.Handled = true;
                 }
-        }
+        }   
         
+        #region Validaciones de Valorización
         // Validaciones al guardar
         private bool Validaciones()
         {
             bool result = true;
+            ControlError.Clear();
 
-            #region Validaciones de Valorización
+            // Control Cliente
+            if (string.IsNullOrEmpty(Tx_CodCliente.Text))
+            {
+                ControlError.SetError(Tx_CodCliente, "Campo Obligatorio");
+                result = false;
+            }
+            
             // Control Código de Banco
             if (string.IsNullOrEmpty(Tx_CodBanco.Text))
             {
@@ -171,8 +222,8 @@ namespace Presentación.Pantallas_Principal
                 result = false;
             }
 
-            // Control Fecha Vencimiento
-            if (string.IsNullOrEmpty(Tx_FechaVen.Text))
+            // La propiedad Checked, se vuelve true cuando el usuario seleccionar una fecha.
+            if (Tx_FechaVen.Checked == false )
             {
                 ControlError.SetError(Tx_FechaVen, "Campo Obligatorio");
                 result = false;
@@ -184,17 +235,90 @@ namespace Presentación.Pantallas_Principal
                 ControlError.SetError(Tx_Importe, "Campo Obligatorio");
                 result = false;
             }
-            #endregion
-
-
-
-
+            
             return result;
-        }        
+        }
+        #endregion
         
         #endregion
+        
+        // Limpiar las variables.
+        public void Limpiar()
+        {
+            Tx_CodBanco.Text = "";
+            Tx_Sucursal.Text = "";
+            Tx_CodPostal.Text = "";
+            Tx_NumCuenta.Text = "";
+            Tx_NumCheque.Text = "";
+            Tx_Cuit.Text = "";
+            Tx_FechaVen.Text = "";
+            Tx_Importe.Text = "";
 
+            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
+            Tx_FechaVen.CustomFormat = " ";
+        }
+        
+        // Cheque que el cliente ingresado exista.
+        private void Chequear_Cliente(object sender, EventArgs e)
+        {
+            if (Tx_CodCliente.Text != "")
+            {
+                // Nueva Instancia de Cliente
+                clientes Clie = new clientes();
+                // Valoriza el código de cliente
+                Clie.Cod_Cliente = Convert.ToInt16(Tx_CodCliente.Text);
+                // Busca el Cliente
+                ClientesBL.Buscar_Cliente(Clie);
+                // Si lo encuentra, valoriza la Razón Social (Es obligatorio)
+                if (Clie.razon_social != null)
+                {
+                    // Valoriza en la salida, la Razón Social
+                    ControlError.Clear();
+                    Tx_DescCliente.Text = Clie.razon_social;
+                }
+                else
+                {
+                    // Borra la descripción y setea el error.
+                    Tx_DescCliente.Text = "";
+                    ControlError.SetError(Tx_CodCliente, "El Código Ingresado no existe");
+                }
+            }        
+        }
 
+        private void Cambiar_Formato(object sender, EventArgs e)
+        {
+            // Cambia el formato de la fhecha
+            Tx_FechaVen.Format = DateTimePickerFormat.Short;
+        }
 
+        // Controla que se inserten números y solo un punto y dos decimales.
+        private void Validar_Importe(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == 8)
+            {
+                e.Handled = false;
+                return;
+            }            
+            bool IsDec = false;
+            int nroDec = 0;
+
+            for (int i = 0; i < Tx_Importe.Text.Length; i++)
+            {
+                if (Tx_Importe.Text[i] == '.')
+                    IsDec = true;
+
+                if (IsDec && nroDec++ >= 2)
+                {
+                    e.Handled = true;
+                    return;
+                }
+            }
+            if (e.KeyChar >= 48 && e.KeyChar <= 57)
+                e.Handled = false;
+            else if (e.KeyChar == 46)
+                e.Handled = (IsDec) ? true : false;
+            else
+                e.Handled = true;
+        }
     }
 }

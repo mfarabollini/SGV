@@ -34,5 +34,23 @@ namespace AccesoADatos
            }
             return Cheque;
         }
+
+
+        //Control de existencia del cheque
+        public static bool Existe_Cheque(cheques Cheque)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                var query = (from n in bd.cheques
+                             where n.Cod_Banco    == Cheque.Cod_Banco &&
+                                   n.Cod_Sucursal == Cheque.Cod_Sucursal &&
+                                   n.Num_Cheque   == Cheque.Num_Cheque
+                             select n).Count();
+                if (query == 0)
+                    return false;
+                else
+                    return true;
+            }
+        }
     }
 }

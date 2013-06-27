@@ -15,5 +15,11 @@ namespace LogicaDeNegocio
         {
             return ChequesDAL.Agregar_Cheque(Cheque);
         }
+
+        // Chequear si existe el Cheque
+        public static bool Exite_Cheque(cheques Cheque)
+        {
+            return ChequesDAL.Existe_Cheque(Cheque);
+        }
     }
 }
