@@ -14,21 +14,32 @@ namespace Presentación.Pantallas_Principal
 {
     public partial class Ingreso_Cheque : Form
     {
+        #region Declaraciones Globales
         int indice;
-                
+        // Declaración de la tabla
+        DataTable it_cheques = new DataTable();
+        DataTable it_error = new DataTable();
+
+        string d_cuit;
+        #endregion
+
         public Ingreso_Cheque()
         {
             InitializeComponent();
         }
-        
-        // Load del formulario
+
+        #region Load del Formulario
         private void Ingreso_Cheque_Load(object sender, EventArgs e)
         {
             // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
             Tx_FechaVen.Format = DateTimePickerFormat.Custom;
             Tx_FechaVen.CustomFormat = " ";
-        }      
-                
+            // Setea el botón de errores para que no sea visualizado.
+            Tx_Errores.Visible = false;
+            d_cuit = "";
+        }
+        #endregion
+
         #region Link de Ingreso Manual
         private void Lk_IngresoManual_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -42,15 +53,12 @@ namespace Presentación.Pantallas_Principal
         #endregion
 
         private void Bt_Escaneo_Click(object sender, EventArgs e)
-        {                    
-          
-            // Declaración de la tabla
-            DataTable it_cheques = new DataTable();
-            // Declaración de la variable Columna
-            DataColumn column = new DataColumn();
-            
+        {             
             // Crea una tabla interna para poder guardar los datos leidos por el escaner.
-            CrearTablaInterna(it_cheques, column);
+            if (it_cheques.Columns.Count == 0)
+            {
+                CrearTablaInterna(it_cheques);    
+            }            
 
             // Le asigna a la grilla la fuente de datos
             Gr_Cheques.AutoGenerateColumns = false;
@@ -58,22 +66,25 @@ namespace Presentación.Pantallas_Principal
 
             /// ********************************************************************
             /// Adhiere el valor a la tabla interna
-            Adherir_Valor(it_cheques, "005", "138", "5000","9849938","73892");
+            Adherir_Valor(it_cheques, 1, "005", "138", "5000","9849938","73892", d_cuit);
             /// Adhiere el valor a la tabla interna
-            Adherir_Valor(it_cheques, "007", "198", "7000", "1234567", "987654");
+            Adherir_Valor(it_cheques, 2, "007", "198", "7000", "1234567", "987654", d_cuit);
             /// Adhiere el valor a la tabla interna
-            Adherir_Valor(it_cheques, "007", "198", "7000", "1234567", "");
+            Adherir_Valor(it_cheques, 3, "007", "198", "7000", "1234567", "", d_cuit);
             /// ********************************************************************
         }
 
+        #region Adherir Valores a La tabla
         /// Adhiere Valor a la tabla interna
-        private void Adherir_Valor(DataTable it_cheques, string Cod_Banco, string Cod_Sucursal,
-                                   string Cod_Postal, string Num_Cuenta, string Num_Cheque)
+        private void Adherir_Valor(DataTable it_cheques, int Posicion, string Cod_Banco, string Cod_Sucursal,
+                                   string Cod_Postal, string Num_Cuenta, string Num_Cheque, string d_cuit)
         {
             // Inicializa la variable par agregar la columna
             DataRow row = null;            
             row = it_cheques.NewRow();
             
+            // Posición
+            row["Posicion"] = Posicion;
             // Código de Banco
             row["Cod_Banco"] = Cod_Banco;
             // Código de Sucursal
@@ -84,18 +95,47 @@ namespace Presentación.Pantallas_Principal
             row["Num_Cuenta"] = Num_Cuenta;
             // Número de Cheque
             row["Num_Cheque"] = Num_Cheque;
-           
-            it_cheques.Rows.Add(row);
+            // CUIT del cliente
+            row["CUIT"] = d_cuit;
 
+            // Adhiere el registro a la tabla
+            it_cheques.Rows.Add(row);
         }
 
+        // Adhiere los errores a la tabla
+        private void Adherir_Error(string Posicion, string Texto)
+        {
+            // Inicializa la variable par agregar la columna            
+            DataRow row = it_error.NewRow();
+
+            // Posición
+            row["Posicion"] = Posicion;
+            // Texto
+            row["Texto"] = Texto;
+
+            it_error.Rows.Add(row);
+        }
+        #endregion
+
+        #region Crear las tablas internas
         // Crea una tabla interna para poder guardar los datos leidos por el escaner.
-        private void CrearTablaInterna(DataTable it_cheques, DataColumn column)
+        private void CrearTablaInterna(DataTable it_cheques)
         {
             // Quita el asterico final al DataGridView
             it_cheques.DefaultView.AllowNew = false;
-            
+
+            // Declaración de la variable Columna            
+            DataColumn column = new DataColumn();
+
+            // Columna Posición
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.Int16");
+            column.ColumnName = "Posicion";
+            column.Caption = "Posición";
+            it_cheques.Columns.Add(column);
+
             // Columna Código de Banco
+            column = new DataColumn();
             column.DataType = System.Type.GetType("System.String");
             column.ColumnName = "Cod_Banco";
             column.Caption = "Código Banco";
@@ -127,28 +167,57 @@ namespace Presentación.Pantallas_Principal
             column.DataType = System.Type.GetType("System.String");
             column.ColumnName = "Num_Cuenta";
             column.Caption = "Número Cuenta";
-            it_cheques.Columns.Add(column);            
+            it_cheques.Columns.Add(column);
 
+            // Columna CUIT
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "CUIT";
+            column.Caption = "CUIT";
+            it_cheques.Columns.Add(column);    
         }
 
-        // Carga los valores del datagrid en los textbox cuando se selecciona
+       // Crea la tabla de error
+        private void Crear_Tabla_Error()
+        {
+            DataColumn column = new DataColumn();
+
+            // Quita el asterico final al DataGridView
+            it_error.DefaultView.AllowNew = false;
+
+            // Columna Posición
+            column.DataType = System.Type.GetType("System.Int16");
+            column.ColumnName = "Posicion";
+            column.Caption = "Posición";
+            it_error.Columns.Add(column);
+
+            // Columna Código de Banco
+            column = new DataColumn();
+            column.DataType = System.Type.GetType("System.String");
+            column.ColumnName = "Texto";
+            column.Caption = "Descripción";
+            it_error.Columns.Add(column);
+        }
+        #endregion
+
+        // Carga los valores del datagrid en los textbox cuando se selecciona una línea
         private void CargaValores(object sender, DataGridViewCellEventArgs e)
         {
             // Variable global del índice
             indice = e.RowIndex;
-
+            // Si no se selecciona nínguna línea
             if (indice < 0)
             {
-                return;
+                return; 
             }
 
             // Limpia los TextBox
             Limpiar_Textos();
             
             // Código de Banco de la linea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[0].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[1].Value != null)
             {
-                Tx_CodBanco.Text = Gr_Cheques.Rows[e.RowIndex].Cells[0].Value.ToString();
+                Tx_CodBanco.Text = Gr_Cheques.Rows[e.RowIndex].Cells[1].Value.ToString();
 
                 // Crear instancia de Banco    
                 bancos Banco = new bancos();
@@ -173,52 +242,53 @@ namespace Presentación.Pantallas_Principal
             }
             
             // Código de Sucursal de la linea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[1].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[2].Value != null)
             {
-                Tx_Sucursal.Text = Gr_Cheques.Rows[e.RowIndex].Cells[1].Value.ToString();
+                Tx_Sucursal.Text = Gr_Cheques.Rows[e.RowIndex].Cells[2].Value.ToString();
             }            
             
             // Código Posta de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[2].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[3].Value != null)
             {
-                Tx_CodPostal.Text = Gr_Cheques.Rows[e.RowIndex].Cells[2].Value.ToString();        
+                Tx_CodPostal.Text = Gr_Cheques.Rows[e.RowIndex].Cells[3].Value.ToString();        
             }
 
             // Número de Cheque de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[3].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[4].Value != null)
             {
-                Tx_NumCheque.Text = Gr_Cheques.Rows[e.RowIndex].Cells[3].Value.ToString();
+                Tx_NumCheque.Text = Gr_Cheques.Rows[e.RowIndex].Cells[4].Value.ToString();
             } 
 
             // Número de Cuenta de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[4].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[5].Value != null)
             {
-                Tx_NumCuenta.Text = Gr_Cheques.Rows[e.RowIndex].Cells[4].Value.ToString();
+                Tx_NumCuenta.Text = Gr_Cheques.Rows[e.RowIndex].Cells[5].Value.ToString();
             }
             
             // Importe de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[5].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[6].Value != null)
             {
-                Tx_Importe.Text = Gr_Cheques.Rows[e.RowIndex].Cells[5].Value.ToString();        
+                Tx_Importe.Text = Gr_Cheques.Rows[e.RowIndex].Cells[6].Value.ToString();        
             }
             
             // CUIT de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[6].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[7].Value != null)
             {
-                Tx_Cuit.Text = Gr_Cheques.Rows[e.RowIndex].Cells[6].Value.ToString();
+                Tx_Cuit.Text = Gr_Cheques.Rows[e.RowIndex].Cells[7].Value.ToString();
             }
             
              //Fecha de vencimiento de la línea seleccionada            
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[7].Value != null)
+            if (Gr_Cheques.Rows[e.RowIndex].Cells[8].Value != null)
             {
                 Tx_FechaVen.Format = DateTimePickerFormat.Short;
-                Tx_FechaVen.Text = Gr_Cheques.Rows[e.RowIndex].Cells[7].Value.ToString();
+                Tx_FechaVen.Text = Gr_Cheques.Rows[e.RowIndex].Cells[8].Value.ToString();
             }  
         }
 
         // Limpia los textos del TextBox
         private void Limpiar_Textos()
         {
+            // Limpiar los Textos
             Tx_CodBanco.Text = "";
             Tx_Sucursal.Text = "";
             Tx_CodPostal.Text = "";
@@ -234,64 +304,66 @@ namespace Presentación.Pantallas_Principal
         // Cambia el formato de la fecha
         private void CambiarFormato(object sender, EventArgs e)
         {
-            // Cambia el formato de la fhecha
+            // Cambia el formato de la fecha y la fecha
             Tx_FechaVen.Format = DateTimePickerFormat.Short;
-            Gr_Cheques.Rows[indice].Cells[7].Value = Tx_FechaVen.Text;
+            Gr_Cheques.Rows[indice].Cells[8].Value = Tx_FechaVen.Text;
             Gr_Cheques.Refresh();
         }
 
         #region Valorización Grid - Cambio en TxBox
+
         // Se valoriza el importe en el DataGrid cuando se cambia valor en el TextBox.
         private void Valoriza_Importe(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[5].Value = Tx_Importe.Text;
+            Gr_Cheques.Rows[indice].Cells[6].Value = Tx_Importe.Text;
             Gr_Cheques.Refresh();
         }
 
         // Se valoriza Código de Banco en el DataGrid cuando se cambia valor en el TextBox.
         private void Valoriza_Banco(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[0].Value = Tx_CodBanco.Text;
+            Gr_Cheques.Rows[indice].Cells[1].Value = Tx_CodBanco.Text;
             Gr_Cheques.Refresh();
         }
 
         // Se valoriza Sucursal en el DataGrid cuando se cambia valor en el TextBox.
         private void Valoriza_Sucursal(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[1].Value = Tx_Sucursal.Text;
+            Gr_Cheques.Rows[indice].Cells[2].Value = Tx_Sucursal.Text;
             Gr_Cheques.Refresh();
         }
 
         // Se valoriza Código Postal en el DataGrid cuando se cambia valor en el TextBox.
         private void Valoriza_CP(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[2].Value = Tx_CodPostal.Text;
+            Gr_Cheques.Rows[indice].Cells[3].Value = Tx_CodPostal.Text;
             Gr_Cheques.Refresh();
         }
 
         // Se valoriza Número de Cheque en el DataGrid cuando se cambia valor en el TextBox.
         private void Valoriza_NumChe(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[3].Value = Tx_NumCheque.Text;
+            Gr_Cheques.Rows[indice].Cells[4].Value = Tx_NumCheque.Text;
             Gr_Cheques.Refresh();
         }
 
         // Se valoriza Número de Cuenta en el DataGrid cuando se cambia valor en el TextBox.
         private void ValorizaNumCuenta(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[4].Value = Tx_NumCuenta.Text;
+            Gr_Cheques.Rows[indice].Cells[5].Value = Tx_NumCuenta.Text;
             Gr_Cheques.Refresh();
         }
 
         // Se valoriza CUIT en el DataGrid cuando se cambia valor en el TextBox.
         private void ValorizaCuit(object sender, KeyEventArgs e)
         {
-            Gr_Cheques.Rows[indice].Cells[6].Value = Tx_Cuit.Text;
+            Gr_Cheques.Rows[indice].Cells[7].Value = Tx_Cuit.Text;
             Gr_Cheques.Refresh();
         }     
                
         #endregion
 
+        #region Validaciones 
         // Controla que se inserten números y solo un punto y dos decimales.
         private void Validar_Importe(object sender, KeyPressEventArgs e)
         {
@@ -366,6 +438,9 @@ namespace Presentación.Pantallas_Principal
                     // Valoriza en la salida, la Razón Social
                     ControlError.Clear();
                     Tx_DescripcionClie.Text = Clie.razon_social;
+                    
+                    // Valoriza la variable global de CUIT
+                    d_cuit = Clie.CUIT.ToString();                
                 }
                 else
                 {
@@ -394,6 +469,153 @@ namespace Presentación.Pantallas_Principal
                     e.Handled = true;
                 }
         }
+        #endregion
+
+        #region Botón Guardar
+        // Botón Guardar
+        private void Bt_Aceptar_Click(object sender, EventArgs e)
+        {
+            // Crear una nueva instacia de Cheque. Será utilizado para enviar a los
+            // métodos de validaciones
+            cheques Cheque = new cheques();
+
+            // Reinicia los controles de errores
+            ControlError.Clear();
+            Tx_Errores.Visible = false;
+
+            // En caso que no tenga columnas la tabla interna, las agrega. Sino, limpia la tabla
+            if (it_error.Columns.Count == 0)
+            {
+                Crear_Tabla_Error();
+            }
+            else
+            {
+                // Limpiar la tabla
+                it_error.Rows.Clear();
+            }
+            
+            // Validar que esté valorizado el cliente
+            if ((Tx_CodigoClie.Text == "") || ( Tx_DescripcionClie.Text == ""))
+            {
+                ControlError.Clear();
+                ControlError.SetError(Tx_CodigoClie, "Campo Obligatorio");
+                return;
+            }
+
+            /// ----------------------------------------------------////
+            /// Para cada una de las lineas del Grid
+            /// ----------------------------------------------------////
+            foreach (DataGridViewRow row in Gr_Cheques.Rows)
+            {
+
+                #region Validación De Valorización
+                
+                // Código de Banco
+                if (row.Cells["Cod_Banco"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar el código de Banco");
+                }
+                // Código de Sucursal
+                if (row.Cells["Cod_Sucursal"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Código de Sucurdal");
+                }
+                // Código Postal
+                if (row.Cells["Cod_Postal"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Código Postal");
+                }
+                // Número de Cheque
+                if (row.Cells["Num_Cheque"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Número de Cheque");
+                }
+                // Número de Cuenta
+                if (row.Cells["Num_Cuenta"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Número de Cuenta");
+                }
+                // Importe
+                if (row.Cells["Importe"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Importe");
+                }
+                // CUIT
+                if (row.Cells["CUIT"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar CUIT");
+                }
+                // Fecha de Vencimiento
+                if (row.Cells["Fecha_Venc"].Value == null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Fecha de vencimiento");
+                }
+                #endregion
+
+                #region Validar_Banco
+                // Valida que el Banco exista
+                if (row.Cells["Cod_Banco"].Value != null)
+                {
+                    // Crear instancia de Banco    
+                    bancos Banco = new bancos();
+                    // Valorizar el código
+                    Banco.Cod_Banco = row.Cells["Cod_Banco"].Value.ToString();
+                    //Recuperar la descripción del banco
+                    BancosBL.Obtener_Banco(Banco);
+
+                    if (Banco.Desc_Banco == "")
+                    {
+                        Adherir_Error(row.Cells["Posicion"].ToString(), "El banco ingresado no existe");
+                    }
+
+                }
+                #endregion
+
+                #region Validar Cheque                                
+                if (row.Cells["Cod_Banco"].Value != null && 
+                    row.Cells["Cod_Sucursal"].Value != null &&
+                    row.Cells["Num_Cheque"].Value != null)
+                {
+                    Cheque.Cod_Banco = row.Cells["Cod_Banco"].Value.ToString();
+                    Cheque.Cod_Sucursal = row.Cells["Cod_Sucursal"].Value.ToString();
+                    Cheque.Num_Cheque = row.Cells["Num_Cheque"].Value.ToString();
+
+                    if (ChequesBL.Exite_Cheque(Cheque) == true)
+                    {
+                        Adherir_Error(row.Cells["Posicion"].Value.ToString(), "El Cheque ingresado ya fue registrado");
+                    }                    
+                }
+                #endregion       
+            }
+            // Finaliza el recorrido de la tabla
+
+            #region Mostrar Errores
+            // Cantidad de errores encontrados
+            Int16 cantidad = Convert.ToInt16(it_error.Rows.Count);
+            if (cantidad > 1 )
+            {
+                // Muestra el alerta de error y pone visible el Botón para visualizarlos
+                ControlError.Clear();
+                ControlError.SetError(Tx_Errores, "Existen errores en la valorización. Por favo, Verifique");                
+                Tx_Errores.Visible = true;
+            }
+            else
+            {
+                // Guardar el registro
+            }
+            #endregion
+        }
+        #endregion
+
+        // Botón para visualizar los errores
+        private void Tx_Errores_Click(object sender, EventArgs e)
+        {
+            // Muestra el PopUp de errores
+            Mostrar_Errores Fr_Errores = new Mostrar_Errores();
+            Fr_Errores.it_errores = it_error;
+            Fr_Errores.Show();         
+        }
     }
  }
+
 

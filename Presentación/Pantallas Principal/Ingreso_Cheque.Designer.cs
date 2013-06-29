@@ -32,13 +32,14 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ingreso_Cheque));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Gr_Cheques = new System.Windows.Forms.DataGridView();
+            this.Posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Postal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Num_Cheque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Num_Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cod_CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_venc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Tx_DescripcionClie = new System.Windows.Forms.TextBox();
@@ -53,6 +54,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.Tx_Importe = new System.Windows.Forms.TextBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.Tx_Errores = new System.Windows.Forms.Button();
             this.Tx_FechaVen = new System.Windows.Forms.DateTimePicker();
             this.Lb_DescBanco = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
@@ -98,13 +100,14 @@
             this.Gr_Cheques.AllowUserToDeleteRows = false;
             this.Gr_Cheques.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Gr_Cheques.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.Posicion,
             this.Cod_Banco,
             this.Cod_Sucursal,
             this.Cod_Postal,
             this.Num_Cheque,
             this.Num_Cuenta,
             this.Importe,
-            this.Cod_CUIT,
+            this.CUIT,
             this.Fecha_venc});
             this.Gr_Cheques.Location = new System.Drawing.Point(11, 22);
             this.Gr_Cheques.Name = "Gr_Cheques";
@@ -113,6 +116,15 @@
             this.Gr_Cheques.Size = new System.Drawing.Size(638, 184);
             this.Gr_Cheques.TabIndex = 0;
             this.Gr_Cheques.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CargaValores);
+            // 
+            // Posicion
+            // 
+            this.Posicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Posicion.DataPropertyName = "Posicion";
+            this.Posicion.HeaderText = "Pos.";
+            this.Posicion.Name = "Posicion";
+            this.Posicion.ReadOnly = true;
+            this.Posicion.Width = 55;
             // 
             // Cod_Banco
             // 
@@ -156,12 +168,12 @@
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
             // 
-            // Cod_CUIT
+            // CUIT
             // 
-            this.Cod_CUIT.DataPropertyName = "CUIT";
-            this.Cod_CUIT.HeaderText = "CUIT";
-            this.Cod_CUIT.Name = "Cod_CUIT";
-            this.Cod_CUIT.ReadOnly = true;
+            this.CUIT.DataPropertyName = "CUIT";
+            this.CUIT.HeaderText = "CUIT";
+            this.CUIT.Name = "CUIT";
+            this.CUIT.ReadOnly = true;
             // 
             // Fecha_venc
             // 
@@ -294,6 +306,7 @@
             // 
             // groupBox5
             // 
+            this.groupBox5.Controls.Add(this.Tx_Errores);
             this.groupBox5.Controls.Add(this.Tx_FechaVen);
             this.groupBox5.Controls.Add(this.Lb_DescBanco);
             this.groupBox5.Controls.Add(this.label7);
@@ -317,6 +330,17 @@
             this.groupBox5.TabIndex = 7;
             this.groupBox5.TabStop = false;
             this.groupBox5.Text = "Datos del Cheque";
+            // 
+            // Tx_Errores
+            // 
+            this.Tx_Errores.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_Errores.Location = new System.Drawing.Point(463, 20);
+            this.Tx_Errores.Name = "Tx_Errores";
+            this.Tx_Errores.Size = new System.Drawing.Size(102, 23);
+            this.Tx_Errores.TabIndex = 19;
+            this.Tx_Errores.Text = "Ver Errores";
+            this.Tx_Errores.UseVisualStyleBackColor = true;
+            this.Tx_Errores.Click += new System.EventHandler(this.Tx_Errores_Click);
             // 
             // Tx_FechaVen
             // 
@@ -500,6 +524,7 @@
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 9;
             this.Bt_Aceptar.UseVisualStyleBackColor = true;
+            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
             // Ingreso_Cheque
             // 
@@ -568,15 +593,17 @@
         private System.Windows.Forms.Button Bt_Banco;
         private System.Windows.Forms.TextBox Tx_CodBanco;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button Bt_Salir;
+        private System.Windows.Forms.Button Bt_Aceptar;
+        private System.Windows.Forms.Button Tx_Errores;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Posicion;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Banco;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Sucursal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Postal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Num_Cheque;
         private System.Windows.Forms.DataGridViewTextBoxColumn Num_Cuenta;
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Cod_CUIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CUIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_venc;
-        private System.Windows.Forms.Button Bt_Salir;
-        private System.Windows.Forms.Button Bt_Aceptar;
     }
 }

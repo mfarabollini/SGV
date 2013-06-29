@@ -104,6 +104,12 @@
     <Compile Include="Pantallas ABM\Zonas.Designer.cs">
       <DependentUpon>Zonas.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Principal\Mostrar_Errores.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Principal\Mostrar_Errores.Designer.cs">
+      <DependentUpon>Mostrar_Errores.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Pantallas Principal\Busqueda_Banco.resx">
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas ABM\Zonas.resx">
       <DependentUpon>Zonas.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Principal\Mostrar_Errores.resx">
+      <DependentUpon>Mostrar_Errores.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
