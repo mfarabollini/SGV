@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(IngresoManual));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Tx_FechaVen = new System.Windows.Forms.DateTimePicker();
             this.Lb_DescBanco = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -57,7 +58,6 @@
             this.label9 = new System.Windows.Forms.Label();
             this.Tx_DescCliente = new System.Windows.Forms.TextBox();
             this.Tx_CodCliente = new System.Windows.Forms.TextBox();
-            this.Tx_FechaVen = new System.Windows.Forms.DateTimePicker();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
@@ -89,6 +89,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Cheque";
+            // 
+            // Tx_FechaVen
+            // 
+            this.Tx_FechaVen.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_FechaVen.Checked = false;
+            this.Tx_FechaVen.Location = new System.Drawing.Point(390, 112);
+            this.Tx_FechaVen.Name = "Tx_FechaVen";
+            this.Tx_FechaVen.Size = new System.Drawing.Size(102, 23);
+            this.Tx_FechaVen.TabIndex = 8;
+            this.Tx_FechaVen.Value = new System.DateTime(2013, 6, 26, 11, 45, 29, 0);
+            this.Tx_FechaVen.CloseUp += new System.EventHandler(this.Cambiar_Formato);
             // 
             // Lb_DescBanco
             // 
@@ -345,17 +356,6 @@
             this.Tx_CodCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Tx_CodCliente.Leave += new System.EventHandler(this.Chequear_Cliente);
             // 
-            // Tx_FechaVen
-            // 
-            this.Tx_FechaVen.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tx_FechaVen.Checked = false;
-            this.Tx_FechaVen.Location = new System.Drawing.Point(390, 112);
-            this.Tx_FechaVen.Name = "Tx_FechaVen";
-            this.Tx_FechaVen.Size = new System.Drawing.Size(102, 23);
-            this.Tx_FechaVen.TabIndex = 8;
-            this.Tx_FechaVen.Value = new System.DateTime(2013, 6, 26, 11, 45, 29, 0);
-            this.Tx_FechaVen.CloseUp += new System.EventHandler(this.Cambiar_Formato);
-            // 
             // IngresoManual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -368,6 +368,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaximizeBox = false;
             this.Name = "IngresoManual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "IngresoManual";

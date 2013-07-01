@@ -26,12 +26,19 @@ namespace Presentación.Pantallas_Principal
             InitializeComponent();
         }
 
-
+        // Load del formulario. Muestra los errores
         private void Mostrar_Errores_Load(object sender, EventArgs e)
         {
             // Quita el asterico final al DataGridView
             it_errores.DefaultView.AllowNew = false;
             Gr_Errores.DataSource = it_errores;
+        }
+        
+        // Salir del Formulario
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
     }
 }

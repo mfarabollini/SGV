@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Mostrar_Errores));
             this.Gr_Errores = new System.Windows.Forms.DataGridView();
-            this.Bt_Salir = new System.Windows.Forms.Button();
             this.Posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Texto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Bt_Salir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Errores)).BeginInit();
             this.SuspendLayout();
             // 
@@ -47,15 +47,6 @@
             this.Gr_Errores.RowHeadersVisible = false;
             this.Gr_Errores.Size = new System.Drawing.Size(440, 166);
             this.Gr_Errores.TabIndex = 0;
-            // 
-            // Bt_Salir
-            // 
-            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(411, 177);
-            this.Bt_Salir.Name = "Bt_Salir";
-            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Salir.TabIndex = 13;
-            this.Bt_Salir.UseVisualStyleBackColor = true;
             // 
             // Posicion
             // 
@@ -73,6 +64,16 @@
             this.Texto.Name = "Texto";
             this.Texto.Width = 59;
             // 
+            // Bt_Salir
+            // 
+            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
+            this.Bt_Salir.Location = new System.Drawing.Point(411, 177);
+            this.Bt_Salir.Name = "Bt_Salir";
+            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Salir.TabIndex = 13;
+            this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
+            // 
             // Mostrar_Errores
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -81,6 +82,7 @@
             this.ClientSize = new System.Drawing.Size(454, 217);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Gr_Errores);
+            this.MaximizeBox = false;
             this.Name = "Mostrar_Errores";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Errores";

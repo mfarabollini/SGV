@@ -14,7 +14,20 @@ namespace Presentación.Pantallas_Principal
 {
     public partial class Busqueda_Banco : Form
     {
-        
+
+        #region Declaraciones
+        private string _CodBanco;
+
+        public String CodBanco
+        {
+            get { return _CodBanco; }
+            set { _CodBanco = value; }
+        }
+        #endregion
+
+        // Gr_GrillaBancos.DataSource = BancosBL.CargarBancos();        
+        BindingSource Bs = new BindingSource();
+
         public Busqueda_Banco()
         {
             InitializeComponent();
@@ -23,24 +36,35 @@ namespace Presentación.Pantallas_Principal
         #region Load Formulario
         private void Busqueda_Banco_Load(object sender, EventArgs e)
         {
-            Gr_GrillaBancos.DataSource = BancosBL.CargarBancos();
             
+            Bs.DataSource = BancosBL.CargarBancos();
+ 
+            Gr_GrillaBancos.DataSource = Bs;
+
         }
         #endregion
-
-                 
-        private void BuscarBanco(object sender, EventArgs e)
-        {
-
-            
-        }
-
+        
         #region Doble Clic
         private void Enviar_Codigo(object sender, DataGridViewCellEventArgs e)
         {
-            
+            this.CodBanco = Gr_GrillaBancos.Rows[e.RowIndex].Cells["Cod_Banco"].Value.ToString();
+            this.Visible = false;
         }
         #endregion
+
+        private void Buscar_Banco(object sender, EventArgs e)
+        {
+            if (Tx_Buscar.Text == string.Empty)
+            {
+                Bs.RemoveFilter();
+            }
+            else
+            {
+                // Bs.Filter = string.Format("Desc_Banco LIKE '*{0}*'", Tx_Buscar.Text);
+                // Bs.Filter = String.Format("{0} LIKE '%{1}%'", "Cod_Banco", Tx_Buscar.Text);
+                Bs.Filter = "Cod_Banco = 011";
+            }
+        }
 
     }
 }

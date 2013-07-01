@@ -36,7 +36,7 @@ namespace Presentación.Pantallas_Principal
             Tx_FechaVen.CustomFormat = " ";
             // Setea el botón de errores para que no sea visualizado.
             Tx_Errores.Visible = false;
-            d_cuit = "";
+            d_cuit = "";          
         }
         #endregion
 
@@ -71,7 +71,22 @@ namespace Presentación.Pantallas_Principal
             Adherir_Valor(it_cheques, 2, "007", "198", "7000", "1234567", "987654", d_cuit);
             /// Adhiere el valor a la tabla interna
             Adherir_Valor(it_cheques, 3, "007", "198", "7000", "1234567", "", d_cuit);
-            /// ********************************************************************
+            /// ********************************************************************          
+
+            /// En caso que no haya ninguna línea 
+            if (it_cheques.Rows.Count == 0)
+            {
+                MessageBox.Show("No se ha leido ningún cheque", "Lectura de Cheques",
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+                               
+            }
+            else
+            {
+                // Selecciona la primer línea
+                Gr_Cheques.Rows[0].Selected = true;
+                // Carga los Textos con la línea seleccionada
+                Cargar_TextBoxs(0);
+            }
         }
 
         #region Adherir Valores a La tabla
@@ -213,11 +228,21 @@ namespace Presentación.Pantallas_Principal
 
             // Limpia los TextBox
             Limpiar_Textos();
-            
+            // Carga los TextBox.
+            Cargar_TextBoxs(e.RowIndex);            
+        }
+
+        // Carga los valores del Grid en los Textos.
+        private void Cargar_TextBoxs(int Index)
+        {
             // Código de Banco de la linea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[1].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[1].Value != null)
             {
-                Tx_CodBanco.Text = Gr_Cheques.Rows[e.RowIndex].Cells[1].Value.ToString();
+                // Valoriza el Marco con el número de posición
+                Group_Datos.Text = "Posición " + Gr_Cheques.Rows[Index].Cells[0].Value.ToString();
+
+                // Código de Banco.
+                Tx_CodBanco.Text = Gr_Cheques.Rows[Index].Cells[1].Value.ToString();
 
                 // Crear instancia de Banco    
                 bancos Banco = new bancos();
@@ -240,48 +265,48 @@ namespace Presentación.Pantallas_Principal
                 }
 
             }
-            
+
             // Código de Sucursal de la linea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[2].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[2].Value != null)
             {
-                Tx_Sucursal.Text = Gr_Cheques.Rows[e.RowIndex].Cells[2].Value.ToString();
-            }            
-            
+                Tx_Sucursal.Text = Gr_Cheques.Rows[Index].Cells[2].Value.ToString();
+            }
+
             // Código Posta de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[3].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[3].Value != null)
             {
-                Tx_CodPostal.Text = Gr_Cheques.Rows[e.RowIndex].Cells[3].Value.ToString();        
+                Tx_CodPostal.Text = Gr_Cheques.Rows[Index].Cells[3].Value.ToString();
             }
 
             // Número de Cheque de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[4].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[4].Value != null)
             {
-                Tx_NumCheque.Text = Gr_Cheques.Rows[e.RowIndex].Cells[4].Value.ToString();
-            } 
+                Tx_NumCheque.Text = Gr_Cheques.Rows[Index].Cells[4].Value.ToString();
+            }
 
             // Número de Cuenta de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[5].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[5].Value != null)
             {
-                Tx_NumCuenta.Text = Gr_Cheques.Rows[e.RowIndex].Cells[5].Value.ToString();
+                Tx_NumCuenta.Text = Gr_Cheques.Rows[Index].Cells[5].Value.ToString();
             }
-            
+
             // Importe de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[6].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[6].Value != null)
             {
-                Tx_Importe.Text = Gr_Cheques.Rows[e.RowIndex].Cells[6].Value.ToString();        
+                Tx_Importe.Text = Gr_Cheques.Rows[Index].Cells[6].Value.ToString();
             }
-            
+
             // CUIT de la línea seleccionada
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[7].Value != null)
+            if (Gr_Cheques.Rows[Index].Cells[7].Value != null)
             {
-                Tx_Cuit.Text = Gr_Cheques.Rows[e.RowIndex].Cells[7].Value.ToString();
+                Tx_Cuit.Text = Gr_Cheques.Rows[Index].Cells[7].Value.ToString();
             }
-            
-             //Fecha de vencimiento de la línea seleccionada            
-            if (Gr_Cheques.Rows[e.RowIndex].Cells[8].Value != null)
+
+            //Fecha de vencimiento de la línea seleccionada            
+            if (Gr_Cheques.Rows[Index].Cells[8].Value != null)
             {
                 Tx_FechaVen.Format = DateTimePickerFormat.Short;
-                Tx_FechaVen.Text = Gr_Cheques.Rows[e.RowIndex].Cells[8].Value.ToString();
+                Tx_FechaVen.Text = Gr_Cheques.Rows[Index].Cells[8].Value.ToString();
             }  
         }
 
@@ -511,27 +536,27 @@ namespace Presentación.Pantallas_Principal
                 #region Validación De Valorización
                 
                 // Código de Banco
-                if (row.Cells["Cod_Banco"].Value == null)
+                if (row.Cells["Cod_Banco"].Value.ToString() == "")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar el código de Banco");
                 }
                 // Código de Sucursal
-                if (row.Cells["Cod_Sucursal"].Value == null)
+                if (row.Cells["Cod_Sucursal"].Value.ToString() == "")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Código de Sucurdal");
                 }
                 // Código Postal
-                if (row.Cells["Cod_Postal"].Value == null)
+                if (row.Cells["Cod_Postal"].Value.ToString() == "")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Código Postal");
                 }
                 // Número de Cheque
-                if (row.Cells["Num_Cheque"].Value == null)
+                if (row.Cells["Num_Cheque"].Value.ToString() == "")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Número de Cheque");
                 }
                 // Número de Cuenta
-                if (row.Cells["Num_Cuenta"].Value == null)
+                if (row.Cells["Num_Cuenta"].Value.ToString() == "")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Número de Cuenta");
                 }
@@ -541,7 +566,7 @@ namespace Presentación.Pantallas_Principal
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Importe");
                 }
                 // CUIT
-                if (row.Cells["CUIT"].Value == null)
+                if (row.Cells["CUIT"].Value.ToString() == "")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar CUIT");
                 }
@@ -589,10 +614,10 @@ namespace Presentación.Pantallas_Principal
             }
             // Finaliza el recorrido de la tabla
 
-            #region Mostrar Errores
+            #region Guardar Registro - Mostrar Errores
             // Cantidad de errores encontrados
             Int16 cantidad = Convert.ToInt16(it_error.Rows.Count);
-            if (cantidad > 1 )
+            if (cantidad > 0 )
             {
                 // Muestra el alerta de error y pone visible el Botón para visualizarlos
                 ControlError.Clear();
@@ -601,7 +626,47 @@ namespace Presentación.Pantallas_Principal
             }
             else
             {
-                // Guardar el registro
+                string d_error = "";
+                // Guarda cada uno de los registros
+                foreach (DataGridViewRow row in Gr_Cheques.Rows)
+                {                    
+                    // Valorización de los datos del cheque                   
+                    Cheque.Cod_Banco    = row.Cells["Cod_Banco"].Value.ToString();
+                    Cheque.Cod_Sucursal = row.Cells["Cod_Sucursal"].Value.ToString();
+                    Cheque.Cod_Postal   = row.Cells["Cod_Postal"].Value.ToString();
+                    Cheque.Num_Cheque   = row.Cells["Num_Cheque"].Value.ToString();
+                    Cheque.Num_Cuenta   = row.Cells["Num_Cuenta"].Value.ToString();
+                    Cheque.Cod_Cliente  = Convert.ToInt16(Tx_CodBanco.Text);
+                    Cheque.Fecha_Entrada = DateTime.Now;
+                    Cheque.Importe      = float.Parse(row.Cells["Importe"].Value.ToString());
+                    Cheque.CUIT_Cheque  = row.Cells["CUIT"].Value.ToString();
+                    Cheque.Fecha_Vec    = Convert.ToDateTime(row.Cells["Fecha_Venc"].Value);
+
+                    // Adherir el registro
+                    ChequesBL.Agregar_Cheque(Cheque);
+
+                    // Si el código no está valorizado, no fue correcta la inserción.
+                    if (Cheque.Cod_Cheques == 0)
+                    {
+                        // Existió un error en el registro
+                        d_error = "X";
+                    }
+                } // Finalización ForEach
+
+                // Verifica la existencia de errores
+                if (d_error != "X")
+                {
+                   MessageBox.Show("Cheque cargado correctamente", "Registro de Cheque",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                   //Limpiar los TextBox
+                   Limpiar();
+                   Tx_CodigoClie.Focus();
+                }
+                else
+                {
+                   MessageBox.Show("Ha ocurrido un error guardando el Cheque", "Registro de Cheque",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);    
+                }            
             }
             #endregion
         }
@@ -615,6 +680,94 @@ namespace Presentación.Pantallas_Principal
             Fr_Errores.it_errores = it_error;
             Fr_Errores.Show();         
         }
+        
+        // Limpiar las variables y datagrid - Finalización a Guardar
+        private void Limpiar()
+        {
+            // Limpiar los TextBox
+            Tx_CodigoClie.Clear();
+            Tx_DescripcionClie.Clear();
+            Tx_CodBanco.Clear();
+            Lb_DescBanco.Text = "";
+            Tx_Sucursal.Clear();
+            Tx_CodPostal.Clear();
+            Tx_NumCheque.Clear();
+            Tx_NumCuenta.Clear();
+            Tx_Cuit.Clear();
+            Tx_Importe.Clear();
+            // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
+            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
+            Tx_FechaVen.CustomFormat = " ";
+
+            // Limpiar DataGridView
+            try
+            {
+                Gr_Cheques.Rows.Clear();    
+            }
+            catch (Exception)
+            {              
+            
+            }                    
+
+            // Limpia las tablas internas
+            it_cheques.Clear();
+            it_error.Clear();
+        }
+
+        // Lógica para salir del Form
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (Gr_Cheques.Rows.Count != 0)
+            {
+                if (MessageBox.Show("¿Confirma Salir sin Guardar los datos?",
+                  "Confirmación", MessageBoxButtons.YesNo,
+                   MessageBoxIcon.Warning,
+                   MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+                {
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                }
+            }
+        }
+
+        // Borrar linea del DataGrid
+        private void Bt_Borrar_Click(object sender, EventArgs e)
+        {
+            // Cantidad de lineas seleccionadas.
+            Int16 select = Convert.ToInt16(Gr_Cheques.SelectedRows.Count);
+
+            if (select == 1)
+            {
+
+                if (MessageBox.Show("¿Confirma eliminar la linea seleccionada?",
+                   "Confirmación", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+                {
+                    int indice = Gr_Cheques.SelectedRows[0].Index;
+                    // Eliminar el registro de la tabla interna y actualiza el grid
+                    it_cheques.Rows[indice].Delete();
+                    Gr_Cheques.Refresh();
+
+                    if (Gr_Cheques.Rows.Count != 0)
+                    {
+                        // Selecciona la primer línea
+                        Gr_Cheques.Rows[0].Selected = true;
+                        // Carga los Textos con la línea seleccionada
+                        Cargar_TextBoxs(0);
+                    }
+                    else 
+                    {
+                        Limpiar();
+                    }                   
+                }
+            }
+            else
+            { 
+                MessageBox.Show("Seleccione una única fila", "Eliminar línea", 
+                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+            }
+       }
     }
  }
 

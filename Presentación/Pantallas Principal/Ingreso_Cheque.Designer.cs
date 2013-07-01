@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Ingreso_Cheque));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Bt_Borrar = new System.Windows.Forms.Button();
             this.Gr_Cheques = new System.Windows.Forms.DataGridView();
             this.Posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,7 +54,7 @@
             this.groupBox4 = new System.Windows.Forms.GroupBox();
             this.label8 = new System.Windows.Forms.Label();
             this.Tx_Importe = new System.Windows.Forms.TextBox();
-            this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.Group_Datos = new System.Windows.Forms.GroupBox();
             this.Tx_Errores = new System.Windows.Forms.Button();
             this.Tx_FechaVen = new System.Windows.Forms.DateTimePicker();
             this.Lb_DescBanco = new System.Windows.Forms.Label();
@@ -79,20 +80,31 @@
             ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
-            this.groupBox5.SuspendLayout();
+            this.Group_Datos.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Bt_Borrar);
             this.groupBox1.Controls.Add(this.Gr_Cheques);
-            this.groupBox1.Location = new System.Drawing.Point(10, 164);
+            this.groupBox1.Location = new System.Drawing.Point(10, 141);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox1.Size = new System.Drawing.Size(656, 215);
+            this.groupBox1.Size = new System.Drawing.Size(656, 242);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cheques";
+            // 
+            // Bt_Borrar
+            // 
+            this.Bt_Borrar.Location = new System.Drawing.Point(10, 211);
+            this.Bt_Borrar.Name = "Bt_Borrar";
+            this.Bt_Borrar.Size = new System.Drawing.Size(89, 23);
+            this.Bt_Borrar.TabIndex = 1;
+            this.Bt_Borrar.Text = "Borrar Linea";
+            this.Bt_Borrar.UseVisualStyleBackColor = true;
+            this.Bt_Borrar.Click += new System.EventHandler(this.Bt_Borrar_Click);
             // 
             // Gr_Cheques
             // 
@@ -109,10 +121,9 @@
             this.Importe,
             this.CUIT,
             this.Fecha_venc});
-            this.Gr_Cheques.Location = new System.Drawing.Point(11, 22);
+            this.Gr_Cheques.Location = new System.Drawing.Point(10, 20);
             this.Gr_Cheques.Name = "Gr_Cheques";
             this.Gr_Cheques.ReadOnly = true;
-            this.Gr_Cheques.RowHeadersVisible = false;
             this.Gr_Cheques.Size = new System.Drawing.Size(638, 184);
             this.Gr_Cheques.TabIndex = 0;
             this.Gr_Cheques.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.CargaValores);
@@ -240,7 +251,7 @@
             // Lk_IngresoManual
             // 
             this.Lk_IngresoManual.AutoSize = true;
-            this.Lk_IngresoManual.Location = new System.Drawing.Point(257, 62);
+            this.Lk_IngresoManual.Location = new System.Drawing.Point(500, 50);
             this.Lk_IngresoManual.Name = "Lk_IngresoManual";
             this.Lk_IngresoManual.Size = new System.Drawing.Size(142, 15);
             this.Lk_IngresoManual.TabIndex = 5;
@@ -251,9 +262,9 @@
             // Bt_Escaneo
             // 
             this.Bt_Escaneo.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bt_Escaneo.Location = new System.Drawing.Point(162, 22);
+            this.Bt_Escaneo.Location = new System.Drawing.Point(11, 16);
             this.Bt_Escaneo.Name = "Bt_Escaneo";
-            this.Bt_Escaneo.Size = new System.Drawing.Size(329, 37);
+            this.Bt_Escaneo.Size = new System.Drawing.Size(631, 31);
             this.Bt_Escaneo.TabIndex = 4;
             this.Bt_Escaneo.Text = "Comenzar Escaneo de Cheques";
             this.Bt_Escaneo.UseVisualStyleBackColor = true;
@@ -269,7 +280,7 @@
             this.groupBox3.Controls.Add(this.Lk_IngresoManual);
             this.groupBox3.Location = new System.Drawing.Point(11, 68);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(648, 93);
+            this.groupBox3.Size = new System.Drawing.Size(648, 70);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             // 
@@ -277,7 +288,7 @@
             // 
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.Tx_Importe);
-            this.groupBox4.Location = new System.Drawing.Point(13, 536);
+            this.groupBox4.Location = new System.Drawing.Point(13, 540);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(653, 56);
             this.groupBox4.TabIndex = 8;
@@ -304,32 +315,31 @@
             this.Tx_Importe.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Validar_Importe);
             this.Tx_Importe.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Valoriza_Importe);
             // 
-            // groupBox5
+            // Group_Datos
             // 
-            this.groupBox5.Controls.Add(this.Tx_Errores);
-            this.groupBox5.Controls.Add(this.Tx_FechaVen);
-            this.groupBox5.Controls.Add(this.Lb_DescBanco);
-            this.groupBox5.Controls.Add(this.label7);
-            this.groupBox5.Controls.Add(this.label6);
-            this.groupBox5.Controls.Add(this.Tx_Cuit);
-            this.groupBox5.Controls.Add(this.label5);
-            this.groupBox5.Controls.Add(this.Tx_NumCuenta);
-            this.groupBox5.Controls.Add(this.label4);
-            this.groupBox5.Controls.Add(this.label3);
-            this.groupBox5.Controls.Add(this.Tx_NumCheque);
-            this.groupBox5.Controls.Add(this.Tx_CodPostal);
-            this.groupBox5.Controls.Add(this.Tx_Sucursal);
-            this.groupBox5.Controls.Add(this.label2);
-            this.groupBox5.Controls.Add(this.Bt_Banco);
-            this.groupBox5.Controls.Add(this.Tx_CodBanco);
-            this.groupBox5.Controls.Add(this.label9);
-            this.groupBox5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox5.Location = new System.Drawing.Point(12, 385);
-            this.groupBox5.Name = "groupBox5";
-            this.groupBox5.Size = new System.Drawing.Size(654, 152);
-            this.groupBox5.TabIndex = 7;
-            this.groupBox5.TabStop = false;
-            this.groupBox5.Text = "Datos del Cheque";
+            this.Group_Datos.Controls.Add(this.Tx_Errores);
+            this.Group_Datos.Controls.Add(this.Tx_FechaVen);
+            this.Group_Datos.Controls.Add(this.Lb_DescBanco);
+            this.Group_Datos.Controls.Add(this.label7);
+            this.Group_Datos.Controls.Add(this.label6);
+            this.Group_Datos.Controls.Add(this.Tx_Cuit);
+            this.Group_Datos.Controls.Add(this.label5);
+            this.Group_Datos.Controls.Add(this.Tx_NumCuenta);
+            this.Group_Datos.Controls.Add(this.label4);
+            this.Group_Datos.Controls.Add(this.label3);
+            this.Group_Datos.Controls.Add(this.Tx_NumCheque);
+            this.Group_Datos.Controls.Add(this.Tx_CodPostal);
+            this.Group_Datos.Controls.Add(this.Tx_Sucursal);
+            this.Group_Datos.Controls.Add(this.label2);
+            this.Group_Datos.Controls.Add(this.Bt_Banco);
+            this.Group_Datos.Controls.Add(this.Tx_CodBanco);
+            this.Group_Datos.Controls.Add(this.label9);
+            this.Group_Datos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Group_Datos.Location = new System.Drawing.Point(12, 389);
+            this.Group_Datos.Name = "Group_Datos";
+            this.Group_Datos.Size = new System.Drawing.Size(654, 152);
+            this.Group_Datos.TabIndex = 7;
+            this.Group_Datos.TabStop = false;
             // 
             // Tx_Errores
             // 
@@ -510,16 +520,17 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(626, 599);
+            this.Bt_Salir.Location = new System.Drawing.Point(626, 600);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 10;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 599);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 600);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 9;
@@ -535,12 +546,13 @@
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.groupBox4);
-            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.Group_Datos);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
+            this.MaximizeBox = false;
             this.Name = "Ingreso_Cheque";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Registrar Ingreso de Cheque";
@@ -554,8 +566,8 @@
             this.groupBox3.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
-            this.groupBox5.ResumeLayout(false);
-            this.groupBox5.PerformLayout();
+            this.Group_Datos.ResumeLayout(false);
+            this.Group_Datos.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -576,7 +588,7 @@
         private System.Windows.Forms.GroupBox groupBox4;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Tx_Importe;
-        private System.Windows.Forms.GroupBox groupBox5;
+        private System.Windows.Forms.GroupBox Group_Datos;
         private System.Windows.Forms.DateTimePicker Tx_FechaVen;
         private System.Windows.Forms.Label Lb_DescBanco;
         private System.Windows.Forms.Label label7;
@@ -605,5 +617,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Importe;
         private System.Windows.Forms.DataGridViewTextBoxColumn CUIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_venc;
+        private System.Windows.Forms.Button Bt_Borrar;
     }
 }

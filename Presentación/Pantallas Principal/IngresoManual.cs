@@ -16,6 +16,9 @@ namespace Presentación.Pantallas_Principal
     public partial class IngresoManual : Form
     {
         #region Declaración Variables
+
+        Busqueda_Banco Busqueda = new Busqueda_Banco();
+
         // Declaraciones de variables
         private String _codigo;
         private String _DescCliente;
@@ -39,6 +42,7 @@ namespace Presentación.Pantallas_Principal
         }
         
         #region Load de Formulario
+        
         private void IngresoManual_Load(object sender, EventArgs e)
         {
             // Valorización del Cliente, en caso que esté valorizado en el Form Anterior
@@ -94,9 +98,15 @@ namespace Presentación.Pantallas_Principal
 
         public void Bt_Banco_Click(object sender, EventArgs e)
         {
-            Busqueda_Banco Busqueda = new Busqueda_Banco();
             Busqueda.Show();
+           
+            Busqueda.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_Busqueda_FormClosed);                      
+         }
 
+        /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
+        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodBanco.Text = Busqueda.CodBanco;
         }
 
         #region Botón Guardar
@@ -320,5 +330,8 @@ namespace Presentación.Pantallas_Principal
             else
                 e.Handled = true;
         }
+
+
+
     }
 }
