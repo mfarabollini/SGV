@@ -17,16 +17,25 @@ namespace Presentación.Pantallas_Principal
 
         #region Declaraciones
         private string _CodBanco;
+        private string _DescBanco;
 
+        // Código de Banco
         public String CodBanco
         {
             get { return _CodBanco; }
             set { _CodBanco = value; }
         }
-        #endregion
 
+        // Descripción Banco
+        public String DescBanco
+        {
+            get { return _DescBanco; }
+            set { _DescBanco = value; }
+        }
+        
         // Gr_GrillaBancos.DataSource = BancosBL.CargarBancos();        
         BindingSource Bs = new BindingSource();
+        #endregion
 
         public Busqueda_Banco()
         {
@@ -35,20 +44,22 @@ namespace Presentación.Pantallas_Principal
 
         #region Load Formulario
         private void Busqueda_Banco_Load(object sender, EventArgs e)
-        {
-            
+        {            
+            // DataSource de la Grilla           
             Bs.DataSource = BancosBL.CargarBancos();
- 
+            // Asigna los datos a la grilla
             Gr_GrillaBancos.DataSource = Bs;
-
         }
         #endregion
         
         #region Doble Clic
         private void Enviar_Codigo(object sender, DataGridViewCellEventArgs e)
         {
-            this.CodBanco = Gr_GrillaBancos.Rows[e.RowIndex].Cells["Cod_Banco"].Value.ToString();
-            this.Visible = false;
+            // Valoriza las variables de salida
+            this.CodBanco  = Gr_GrillaBancos.Rows[e.RowIndex].Cells["Cod_Banco"].Value.ToString();
+            this.DescBanco = Gr_GrillaBancos.Rows[e.RowIndex].Cells["Desc_Banco"].Value.ToString();
+            // Cierra la ventana
+            this.Close();
         }
         #endregion
 

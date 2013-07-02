@@ -15,9 +15,7 @@ namespace Presentación.Pantallas_Principal
 {
     public partial class IngresoManual : Form
     {
-        #region Declaración Variables
-
-        Busqueda_Banco Busqueda = new Busqueda_Banco();
+        #region Declaración Variables              
 
         // Declaraciones de variables
         private String _codigo;
@@ -34,6 +32,10 @@ namespace Presentación.Pantallas_Principal
             get { return _DescCliente; }
             set { _DescCliente = value; }
         }
+
+        // Abre una instancia del formulario de búsqueda nula
+        private Busqueda_Banco Fr_Busqueda = null;
+
         #endregion
 
         public IngresoManual()
@@ -66,6 +68,42 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Abre una nueva instancia del Form
+        private Busqueda_Banco FormInstancia
+        {
+            get
+            {
+                if (Fr_Busqueda == null)
+                {
+                    Fr_Busqueda = new Busqueda_Banco();
+
+                    Fr_Busqueda.Disposed += new EventHandler(form_Disposed);
+                    Fr_Busqueda.FormClosed += new FormClosedEventHandler(Fr_Busqueda_FormClosed);
+
+                }
+                return Fr_Busqueda;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_Disposed(object sender, EventArgs e)
+        {
+            Fr_Busqueda = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodBanco.Text = Fr_Busqueda.CodBanco;
+        }
+        
+        // Clic en la búsqueda de banco
+        public void Bt_Banco_Click(object sender, EventArgs e)
+        {
+            Busqueda_Banco Frm_Busq = this.FormInstancia;
+            Frm_Busq.Show();
+        }
+
         #region Buscar Banco
         // Busca el banco ingresado luego de la perdida de foco del Tx_CodBanco
         private void Buscar_Banco(object sender, EventArgs e)
@@ -95,20 +133,7 @@ namespace Presentación.Pantallas_Principal
             }
         }
         #endregion
-
-        public void Bt_Banco_Click(object sender, EventArgs e)
-        {
-            Busqueda.Show();
-           
-            Busqueda.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_Busqueda_FormClosed);                      
-         }
-
-        /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
-        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Tx_CodBanco.Text = Busqueda.CodBanco;
-        }
-
+        
         #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {

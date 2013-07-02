@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Lb_Banco = new System.Windows.Forms.Label();
@@ -87,6 +87,8 @@
             this.Desc_Banco});
             this.Gr_GrillaBancos.Location = new System.Drawing.Point(8, 14);
             this.Gr_GrillaBancos.Name = "Gr_GrillaBancos";
+            this.Gr_GrillaBancos.ReadOnly = true;
+            this.Gr_GrillaBancos.RowHeadersVisible = false;
             this.Gr_GrillaBancos.Size = new System.Drawing.Size(464, 256);
             this.Gr_GrillaBancos.TabIndex = 0;
             this.Gr_GrillaBancos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Enviar_Codigo);
@@ -95,10 +97,11 @@
             // 
             this.Cod_Banco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Cod_Banco.DataPropertyName = "Cod_Banco";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle3;
             this.Cod_Banco.HeaderText = "Código Banco";
             this.Cod_Banco.Name = "Cod_Banco";
+            this.Cod_Banco.ReadOnly = true;
             this.Cod_Banco.Width = 107;
             // 
             // Desc_Banco
@@ -122,12 +125,15 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(500, 363);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaximizeBox = false;
             this.Name = "Busqueda_Banco";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Bancos";
             this.Load += new System.EventHandler(this.Busqueda_Banco_Load);
             this.groupBox1.ResumeLayout(false);
