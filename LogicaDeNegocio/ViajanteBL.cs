@@ -34,5 +34,11 @@ namespace LogicaDeNegocio
             return ViajanteDAL.Borrar_Viajante(Viaj);
         }
 
+        // Recupera los datos de un banco en particular
+        public static viajantes Obtener_Viajante(viajantes Viajante)
+        {
+            return ViajanteDAL.Obtener_Viajante(Viajante);
+        }
+
     }
 }

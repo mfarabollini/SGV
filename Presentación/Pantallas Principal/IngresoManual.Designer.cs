@@ -134,6 +134,7 @@
             // 
             this.Tx_Cuit.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Cuit.Location = new System.Drawing.Point(390, 82);
+            this.Tx_Cuit.MaxLength = 11;
             this.Tx_Cuit.Name = "Tx_Cuit";
             this.Tx_Cuit.Size = new System.Drawing.Size(102, 23);
             this.Tx_Cuit.TabIndex = 7;
@@ -288,6 +289,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 11;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 

@@ -4,14 +4,26 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Entidades;
+using System.Data.Entity.Validation;
 
 namespace AccesoADatos
 {
     public class ClientesDAL
     {
 
-        #region Buscar Cliente
+        // Recupera todos los bancos de la base de datos
+        public static List<clientes> Cargar_Clientes()
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                return bd.clientes.ToList();
+            }
+        }
+
+        
         // Devuelve los datos del Cliente
+        #region Buscar Cliente
+        
         public static clientes Buscar_Cliente(clientes Clie)
         {
             using (ChequeEntidades bd = new ChequeEntidades())
@@ -42,5 +54,71 @@ namespace AccesoADatos
             return Clie;
         }
         #endregion
+
+        // Alta de un nuevo Cliente
+        #region Alta Cliente
+        public static clientes Alta_Cliente(clientes Cliente)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            { 
+                // Adhiere los datos a la tabla
+                bd.clientes.Add(Cliente);
+
+                try
+                {
+                    bd.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    // Captura las Excepciones del insert
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                }
+            }
+            return Cliente;
+        }
+        #endregion
+
+        // Borrar Cliente
+        #region Borrar Cliente
+        public static clientes Borrar_Cliente(clientes Cliente)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                // Esta lógica no borra el registro, sino que lo lo marca para que no sea msotrado
+                // por una cuestión de integridad
+                
+                clientes Clie = new clientes();
+
+                var query = (from n in bd.clientes
+                             where n.Cod_Cliente == Cliente.Cod_Cliente
+                             select n).Single();
+
+                query.delete = "X";
+                
+                try
+                {
+                    bd.SaveChanges();
+                    Cliente.delete = Clie.delete;
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    // Captura las Excepciones del insert
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                }
+            }
+            return Cliente;
+        }
+        #endregion
+
     }
 }

@@ -95,6 +95,7 @@ namespace Presentación.Pantallas_Principal
         private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
         {
             Tx_CodBanco.Text = Fr_Busqueda.CodBanco;
+            Lb_DescBanco.Text = Fr_Busqueda.DescBanco;
         }
         
         // Clic en la búsqueda de banco
@@ -356,7 +357,17 @@ namespace Presentación.Pantallas_Principal
                 e.Handled = true;
         }
 
-
-
+        //Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
+                   "Salir", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
     }
 }

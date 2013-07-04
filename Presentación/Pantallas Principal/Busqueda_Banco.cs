@@ -34,7 +34,7 @@ namespace Presentación.Pantallas_Principal
         }
         
         // Gr_GrillaBancos.DataSource = BancosBL.CargarBancos();        
-        BindingSource Bs = new BindingSource();
+
         #endregion
 
         public Busqueda_Banco()
@@ -44,10 +44,12 @@ namespace Presentación.Pantallas_Principal
 
         #region Load Formulario
         private void Busqueda_Banco_Load(object sender, EventArgs e)
-        {            
+        {
+            BindingSource Bs = new BindingSource();                       
+
             // DataSource de la Grilla           
             Bs.DataSource = BancosBL.CargarBancos();
-            // Asigna los datos a la grilla
+            
             Gr_GrillaBancos.DataSource = Bs;
         }
         #endregion
@@ -67,13 +69,14 @@ namespace Presentación.Pantallas_Principal
         {
             if (Tx_Buscar.Text == string.Empty)
             {
-                Bs.RemoveFilter();
+                //Bs.RemoveFilter();
             }
             else
             {
                 // Bs.Filter = string.Format("Desc_Banco LIKE '*{0}*'", Tx_Buscar.Text);
                 // Bs.Filter = String.Format("{0} LIKE '%{1}%'", "Cod_Banco", Tx_Buscar.Text);
-                Bs.Filter = "Cod_Banco = 011";
+                
+                
             }
         }
 

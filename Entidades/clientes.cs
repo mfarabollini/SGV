@@ -21,7 +21,7 @@ namespace Entidades
         public string cod_localidad { get; set; }
         public string Cod_Viajante { get; set; }
         public string Cod_Zona { get; set; }
-        public Nullable<decimal> CUIT { get; set; }
+        public string CUIT { get; set; }
         public string contacto { get; set; }
         public string telefono { get; set; }
         public string delete { get; set; }

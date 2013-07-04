@@ -120,5 +120,31 @@ namespace AccesoADatos
             }
             return Viaj;
         }
+
+        // Recupera los datos de un Banco en particular
+        public static viajantes Obtener_Viajante(viajantes Viajante)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                try
+                {
+                    // Recupera los datos del Viajante
+                    var query = (from n in bd.viajantes
+                                 where n.Cod_Viajante == Viajante.Cod_Viajante
+                                 select n).Single();
+
+                    // Nombre del Viajante
+                    Viajante.Nombre = query.Nombre;                    
+                }
+                catch (Exception)
+                {
+                    // La consulta no fue exitosa
+                    Viajante.Nombre = null;
+                }
+            }
+            return Viajante;
+        }
+
+
     }
 }

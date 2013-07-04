@@ -32,7 +32,7 @@
             <PropertyRef Name="Cod_Banco" />
           </Key>
           <Property Name="Cod_Banco" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="Desc_Banco" Type="varchar" MaxLength="25" />
+          <Property Name="Desc_Banco" Type="varchar" MaxLength="70" />
         </EntityType>
         <EntityType Name="cheques">
           <Key>
@@ -57,13 +57,13 @@
             <PropertyRef Name="Cod_Cliente" />
           </Key>
           <Property Name="Cod_Cliente" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="razon_social" Type="varchar" MaxLength="30" />
+          <Property Name="razon_social" Type="varchar" MaxLength="40" />
           <Property Name="direccion" Type="varchar" MaxLength="30" />
           <Property Name="codigo_postal" Type="varchar" MaxLength="10" />
           <Property Name="cod_localidad" Type="varchar" MaxLength="8" />
           <Property Name="Cod_Viajante" Type="varchar" Nullable="false" MaxLength="4" />
           <Property Name="Cod_Zona" Type="varchar" Nullable="false" MaxLength="3" />
-          <Property Name="CUIT" Type="decimal" />
+          <Property Name="CUIT" Type="varchar" MaxLength="11" />
           <Property Name="contacto" Type="varchar" MaxLength="20" />
           <Property Name="telefono" Type="varchar" MaxLength="20" />
           <Property Name="delete" Type="char" MaxLength="1" />
@@ -168,7 +168,7 @@
           <Property Name="codigo_postal" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
           <Property Name="cod_localidad" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
           <Property Name="Cod_Viajante" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
-          <Property Name="CUIT" Type="Decimal" Precision="10" Scale="0" />
+          <Property Name="CUIT" Type="String" />
           <Property Name="contacto" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="telefono" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="delete" Type="String" MaxLength="1" Unicode="false" FixedLength="true" />

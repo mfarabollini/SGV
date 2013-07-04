@@ -14,7 +14,7 @@ namespace AccesoADatos
         {
             using (ChequeEntidades bd = new ChequeEntidades())
             {
-                return bd.provincias.ToList();
+                 return bd.provincias.ToList();            
             }
         }        
     }
