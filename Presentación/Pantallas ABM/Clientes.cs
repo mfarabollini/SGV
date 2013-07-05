@@ -19,6 +19,8 @@ namespace Presentación.Pantallas_ABM
             InitializeComponent();
         }
 
+
+        // Load del Formulario
         #region Load del Formulario
         private void Clientes_Load(object sender, EventArgs e)
         {
@@ -47,10 +49,8 @@ namespace Presentación.Pantallas_ABM
             #endregion
         }
         #endregion
-
-
-
-
+                
+        // Lógica Botón Borrar
         #region Botón Delete
         private void Bt_delete_Click(object sender, EventArgs e)
         {
@@ -90,7 +90,8 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
-
+        // Lógica Botón Editar
+        #region Lógica Botón Editar
         private void Bt_Editar_Click(object sender, EventArgs e)
         {
                 // Cantidad de filas seleccionadas
@@ -113,66 +114,73 @@ namespace Presentación.Pantallas_ABM
 
             else
             {
-                // Creo una instancia de Clientes para editar los datos seleccionados
-
-                clientes Cliente = new clientes();
-                                
+                // Índice de la línea seleccionada                    
                 int indice = Gr_Clientes.SelectedRows[0].Index;
                 
-                Cliente.Cod_Cliente = Convert.ToInt16(Gr_Clientes.Rows[indice].Cells[0].Value);
-                
-                Cliente.razon_social = Gr_Clientes.Rows[indice].Cells[1].Value.ToString();
-
+                Modif_Cliente Fr_Modif = new Modif_Cliente();
+                // Código de Cliente
+                Fr_Modif.Codigo = Gr_Clientes.Rows[indice].Cells[0].Value.ToString();
+                // Razón Social
+                Fr_Modif.RazonSocial = Gr_Clientes.Rows[indice].Cells[1].Value.ToString();
                 // Dirección puede ser nulo. Controla.
                 if (Gr_Clientes.Rows[indice].Cells[2].Value != null)
                 {
-                    Cliente.direccion = Gr_Clientes.Rows[indice].Cells[2].Value.ToString();
+                    Fr_Modif.Direccion = Gr_Clientes.Rows[indice].Cells[2].Value.ToString();
                 }
-
                 // Código Postal puede ser nulo. Controla.
                 if (Gr_Clientes.Rows[indice].Cells[3].Value != null)
                 {
-                    Cliente.codigo_postal = Gr_Clientes.Rows[indice].Cells[3].Value.ToString();
+                  Fr_Modif.CodPostal = Gr_Clientes.Rows[indice].Cells[3].Value.ToString();
                 }
-
                 // Teléfono puede ser nulo. Controla.
                 if (Gr_Clientes.Rows[indice].Cells[4].Value != null)
                 {
-                    Cliente.telefono = Gr_Clientes.Rows[indice].Cells[4].Value.ToString();
+                   Fr_Modif.Telefono = Gr_Clientes.Rows[indice].Cells[4].Value.ToString();
                 }
-                
-                // Localidad puede ser nulo. Controla.
-                Cliente.Cod_Viajante = Gr_Clientes.Rows[indice].Cells[5].Value.ToString();
-                
-
-                
-                Modif_Viajante Fr_Modif = new Modif_Viajante();
-                // Código
-                Fr_Modif.Codigo     = Viaj.Cod_Viajante.ToString();
-                // Nombre
-                Fr_Modif.Nombre     = Viaj.Nombre;
-                // Dirección
-                Fr_Modif.Direccion  = Viaj.Direccion;
-                // Localidad        
-                Fr_Modif.Localidad  = Viaj.Cod_Localidad;
+                // Controla que el viajante no sea nulo
+                if (Gr_Clientes.Rows[indice].Cells[12].Value != null)
+	            {
+		            Fr_Modif.CodViajante = Gr_Clientes.Rows[indice].Cells[12].Value.ToString();
+	            }
+                // Cod_Localidad
+                if (Gr_Clientes.Rows[indice].Cells[13].Value != null)
+	            {
+                    Fr_Modif.Localidad = Gr_Clientes.Rows[indice].Cells[13].Value.ToString();
+	            }
+                //Zona
+                if (Gr_Clientes.Rows[indice].Cells[11].Value != null)
+	            {
+		            Fr_Modif.Zona = Gr_Clientes.Rows[indice].Cells[11].Value.ToString();
+	            }
                 // CUIT
-                Fr_Modif.Cuit       = Viaj.CUIT;
-                // Teléfono
-                Fr_Modif.Telefono   = Viaj.Telefono;
-
+                if (Gr_Clientes.Rows[indice].Cells[8].Value != null)
+	            {
+		            Fr_Modif.CUIT = Gr_Clientes.Rows[indice].Cells[8].Value.ToString();
+	            }
+                // Contacto
+                if (Gr_Clientes.Rows[indice].Cells[9].Value != null)
+	            {
+		            Fr_Modif.Contacto = Gr_Clientes.Rows[indice].Cells[9].Value.ToString();
+	            }
+                                
                 // Definimos el método (Fr_ViajModif_FormClosed) que vuelve a cargar la grilla cuando 
                 // se cierra la ventana Alta de Viajantes.
-                Fr_Modif.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ViajModif_FormClosed);
+                Fr_Modif.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ClieModif_FormClosed);
 
                 Fr_Modif.Show();
             }
         }
+        #endregion
 
-        private void Gr_Clientes_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        // Métodos
+        #region Métodos
+        /// Método que se llama cuando se cierra la ventana de Modif Cliente para refrezcar la grilla
+        private void Fr_ClieModif_FormClosed(object sender, FormClosedEventArgs e)
         {
-        
+            Gr_Clientes.DataSource = ClientesBL.Cargar_Clientes();
+            Gr_Clientes.Refresh();
         }
-        }
-
+        #endregion
     }
 }
+

@@ -32,6 +32,12 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Clientes));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Gr_Clientes = new System.Windows.Forms.DataGridView();
+            this.Lb_Título = new System.Windows.Forms.Label();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Bt_Agregar = new System.Windows.Forms.Button();
+            this.Bt_Salir = new System.Windows.Forms.Button();
+            this.Bt_Editar = new System.Windows.Forms.Button();
+            this.Bt_delete = new System.Windows.Forms.Button();
             this.Cod_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dirección = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,12 +53,6 @@
             this.Cod_Viajante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lb_Título = new System.Windows.Forms.Label();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Bt_Agregar = new System.Windows.Forms.Button();
-            this.Bt_Salir = new System.Windows.Forms.Button();
-            this.Bt_Editar = new System.Windows.Forms.Button();
-            this.Bt_delete = new System.Windows.Forms.Button();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Clientes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -103,144 +103,6 @@
             this.Gr_Clientes.ReadOnly = true;
             this.Gr_Clientes.Size = new System.Drawing.Size(759, 320);
             this.Gr_Clientes.TabIndex = 0;
-            this.Gr_Clientes.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Gr_Clientes_CellContentClick);
-            // 
-            // Cod_Cliente
-            // 
-            this.Cod_Cliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
-            this.Cod_Cliente.Frozen = true;
-            this.Cod_Cliente.HeaderText = "Cód. Cliente";
-            this.Cod_Cliente.Name = "Cod_Cliente";
-            this.Cod_Cliente.ReadOnly = true;
-            this.Cod_Cliente.ToolTipText = "Código Cliente";
-            this.Cod_Cliente.Width = 89;
-            // 
-            // razon_social
-            // 
-            this.razon_social.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.razon_social.DataPropertyName = "razon_social";
-            this.razon_social.HeaderText = "Razón Social";
-            this.razon_social.Name = "razon_social";
-            this.razon_social.ReadOnly = true;
-            this.razon_social.ToolTipText = "Razón Social";
-            this.razon_social.Width = 95;
-            // 
-            // Dirección
-            // 
-            this.Dirección.DataPropertyName = "direccion";
-            this.Dirección.HeaderText = "Dirección";
-            this.Dirección.Name = "Dirección";
-            this.Dirección.ReadOnly = true;
-            this.Dirección.ToolTipText = "Dirección";
-            this.Dirección.Width = 77;
-            // 
-            // codigo_postal
-            // 
-            this.codigo_postal.DataPropertyName = "codigo_postal";
-            this.codigo_postal.HeaderText = "Cód. Postal";
-            this.codigo_postal.Name = "codigo_postal";
-            this.codigo_postal.ReadOnly = true;
-            this.codigo_postal.ToolTipText = "Código Postal";
-            this.codigo_postal.Width = 86;
-            // 
-            // Teléfono
-            // 
-            this.Teléfono.DataPropertyName = "Telefono";
-            this.Teléfono.HeaderText = "Teléfono";
-            this.Teléfono.Name = "Teléfono";
-            this.Teléfono.ReadOnly = true;
-            this.Teléfono.Width = 74;
-            // 
-            // Viajante
-            // 
-            this.Viajante.DataPropertyName = "Viajante";
-            this.Viajante.HeaderText = "Viajante";
-            this.Viajante.Name = "Viajante";
-            this.Viajante.ReadOnly = true;
-            this.Viajante.ToolTipText = "Viajante";
-            this.Viajante.Width = 70;
-            // 
-            // Localidad
-            // 
-            this.Localidad.DataPropertyName = "Localidad";
-            this.Localidad.HeaderText = "Localidad";
-            this.Localidad.Name = "Localidad";
-            this.Localidad.ReadOnly = true;
-            this.Localidad.ToolTipText = "Localidad";
-            this.Localidad.Width = 78;
-            // 
-            // Provincia
-            // 
-            this.Provincia.DataPropertyName = "Provincia";
-            this.Provincia.HeaderText = "Provincia";
-            this.Provincia.Name = "Provincia";
-            this.Provincia.ReadOnly = true;
-            this.Provincia.ToolTipText = "Provincia";
-            this.Provincia.Width = 76;
-            // 
-            // Zona
-            // 
-            this.Zona.DataPropertyName = "Zona";
-            this.Zona.HeaderText = "Zona";
-            this.Zona.Name = "Zona";
-            this.Zona.ReadOnly = true;
-            this.Zona.ToolTipText = "Zona";
-            this.Zona.Width = 57;
-            // 
-            // CUIT
-            // 
-            this.CUIT.DataPropertyName = "CUIT";
-            this.CUIT.HeaderText = "CUIT";
-            this.CUIT.Name = "CUIT";
-            this.CUIT.ReadOnly = true;
-            this.CUIT.ToolTipText = "CUIT";
-            this.CUIT.Width = 57;
-            // 
-            // Contacto
-            // 
-            this.Contacto.DataPropertyName = "contacto";
-            this.Contacto.HeaderText = "Contacto";
-            this.Contacto.Name = "Contacto";
-            this.Contacto.ReadOnly = true;
-            this.Contacto.ToolTipText = "Contacto";
-            this.Contacto.Width = 75;
-            // 
-            // Cod_Zona
-            // 
-            this.Cod_Zona.DataPropertyName = "Cod_Zona";
-            this.Cod_Zona.HeaderText = "Cód. Zona";
-            this.Cod_Zona.Name = "Cod_Zona";
-            this.Cod_Zona.ReadOnly = true;
-            this.Cod_Zona.ToolTipText = "Código Zona";
-            this.Cod_Zona.Width = 82;
-            // 
-            // Cod_Viajante
-            // 
-            this.Cod_Viajante.DataPropertyName = "Cod_Viajante";
-            this.Cod_Viajante.HeaderText = "Cód. Viajante";
-            this.Cod_Viajante.Name = "Cod_Viajante";
-            this.Cod_Viajante.ReadOnly = true;
-            this.Cod_Viajante.ToolTipText = "Código Viajante";
-            this.Cod_Viajante.Width = 95;
-            // 
-            // Cod_Localidad
-            // 
-            this.Cod_Localidad.DataPropertyName = "Cod_Localidad";
-            this.Cod_Localidad.HeaderText = "Código Localidad";
-            this.Cod_Localidad.Name = "Cod_Localidad";
-            this.Cod_Localidad.ReadOnly = true;
-            this.Cod_Localidad.Visible = false;
-            this.Cod_Localidad.Width = 114;
-            // 
-            // Cod_Provincia
-            // 
-            this.Cod_Provincia.DataPropertyName = "Cod_Provincia";
-            this.Cod_Provincia.HeaderText = "Código Provincia";
-            this.Cod_Provincia.Name = "Cod_Provincia";
-            this.Cod_Provincia.ReadOnly = true;
-            this.Cod_Provincia.Visible = false;
-            this.Cod_Provincia.Width = 112;
             // 
             // Lb_Título
             // 
@@ -305,6 +167,145 @@
             this.Bt_delete.TabIndex = 3;
             this.Bt_delete.UseVisualStyleBackColor = true;
             this.Bt_delete.Click += new System.EventHandler(this.Bt_delete_Click);
+            // 
+            // Cod_Cliente
+            // 
+            this.Cod_Cliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
+            this.Cod_Cliente.Frozen = true;
+            this.Cod_Cliente.HeaderText = "Cód. Cliente";
+            this.Cod_Cliente.Name = "Cod_Cliente";
+            this.Cod_Cliente.ReadOnly = true;
+            this.Cod_Cliente.ToolTipText = "Código Cliente";
+            this.Cod_Cliente.Width = 89;
+            // 
+            // razon_social
+            // 
+            this.razon_social.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.razon_social.DataPropertyName = "razon_social";
+            this.razon_social.HeaderText = "Razón Social";
+            this.razon_social.Name = "razon_social";
+            this.razon_social.ReadOnly = true;
+            this.razon_social.ToolTipText = "Razón Social";
+            this.razon_social.Width = 95;
+            // 
+            // Dirección
+            // 
+            this.Dirección.DataPropertyName = "direccion";
+            this.Dirección.HeaderText = "Dirección";
+            this.Dirección.Name = "Dirección";
+            this.Dirección.ReadOnly = true;
+            this.Dirección.ToolTipText = "Dirección";
+            this.Dirección.Width = 77;
+            // 
+            // codigo_postal
+            // 
+            this.codigo_postal.DataPropertyName = "codigo_postal";
+            this.codigo_postal.HeaderText = "Cód. Postal";
+            this.codigo_postal.Name = "codigo_postal";
+            this.codigo_postal.ReadOnly = true;
+            this.codigo_postal.ToolTipText = "Código Postal";
+            this.codigo_postal.Width = 86;
+            // 
+            // Teléfono
+            // 
+            this.Teléfono.DataPropertyName = "Telefono";
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.Name = "Teléfono";
+            this.Teléfono.ReadOnly = true;
+            this.Teléfono.Width = 74;
+            // 
+            // Viajante
+            // 
+            this.Viajante.DataPropertyName = "Nombre";
+            this.Viajante.HeaderText = "Viajante";
+            this.Viajante.Name = "Viajante";
+            this.Viajante.ReadOnly = true;
+            this.Viajante.ToolTipText = "Viajante";
+            this.Viajante.Width = 70;
+            // 
+            // Localidad
+            // 
+            this.Localidad.DataPropertyName = "Desc_Localidad";
+            this.Localidad.HeaderText = "Localidad";
+            this.Localidad.Name = "Localidad";
+            this.Localidad.ReadOnly = true;
+            this.Localidad.ToolTipText = "Localidad";
+            this.Localidad.Width = 78;
+            // 
+            // Provincia
+            // 
+            this.Provincia.DataPropertyName = "Desc_Provincia";
+            this.Provincia.HeaderText = "Provincia";
+            this.Provincia.Name = "Provincia";
+            this.Provincia.ReadOnly = true;
+            this.Provincia.ToolTipText = "Provincia";
+            this.Provincia.Width = 76;
+            // 
+            // Zona
+            // 
+            this.Zona.DataPropertyName = "Desc_Zona";
+            this.Zona.HeaderText = "Zona";
+            this.Zona.Name = "Zona";
+            this.Zona.ReadOnly = true;
+            this.Zona.ToolTipText = "Zona";
+            this.Zona.Width = 57;
+            // 
+            // CUIT
+            // 
+            this.CUIT.DataPropertyName = "CUIT";
+            this.CUIT.HeaderText = "CUIT";
+            this.CUIT.Name = "CUIT";
+            this.CUIT.ReadOnly = true;
+            this.CUIT.ToolTipText = "CUIT";
+            this.CUIT.Width = 57;
+            // 
+            // Contacto
+            // 
+            this.Contacto.DataPropertyName = "contacto";
+            this.Contacto.HeaderText = "Contacto";
+            this.Contacto.Name = "Contacto";
+            this.Contacto.ReadOnly = true;
+            this.Contacto.ToolTipText = "Contacto";
+            this.Contacto.Width = 75;
+            // 
+            // Cod_Zona
+            // 
+            this.Cod_Zona.DataPropertyName = "Cod_Zona";
+            this.Cod_Zona.HeaderText = "Cód. Zona";
+            this.Cod_Zona.Name = "Cod_Zona";
+            this.Cod_Zona.ReadOnly = true;
+            this.Cod_Zona.ToolTipText = "Código Zona";
+            this.Cod_Zona.Visible = false;
+            this.Cod_Zona.Width = 82;
+            // 
+            // Cod_Viajante
+            // 
+            this.Cod_Viajante.DataPropertyName = "Cod_Viajante";
+            this.Cod_Viajante.HeaderText = "Cód. Viajante";
+            this.Cod_Viajante.Name = "Cod_Viajante";
+            this.Cod_Viajante.ReadOnly = true;
+            this.Cod_Viajante.ToolTipText = "Código Viajante";
+            this.Cod_Viajante.Visible = false;
+            this.Cod_Viajante.Width = 95;
+            // 
+            // Cod_Localidad
+            // 
+            this.Cod_Localidad.DataPropertyName = "Cod_Localidad";
+            this.Cod_Localidad.HeaderText = "Código Localidad";
+            this.Cod_Localidad.Name = "Cod_Localidad";
+            this.Cod_Localidad.ReadOnly = true;
+            this.Cod_Localidad.Visible = false;
+            this.Cod_Localidad.Width = 114;
+            // 
+            // Cod_Provincia
+            // 
+            this.Cod_Provincia.DataPropertyName = "Cod_Provincia";
+            this.Cod_Provincia.HeaderText = "Código Provincia";
+            this.Cod_Provincia.Name = "Cod_Provincia";
+            this.Cod_Provincia.ReadOnly = true;
+            this.Cod_Provincia.Visible = false;
+            this.Cod_Provincia.Width = 112;
             // 
             // Clientes
             // 

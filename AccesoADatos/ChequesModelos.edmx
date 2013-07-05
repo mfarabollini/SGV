@@ -13,6 +13,25 @@
           <EntitySet Name="provincias" EntityType="ChequesModel.Store.provincias" store:Type="Tables" Schema="gestion_cheques" />
           <EntitySet Name="viajantes" EntityType="ChequesModel.Store.viajantes" store:Type="Tables" Schema="gestion_cheques" />
           <EntitySet Name="zonas" EntityType="ChequesModel.Store.zonas" store:Type="Tables" Schema="gestion_cheques" />
+          <EntitySet Name="clientes_view" EntityType="ChequesModel.Store.clientes_view" store:Type="Views" store:Schema="gestion_cheques" store:Name="clientes_view">
+            <DefiningQuery>SELECT
+      `clientes_view`.`Cod_Cliente`, 
+      `clientes_view`.`razon_social`, 
+      `clientes_view`.`direccion`, 
+      `clientes_view`.`codigo_postal`, 
+      `clientes_view`.`cod_localidad`, 
+      `clientes_view`.`Cod_Provincia`, 
+      `clientes_view`.`Cod_Viajante`, 
+      `clientes_view`.`Cod_Zona`, 
+      `clientes_view`.`CUIT`, 
+      `clientes_view`.`contacto`, 
+      `clientes_view`.`telefono`, 
+      `clientes_view`.`Desc_Localidad`, 
+      `clientes_view`.`Nombre`, 
+      `clientes_view`.`Desc_Zona`, 
+      `clientes_view`.`Desc_Provincia`
+      FROM `clientes_view` AS `clientes_view`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="viajantes_view" EntityType="ChequesModel.Store.viajantes_view" store:Type="Views" store:Schema="gestion_cheques" store:Name="viajantes_view">
             <DefiningQuery>SELECT
       `viajantes_view`.`Cod_Viajante`, 
@@ -103,6 +122,31 @@
           <Property Name="Desc_Zona" Type="varchar" MaxLength="20" />
         </EntityType>
         <!--Se encontraron errores durante la generación:
+      advertencia 6002: La tabla o vista 'gestion_cheques.clientes_view' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
+      -->
+        <EntityType Name="clientes_view">
+          <Key>
+            <PropertyRef Name="Cod_Cliente" />
+            <PropertyRef Name="Cod_Viajante" />
+            <PropertyRef Name="Cod_Zona" />
+          </Key>
+          <Property Name="Cod_Cliente" Type="int" Nullable="false" />
+          <Property Name="razon_social" Type="varchar" MaxLength="40" />
+          <Property Name="direccion" Type="varchar" MaxLength="30" />
+          <Property Name="codigo_postal" Type="varchar" MaxLength="10" />
+          <Property Name="cod_localidad" Type="varchar" MaxLength="8" />
+          <Property Name="Cod_Provincia" Type="varchar" MaxLength="2" />
+          <Property Name="Cod_Viajante" Type="varchar" Nullable="false" MaxLength="4" />
+          <Property Name="Cod_Zona" Type="varchar" Nullable="false" MaxLength="3" />
+          <Property Name="CUIT" Type="varchar" MaxLength="11" />
+          <Property Name="contacto" Type="varchar" MaxLength="20" />
+          <Property Name="telefono" Type="varchar" MaxLength="20" />
+          <Property Name="Desc_Localidad" Type="varchar" MaxLength="60" />
+          <Property Name="Nombre" Type="varchar" MaxLength="40" />
+          <Property Name="Desc_Zona" Type="varchar" MaxLength="20" />
+          <Property Name="Desc_Provincia" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Se encontraron errores durante la generación:
       advertencia 6002: La tabla o vista 'gestion_cheques.viajantes_view' no tiene ninguna clave principal definida. Se ha inferido la clave y la definición se creó como vista o tabla de solo lectura.
       -->
         <EntityType Name="viajantes_view">
@@ -132,6 +176,7 @@
           <EntitySet Name="zonas" EntityType="ChequesModel.zonas" />
           <EntitySet Name="viajantes" EntityType="ChequesModel.viajantes" />
           <EntitySet Name="viajantes_view" EntityType="ChequesModel.viajantes_view" />
+          <EntitySet Name="clientes_view" EntityType="ChequesModel.clientes_view" />
         </EntityContainer>
         <EntityType Name="bancos">
           <Key>
@@ -222,6 +267,28 @@
           <Property Type="String" Name="CUIT" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Telefono" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="clientes_view">
+          <Key>
+            <PropertyRef Name="Cod_Cliente" />
+            <PropertyRef Name="Cod_Viajante" />
+            <PropertyRef Name="Cod_Zona" />
+          </Key>
+          <Property Type="Int32" Name="Cod_Cliente" Nullable="false" />
+          <Property Type="String" Name="razon_social" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="direccion" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="codigo_postal" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="cod_localidad" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cod_Viajante" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cod_Zona" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="CUIT" MaxLength="11" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contacto" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="telefono" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Desc_Localidad" MaxLength="60" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Nombre" MaxLength="40" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Desc_Zona" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cod_Provincia" MaxLength="2" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Desc_Provincia" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -258,6 +325,7 @@
           <EntitySetMapping Name="clientes">
             <EntityTypeMapping TypeName="ChequesModel.clientes">
               <MappingFragment StoreEntitySet="clientes">
+                <ScalarProperty Name="delete" ColumnName="delete" />
                 <ScalarProperty Name="Cod_Zona" ColumnName="Cod_Zona" />
                 <ScalarProperty Name="Cod_Cliente" ColumnName="Cod_Cliente" />
                 <ScalarProperty Name="razon_social" ColumnName="razon_social" />
@@ -268,7 +336,6 @@
                 <ScalarProperty Name="CUIT" ColumnName="CUIT" />
                 <ScalarProperty Name="contacto" ColumnName="contacto" />
                 <ScalarProperty Name="telefono" ColumnName="telefono" />
-                <ScalarProperty Name="delete" ColumnName="delete" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -322,6 +389,27 @@
                 <ScalarProperty Name="Direccion" ColumnName="Direccion" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Cod_Viajante" ColumnName="Cod_Viajante" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="clientes_view">
+            <EntityTypeMapping TypeName="ChequesModel.clientes_view">
+              <MappingFragment StoreEntitySet="clientes_view">
+                <ScalarProperty Name="Desc_Provincia" ColumnName="Desc_Provincia" />
+                <ScalarProperty Name="Cod_Provincia" ColumnName="Cod_Provincia" />
+                <ScalarProperty Name="Desc_Zona" ColumnName="Desc_Zona" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Desc_Localidad" ColumnName="Desc_Localidad" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="contacto" ColumnName="contacto" />
+                <ScalarProperty Name="CUIT" ColumnName="CUIT" />
+                <ScalarProperty Name="Cod_Zona" ColumnName="Cod_Zona" />
+                <ScalarProperty Name="Cod_Viajante" ColumnName="Cod_Viajante" />
+                <ScalarProperty Name="cod_localidad" ColumnName="cod_localidad" />
+                <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+                <ScalarProperty Name="razon_social" ColumnName="razon_social" />
+                <ScalarProperty Name="Cod_Cliente" ColumnName="Cod_Cliente" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

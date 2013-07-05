@@ -12,15 +12,14 @@ namespace AccesoADatos
     {
 
         // Recupera todos los bancos de la base de datos
-        public static List<clientes> Cargar_Clientes()
+        public static List<clientes_view> Cargar_Clientes()
         {
             using (ChequeEntidades bd = new ChequeEntidades())
             {
-                return bd.clientes.ToList();
+                return bd.clientes_view.ToList();
             }
         }
-
-        
+                
         // Devuelve los datos del Cliente
         #region Buscar Cliente
         

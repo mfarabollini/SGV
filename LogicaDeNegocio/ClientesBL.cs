@@ -11,7 +11,7 @@ namespace LogicaDeNegocio
     public class ClientesBL
     {
         // Recupera los Clientes
-        public static List<clientes> Cargar_Clientes()
+        public static List<clientes_view> Cargar_Clientes()
         {
             return ClientesDAL.Cargar_Clientes();
         }
