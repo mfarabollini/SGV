@@ -278,6 +278,7 @@
           <Property Type="String" Name="direccion" MaxLength="30" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="codigo_postal" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="cod_localidad" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cod_Provincia" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Cod_Viajante" Nullable="false" MaxLength="4" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Cod_Zona" Nullable="false" MaxLength="3" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="CUIT" MaxLength="11" FixedLength="false" Unicode="false" />
@@ -286,7 +287,6 @@
           <Property Type="String" Name="Desc_Localidad" MaxLength="60" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Nombre" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Desc_Zona" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Cod_Provincia" MaxLength="2" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Desc_Provincia" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
@@ -396,7 +396,6 @@
             <EntityTypeMapping TypeName="ChequesModel.clientes_view">
               <MappingFragment StoreEntitySet="clientes_view">
                 <ScalarProperty Name="Desc_Provincia" ColumnName="Desc_Provincia" />
-                <ScalarProperty Name="Cod_Provincia" ColumnName="Cod_Provincia" />
                 <ScalarProperty Name="Desc_Zona" ColumnName="Desc_Zona" />
                 <ScalarProperty Name="Nombre" ColumnName="Nombre" />
                 <ScalarProperty Name="Desc_Localidad" ColumnName="Desc_Localidad" />
@@ -405,6 +404,7 @@
                 <ScalarProperty Name="CUIT" ColumnName="CUIT" />
                 <ScalarProperty Name="Cod_Zona" ColumnName="Cod_Zona" />
                 <ScalarProperty Name="Cod_Viajante" ColumnName="Cod_Viajante" />
+                <ScalarProperty Name="Cod_Provincia" ColumnName="Cod_Provincia" />
                 <ScalarProperty Name="cod_localidad" ColumnName="cod_localidad" />
                 <ScalarProperty Name="codigo_postal" ColumnName="codigo_postal" />
                 <ScalarProperty Name="direccion" ColumnName="direccion" />

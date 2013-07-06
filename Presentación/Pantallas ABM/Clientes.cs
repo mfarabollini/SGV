@@ -127,43 +127,43 @@ namespace Presentación.Pantallas_ABM
                 {
                     Fr_Modif.Direccion = Gr_Clientes.Rows[indice].Cells[2].Value.ToString();
                 }
-                // Código Postal puede ser nulo. Controla.
-                if (Gr_Clientes.Rows[indice].Cells[3].Value != null)
+                // Cod_Localidad
+                if (Gr_Clientes.Rows[indice].Cells[13].Value != null)
                 {
-                  Fr_Modif.CodPostal = Gr_Clientes.Rows[indice].Cells[3].Value.ToString();
+                    Fr_Modif.Localidad = Gr_Clientes.Rows[indice].Cells[13].Value.ToString();
+                }
+                // Código Postal puede ser nulo. Controla.
+                if (Gr_Clientes.Rows[indice].Cells[5].Value != null)
+                {
+                  Fr_Modif.CodPostal = Gr_Clientes.Rows[indice].Cells[5].Value.ToString();
+                }
+                //Zona
+                if (Gr_Clientes.Rows[indice].Cells[11].Value != null)
+                {
+                    Fr_Modif.Zona = Gr_Clientes.Rows[indice].Cells[11].Value.ToString();
+                }
+                // CUIT
+                if (Gr_Clientes.Rows[indice].Cells[8].Value != null)
+                {
+                    Fr_Modif.CUIT = Gr_Clientes.Rows[indice].Cells[8].Value.ToString();
                 }
                 // Teléfono puede ser nulo. Controla.
-                if (Gr_Clientes.Rows[indice].Cells[4].Value != null)
+                if (Gr_Clientes.Rows[indice].Cells[9].Value != null)
                 {
-                   Fr_Modif.Telefono = Gr_Clientes.Rows[indice].Cells[4].Value.ToString();
+                   Fr_Modif.Telefono = Gr_Clientes.Rows[indice].Cells[9].Value.ToString();
                 }
                 // Controla que el viajante no sea nulo
                 if (Gr_Clientes.Rows[indice].Cells[12].Value != null)
 	            {
 		            Fr_Modif.CodViajante = Gr_Clientes.Rows[indice].Cells[12].Value.ToString();
 	            }
-                // Cod_Localidad
-                if (Gr_Clientes.Rows[indice].Cells[13].Value != null)
-	            {
-                    Fr_Modif.Localidad = Gr_Clientes.Rows[indice].Cells[13].Value.ToString();
-	            }
-                //Zona
-                if (Gr_Clientes.Rows[indice].Cells[11].Value != null)
-	            {
-		            Fr_Modif.Zona = Gr_Clientes.Rows[indice].Cells[11].Value.ToString();
-	            }
-                // CUIT
-                if (Gr_Clientes.Rows[indice].Cells[8].Value != null)
-	            {
-		            Fr_Modif.CUIT = Gr_Clientes.Rows[indice].Cells[8].Value.ToString();
-	            }
                 // Contacto
-                if (Gr_Clientes.Rows[indice].Cells[9].Value != null)
+                if (Gr_Clientes.Rows[indice].Cells[10].Value != null)
 	            {
-		            Fr_Modif.Contacto = Gr_Clientes.Rows[indice].Cells[9].Value.ToString();
+		            Fr_Modif.Contacto = Gr_Clientes.Rows[indice].Cells[10].Value.ToString();
 	            }
                                 
-                // Definimos el método (Fr_ViajModif_FormClosed) que vuelve a cargar la grilla cuando 
+                // Definimos el método (Fr_ClieModif_FormClosed) que vuelve a cargar la grilla cuando 
                 // se cierra la ventana Alta de Viajantes.
                 Fr_Modif.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ClieModif_FormClosed);
 

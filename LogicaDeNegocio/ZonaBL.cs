@@ -46,5 +46,6 @@ namespace LogicaDeNegocio
             else
                 return false;
         }
+
     } // public class ZonaBl
 }

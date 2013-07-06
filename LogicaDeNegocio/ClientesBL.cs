@@ -28,6 +28,12 @@ namespace LogicaDeNegocio
             return ClientesDAL.Alta_Cliente(Cliente);
         }
 
+        // Actualizar Cliente
+        public static string ActualizarCliente(clientes Cliente, string Act)
+        {
+            return ClientesDAL.ActualizarCliente(Cliente, Act);
+        }
+
         // Borrar Cliente
         public static clientes Borrar_Cliente(clientes Cliente)
         {

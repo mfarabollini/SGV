@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Modif_Cliente));
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.Bt_Aceptar = new System.Windows.Forms.Button();
@@ -57,8 +58,10 @@
             this.Grupo1 = new System.Windows.Forms.GroupBox();
             this.Lb_CodZona = new System.Windows.Forms.Label();
             this.Tx_Codigo = new System.Windows.Forms.TextBox();
+            this.ControlError = new System.Windows.Forms.ErrorProvider(this.components);
             this.Grupo2.SuspendLayout();
             this.Grupo1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
             this.SuspendLayout();
             // 
             // Bt_Salir
@@ -78,6 +81,7 @@
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 21;
             this.Bt_Aceptar.UseVisualStyleBackColor = true;
+            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
             // Grupo2
             // 
@@ -157,6 +161,7 @@
             this.Tx_CodViajante.Size = new System.Drawing.Size(45, 23);
             this.Tx_CodViajante.TabIndex = 20;
             this.Tx_CodViajante.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            this.Tx_CodViajante.Leave += new System.EventHandler(this.Valida_Viajante);
             // 
             // label1
             // 
@@ -302,6 +307,7 @@
             this.Tx_CUIT.Name = "Tx_CUIT";
             this.Tx_CUIT.Size = new System.Drawing.Size(115, 23);
             this.Tx_CUIT.TabIndex = 3;
+            this.Tx_CUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Validacion_Numerica);
             // 
             // Tx_Direccion
             // 
@@ -354,6 +360,10 @@
             this.Tx_Codigo.TabIndex = 0;
             this.Tx_Codigo.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
+            // ControlError
+            // 
+            this.ControlError.ContainerControl = this;
+            // 
             // Modif_Cliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -372,6 +382,7 @@
             this.Grupo2.PerformLayout();
             this.Grupo1.ResumeLayout(false);
             this.Grupo1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ControlError)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -406,5 +417,6 @@
         private System.Windows.Forms.GroupBox Grupo1;
         private System.Windows.Forms.Label Lb_CodZona;
         private System.Windows.Forms.TextBox Tx_Codigo;
+        private System.Windows.Forms.ErrorProvider ControlError;
     }
 }

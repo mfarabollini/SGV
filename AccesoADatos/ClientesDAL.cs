@@ -82,6 +82,47 @@ namespace AccesoADatos
         }
         #endregion
 
+        // Actualizar Cliente
+        #region Acualizar Cliente
+        public static string ActualizarCliente(clientes Cliente, string Act)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                // Realiza la actualización a la tabla
+                var query = (from n in bd.clientes
+                             where n.Cod_Cliente == Cliente.Cod_Cliente
+                             select n).Single();
+
+                query.razon_social = Cliente.razon_social;
+                query.direccion = Cliente.direccion;
+                query.codigo_postal = Cliente.codigo_postal;
+                query.CUIT = Cliente.CUIT;
+                query.cod_localidad = Cliente.cod_localidad;
+                query.Cod_Viajante = Cliente.Cod_Viajante;
+                query.Cod_Zona = Cliente.Cod_Zona;
+                query.telefono = Cliente.telefono;
+                query.contacto = Cliente.contacto;
+
+                try
+                {
+                    bd.SaveChanges();
+                    Act = "X"; // Flag de correcta actualización
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    // Captura las Excepciones del insert
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                }
+            }
+            return Act;
+        }
+        #endregion
+
         // Borrar Cliente
         #region Borrar Cliente
         public static clientes Borrar_Cliente(clientes Cliente)

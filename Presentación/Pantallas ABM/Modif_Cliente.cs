@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
+using Entidades;
 
 namespace Presentación.Pantallas_ABM
 {
@@ -107,6 +108,24 @@ namespace Presentación.Pantallas_ABM
             Tx_CUIT.Text = this.CUIT;
             //Código del Viajante
             Tx_CodViajante.Text = this.CodViajante;
+            
+            // Recupera el Nombre del viajante
+            if (this.CodViajante != String.Empty)
+            {
+                viajantes Viaj = new viajantes();
+                Viaj.Cod_Viajante = Convert.ToInt16(this.CodViajante);
+                ViajanteBL.Obtener_Viajante(Viaj);
+                if (Viaj.Nombre != null)
+                {
+                    ControlError.Clear();
+                    Lb_Viajante.Text = Viaj.Nombre;
+                }
+                else
+                {
+                    ControlError.SetError(Tx_CodViajante, "El viajante no existe");
+                }    
+            }                      
+
             //Teléfono
             Tx_Telefono.Text = this.Telefono;
             // Contacto
@@ -123,6 +142,17 @@ namespace Presentación.Pantallas_ABM
                 string CodProv = "1";
                 CodProv = LocalidadesBL.Obtener_Provincia(this.Localidad, CodProv);
                 Cb_Provincia.SelectedValue = CodProv;
+            }
+
+            // Carga las Zonas
+            Cb_Zona.DisplayMember = "Desc_Zona";
+            Cb_Zona.ValueMember = "Cod_Zona";
+            Cb_Zona.DataSource = ZonaBL.CargarZonas();
+            Cb_Zona.SelectedIndex = -1;
+            
+            if (this.Zona != null)
+            {
+              Cb_Zona.SelectedValue = this.Zona;
             }
         }
         #endregion
@@ -147,5 +177,202 @@ namespace Presentación.Pantallas_ABM
             }
         }
         #endregion
+        
+        // Validaciones
+        #region Validaciones
+        // Valida que exista el banco
+        private void Valida_Viajante(object sender, EventArgs e)
+        {
+            if (Tx_CodViajante.Text != "")
+            {
+                // Crear instancia de Viajante   
+                viajantes Viajante = new viajantes();
+                // Valorizar el código
+                Viajante.Cod_Viajante = Convert.ToInt16(Tx_CodViajante.Text);
+                //Recuperar el viajante
+                ViajanteBL.Obtener_Viajante(Viajante);
+                // En caso que no este valorizado la desc, quiere decir que no fue correcta
+                // la selección
+                if (Viajante.Nombre != null)
+                {
+                    ControlError.Clear();
+                    // Descripción del banco
+                    Lb_Viajante.Text = Viajante.Nombre;
+                }
+                else
+                {
+                    Lb_Viajante.Text = "";
+                    ControlError.SetError(Tx_CodViajante, "El Viajante ingresado no existe");
+                }
+            }
+        }
+
+        // Validación de que el dato ingresado sea número
+        private void Validacion_Numerica(object sender, KeyPressEventArgs e)
+        {
+            //Para obligar a que sólo se introduzcan números 
+            if (Char.IsDigit(e.KeyChar))
+            {
+                e.Handled = false;
+            }
+            else
+                if (Char.IsControl(e.KeyChar)) //permitir teclas de control como retroceso 
+                {
+                    e.Handled = false;
+                }
+                else
+                {
+                    //el resto de teclas pulsadas se desactivan 
+                    e.Handled = true;
+                }
+        }
+
+        private bool Validaciones()
+        {
+            bool resul = true;
+
+            ControlError.Clear();
+
+            // Control de valorización
+            if (Tx_RazSocial.Text == String.Empty)
+            {
+                ControlError.SetError(Tx_RazSocial, "Campo Obligatorio");
+                resul = false;
+            }
+
+            // Valorización de Viajante
+            if (Tx_CodViajante.Text == String.Empty)
+            {
+                ControlError.SetError(Tx_CodViajante, "Campo Obligatorio");
+                resul = false;
+            }
+
+            // Control de valorización de los comboboxs. En caso que uno esté valorizado, 
+            // el otro debe estarlo
+            if (Cb_Provincia.SelectedValue != null && Cb_Localidad.SelectedValue == null)
+            {
+                ControlError.SetError(Cb_Localidad, "Campo Obligatorio");
+                resul = false;
+            }
+
+            if (Cb_Provincia.SelectedValue == null && Cb_Localidad.SelectedValue != null)
+            {
+                ControlError.SetError(Cb_Provincia, "Campo Obligatorio");
+                resul = false;
+            }
+
+            // Control de valorización de Zona
+            if (Cb_Zona.SelectedValue == null)
+            {
+                ControlError.SetError(Cb_Zona, "Campo Obligatorio");
+                resul = false;
+            }
+
+            // Controla que exista el Viajante
+            if (Tx_CodViajante.Text != "")
+            {
+                // Crear instancia de Viajante   
+                viajantes Viajante = new viajantes();
+                // Valorizar el código
+                Viajante.Cod_Viajante = Convert.ToInt16(Tx_CodViajante.Text);
+                //Recuperar el viajante
+                ViajanteBL.Obtener_Viajante(Viajante);
+                // En caso que no este valorizado la desc, quiere decir que no fue correcta
+                // la selección
+                if (Viajante.Nombre != null)
+                {
+                    ControlError.Clear();
+                    // Descripción del banco
+                    Lb_Viajante.Text = Viajante.Nombre;
+                }
+                else
+                {
+                    Lb_Viajante.Text = "";
+                    ControlError.SetError(Tx_CodViajante, "El Viajante ingresado no existe");
+                    resul = false;
+                }
+            }
+            return resul;
+        }
+        #endregion
+
+        // Lógica del botón Guardar
+        #region Botón Guardar
+        private void Bt_Aceptar_Click(object sender, EventArgs e)
+        {
+            if (Validaciones())
+            {
+                clientes Cliente = new clientes();
+
+                // Código de Cliente
+                Cliente.Cod_Cliente = Convert.ToInt16(Tx_Codigo.Text);
+                // Nombre
+                Cliente.razon_social = Tx_RazSocial.Text;
+                // Dirección
+                Cliente.direccion = Tx_Direccion.Text;
+
+                // Si se seleccionó localidades
+                if (Cb_Localidad.SelectedValue != null)
+                {
+                    Cliente.cod_localidad = Cb_Localidad.SelectedValue.ToString();
+                }
+
+                // Cuit
+                Cliente.CUIT = Tx_CUIT.Text;
+                // Código Postal
+                Cliente.codigo_postal = Tx_CodPostal.Text;
+
+                // Si se seleccionó la Zona
+                if (Cb_Zona.SelectedValue != null)
+                {
+                    Cliente.Cod_Zona = Cb_Zona.SelectedValue.ToString();
+                }
+                // Código de Viajante                
+                Cliente.Cod_Viajante = Tx_CodViajante.Text;
+                // Teléfono
+                Cliente.telefono = Tx_Telefono.Text;
+                // Contacto
+                Cliente.contacto = Tx_Contacto.Text;
+
+                // Actualización de Cliente
+                string Act = String.Empty;
+                Act = ClientesBL.ActualizarCliente(Cliente, Act);
+                
+                // En caso que el Cod_Cliente esté valorizado, el alta fue exitoso
+                if (Act == "X")
+                {
+                    MessageBox.Show("El registro se actualizó correctamente",
+                                   "Actualizar Cliente", MessageBoxButtons.OK,
+                                   MessageBoxIcon.Information);
+
+                    Limpiar_Variables();
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show("El registro no pudo ser actualizado. Por favor, intente nuevamente",
+                                  "Actualizar Cliente", MessageBoxButtons.OK,
+                                  MessageBoxIcon.Error);
+                }
+            }
+        }
+        #endregion
+
+        // Limpiar Variables
+        public void Limpiar_Variables()
+        {
+            Tx_RazSocial.Text = "";
+            Tx_Direccion.Text = "";
+            Tx_CUIT.Text = "";
+            Tx_CodPostal.Text = "";
+            Tx_CodViajante.Text = "";
+            Tx_Telefono.Text = "";
+            Tx_Contacto.Text = "";
+            Lb_Viajante.Text = "";
+            Cb_Provincia.SelectedIndex = -1;
+            Cb_Localidad.SelectedIndex = -1;
+            Cb_Zona.SelectedIndex = -1;
+        }
     }
 }

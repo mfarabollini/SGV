@@ -41,13 +41,13 @@
             this.Cod_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dirección = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codigo_postal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Viajante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codigo_postal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Zona = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Viajante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Contacto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Zona = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Viajante = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -78,13 +78,13 @@
             this.Cod_Cliente,
             this.razon_social,
             this.Dirección,
-            this.codigo_postal,
-            this.Teléfono,
-            this.Viajante,
             this.Localidad,
             this.Provincia,
+            this.codigo_postal,
             this.Zona,
+            this.Viajante,
             this.CUIT,
+            this.Teléfono,
             this.Contacto,
             this.Cod_Zona,
             this.Cod_Viajante,
@@ -98,7 +98,7 @@
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Gr_Clientes.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Gr_Clientes.Location = new System.Drawing.Point(5, 16);
+            this.Gr_Clientes.Location = new System.Drawing.Point(7, 12);
             this.Gr_Clientes.Name = "Gr_Clientes";
             this.Gr_Clientes.ReadOnly = true;
             this.Gr_Clientes.Size = new System.Drawing.Size(759, 320);
@@ -198,32 +198,6 @@
             this.Dirección.ToolTipText = "Dirección";
             this.Dirección.Width = 77;
             // 
-            // codigo_postal
-            // 
-            this.codigo_postal.DataPropertyName = "codigo_postal";
-            this.codigo_postal.HeaderText = "Cód. Postal";
-            this.codigo_postal.Name = "codigo_postal";
-            this.codigo_postal.ReadOnly = true;
-            this.codigo_postal.ToolTipText = "Código Postal";
-            this.codigo_postal.Width = 86;
-            // 
-            // Teléfono
-            // 
-            this.Teléfono.DataPropertyName = "Telefono";
-            this.Teléfono.HeaderText = "Teléfono";
-            this.Teléfono.Name = "Teléfono";
-            this.Teléfono.ReadOnly = true;
-            this.Teléfono.Width = 74;
-            // 
-            // Viajante
-            // 
-            this.Viajante.DataPropertyName = "Nombre";
-            this.Viajante.HeaderText = "Viajante";
-            this.Viajante.Name = "Viajante";
-            this.Viajante.ReadOnly = true;
-            this.Viajante.ToolTipText = "Viajante";
-            this.Viajante.Width = 70;
-            // 
             // Localidad
             // 
             this.Localidad.DataPropertyName = "Desc_Localidad";
@@ -242,6 +216,15 @@
             this.Provincia.ToolTipText = "Provincia";
             this.Provincia.Width = 76;
             // 
+            // codigo_postal
+            // 
+            this.codigo_postal.DataPropertyName = "codigo_postal";
+            this.codigo_postal.HeaderText = "Cód. Postal";
+            this.codigo_postal.Name = "codigo_postal";
+            this.codigo_postal.ReadOnly = true;
+            this.codigo_postal.ToolTipText = "Código Postal";
+            this.codigo_postal.Width = 86;
+            // 
             // Zona
             // 
             this.Zona.DataPropertyName = "Desc_Zona";
@@ -251,6 +234,15 @@
             this.Zona.ToolTipText = "Zona";
             this.Zona.Width = 57;
             // 
+            // Viajante
+            // 
+            this.Viajante.DataPropertyName = "Nombre";
+            this.Viajante.HeaderText = "Viajante";
+            this.Viajante.Name = "Viajante";
+            this.Viajante.ReadOnly = true;
+            this.Viajante.ToolTipText = "Viajante";
+            this.Viajante.Width = 70;
+            // 
             // CUIT
             // 
             this.CUIT.DataPropertyName = "CUIT";
@@ -259,6 +251,14 @@
             this.CUIT.ReadOnly = true;
             this.CUIT.ToolTipText = "CUIT";
             this.CUIT.Width = 57;
+            // 
+            // Teléfono
+            // 
+            this.Teléfono.DataPropertyName = "Telefono";
+            this.Teléfono.HeaderText = "Teléfono";
+            this.Teléfono.Name = "Teléfono";
+            this.Teléfono.ReadOnly = true;
+            this.Teléfono.Width = 74;
             // 
             // Contacto
             // 
@@ -318,6 +318,7 @@
             this.Controls.Add(this.groupBox1);
             this.MaximizeBox = false;
             this.Name = "Clientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Clientes";
             this.Load += new System.EventHandler(this.Clientes_Load);
             this.groupBox2.ResumeLayout(false);
@@ -341,13 +342,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Cliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn razon_social;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dirección;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_postal;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Viajante;
         private System.Windows.Forms.DataGridViewTextBoxColumn Localidad;
         private System.Windows.Forms.DataGridViewTextBoxColumn Provincia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codigo_postal;
         private System.Windows.Forms.DataGridViewTextBoxColumn Zona;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Viajante;
         private System.Windows.Forms.DataGridViewTextBoxColumn CUIT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Teléfono;
         private System.Windows.Forms.DataGridViewTextBoxColumn Contacto;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Zona;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Viajante;

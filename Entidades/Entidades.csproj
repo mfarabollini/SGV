@@ -54,7 +54,7 @@
     <Compile Include="clientes.cs">
       <DependentUpon>ChequesModelos.tt</DependentUpon>
     </Compile>
-    <Compile Include="Clientes_View.cs" />
+    <Compile Include="clientes_view.cs" />
     <Compile Include="localidades.cs">
       <DependentUpon>ChequesModelos.tt</DependentUpon>
     </Compile>

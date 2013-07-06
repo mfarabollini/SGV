@@ -16,5 +16,12 @@ namespace Presentación.Pantallas_ABM
         {
             InitializeComponent();
         }
+
+        // Menú Clientes
+        private void clientesToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Clientes Fr_Clientes = new Clientes();
+            Fr_Clientes.Show();
+        }
     }
 }
