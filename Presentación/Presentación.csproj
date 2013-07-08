@@ -68,6 +68,12 @@
     <Compile Include="Pantallas Principal\Busqueda_Banco.Designer.cs">
       <DependentUpon>Busqueda_Banco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Principal\Egreso_Cheque.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Principal\Egreso_Cheque.Designer.cs">
+      <DependentUpon>Egreso_Cheque.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas Principal\IngresoManual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -141,6 +147,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\Busqueda_Banco.resx">
       <DependentUpon>Busqueda_Banco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Principal\Egreso_Cheque.resx">
+      <DependentUpon>Egreso_Cheque.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\IngresoManual.resx">
       <DependentUpon>IngresoManual.cs</DependentUpon>

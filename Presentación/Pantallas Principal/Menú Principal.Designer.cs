@@ -28,139 +28,355 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menú_Principal));
-            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.menúToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.salirToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.altasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.clientesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.viajantesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zonasToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.reportesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.BT_Ingreso = new System.Windows.Forms.Button();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Ingresar Cheque");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Egreso de Cheque");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Cheques", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2});
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Cheques en Cartera");
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Reportes", new System.Windows.Forms.TreeNode[] {
+            treeNode4});
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Clientes");
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Viajantes");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Zonas");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Actualizar", new System.Windows.Forms.TreeNode[] {
+            treeNode6,
+            treeNode7,
+            treeNode8});
+            this.Gr_Box = new System.Windows.Forms.GroupBox();
+            this.Bt_Salir = new System.Windows.Forms.Button();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.button3 = new System.Windows.Forms.Button();
             this.button2 = new System.Windows.Forms.Button();
-            this.menuStrip1.SuspendLayout();
-            this.groupBox1.SuspendLayout();
+            this.button1 = new System.Windows.Forms.Button();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Lb_cartera = new System.Windows.Forms.Label();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Bt_Egreso = new System.Windows.Forms.Button();
+            this.Bt_Ingreso = new System.Windows.Forms.Button();
+            this.Gr_1 = new System.Windows.Forms.GroupBox();
+            this.Lb_hora = new System.Windows.Forms.Label();
+            this.Lb_Fecha = new System.Windows.Forms.Label();
+            this.Lb_Texto = new System.Windows.Forms.Label();
+            this.Tr_VistaTree = new System.Windows.Forms.TreeView();
+            this.Timer = new System.Windows.Forms.Timer(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.Gr_Box.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            this.groupBox1.SuspendLayout();
+            this.Gr_1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // menuStrip1
+            // Gr_Box
             // 
-            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.menúToolStripMenuItem,
-            this.altasToolStripMenuItem,
-            this.reportesToolStripMenuItem});
-            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
-            this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(436, 24);
-            this.menuStrip1.TabIndex = 0;
-            this.menuStrip1.Text = "menuStrip1";
+            this.Gr_Box.Controls.Add(this.Bt_Salir);
+            this.Gr_Box.Controls.Add(this.groupBox3);
+            this.Gr_Box.Controls.Add(this.groupBox2);
+            this.Gr_Box.Controls.Add(this.groupBox1);
+            this.Gr_Box.Controls.Add(this.Gr_1);
+            this.Gr_Box.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Gr_Box.Location = new System.Drawing.Point(188, 46);
+            this.Gr_Box.Name = "Gr_Box";
+            this.Gr_Box.Size = new System.Drawing.Size(484, 435);
+            this.Gr_Box.TabIndex = 1;
+            this.Gr_Box.TabStop = false;
             // 
-            // menúToolStripMenuItem
+            // Bt_Salir
             // 
-            this.menúToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.salirToolStripMenuItem});
-            this.menúToolStripMenuItem.Name = "menúToolStripMenuItem";
-            this.menúToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
-            this.menúToolStripMenuItem.Text = "Menú";
+            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
+            this.Bt_Salir.Location = new System.Drawing.Point(439, 390);
+            this.Bt_Salir.Name = "Bt_Salir";
+            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Salir.TabIndex = 12;
+            this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
-            // salirToolStripMenuItem
+            // groupBox3
             // 
-            this.salirToolStripMenuItem.Name = "salirToolStripMenuItem";
-            this.salirToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.salirToolStripMenuItem.Text = "Salir";
+            this.groupBox3.BackColor = System.Drawing.SystemColors.Control;
+            this.groupBox3.Controls.Add(this.button3);
+            this.groupBox3.Controls.Add(this.button2);
+            this.groupBox3.Controls.Add(this.button1);
+            this.groupBox3.ForeColor = System.Drawing.Color.Black;
+            this.groupBox3.Location = new System.Drawing.Point(7, 257);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(471, 127);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "Reportes";
             // 
-            // altasToolStripMenuItem
+            // button3
             // 
-            this.altasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.clientesToolStripMenuItem,
-            this.viajantesToolStripMenuItem,
-            this.zonasToolStripMenuItem});
-            this.altasToolStripMenuItem.Name = "altasToolStripMenuItem";
-            this.altasToolStripMenuItem.Size = new System.Drawing.Size(45, 20);
-            this.altasToolStripMenuItem.Text = "Altas";
-            // 
-            // clientesToolStripMenuItem
-            // 
-            this.clientesToolStripMenuItem.Name = "clientesToolStripMenuItem";
-            this.clientesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.clientesToolStripMenuItem.Text = "Clientes";
-            this.clientesToolStripMenuItem.Click += new System.EventHandler(this.clientesToolStripMenuItem_Click);
-            // 
-            // viajantesToolStripMenuItem
-            // 
-            this.viajantesToolStripMenuItem.Name = "viajantesToolStripMenuItem";
-            this.viajantesToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.viajantesToolStripMenuItem.Text = "Viajantes";
-            // 
-            // zonasToolStripMenuItem
-            // 
-            this.zonasToolStripMenuItem.Name = "zonasToolStripMenuItem";
-            this.zonasToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.zonasToolStripMenuItem.Text = "Zonas";
-            // 
-            // reportesToolStripMenuItem
-            // 
-            this.reportesToolStripMenuItem.Name = "reportesToolStripMenuItem";
-            this.reportesToolStripMenuItem.Size = new System.Drawing.Size(65, 20);
-            this.reportesToolStripMenuItem.Text = "Reportes";
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.BT_Ingreso);
-            this.groupBox1.Location = new System.Drawing.Point(41, 58);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(150, 150);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            // 
-            // BT_Ingreso
-            // 
-            this.BT_Ingreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BT_Ingreso.Image = ((System.Drawing.Image)(resources.GetObject("BT_Ingreso.Image")));
-            this.BT_Ingreso.Location = new System.Drawing.Point(12, 20);
-            this.BT_Ingreso.Name = "BT_Ingreso";
-            this.BT_Ingreso.Size = new System.Drawing.Size(125, 115);
-            this.BT_Ingreso.TabIndex = 0;
-            this.BT_Ingreso.Text = "Ingreso de Cheque";
-            this.BT_Ingreso.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            this.BT_Ingreso.UseVisualStyleBackColor = true;
-            // 
-            // groupBox2
-            // 
-            this.groupBox2.Controls.Add(this.button2);
-            this.groupBox2.Location = new System.Drawing.Point(248, 58);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(150, 150);
-            this.groupBox2.TabIndex = 2;
-            this.groupBox2.TabStop = false;
+            this.button3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button3.Image = ((System.Drawing.Image)(resources.GetObject("button3.Image")));
+            this.button3.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button3.Location = new System.Drawing.Point(7, 92);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(145, 29);
+            this.button3.TabIndex = 13;
+            this.button3.Text = "Consultar Cheque";
+            this.button3.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button3.UseVisualStyleBackColor = true;
             // 
             // button2
             // 
-            this.button2.Location = new System.Drawing.Point(12, 20);
+            this.button2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button2.Image = ((System.Drawing.Image)(resources.GetObject("button2.Image")));
+            this.button2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button2.Location = new System.Drawing.Point(7, 57);
             this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(125, 115);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
+            this.button2.Size = new System.Drawing.Size(145, 29);
+            this.button2.TabIndex = 3;
+            this.button2.Text = "Cheques al día";
             this.button2.UseVisualStyleBackColor = true;
+            // 
+            // button1
+            // 
+            this.button1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
+            this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.button1.Location = new System.Drawing.Point(7, 22);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(145, 29);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Cheques en Cartera";
+            this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.label3);
+            this.groupBox2.Controls.Add(this.label2);
+            this.groupBox2.Controls.Add(this.label1);
+            this.groupBox2.Controls.Add(this.Lb_cartera);
+            this.groupBox2.Controls.Add(this.pictureBox1);
+            this.groupBox2.Location = new System.Drawing.Point(7, 159);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(470, 92);
+            this.groupBox2.TabIndex = 2;
+            this.groupBox2.TabStop = false;
+            this.groupBox2.Text = "Indicadores";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label3.Location = new System.Drawing.Point(355, 42);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 30);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "59";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Britannic Bold", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.Highlight;
+            this.label2.Location = new System.Drawing.Point(172, 43);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(46, 30);
+            this.label2.TabIndex = 3;
+            this.label2.Text = "50";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Maroon;
+            this.label1.Location = new System.Drawing.Point(328, 22);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(98, 18);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Cheques al día";
+            // 
+            // Lb_cartera
+            // 
+            this.Lb_cartera.AutoSize = true;
+            this.Lb_cartera.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_cartera.ForeColor = System.Drawing.Color.Maroon;
+            this.Lb_cartera.Location = new System.Drawing.Point(135, 22);
+            this.Lb_cartera.Name = "Lb_cartera";
+            this.Lb_cartera.Size = new System.Drawing.Size(129, 18);
+            this.Lb_cartera.TabIndex = 1;
+            this.Lb_cartera.Text = "Cheques en Cartera";
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(7, 22);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(61, 64);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Bt_Egreso);
+            this.groupBox1.Controls.Add(this.Bt_Ingreso);
+            this.groupBox1.Location = new System.Drawing.Point(7, 57);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(470, 95);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "Cheques";
+            // 
+            // Bt_Egreso
+            // 
+            this.Bt_Egreso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Bt_Egreso.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Egreso.Image")));
+            this.Bt_Egreso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Bt_Egreso.Location = new System.Drawing.Point(7, 60);
+            this.Bt_Egreso.Name = "Bt_Egreso";
+            this.Bt_Egreso.Size = new System.Drawing.Size(132, 29);
+            this.Bt_Egreso.TabIndex = 1;
+            this.Bt_Egreso.Text = "Egresar Cheque";
+            this.Bt_Egreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Bt_Egreso.UseVisualStyleBackColor = true;
+            // 
+            // Bt_Ingreso
+            // 
+            this.Bt_Ingreso.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Bt_Ingreso.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Ingreso.Image")));
+            this.Bt_Ingreso.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Bt_Ingreso.Location = new System.Drawing.Point(7, 23);
+            this.Bt_Ingreso.Name = "Bt_Ingreso";
+            this.Bt_Ingreso.Size = new System.Drawing.Size(132, 29);
+            this.Bt_Ingreso.TabIndex = 0;
+            this.Bt_Ingreso.Text = "Ingresar Cheque";
+            this.Bt_Ingreso.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Bt_Ingreso.UseVisualStyleBackColor = true;
+            this.Bt_Ingreso.Click += new System.EventHandler(this.Bt_Ingreso_Click);
+            // 
+            // Gr_1
+            // 
+            this.Gr_1.BackColor = System.Drawing.SystemColors.Control;
+            this.Gr_1.Controls.Add(this.Lb_hora);
+            this.Gr_1.Controls.Add(this.Lb_Fecha);
+            this.Gr_1.ForeColor = System.Drawing.Color.Black;
+            this.Gr_1.Location = new System.Drawing.Point(6, 10);
+            this.Gr_1.Name = "Gr_1";
+            this.Gr_1.Size = new System.Drawing.Size(471, 40);
+            this.Gr_1.TabIndex = 0;
+            this.Gr_1.TabStop = false;
+            // 
+            // Lb_hora
+            // 
+            this.Lb_hora.AutoSize = true;
+            this.Lb_hora.Location = new System.Drawing.Point(406, 17);
+            this.Lb_hora.Name = "Lb_hora";
+            this.Lb_hora.Size = new System.Drawing.Size(0, 15);
+            this.Lb_hora.TabIndex = 1;
+            // 
+            // Lb_Fecha
+            // 
+            this.Lb_Fecha.AutoSize = true;
+            this.Lb_Fecha.Location = new System.Drawing.Point(330, 17);
+            this.Lb_Fecha.Name = "Lb_Fecha";
+            this.Lb_Fecha.Size = new System.Drawing.Size(0, 15);
+            this.Lb_Fecha.TabIndex = 0;
+            // 
+            // Lb_Texto
+            // 
+            this.Lb_Texto.BackColor = System.Drawing.Color.DimGray;
+            this.Lb_Texto.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_Texto.ForeColor = System.Drawing.SystemColors.Window;
+            this.Lb_Texto.Location = new System.Drawing.Point(0, -1);
+            this.Lb_Texto.Name = "Lb_Texto";
+            this.Lb_Texto.Size = new System.Drawing.Size(672, 52);
+            this.Lb_Texto.TabIndex = 3;
+            this.Lb_Texto.Text = "Gestión de Cheques";
+            this.Lb_Texto.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Tr_VistaTree
+            // 
+            this.Tr_VistaTree.BackColor = System.Drawing.SystemColors.GrayText;
+            this.Tr_VistaTree.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tr_VistaTree.Location = new System.Drawing.Point(0, 52);
+            this.Tr_VistaTree.Name = "Tr_VistaTree";
+            treeNode1.ForeColor = System.Drawing.Color.White;
+            treeNode1.Name = "Nd_Ingreso";
+            treeNode1.Text = "Ingresar Cheque";
+            treeNode2.ForeColor = System.Drawing.Color.White;
+            treeNode2.Name = "Ng_Egreso";
+            treeNode2.Text = "Egreso de Cheque";
+            treeNode3.ForeColor = System.Drawing.Color.White;
+            treeNode3.Name = "Nd_Cheques";
+            treeNode3.Text = "Cheques";
+            treeNode4.ForeColor = System.Drawing.Color.White;
+            treeNode4.Name = "Nd_CheCartera";
+            treeNode4.Text = "Cheques en Cartera";
+            treeNode5.ForeColor = System.Drawing.Color.White;
+            treeNode5.Name = "Nb_Reportes";
+            treeNode5.Text = "Reportes";
+            treeNode6.ForeColor = System.Drawing.Color.White;
+            treeNode6.Name = "Nd_Clientes";
+            treeNode6.Text = "Clientes";
+            treeNode7.ForeColor = System.Drawing.Color.White;
+            treeNode7.Name = "Nd_Viajantes";
+            treeNode7.Text = "Viajantes";
+            treeNode8.ForeColor = System.Drawing.Color.White;
+            treeNode8.Name = "Nd_Zonas";
+            treeNode8.Text = "Zonas";
+            treeNode9.Checked = true;
+            treeNode9.ForeColor = System.Drawing.Color.White;
+            treeNode9.Name = "Nd_Actualizar";
+            treeNode9.Text = "Actualizar";
+            this.Tr_VistaTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
+            treeNode3,
+            treeNode5,
+            treeNode9});
+            this.Tr_VistaTree.Size = new System.Drawing.Size(183, 429);
+            this.Tr_VistaTree.TabIndex = 4;
+            this.Tr_VistaTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.Abre_Form);
+            // 
+            // Timer
+            // 
+            this.Timer.Enabled = true;
+            this.Timer.Tick += new System.EventHandler(this.Carga_Fecha);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.GrayText;
+            this.label4.Font = new System.Drawing.Font("Calibri", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.White;
+            this.label4.Location = new System.Drawing.Point(21, 462);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(128, 13);
+            this.label4.TabIndex = 5;
+            this.label4.Text = "Release: 1.0 - 15/07/2013";
             // 
             // Menú_Principal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(436, 256);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
-            this.Controls.Add(this.menuStrip1);
-            this.MainMenuStrip = this.menuStrip1;
+            this.ClientSize = new System.Drawing.Size(677, 484);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Tr_VistaTree);
+            this.Controls.Add(this.Lb_Texto);
+            this.Controls.Add(this.Gr_Box);
+            this.ForeColor = System.Drawing.Color.DarkSeaGreen;
             this.Name = "Menú_Principal";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Gestión de Cheques";
-            this.menuStrip1.ResumeLayout(false);
-            this.menuStrip1.PerformLayout();
-            this.groupBox1.ResumeLayout(false);
+            this.Load += new System.EventHandler(this.Menú_Principal_Load);
+            this.Gr_Box.ResumeLayout(false);
+            this.groupBox3.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            this.groupBox1.ResumeLayout(false);
+            this.Gr_1.ResumeLayout(false);
+            this.Gr_1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -168,17 +384,27 @@
 
         #endregion
 
-        private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem menúToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem salirToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem altasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem clientesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem viajantesToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem zonasToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem reportesToolStripMenuItem;
+        private System.Windows.Forms.GroupBox Gr_Box;
+        private System.Windows.Forms.Label Lb_Texto;
+        private System.Windows.Forms.TreeView Tr_VistaTree;
+        private System.Windows.Forms.GroupBox Gr_1;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button BT_Ingreso;
+        private System.Windows.Forms.Button Bt_Ingreso;
+        private System.Windows.Forms.Button Bt_Egreso;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.Label Lb_cartera;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.GroupBox groupBox3;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Bt_Salir;
+        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Label Lb_Fecha;
+        private System.Windows.Forms.Label Lb_hora;
+        private System.Windows.Forms.Timer Timer;
+        private System.Windows.Forms.Label label4;
     }
 }
