@@ -18,7 +18,7 @@ namespace Presentación
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menú_Principal());
+            Application.Run(new Egreso_Cheque());
         }
     }
 }

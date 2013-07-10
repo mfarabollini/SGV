@@ -21,5 +21,11 @@ namespace LogicaDeNegocio
         {
             return ChequesDAL.Existe_Cheque(Cheque);
         }
+
+        // Devolver datos del cheque
+        public static cheques Devolver_Cheque(cheques Cheque)
+        {
+            return ChequesDAL.Devolver_Cheque(Cheque);
+        }
     }
 }
