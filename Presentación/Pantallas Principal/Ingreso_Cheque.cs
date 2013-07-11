@@ -329,7 +329,7 @@ namespace Presentación.Pantallas_Principal
         // Cambia el formato de la fecha
         private void CambiarFormato(object sender, EventArgs e)
         {
-            // Cambia el formato de la fecha y la fecha
+            // Cambia el formato de la fecha
             Tx_FechaVen.Format = DateTimePickerFormat.Short;
             Gr_Cheques.Rows[indice].Cells[8].Value = Tx_FechaVen.Text;
             Gr_Cheques.Refresh();
@@ -768,6 +768,7 @@ namespace Presentación.Pantallas_Principal
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
        }
+
     }
  }
 

@@ -74,6 +74,8 @@
             this.label9 = new System.Windows.Forms.Label();
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.Bt_Aceptar = new System.Windows.Forms.Button();
+            this.Foto1 = new System.Windows.Forms.PictureBox();
+            this.Lb_Título = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Cheques)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -81,13 +83,14 @@
             this.groupBox3.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.Group_Datos.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Foto1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.Bt_Borrar);
             this.groupBox1.Controls.Add(this.Gr_Cheques);
-            this.groupBox1.Location = new System.Drawing.Point(10, 141);
+            this.groupBox1.Location = new System.Drawing.Point(10, 185);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -199,7 +202,7 @@
             this.groupBox2.Controls.Add(this.Bt_Buscar);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.Tx_CodigoClie);
-            this.groupBox2.Location = new System.Drawing.Point(11, 9);
+            this.groupBox2.Location = new System.Drawing.Point(11, 53);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -278,7 +281,7 @@
             // 
             this.groupBox3.Controls.Add(this.Bt_Escaneo);
             this.groupBox3.Controls.Add(this.Lk_IngresoManual);
-            this.groupBox3.Location = new System.Drawing.Point(11, 68);
+            this.groupBox3.Location = new System.Drawing.Point(11, 112);
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.Size = new System.Drawing.Size(648, 70);
             this.groupBox3.TabIndex = 6;
@@ -288,7 +291,7 @@
             // 
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.Tx_Importe);
-            this.groupBox4.Location = new System.Drawing.Point(13, 540);
+            this.groupBox4.Location = new System.Drawing.Point(13, 579);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(653, 56);
             this.groupBox4.TabIndex = 8;
@@ -335,7 +338,7 @@
             this.Group_Datos.Controls.Add(this.Tx_CodBanco);
             this.Group_Datos.Controls.Add(this.label9);
             this.Group_Datos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Group_Datos.Location = new System.Drawing.Point(12, 389);
+            this.Group_Datos.Location = new System.Drawing.Point(12, 427);
             this.Group_Datos.Name = "Group_Datos";
             this.Group_Datos.Size = new System.Drawing.Size(654, 152);
             this.Group_Datos.TabIndex = 7;
@@ -520,7 +523,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(626, 600);
+            this.Bt_Salir.Location = new System.Drawing.Point(626, 642);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 10;
@@ -530,19 +533,41 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 600);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 642);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 9;
             this.Bt_Aceptar.UseVisualStyleBackColor = true;
             this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
+            // Foto1
+            // 
+            this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
+            this.Foto1.Location = new System.Drawing.Point(17, 21);
+            this.Foto1.Name = "Foto1";
+            this.Foto1.Size = new System.Drawing.Size(29, 29);
+            this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Foto1.TabIndex = 13;
+            this.Foto1.TabStop = false;
+            // 
+            // Lb_Título
+            // 
+            this.Lb_Título.AutoSize = true;
+            this.Lb_Título.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_Título.Location = new System.Drawing.Point(52, 21);
+            this.Lb_Título.Name = "Lb_Título";
+            this.Lb_Título.Size = new System.Drawing.Size(303, 29);
+            this.Lb_Título.TabIndex = 12;
+            this.Lb_Título.Text = "Registrar Ingreso de Cheques";
+            // 
             // Ingreso_Cheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(676, 642);
+            this.ClientSize = new System.Drawing.Size(676, 684);
+            this.Controls.Add(this.Foto1);
+            this.Controls.Add(this.Lb_Título);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.groupBox4);
@@ -568,7 +593,9 @@
             this.groupBox4.PerformLayout();
             this.Group_Datos.ResumeLayout(false);
             this.Group_Datos.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Foto1)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -618,5 +645,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn CUIT;
         private System.Windows.Forms.DataGridViewTextBoxColumn Fecha_venc;
         private System.Windows.Forms.Button Bt_Borrar;
+        private System.Windows.Forms.PictureBox Foto1;
+        private System.Windows.Forms.Label Lb_Título;
     }
 }

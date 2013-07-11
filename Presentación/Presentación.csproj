@@ -74,6 +74,12 @@
     <Compile Include="Pantallas Principal\Egreso_Cheque.Designer.cs">
       <DependentUpon>Egreso_Cheque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Principal\Egreso_Manual.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Principal\Egreso_Manual.Designer.cs">
+      <DependentUpon>Egreso_Manual.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas Principal\IngresoManual.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\Egreso_Cheque.resx">
       <DependentUpon>Egreso_Cheque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Principal\Egreso_Manual.resx">
+      <DependentUpon>Egreso_Manual.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\IngresoManual.resx">
       <DependentUpon>IngresoManual.cs</DependentUpon>

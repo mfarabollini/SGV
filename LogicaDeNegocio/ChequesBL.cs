@@ -27,5 +27,12 @@ namespace LogicaDeNegocio
         {
             return ChequesDAL.Devolver_Cheque(Cheque);
         }
+
+        // Grabar la salida del cheque
+        public static bool Salida_Cheque(cheques Cheque)
+        {
+            return ChequesDAL.Salida_Cheque(Cheque);
+            
+        }
     }
 }

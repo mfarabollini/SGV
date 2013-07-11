@@ -16,6 +16,7 @@ namespace Presentación.Pantallas_Principal
     {
         #region Declaraciones Globales
          // Declaración de la tabla
+        int indice;
         DataTable it_cheques = new DataTable();
         DataTable it_error = new DataTable();
         #endregion
@@ -24,6 +25,16 @@ namespace Presentación.Pantallas_Principal
         {
             InitializeComponent();
         }
+
+        // Evento Load del formulario
+        #region Load de Formulario
+        private void Egreso_Cheque_Load(object sender, EventArgs e)
+        {
+            // Le asigna a la grilla la fuente de datos
+            Gr_Cheques.AutoGenerateColumns = false;
+            Gr_Cheques.DataSource = it_cheques;
+        }
+        #endregion
 
         // Escanea los cheques
         #region Botón Escanear
@@ -34,15 +45,11 @@ namespace Presentación.Pantallas_Principal
             {
                 CrearTablaInterna(it_cheques);
 
-                // Le asigna a la grilla la fuente de datos
-                Gr_Cheques.AutoGenerateColumns = false;
-                Gr_Cheques.DataSource = it_cheques;
-
                 /// ********************************************************************
                 /// Adhiere el valor a la tabla interna
-                Adherir_Valor(it_cheques, 1, "005", "138", "5000", "9849938", "73892");
+                Adherir_Valor(it_cheques, 1, "007", "198", "7000", "1234567", "12345678");
                 /// Adhiere el valor a la tabla interna
-                Adherir_Valor(it_cheques, 2, "007", "198", "7000", "1234567", "987654");
+                Adherir_Valor(it_cheques, 2, "007", "138", "2000", "9879888", "772667");
                 /// ********************************************************************          
 
                 /// En caso que no haya ninguna línea 
@@ -76,6 +83,11 @@ namespace Presentación.Pantallas_Principal
                         if (Cheque.Cod_Cheques == 0)
                         {
                             Adherir_Error(row.Cells["Posicion"].Value.ToString(), "El cheque no fue ingresado previamente");
+                        }
+                        // El egreso ya fue registrado.
+                        else if (Cheque.Fecha_Salida != null)
+                        {
+                            Adherir_Error(row.Cells["Posicion"].Value.ToString(), "La Salida del cheque ya fue registrada");
                         }
                         else
                         {
@@ -370,7 +382,7 @@ namespace Presentación.Pantallas_Principal
         private void Carga_Valores(object sender, DataGridViewCellEventArgs e)
         {
             // Variable global del índice
-            int indice = e.RowIndex;
+            indice = e.RowIndex;
             // Si no se selecciona nínguna línea
             if (indice < 0)
             {
@@ -386,13 +398,13 @@ namespace Presentación.Pantallas_Principal
         
         // Limpia los textos del TextBox
         #region Limpiar Textos
+        // Limpia los textos del TextBox
         private void Limpiar_Textos()
         {
-            Tx_Recibido.Text = String.Empty;           
-            Tx_Importe.Text = String.Empty;
-            Tx_Observaciones.Text = String.Empty;
-
-            //Tx_Fecha
+            Tx_Recibido.Clear();
+            Tx_Importe.Clear();
+            Tx_Observaciones.Clear();
+            Tx_Fecha.Clear();
         }
         // Limpiar los textos en caso que no exista más líneas
         private void Limpiar()
@@ -464,18 +476,134 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Lógica Botón Guardar
+        #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
+            // Reinicia los controles de errores
+            ControlError.Clear();
+            Tx_Errores.Visible = false;
+
+            // En caso que no tenga columnas la tabla interna, las agrega. Sino, limpia la tabla
+            if (it_error.Columns.Count == 0)
+            {
+                Crear_Tabla_Error();
+            }
+            else
+            {
+                // Limpiar la tabla
+                it_error.Rows.Clear();
+            }
+            
+            /// Validaciones y Guarda el Registro.
             if (Validaciones_Guardar())
             {
-                
+                // Nueva instancia de Cheque
+                cheques Cheque = new cheques();
+                bool l_result = true;
+
+                // Para cada registro
+                foreach (DataGridViewRow row in Gr_Cheques.Rows)
+                {
+                    /// ---> Verifica que exista el cheque ingresado
+                    Cheque.Cod_Banco = row.Cells["Cod_Banco"].Value.ToString();
+                    Cheque.Cod_Sucursal = row.Cells["Cod_Sucursal"].Value.ToString();
+                    Cheque.Cod_Postal = row.Cells["Cod_Postal"].Value.ToString();
+                    Cheque.Num_Cheque = row.Cells["Num_Cheque"].Value.ToString();
+
+                    // Fecha de Salida
+                    Cheque.Fecha_Salida = DateTime.Today;
+                    // Observaciones
+                    Cheque.Obs_Salida = row.Cells["Obs_Salida"].Value.ToString();
+
+                    /// Registra la salida del Cheque
+                    if (!ChequesBL.Salida_Cheque(Cheque))
+                    {
+                        l_result = false;                  
+                    }
+                }
+
+                // Si el registro fue correcto.
+                if (l_result)
+                {
+                    MessageBox.Show("Egreso registrado correctamente", "Egreso de Cheque",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //Limpiar los TextBox
+                    Limpiar();
+                }
+                else
+                {
+                    MessageBox.Show("Egreso registrado correctamente", "Egreso de Cheque",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
             }
         }
+        #endregion
 
         // Validaciones previo a Guardar los datos.
-        private static bool Validaciones_Guardar()
+        #region Validaciones
+        private bool Validaciones_Guardar()
         {
- 
-        }        
+            // Declaraciones Locales
+            bool Result = true;              // Resultados del control
+            string l_control = String.Empty; // Flag
+            cheques Cheque = new cheques();  // Nueva instancia de Cheque
+    
+            /// Para cada una de las lineas del Grid
+            foreach (DataGridViewRow row in Gr_Cheques.Rows)
+            {
+                // Inicializa la variable l_control
+                l_control = String.Empty;
+
+                /// ---> Verifica que exista el cheque ingresado
+                Cheque.Cod_Banco = row.Cells["Cod_Banco"].Value.ToString();
+                Cheque.Cod_Sucursal = row.Cells["Cod_Sucursal"].Value.ToString();
+                Cheque.Cod_Postal = row.Cells["Cod_Postal"].Value.ToString();
+                Cheque.Num_Cheque = row.Cells["Num_Cheque"].Value.ToString();
+
+                ChequesBL.Devolver_Cheque(Cheque);
+
+                if (Cheque.Cod_Cheques == 0)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "El cheque no fue ingresado previamente");
+                    Result = false;
+                    l_control = "X";
+                }
+                else if (Cheque.Fecha_Salida != null)
+                {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "La Salida del cheque ya fue registrada");
+                    Result = false;
+                    l_control = "X";
+                }
+           
+                /// ---> Controla que haya valorizado la obseración solo en caso que
+                /// exista el cheque en la BD
+                if (l_control == String.Empty)
+                {
+                    if (Tx_Observaciones.Text == String.Empty)
+                    {
+                    Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorice la observación");
+                    Result = false;
+                    }
+                }   
+            }
+
+            // Verifica si hubo errores
+            if (Result == false)
+            {
+                ControlError.SetError(Tx_Errores, "Existen errores. Por favor, verifique");
+            }
+
+            return Result;
+        }
+        #endregion
+
+        // Valoriza en el Grid las observaciones.
+        private void Valoriza_Obs(object sender, KeyEventArgs e)
+        {
+            Gr_Cheques.Rows[indice].Cells[13].Value = Tx_Observaciones.Text;
+            Gr_Cheques.Refresh();
+        }
+                
     }
 }

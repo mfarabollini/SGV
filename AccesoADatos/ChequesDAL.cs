@@ -67,13 +67,19 @@ namespace AccesoADatos
                                        n.Num_Cheque == Cheque.Num_Cheque
                                  select n).Single();
 
-                    Cheque.Cod_Cheques = query.Cod_Cheques;    // Código de Cheque
-                    Cheque.Num_Cuenta = query.Num_Cuenta;     // Número de Cuenta
-                    Cheque.Cod_Cliente = query.Cod_Cliente;    // Código de Cliente
+                    Cheque.Cod_Cheques = query.Cod_Cheques;     // Código de Cheque
+                    Cheque.Cod_Banco = query.Cod_Banco;         // Código de Banco 
+                    Cheque.Cod_Sucursal = query.Cod_Sucursal;   // Sucursal
+                    Cheque.Cod_Postal = query.Cod_Postal;       // Código Postal
+                    Cheque.Num_Cheque = query.Num_Cheque;       // Número de Cheque
+                    Cheque.Num_Cuenta = query.Num_Cuenta;       // Número de Cuenta
+                    Cheque.Cod_Cliente = query.Cod_Cliente;     // Código de Cliente
                     Cheque.Fecha_Entrada = query.Fecha_Entrada; // Fecha de Entrada
-                    Cheque.Importe = query.Importe;        // Importe
-                    Cheque.CUIT_Cheque = query.CUIT_Cheque;    // CUIT
-                    Cheque.Fecha_Vec = query.Fecha_Vec;      // Fecha de Vencimiento
+                    Cheque.Fecha_Salida = query.Fecha_Salida;   // Fecha de Salida
+                    Cheque.Importe = query.Importe;             // Importe
+                    Cheque.CUIT_Cheque = query.CUIT_Cheque;     // CUIT
+                    Cheque.Fecha_Vec = query.Fecha_Vec;         // Fecha de Vencimiento
+                    Cheque.Obs_Salida = query.Obs_Salida;       // Observaciones
                 }
                 catch (Exception)
                 {
@@ -82,5 +88,39 @@ namespace AccesoADatos
             }        
             return Cheque;        
         }
+        
+        // Grabar la salida del cheque
+        public static bool Salida_Cheque(cheques Cheque)
+        {
+            bool Result = true;
+            
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                try
+                {
+                    var query = (from n in bd.cheques
+                                 where n.Cod_Banco == Cheque.Cod_Banco &&
+                                       n.Cod_Sucursal == Cheque.Cod_Sucursal &&
+                                       n.Cod_Postal == Cheque.Cod_Postal &&
+                                       n.Num_Cheque == Cheque.Num_Cheque
+                                 select n).Single();
+
+                    // Valoriza
+                    query.Fecha_Salida  = Cheque.Fecha_Salida;
+                    query.Obs_Salida    = Cheque.Obs_Salida;
+
+                    // Guarda los cambios.
+                    bd.SaveChanges();
+                    Result = true;
+                }
+
+                catch (Exception)
+                {
+                    Result = false;
+                }
+            }
+            
+            return Result;
+        }    
     }
 }
