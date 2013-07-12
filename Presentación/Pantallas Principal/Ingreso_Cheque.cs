@@ -18,6 +18,7 @@ namespace Presentación.Pantallas_Principal
         int indice;
         // Declaración de la tabla
         DataTable it_cheques = new DataTable();
+
         DataTable it_error = new DataTable();
 
         string d_cuit;
@@ -53,11 +54,11 @@ namespace Presentación.Pantallas_Principal
         #endregion
 
         private void Bt_Escaneo_Click(object sender, EventArgs e)
-        {             
+        {
             // Crea una tabla interna para poder guardar los datos leidos por el escaner.
             if (it_cheques.Columns.Count == 0)
             {
-                CrearTablaInterna(it_cheques);    
+                CrearTablaInterna(it_cheques);
             }            
 
             // Le asigna a la grilla la fuente de datos
@@ -768,6 +769,11 @@ namespace Presentación.Pantallas_Principal
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
        }
+
+        private void Bt_Banco_Click(object sender, EventArgs e)
+        {
+
+        }
 
     }
  }

@@ -19,6 +19,9 @@ namespace Presentación.Pantallas_Principal
         int indice;
         DataTable it_cheques = new DataTable();
         DataTable it_error = new DataTable();
+
+        // Abre una instancia del formulario Egreso Manual nula
+        private Egreso_Manual Fr_EgresoM = null;        
         #endregion
 
         public Egreso_Cheque()
@@ -33,6 +36,8 @@ namespace Presentación.Pantallas_Principal
             // Le asigna a la grilla la fuente de datos
             Gr_Cheques.AutoGenerateColumns = false;
             Gr_Cheques.DataSource = it_cheques;
+
+            CrearTablaInterna(it_cheques);
         }
         #endregion
 
@@ -40,10 +45,6 @@ namespace Presentación.Pantallas_Principal
         #region Botón Escanear
         private void Bt_Escaneo_Click(object sender, EventArgs e)
         {
-            // Crea una tabla interna para poder guardar los datos leidos por el escaner.
-            if (it_cheques.Columns.Count == 0)
-            {
-                CrearTablaInterna(it_cheques);
 
                 /// ********************************************************************
                 /// Adhiere el valor a la tabla interna
@@ -112,7 +113,6 @@ namespace Presentación.Pantallas_Principal
                         Cargar_TextBoxs(0);                                   
                     }
                 } 
-            }   
         }
         #endregion
 
@@ -592,18 +592,59 @@ namespace Presentación.Pantallas_Principal
             if (Result == false)
             {
                 ControlError.SetError(Tx_Errores, "Existen errores. Por favor, verifique");
+                Tx_Errores.Visible = true;
             }
 
             return Result;
         }
         #endregion
 
+        #region Lógica Ingreso Manual
         // Valoriza en el Grid las observaciones.
         private void Valoriza_Obs(object sender, KeyEventArgs e)
         {
             Gr_Cheques.Rows[indice].Cells[13].Value = Tx_Observaciones.Text;
             Gr_Cheques.Refresh();
         }
-                
+
+        // Abre una nueva instancia del Form
+        private Egreso_Manual FormInstancia
+        {
+            get
+            {
+                if (Fr_EgresoM == null)
+                {
+                    Fr_EgresoM = new Egreso_Manual();
+
+                    Fr_EgresoM.Disposed += new EventHandler(form_Disposed);
+                    Fr_EgresoM.FormClosed += new FormClosedEventHandler(Fr_Busqueda_FormClosed);
+
+                }
+                return Fr_EgresoM;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_Disposed(object sender, EventArgs e)
+        {
+            Fr_EgresoM = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+           // it_cheques.DataSet = Fr_EgresoM.it_CheqSelec;
+        }
+
+        // Evento Ingreso Manual
+        private void Lk_IngresoManual_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            Egreso_Manual Frm_Egreso = this.FormInstancia;
+            Fr_EgresoM.it_CheqSelec = it_cheques;
+            Frm_Egreso.Show();
+
+            Gr_Cheques.Refresh();
+        }                
+        #endregion
     }
 }

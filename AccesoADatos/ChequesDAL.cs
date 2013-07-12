@@ -122,5 +122,18 @@ namespace AccesoADatos
             
             return Result;
         }    
+   
+        // Cheques en cartera
+        public static List<cheques> Cheques_Cartera()
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {                
+               var query = (from n in bd.cheques
+                           where n.Fecha_Salida == null
+                           select n).ToList();                
+                
+               return query;    
+            }
+        }
     }
 }

@@ -34,5 +34,11 @@ namespace LogicaDeNegocio
             return ChequesDAL.Salida_Cheque(Cheque);
             
         }
+
+        // Recupera los Cheques en Cartera.
+        public static List<cheques> Cheques_Cartera()
+        {
+            return ChequesDAL.Cheques_Cartera();
+        }
     }
 }
