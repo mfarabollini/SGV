@@ -40,5 +40,20 @@ namespace LogicaDeNegocio
         {
             return ChequesDAL.Cheques_Cartera();
         }
+
+        // Indicador Cheque en Cartera
+        public static int Indicador_Cartera()
+        {
+            // Recupera la cantidad Cheques en Cartera
+           return ChequesDAL.Indicador_Cartera();
+
+        }
+
+        // Indicador Cheque en Cartera
+        public static int Indicador_AlDia()
+        {
+            // Recupera la cantidad Cheques en Cartera
+            return ChequesDAL.Indicador_AlDia();            
+        }
     }
 }

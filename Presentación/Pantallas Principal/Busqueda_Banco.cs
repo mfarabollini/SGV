@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// -----> Declaración de Referencias <------ ///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,13 @@ namespace Presentación.Pantallas_Principal
 {
     public partial class Busqueda_Banco : Form
     {
-
+        // Declaraciones Globales
         #region Declaraciones
-        private string _CodBanco;
+
+        private IBindingListView itemsView;
+
+        // Variables que son enviadas al otro Form
+        private string _CodBanco;   
         private string _DescBanco;
 
         // Código de Banco
@@ -32,8 +37,13 @@ namespace Presentación.Pantallas_Principal
             get { return _DescBanco; }
             set { _DescBanco = value; }
         }
+
+        BindingSource Bs = new BindingSource();
         
-        // Gr_GrillaBancos.DataSource = BancosBL.CargarBancos();        
+        
+        
+
+
 
         #endregion
 
@@ -42,19 +52,27 @@ namespace Presentación.Pantallas_Principal
             InitializeComponent();
         }
 
+        // Carga del Formulario
         #region Load Formulario
         private void Busqueda_Banco_Load(object sender, EventArgs e)
         {
-            BindingSource Bs = new BindingSource();                       
-
             // DataSource de la Grilla           
             Bs.DataSource = BancosBL.CargarBancos();
+
             
+
+
+
+
+  
+
             Gr_GrillaBancos.DataSource = Bs;
+
+
         }
         #endregion
         
-        #region Doble Clic
+        #region Doble Clic -->  Selección del Banco
         private void Enviar_Codigo(object sender, DataGridViewCellEventArgs e)
         {
             // Valoriza las variables de salida
@@ -73,9 +91,8 @@ namespace Presentación.Pantallas_Principal
             }
             else
             {
-                // Bs.Filter = string.Format("Desc_Banco LIKE '*{0}*'", Tx_Buscar.Text);
-                // Bs.Filter = String.Format("{0} LIKE '%{1}%'", "Cod_Banco", Tx_Buscar.Text);
-                
+               Bs.Filter = string.Format("Desc_Banco LIKE '*{0}*'", Tx_Buscar.Text);
+               //Bs.Filter = String.Format("{0} LIKE '%{1}%'", "Cod_Banco", Tx_Buscar.Text);                 
                 
             }
         }

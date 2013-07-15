@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// -----> Declaración de Referencias <------ ///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,16 +13,19 @@ using Entidades;
 
 namespace Presentación.Pantallas_Principal
 {
+    /// -----> Lógica Principal <------ ///
     public partial class Ingreso_Cheque : Form
     {
+        // Declaración de Tablas y Variables Locales.
         #region Declaraciones Globales
-        int indice;
+        
+        int indice; // Se utiliza para valorizar la línea del Grid seleccionado
+        
         // Declaración de la tabla
         DataTable it_cheques = new DataTable();
-
         DataTable it_error = new DataTable();
-
-        string d_cuit;
+        
+        string d_cuit; // Número de Cuit de Cliente
         #endregion
 
         public Ingreso_Cheque()
@@ -48,7 +52,7 @@ namespace Presentación.Pantallas_Principal
             IngresoManual Fr_IngManual = new IngresoManual();
             // Valoriza el Cliente para enviarlo al Form manual
             Fr_IngManual.Codigo = Tx_CodigoClie.Text;
-            Fr_IngManual.DescCliente = Tx_DescripcionClie.Text;
+            Fr_IngManual.DescCliente = Lb_Cliente.Text;
             Fr_IngManual.Show();
         }
         #endregion
@@ -463,7 +467,7 @@ namespace Presentación.Pantallas_Principal
                 {
                     // Valoriza en la salida, la Razón Social
                     ControlError.Clear();
-                    Tx_DescripcionClie.Text = Clie.razon_social;
+                    Lb_Cliente.Text = Clie.razon_social;
                     
                     // Valoriza la variable global de CUIT
                     d_cuit = Clie.CUIT.ToString();                
@@ -471,7 +475,7 @@ namespace Presentación.Pantallas_Principal
                 else
                 {
                     // Borra la descripción y setea el error.
-                    Tx_DescripcionClie.Text = "";
+                    Lb_Cliente.Text = "";
                     ControlError.SetError(Tx_CodigoClie, "El Código Ingresado no existe");                    
                 }
             }
@@ -521,7 +525,7 @@ namespace Presentación.Pantallas_Principal
             }
             
             // Validar que esté valorizado el cliente
-            if ((Tx_CodigoClie.Text == "") || ( Tx_DescripcionClie.Text == ""))
+            if ((Tx_CodigoClie.Text == "") || (Lb_Cliente.Text == ""))
             {
                 ControlError.Clear();
                 ControlError.SetError(Tx_CodigoClie, "Campo Obligatorio");
@@ -687,7 +691,7 @@ namespace Presentación.Pantallas_Principal
         {
             // Limpiar los TextBox
             Tx_CodigoClie.Clear();
-            Tx_DescripcionClie.Clear();
+            Lb_Cliente.Text = "";
             Tx_CodBanco.Clear();
             Lb_DescBanco.Text = "";
             Tx_Sucursal.Clear();
@@ -771,6 +775,16 @@ namespace Presentación.Pantallas_Principal
        }
 
         private void Bt_Banco_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Chequear_Cliente(object sender, KeyPressEventArgs e)
+        {
+
+        }
+
+        private void Bt_Buscar_Click(object sender, EventArgs e)
         {
 
         }

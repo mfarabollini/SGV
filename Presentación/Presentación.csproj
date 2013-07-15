@@ -92,6 +92,12 @@
     <Compile Include="Pantallas Principal\Ingreso_Cheque.Designer.cs">
       <DependentUpon>Ingreso_Cheque.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Principal\Loading.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Principal\Loading.Designer.cs">
+      <DependentUpon>Loading.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas Principal\Menú Principal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\Ingreso_Cheque.resx">
       <DependentUpon>Ingreso_Cheque.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Principal\Loading.resx">
+      <DependentUpon>Loading.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\Menú Principal.resx">
       <DependentUpon>Menú Principal.cs</DependentUpon>

@@ -43,7 +43,6 @@
             this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_venc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Tx_DescripcionClie = new System.Windows.Forms.TextBox();
             this.Bt_Buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Tx_CodigoClie = new System.Windows.Forms.TextBox();
@@ -76,6 +75,7 @@
             this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Lb_Título = new System.Windows.Forms.Label();
+            this.Lb_Cliente = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Cheques)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -90,7 +90,7 @@
             // 
             this.groupBox1.Controls.Add(this.Bt_Borrar);
             this.groupBox1.Controls.Add(this.Gr_Cheques);
-            this.groupBox1.Location = new System.Drawing.Point(10, 185);
+            this.groupBox1.Location = new System.Drawing.Point(11, 169);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -198,35 +198,27 @@
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.Tx_DescripcionClie);
+            this.groupBox2.Controls.Add(this.Lb_Cliente);
             this.groupBox2.Controls.Add(this.Bt_Buscar);
             this.groupBox2.Controls.Add(this.label1);
             this.groupBox2.Controls.Add(this.Tx_CodigoClie);
-            this.groupBox2.Location = new System.Drawing.Point(11, 53);
+            this.groupBox2.Location = new System.Drawing.Point(11, 39);
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
-            this.groupBox2.Size = new System.Drawing.Size(648, 59);
+            this.groupBox2.Size = new System.Drawing.Size(653, 59);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
-            // Tx_DescripcionClie
-            // 
-            this.Tx_DescripcionClie.Enabled = false;
-            this.Tx_DescripcionClie.Location = new System.Drawing.Point(147, 20);
-            this.Tx_DescripcionClie.MaxLength = 30;
-            this.Tx_DescripcionClie.Name = "Tx_DescripcionClie";
-            this.Tx_DescripcionClie.Size = new System.Drawing.Size(213, 23);
-            this.Tx_DescripcionClie.TabIndex = 3;
-            // 
             // Bt_Buscar
             // 
-            this.Bt_Buscar.Location = new System.Drawing.Point(367, 19);
+            this.Bt_Buscar.Location = new System.Drawing.Point(144, 20);
             this.Bt_Buscar.Name = "Bt_Buscar";
-            this.Bt_Buscar.Size = new System.Drawing.Size(53, 24);
-            this.Bt_Buscar.TabIndex = 2;
-            this.Bt_Buscar.Text = "Buscar";
+            this.Bt_Buscar.Size = new System.Drawing.Size(23, 23);
+            this.Bt_Buscar.TabIndex = 1;
+            this.Bt_Buscar.Text = "...";
             this.Bt_Buscar.UseVisualStyleBackColor = true;
+            this.Bt_Buscar.Click += new System.EventHandler(this.Bt_Buscar_Click);
             // 
             // label1
             // 
@@ -248,13 +240,12 @@
             this.Tx_CodigoClie.Size = new System.Drawing.Size(72, 23);
             this.Tx_CodigoClie.TabIndex = 0;
             this.Tx_CodigoClie.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            this.Tx_CodigoClie.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Chequear_Cliente);
             this.Tx_CodigoClie.Leave += new System.EventHandler(this.Chequear_Cliente);
             // 
             // Lk_IngresoManual
             // 
             this.Lk_IngresoManual.AutoSize = true;
-            this.Lk_IngresoManual.Location = new System.Drawing.Point(500, 50);
+            this.Lk_IngresoManual.Location = new System.Drawing.Point(434, 24);
             this.Lk_IngresoManual.Name = "Lk_IngresoManual";
             this.Lk_IngresoManual.Size = new System.Drawing.Size(142, 15);
             this.Lk_IngresoManual.TabIndex = 5;
@@ -265,10 +256,12 @@
             // Bt_Escaneo
             // 
             this.Bt_Escaneo.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Bt_Escaneo.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Escaneo.Image")));
+            this.Bt_Escaneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.Bt_Escaneo.Location = new System.Drawing.Point(11, 16);
             this.Bt_Escaneo.Name = "Bt_Escaneo";
-            this.Bt_Escaneo.Size = new System.Drawing.Size(631, 31);
-            this.Bt_Escaneo.TabIndex = 4;
+            this.Bt_Escaneo.Size = new System.Drawing.Size(378, 31);
+            this.Bt_Escaneo.TabIndex = 2;
             this.Bt_Escaneo.Text = "Comenzar Escaneo de Cheques";
             this.Bt_Escaneo.UseVisualStyleBackColor = true;
             this.Bt_Escaneo.Click += new System.EventHandler(this.Bt_Escaneo_Click);
@@ -281,9 +274,9 @@
             // 
             this.groupBox3.Controls.Add(this.Bt_Escaneo);
             this.groupBox3.Controls.Add(this.Lk_IngresoManual);
-            this.groupBox3.Location = new System.Drawing.Point(11, 112);
+            this.groupBox3.Location = new System.Drawing.Point(11, 98);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(648, 70);
+            this.groupBox3.Size = new System.Drawing.Size(655, 56);
             this.groupBox3.TabIndex = 6;
             this.groupBox3.TabStop = false;
             // 
@@ -291,7 +284,7 @@
             // 
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.Tx_Importe);
-            this.groupBox4.Location = new System.Drawing.Point(13, 579);
+            this.groupBox4.Location = new System.Drawing.Point(13, 563);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(653, 56);
             this.groupBox4.TabIndex = 8;
@@ -338,7 +331,7 @@
             this.Group_Datos.Controls.Add(this.Tx_CodBanco);
             this.Group_Datos.Controls.Add(this.label9);
             this.Group_Datos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Group_Datos.Location = new System.Drawing.Point(12, 427);
+            this.Group_Datos.Location = new System.Drawing.Point(12, 410);
             this.Group_Datos.Name = "Group_Datos";
             this.Group_Datos.Size = new System.Drawing.Size(654, 152);
             this.Group_Datos.TabIndex = 7;
@@ -524,7 +517,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(626, 642);
+            this.Bt_Salir.Location = new System.Drawing.Point(626, 624);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 10;
@@ -534,7 +527,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 642);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 624);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 9;
@@ -544,7 +537,7 @@
             // Foto1
             // 
             this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
-            this.Foto1.Location = new System.Drawing.Point(17, 21);
+            this.Foto1.Location = new System.Drawing.Point(17, 11);
             this.Foto1.Name = "Foto1";
             this.Foto1.Size = new System.Drawing.Size(29, 29);
             this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -555,18 +548,26 @@
             // 
             this.Lb_Título.AutoSize = true;
             this.Lb_Título.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_Título.Location = new System.Drawing.Point(52, 21);
+            this.Lb_Título.Location = new System.Drawing.Point(52, 11);
             this.Lb_Título.Name = "Lb_Título";
             this.Lb_Título.Size = new System.Drawing.Size(303, 29);
             this.Lb_Título.TabIndex = 12;
             this.Lb_Título.Text = "Registrar Ingreso de Cheques";
+            // 
+            // Lb_Cliente
+            // 
+            this.Lb_Cliente.AutoSize = true;
+            this.Lb_Cliente.Location = new System.Drawing.Point(173, 24);
+            this.Lb_Cliente.Name = "Lb_Cliente";
+            this.Lb_Cliente.Size = new System.Drawing.Size(0, 15);
+            this.Lb_Cliente.TabIndex = 3;
             // 
             // Ingreso_Cheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(676, 684);
+            this.ClientSize = new System.Drawing.Size(676, 666);
             this.Controls.Add(this.Foto1);
             this.Controls.Add(this.Lb_Título);
             this.Controls.Add(this.Bt_Salir);
@@ -606,7 +607,6 @@
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox Tx_CodigoClie;
-        private System.Windows.Forms.TextBox Tx_DescripcionClie;
         private System.Windows.Forms.Button Bt_Buscar;
         private System.Windows.Forms.Button Bt_Escaneo;
         private System.Windows.Forms.DataGridView Gr_Cheques;
@@ -648,5 +648,6 @@
         private System.Windows.Forms.Button Bt_Borrar;
         private System.Windows.Forms.PictureBox Foto1;
         private System.Windows.Forms.Label Lb_Título;
+        private System.Windows.Forms.Label Lb_Cliente;
     }
 }

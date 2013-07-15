@@ -135,5 +135,56 @@ namespace AccesoADatos
                return query;    
             }
         }
+    
+        // Recupera los indicadores.
+        public static int Indicador_Cartera()
+        {
+            int ChequesCartera = 0;
+            
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                // ----> CHEQUES EN CARTERA <----- //
+                try 
+                {
+                    var query = (from n in bd.cheques
+                                 where n.Fecha_Salida == null
+                                 select n).Count();
+                    
+                    ChequesCartera = query;
+                }
+                catch (Exception)
+                {
+                    // La consulta no arroja resultados.
+                    ChequesCartera = 0;                    
+                }                
+            }
+            return ChequesCartera;
+        }
+
+        // Recupera los indicadores.
+        public static int Indicador_AlDia()
+        {
+            int ChequesAlDia = 0;
+
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                // ----> CHEQUES EN CARTERA <----- //
+                try
+                {
+                    var query = (from n in bd.cheques
+                                 where n.Fecha_Salida == null &&
+                                       n.Fecha_Vec >= DateTime.Now 
+                                 select n).Count();
+
+                    ChequesAlDia = query;
+                }
+                catch (Exception)
+                {
+                    // La consulta no arroja resultados.
+                    ChequesAlDia = 0;
+                }
+            }
+            return ChequesAlDia;
+        }
     }
 }

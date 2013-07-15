@@ -28,15 +28,15 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Lb_Banco = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Gr_GrillaBancos = new System.Windows.Forms.DataGridView();
+            this.label1 = new System.Windows.Forms.Label();
             this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Desc_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_GrillaBancos)).BeginInit();
@@ -63,10 +63,10 @@
             // Lb_Banco
             // 
             this.Lb_Banco.AutoSize = true;
-            this.Lb_Banco.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_Banco.Location = new System.Drawing.Point(6, 19);
+            this.Lb_Banco.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_Banco.Location = new System.Drawing.Point(11, 21);
             this.Lb_Banco.Name = "Lb_Banco";
-            this.Lb_Banco.Size = new System.Drawing.Size(52, 18);
+            this.Lb_Banco.Size = new System.Drawing.Size(48, 15);
             this.Lb_Banco.TabIndex = 0;
             this.Lb_Banco.Text = "Buscar:";
             // 
@@ -85,20 +85,29 @@
             this.Gr_GrillaBancos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cod_Banco,
             this.Desc_Banco});
-            this.Gr_GrillaBancos.Location = new System.Drawing.Point(8, 14);
+            this.Gr_GrillaBancos.Location = new System.Drawing.Point(9, 17);
             this.Gr_GrillaBancos.Name = "Gr_GrillaBancos";
             this.Gr_GrillaBancos.ReadOnly = true;
             this.Gr_GrillaBancos.RowHeadersVisible = false;
-            this.Gr_GrillaBancos.Size = new System.Drawing.Size(464, 256);
+            this.Gr_GrillaBancos.Size = new System.Drawing.Size(464, 249);
             this.Gr_GrillaBancos.TabIndex = 0;
             this.Gr_GrillaBancos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Enviar_Codigo);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 339);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "* Doble Clic para seleccionar el banco";
             // 
             // Cod_Banco
             // 
             this.Cod_Banco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Cod_Banco.DataPropertyName = "Cod_Banco";
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cod_Banco.HeaderText = "Código Banco";
             this.Cod_Banco.Name = "Cod_Banco";
             this.Cod_Banco.ReadOnly = true;
@@ -110,16 +119,9 @@
             this.Desc_Banco.DataPropertyName = "Desc_Banco";
             this.Desc_Banco.HeaderText = "Descripción";
             this.Desc_Banco.Name = "Desc_Banco";
+            this.Desc_Banco.ReadOnly = true;
+            this.Desc_Banco.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Desc_Banco.Width = 98;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 338);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "* Doble Clic para seleccionar el banco";
             // 
             // Busqueda_Banco
             // 
@@ -134,7 +136,7 @@
             this.MaximizeBox = false;
             this.Name = "Busqueda_Banco";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Bancos";
+            this.Text = "Buscar Bancos";
             this.Load += new System.EventHandler(this.Busqueda_Banco_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
