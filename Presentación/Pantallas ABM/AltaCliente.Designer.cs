@@ -33,6 +33,8 @@
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.Grupo2 = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.Tx_CodPostal = new System.Windows.Forms.TextBox();
             this.Lb_Viajante = new System.Windows.Forms.Label();
             this.Bt_BusViaj = new System.Windows.Forms.Button();
             this.Tx_CodViajante = new System.Windows.Forms.TextBox();
@@ -57,8 +59,6 @@
             this.Lb_CodZona = new System.Windows.Forms.Label();
             this.Tx_Codigo = new System.Windows.Forms.TextBox();
             this.ControlError = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Tx_CodPostal = new System.Windows.Forms.TextBox();
-            this.label9 = new System.Windows.Forms.Label();
             this.Grupo2.SuspendLayout();
             this.Grupo1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
@@ -70,7 +70,7 @@
             this.Bt_Salir.Location = new System.Drawing.Point(372, 404);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Salir.TabIndex = 18;
+            this.Bt_Salir.TabIndex = 11;
             this.Bt_Salir.UseVisualStyleBackColor = true;
             // 
             // Bt_Aceptar
@@ -79,7 +79,7 @@
             this.Bt_Aceptar.Location = new System.Drawing.Point(328, 404);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Aceptar.TabIndex = 17;
+            this.Bt_Aceptar.TabIndex = 10;
             this.Bt_Aceptar.UseVisualStyleBackColor = true;
             this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
@@ -115,6 +115,25 @@
             this.Grupo2.TabStop = false;
             this.Grupo2.Text = "Datos del Cliente";
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(13, 147);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(72, 15);
+            this.label9.TabIndex = 24;
+            this.label9.Text = "Cód. Postal:";
+            // 
+            // Tx_CodPostal
+            // 
+            this.Tx_CodPostal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_CodPostal.Location = new System.Drawing.Point(91, 143);
+            this.Tx_CodPostal.MaxLength = 11;
+            this.Tx_CodPostal.Name = "Tx_CodPostal";
+            this.Tx_CodPostal.Size = new System.Drawing.Size(80, 23);
+            this.Tx_CodPostal.TabIndex = 4;
+            // 
             // Lb_Viajante
             // 
             this.Lb_Viajante.AutoSize = true;
@@ -129,7 +148,7 @@
             this.Bt_BusViaj.Location = new System.Drawing.Point(144, 229);
             this.Bt_BusViaj.Name = "Bt_BusViaj";
             this.Bt_BusViaj.Size = new System.Drawing.Size(23, 23);
-            this.Bt_BusViaj.TabIndex = 21;
+            this.Bt_BusViaj.TabIndex = 12;
             this.Bt_BusViaj.Text = "...";
             this.Bt_BusViaj.UseVisualStyleBackColor = true;
             // 
@@ -140,7 +159,7 @@
             this.Tx_CodViajante.MaxLength = 4;
             this.Tx_CodViajante.Name = "Tx_CodViajante";
             this.Tx_CodViajante.Size = new System.Drawing.Size(45, 23);
-            this.Tx_CodViajante.TabIndex = 20;
+            this.Tx_CodViajante.TabIndex = 7;
             this.Tx_CodViajante.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Tx_CodViajante.Leave += new System.EventHandler(this.Valida_Viajante);
             // 
@@ -161,7 +180,7 @@
             this.Tx_Contacto.MaxLength = 20;
             this.Tx_Contacto.Name = "Tx_Contacto";
             this.Tx_Contacto.Size = new System.Drawing.Size(162, 23);
-            this.Tx_Contacto.TabIndex = 18;
+            this.Tx_Contacto.TabIndex = 9;
             // 
             // label7
             // 
@@ -180,7 +199,7 @@
             this.Cb_Zona.Location = new System.Drawing.Point(91, 201);
             this.Cb_Zona.Name = "Cb_Zona";
             this.Cb_Zona.Size = new System.Drawing.Size(162, 23);
-            this.Cb_Zona.TabIndex = 15;
+            this.Cb_Zona.TabIndex = 6;
             // 
             // label8
             // 
@@ -219,7 +238,7 @@
             this.Cb_Localidad.Location = new System.Drawing.Point(91, 114);
             this.Cb_Localidad.Name = "Cb_Localidad";
             this.Cb_Localidad.Size = new System.Drawing.Size(174, 23);
-            this.Cb_Localidad.TabIndex = 10;
+            this.Cb_Localidad.TabIndex = 3;
             // 
             // label4
             // 
@@ -238,7 +257,7 @@
             this.Cb_Provincia.Location = new System.Drawing.Point(91, 84);
             this.Cb_Provincia.Name = "Cb_Provincia";
             this.Cb_Provincia.Size = new System.Drawing.Size(174, 23);
-            this.Cb_Provincia.TabIndex = 8;
+            this.Cb_Provincia.TabIndex = 2;
             this.Cb_Provincia.SelectedIndexChanged += new System.EventHandler(this.Carga_Localidades);
             // 
             // label3
@@ -278,7 +297,7 @@
             this.Tx_Telefono.MaxLength = 20;
             this.Tx_Telefono.Name = "Tx_Telefono";
             this.Tx_Telefono.Size = new System.Drawing.Size(162, 23);
-            this.Tx_Telefono.TabIndex = 4;
+            this.Tx_Telefono.TabIndex = 8;
             // 
             // Tx_CUIT
             // 
@@ -287,7 +306,7 @@
             this.Tx_CUIT.MaxLength = 11;
             this.Tx_CUIT.Name = "Tx_CUIT";
             this.Tx_CUIT.Size = new System.Drawing.Size(115, 23);
-            this.Tx_CUIT.TabIndex = 3;
+            this.Tx_CUIT.TabIndex = 5;
             this.Tx_CUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Validacion_Numerica);
             // 
             // Tx_Direccion
@@ -344,25 +363,6 @@
             // ControlError
             // 
             this.ControlError.ContainerControl = this;
-            // 
-            // Tx_CodPostal
-            // 
-            this.Tx_CodPostal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tx_CodPostal.Location = new System.Drawing.Point(91, 143);
-            this.Tx_CodPostal.MaxLength = 11;
-            this.Tx_CodPostal.Name = "Tx_CodPostal";
-            this.Tx_CodPostal.Size = new System.Drawing.Size(80, 23);
-            this.Tx_CodPostal.TabIndex = 23;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(13, 147);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(72, 15);
-            this.label9.TabIndex = 24;
-            this.label9.Text = "Cód. Postal:";
             // 
             // AltaCliente
             // 

@@ -28,15 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Lb_Banco = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Gr_GrillaBancos = new System.Windows.Forms.DataGridView();
-            this.label1 = new System.Windows.Forms.Label();
             this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Desc_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Lb_Viajante = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_GrillaBancos)).BeginInit();
@@ -46,7 +47,7 @@
             // 
             this.groupBox1.Controls.Add(this.Tx_Buscar);
             this.groupBox1.Controls.Add(this.Lb_Banco);
-            this.groupBox1.Location = new System.Drawing.Point(9, 3);
+            this.groupBox1.Location = new System.Drawing.Point(9, 34);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(482, 51);
             this.groupBox1.TabIndex = 0;
@@ -73,9 +74,9 @@
             // groupBox2
             // 
             this.groupBox2.Controls.Add(this.Gr_GrillaBancos);
-            this.groupBox2.Location = new System.Drawing.Point(9, 54);
+            this.groupBox2.Location = new System.Drawing.Point(9, 89);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(482, 277);
+            this.groupBox2.Size = new System.Drawing.Size(482, 249);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -89,25 +90,16 @@
             this.Gr_GrillaBancos.Name = "Gr_GrillaBancos";
             this.Gr_GrillaBancos.ReadOnly = true;
             this.Gr_GrillaBancos.RowHeadersVisible = false;
-            this.Gr_GrillaBancos.Size = new System.Drawing.Size(464, 249);
+            this.Gr_GrillaBancos.Size = new System.Drawing.Size(464, 223);
             this.Gr_GrillaBancos.TabIndex = 0;
             this.Gr_GrillaBancos.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Enviar_Codigo);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(20, 339);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 15);
-            this.label1.TabIndex = 2;
-            this.label1.Text = "* Doble Clic para seleccionar el banco";
             // 
             // Cod_Banco
             // 
             this.Cod_Banco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Cod_Banco.DataPropertyName = "Cod_Banco";
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle2;
             this.Cod_Banco.HeaderText = "Código Banco";
             this.Cod_Banco.Name = "Cod_Banco";
             this.Cod_Banco.ReadOnly = true;
@@ -123,12 +115,32 @@
             this.Desc_Banco.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.Desc_Banco.Width = 98;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(20, 339);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(218, 15);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "* Doble Clic para seleccionar el banco";
+            // 
+            // Lb_Viajante
+            // 
+            this.Lb_Viajante.AutoSize = true;
+            this.Lb_Viajante.Font = new System.Drawing.Font("Calibri", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_Viajante.Location = new System.Drawing.Point(10, 9);
+            this.Lb_Viajante.Name = "Lb_Viajante";
+            this.Lb_Viajante.Size = new System.Drawing.Size(66, 23);
+            this.Lb_Viajante.TabIndex = 7;
+            this.Lb_Viajante.Text = "Bancos";
+            // 
             // Busqueda_Banco
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.ClientSize = new System.Drawing.Size(500, 363);
+            this.Controls.Add(this.Lb_Viajante);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
@@ -157,5 +169,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Banco;
         private System.Windows.Forms.DataGridViewTextBoxColumn Desc_Banco;
+        private System.Windows.Forms.Label Lb_Viajante;
     }
 }

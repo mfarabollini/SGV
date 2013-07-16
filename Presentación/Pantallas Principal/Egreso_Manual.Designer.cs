@@ -29,7 +29,6 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Egreso_Manual));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -37,16 +36,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Egreso_Manual));
             this.Gr_Grupo1 = new System.Windows.Forms.GroupBox();
             this.Gr_Cheques = new System.Windows.Forms.DataGridView();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.Foto1 = new System.Windows.Forms.PictureBox();
-            this.Lb_Título = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.Lb_1 = new System.Windows.Forms.Label();
-            this.Bt_Salir = new System.Windows.Forms.Button();
-            this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.Cb_Check = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Cod_Cheque = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -60,6 +52,14 @@
             this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_venc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Obs_Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Lb_1 = new System.Windows.Forms.Label();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Foto1 = new System.Windows.Forms.PictureBox();
+            this.Lb_Título = new System.Windows.Forms.Label();
+            this.Bt_Salir = new System.Windows.Forms.Button();
+            this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.Gr_Grupo1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Cheques)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -111,80 +111,6 @@
             this.Gr_Cheques.Size = new System.Drawing.Size(784, 293);
             this.Gr_Cheques.TabIndex = 1;
             this.Gr_Cheques.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Checked);
-            // 
-            // groupBox1
-            // 
-            this.groupBox1.Controls.Add(this.Lb_1);
-            this.groupBox1.Controls.Add(this.comboBox1);
-            this.groupBox1.Controls.Add(this.textBox1);
-            this.groupBox1.Location = new System.Drawing.Point(9, 51);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(804, 58);
-            this.groupBox1.TabIndex = 1;
-            this.groupBox1.TabStop = false;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(230, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(324, 23);
-            this.textBox1.TabIndex = 0;
-            // 
-            // Foto1
-            // 
-            this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
-            this.Foto1.Location = new System.Drawing.Point(11, 17);
-            this.Foto1.Name = "Foto1";
-            this.Foto1.Size = new System.Drawing.Size(29, 29);
-            this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Foto1.TabIndex = 15;
-            this.Foto1.TabStop = false;
-            // 
-            // Lb_Título
-            // 
-            this.Lb_Título.AutoSize = true;
-            this.Lb_Título.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_Título.Location = new System.Drawing.Point(46, 17);
-            this.Lb_Título.Name = "Lb_Título";
-            this.Lb_Título.Size = new System.Drawing.Size(208, 29);
-            this.Lb_Título.TabIndex = 14;
-            this.Lb_Título.Text = "Cheques en Cartera";
-            // 
-            // comboBox1
-            // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 23);
-            this.comboBox1.TabIndex = 1;
-            // 
-            // Lb_1
-            // 
-            this.Lb_1.AutoSize = true;
-            this.Lb_1.Location = new System.Drawing.Point(16, 27);
-            this.Lb_1.Name = "Lb_1";
-            this.Lb_1.Size = new System.Drawing.Size(64, 15);
-            this.Lb_1.TabIndex = 2;
-            this.Lb_1.Text = "Busqueda:";
-            // 
-            // Bt_Salir
-            // 
-            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(773, 436);
-            this.Bt_Salir.Name = "Bt_Salir";
-            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Salir.TabIndex = 17;
-            this.Bt_Salir.UseVisualStyleBackColor = true;
-            // 
-            // Bt_Aceptar
-            // 
-            this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(729, 436);
-            this.Bt_Aceptar.Name = "Bt_Aceptar";
-            this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Aceptar.TabIndex = 16;
-            this.Bt_Aceptar.UseVisualStyleBackColor = true;
-            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
             // Cb_Check
             // 
@@ -301,6 +227,80 @@
             this.Obs_Salida.Name = "Obs_Salida";
             this.Obs_Salida.ReadOnly = true;
             this.Obs_Salida.Visible = false;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Controls.Add(this.Lb_1);
+            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Location = new System.Drawing.Point(9, 51);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(804, 58);
+            this.groupBox1.TabIndex = 1;
+            this.groupBox1.TabStop = false;
+            // 
+            // Lb_1
+            // 
+            this.Lb_1.AutoSize = true;
+            this.Lb_1.Location = new System.Drawing.Point(16, 27);
+            this.Lb_1.Name = "Lb_1";
+            this.Lb_1.Size = new System.Drawing.Size(64, 15);
+            this.Lb_1.TabIndex = 2;
+            this.Lb_1.Text = "Busqueda:";
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(86, 22);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(138, 23);
+            this.comboBox1.TabIndex = 1;
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(230, 22);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(324, 23);
+            this.textBox1.TabIndex = 0;
+            // 
+            // Foto1
+            // 
+            this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
+            this.Foto1.Location = new System.Drawing.Point(11, 11);
+            this.Foto1.Name = "Foto1";
+            this.Foto1.Size = new System.Drawing.Size(37, 39);
+            this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Foto1.TabIndex = 15;
+            this.Foto1.TabStop = false;
+            // 
+            // Lb_Título
+            // 
+            this.Lb_Título.AutoSize = true;
+            this.Lb_Título.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_Título.Location = new System.Drawing.Point(54, 15);
+            this.Lb_Título.Name = "Lb_Título";
+            this.Lb_Título.Size = new System.Drawing.Size(208, 29);
+            this.Lb_Título.TabIndex = 14;
+            this.Lb_Título.Text = "Cheques en Cartera";
+            // 
+            // Bt_Salir
+            // 
+            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
+            this.Bt_Salir.Location = new System.Drawing.Point(773, 436);
+            this.Bt_Salir.Name = "Bt_Salir";
+            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Salir.TabIndex = 17;
+            this.Bt_Salir.UseVisualStyleBackColor = true;
+            // 
+            // Bt_Aceptar
+            // 
+            this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
+            this.Bt_Aceptar.Location = new System.Drawing.Point(729, 436);
+            this.Bt_Aceptar.Name = "Bt_Aceptar";
+            this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Aceptar.TabIndex = 16;
+            this.Bt_Aceptar.UseVisualStyleBackColor = true;
+            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
             // Egreso_Manual
             // 
