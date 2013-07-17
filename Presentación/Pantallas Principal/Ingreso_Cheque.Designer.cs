@@ -43,6 +43,7 @@
             this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Fecha_venc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.Lb_Cliente = new System.Windows.Forms.Label();
             this.Bt_Buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Tx_CodigoClie = new System.Windows.Forms.TextBox();
@@ -75,7 +76,6 @@
             this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Lb_Título = new System.Windows.Forms.Label();
-            this.Lb_Cliente = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Cheques)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -90,7 +90,7 @@
             // 
             this.groupBox1.Controls.Add(this.Bt_Borrar);
             this.groupBox1.Controls.Add(this.Gr_Cheques);
-            this.groupBox1.Location = new System.Drawing.Point(11, 169);
+            this.groupBox1.Location = new System.Drawing.Point(11, 159);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -210,9 +210,17 @@
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
+            // Lb_Cliente
+            // 
+            this.Lb_Cliente.AutoSize = true;
+            this.Lb_Cliente.Location = new System.Drawing.Point(173, 24);
+            this.Lb_Cliente.Name = "Lb_Cliente";
+            this.Lb_Cliente.Size = new System.Drawing.Size(0, 15);
+            this.Lb_Cliente.TabIndex = 3;
+            // 
             // Bt_Buscar
             // 
-            this.Bt_Buscar.Location = new System.Drawing.Point(144, 20);
+            this.Bt_Buscar.Location = new System.Drawing.Point(144, 19);
             this.Bt_Buscar.Name = "Bt_Buscar";
             this.Bt_Buscar.Size = new System.Drawing.Size(23, 23);
             this.Bt_Buscar.TabIndex = 1;
@@ -245,7 +253,7 @@
             // Lk_IngresoManual
             // 
             this.Lk_IngresoManual.AutoSize = true;
-            this.Lk_IngresoManual.Location = new System.Drawing.Point(434, 24);
+            this.Lk_IngresoManual.Location = new System.Drawing.Point(461, 24);
             this.Lk_IngresoManual.Name = "Lk_IngresoManual";
             this.Lk_IngresoManual.Size = new System.Drawing.Size(142, 15);
             this.Lk_IngresoManual.TabIndex = 5;
@@ -284,7 +292,7 @@
             // 
             this.groupBox4.Controls.Add(this.label8);
             this.groupBox4.Controls.Add(this.Tx_Importe);
-            this.groupBox4.Location = new System.Drawing.Point(13, 563);
+            this.groupBox4.Location = new System.Drawing.Point(13, 550);
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.Size = new System.Drawing.Size(653, 56);
             this.groupBox4.TabIndex = 8;
@@ -331,9 +339,9 @@
             this.Group_Datos.Controls.Add(this.Tx_CodBanco);
             this.Group_Datos.Controls.Add(this.label9);
             this.Group_Datos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Group_Datos.Location = new System.Drawing.Point(12, 410);
+            this.Group_Datos.Location = new System.Drawing.Point(12, 402);
             this.Group_Datos.Name = "Group_Datos";
-            this.Group_Datos.Size = new System.Drawing.Size(654, 152);
+            this.Group_Datos.Size = new System.Drawing.Size(654, 148);
             this.Group_Datos.TabIndex = 7;
             this.Group_Datos.TabStop = false;
             // 
@@ -489,7 +497,6 @@
             this.Bt_Banco.TabIndex = 14;
             this.Bt_Banco.Text = "...";
             this.Bt_Banco.UseVisualStyleBackColor = true;
-            this.Bt_Banco.Click += new System.EventHandler(this.Bt_Banco_Click);
             // 
             // Tx_CodBanco
             // 
@@ -517,7 +524,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(626, 624);
+            this.Bt_Salir.Location = new System.Drawing.Point(626, 611);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 10;
@@ -527,7 +534,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 624);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(582, 611);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 9;
@@ -554,20 +561,12 @@
             this.Lb_Título.TabIndex = 12;
             this.Lb_Título.Text = "Registrar Ingreso de Cheques";
             // 
-            // Lb_Cliente
-            // 
-            this.Lb_Cliente.AutoSize = true;
-            this.Lb_Cliente.Location = new System.Drawing.Point(173, 24);
-            this.Lb_Cliente.Name = "Lb_Cliente";
-            this.Lb_Cliente.Size = new System.Drawing.Size(0, 15);
-            this.Lb_Cliente.TabIndex = 3;
-            // 
             // Ingreso_Cheque
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(676, 666);
+            this.ClientSize = new System.Drawing.Size(676, 652);
             this.Controls.Add(this.Foto1);
             this.Controls.Add(this.Lb_Título);
             this.Controls.Add(this.Bt_Salir);

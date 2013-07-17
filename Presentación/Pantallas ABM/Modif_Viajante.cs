@@ -14,7 +14,7 @@ namespace Presentación
 {
     public partial class Modif_Viajante : Form
     {
-
+        // Definiciones Globales
         #region Definiciones
         // Constantes para recuperar los datos envíados desde el formulario
         // Viajantes.
@@ -74,6 +74,7 @@ namespace Presentación
             InitializeComponent();
         }
 
+        // Load del Formulario
         #region Load Formulario
         private void Modif_Viajante_Load(object sender, EventArgs e)
         {
@@ -103,6 +104,7 @@ namespace Presentación
         }
         #endregion
 
+        // Carga las localidades en el ComboBox
         #region Carga_Localidades
         // Recupera las localidades de acuerdo a la provincia
         private void Carga_Localidades(object sender, EventArgs e)
@@ -123,6 +125,7 @@ namespace Presentación
         }
         #endregion
 
+        // Lógica Botón Aceptar
         #region Botón Aceptar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
@@ -150,12 +153,14 @@ namespace Presentación
             // Mensaje
             MessageBox.Show("Viajante actualizado correctamente", "Modifiación Viajante",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             // Cierra la ventana
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
         #endregion
 
+        // Lógica Botón Salir
         #region Botón Salir
         private void Bt_Salir_Click(object sender, EventArgs e)
         {

@@ -10,11 +10,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
 using Entidades;
+using Presentación.Pantallas_Búsqueda;
 
 namespace Presentación.Pantallas_ABM
 {
     public partial class AltaCliente : Form
     {
+        #region Declaraciones
+        // Abre una instancia del formulario de búsqueda nula
+        private Busqueda_Viajante Fr_Busqueda = null;
+        #endregion
+
         public AltaCliente()
         {
             InitializeComponent();
@@ -115,6 +121,47 @@ namespace Presentación.Pantallas_ABM
                 }
             }
         }
+        #endregion
+        
+        // Lógica Búsqueda Viajantes
+        #region Busqueda Viajante
+        // Abre una nueva instancia del Form
+        private Busqueda_Viajante FormInstancia
+        {
+            get
+            {
+                if (Fr_Busqueda == null)
+                {
+                    Fr_Busqueda = new Busqueda_Viajante();
+
+                    Fr_Busqueda.Disposed += new EventHandler(form_Disposed);
+                    Fr_Busqueda.FormClosed += new FormClosedEventHandler(Fr_Busqueda_FormClosed);
+
+                }
+                return Fr_Busqueda;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_Disposed(object sender, EventArgs e)
+        {
+            Fr_Busqueda = null;
+        }
+                
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodViajante.Text = Fr_Busqueda.CodViajante;
+            Lb_Viajante.Text = Fr_Busqueda.Nombre;
+        }
+
+        // Clic en la búsqueda de banco
+        private void Bt_BusViaj_Click(object sender, EventArgs e)
+        {
+            Busqueda_Viajante Frm_Busq = this.FormInstancia;
+            Frm_Busq.Show();
+        }        
         #endregion
 
         // Validaciones
@@ -219,8 +266,7 @@ namespace Presentación.Pantallas_ABM
                 // En caso que no este valorizado la desc, quiere decir que no fue correcta
                 // la selección
                 if (Viajante.Nombre != null)
-                {
-                    ControlError.Clear();
+                {               
                     // Descripción del banco
                     Lb_Viajante.Text = Viajante.Nombre;
                 }
@@ -249,5 +295,19 @@ namespace Presentación.Pantallas_ABM
             Cb_Localidad.SelectedIndex = -1;
             Cb_Zona.SelectedIndex = -1;
         }
+
+        // Lógica Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
+                             "Salir", MessageBoxButtons.YesNo,
+                              MessageBoxIcon.Warning,
+                              MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }            
+        }
+
     }
 }

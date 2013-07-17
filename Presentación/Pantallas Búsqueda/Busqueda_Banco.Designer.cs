@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Lb_Banco = new System.Windows.Forms.Label();
@@ -82,6 +82,8 @@
             // 
             // Gr_GrillaBancos
             // 
+            this.Gr_GrillaBancos.AllowUserToAddRows = false;
+            this.Gr_GrillaBancos.AllowUserToDeleteRows = false;
             this.Gr_GrillaBancos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.Gr_GrillaBancos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.Cod_Banco,
@@ -98,8 +100,8 @@
             // 
             this.Cod_Banco.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
             this.Cod_Banco.DataPropertyName = "Cod_Banco";
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cod_Banco.HeaderText = "Código Banco";
             this.Cod_Banco.Name = "Cod_Banco";
             this.Cod_Banco.ReadOnly = true;

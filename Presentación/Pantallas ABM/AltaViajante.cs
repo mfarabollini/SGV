@@ -19,6 +19,7 @@ namespace Presentación.Pantallas_ABM
             InitializeComponent();
         }
 
+        // Load del Formulario
         #region Cargar_Formulario
         // Carga del formulario
         private void AltaViajante_Load(object sender, EventArgs e)
@@ -41,6 +42,7 @@ namespace Presentación.Pantallas_ABM
         
         #endregion
 
+        // Carga Localidades en el ListBox
         #region Carga_Localidades
         // Recupera las localidades de acuerdo a la provincia
         private void Carga_Localidades(object sender, EventArgs e)
@@ -57,6 +59,7 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica Botón Guardar
         #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
@@ -91,6 +94,7 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica Botón Salir
         #region Botón Salir
         private void Bt_Salir_Click(object sender, EventArgs e)
         {
@@ -117,6 +121,7 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
         
+        // Validaciones 
         #region Validaciones
         private bool Validaciones()
         {
@@ -169,6 +174,7 @@ namespace Presentación.Pantallas_ABM
 
         #endregion
 
+        // Limpiar Variables
         #region Limpiar_Variables
         public void Limpiar_Variables()
         {

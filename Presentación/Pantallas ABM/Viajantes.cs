@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// -----> Declaración de Referencias <------ ///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -13,11 +14,19 @@ namespace Presentación.Pantallas_ABM
 {
     public partial class Viajantes : Form
     {
+        #region Definiciones Globales
+        // Binding Source para poder realizar la busque en DataGrid
+        BindingSource Bs = new BindingSource();
+        // Tabla interna
+        DataTable it_Clientes = new DataTable();
+        #endregion
+        
         public Viajantes()
         {
             InitializeComponent();
         }
 
+        // Load del Form
         #region Carga del Form
         private void Viajantes_Load(object sender, EventArgs e)
         {
@@ -34,16 +43,12 @@ namespace Presentación.Pantallas_ABM
 
             // Muestra los datos de la zona
             Grid_Viajantes.AutoGenerateColumns = false;
-            Grid_Viajantes.DataSource = ViajanteBL.Cargar_Viajantes();
-
-
-            #region Atributos Columnas
-            Grid_Viajantes.Columns["Cod_Viajante"].DefaultCellStyle.Alignment = DataGridViewContentAlignment.BottomRight;
-            
-            #endregion
+            // Carga de Grid
+            Recarga_grid();
         }
         #endregion
 
+        // Lógica Botón Agregar
         #region Botón Agregar
         private void Bt_Agregar_Click(object sender, EventArgs e)
         {
@@ -57,6 +62,7 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica Botón editar
         #region Botón Salir
         private void Bt_Salir_Click(object sender, EventArgs e)
         {
@@ -65,6 +71,7 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica Botón editar
         #region Botón Editar
         private void Bt_Editar_Click(object sender, EventArgs e)
         {
@@ -75,7 +82,7 @@ namespace Presentación.Pantallas_ABM
             if (filas == 0)
             {
                 MessageBox.Show("Seleccione un registro para modificar",
-                "Atención", MessageBoxButtons.OK);
+                "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -83,13 +90,12 @@ namespace Presentación.Pantallas_ABM
             if (filas > 1)
             {
                 MessageBox.Show("Solo es posible editar un registro a la vez",
-                                "Atención", MessageBoxButtons.OK);
+                                "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
 
             else
             {
                 // Creo una instancia de Viajante para guardar los datos seleccionados
-
                 Entidades.viajantes Viaj = new Entidades.viajantes();
                 
                 int indice         = Grid_Viajantes.SelectedRows[0].Index;
@@ -143,16 +149,16 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica del botón borrar
         #region Botón Borrar
         private void Bt_delete_Click(object sender, EventArgs e)
         {
-
             /// Control que seleccione al menos una columna
             Int32 select = Grid_Viajantes.Rows.GetRowCount(DataGridViewElementStates.Selected);
             if (select == 0)
             {
                 MessageBox.Show("Seleccione un registro para Elminar",
-                                "Atención", MessageBoxButtons.OK);
+                                "Atención", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -176,28 +182,105 @@ namespace Presentación.Pantallas_ABM
 
                     ViajanteBL.Borrar_Viajante(Viaj);
                 }
-                // Recarga el data Grid
-                Grid_Viajantes.DataSource = ViajanteBL.Cargar_Viajantes();
-                Grid_Viajantes.Refresh();
+                // Recargar la grilla
+                Recarga_grid();
             }
         }
         #endregion
 
+        // Métodos Cerrado de los Forms y recarga de grilla
         #region Metodos
         /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
         private void Fr_AltaViajante_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Grid_Viajantes.DataSource = ViajanteBL.Cargar_Viajantes();
-            Grid_Viajantes.Refresh();
+            // Recargar la grilla
+            Recarga_grid();
         }
 
         /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
         private void Fr_ViajModif_FormClosed(object sender, FormClosedEventArgs e)
         {
-            Grid_Viajantes.DataSource = ViajanteBL.Cargar_Viajantes();
+            // Recargar la grilla
+            Recarga_grid();
+        }
+
+        // Recargar la Grilla
+        private void Recarga_grid()
+        {
+            var l_lista = ViajanteBL.Cargar_Viajantes();
+            // Guarga en la tabla interna los datos de lista
+            it_Clientes = ListToDataTable(l_lista);
+            // guarda en el BildingSource la tabla
+            Bs.DataSource = it_Clientes;
+            // Asigna el Bs al DataGrid
+            Grid_Viajantes.DataSource = Bs;
+            // Refrescar Grilla
             Grid_Viajantes.Refresh();
+            // Borra el filtro.
+            Tx_Buscar.Clear();
         }
         #endregion
-     
+
+        // Transforma la Lista en tabla interna
+        #region Crear la Tabla
+        public static DataTable ListToDataTable<T>(IList<T> data)
+        {
+            DataTable table = new DataTable();
+
+            //special handling for value types and string
+            if (typeof(T).IsValueType || typeof(T).Equals(typeof(string)))
+            {
+
+                DataColumn dc = new DataColumn("Value");
+                table.Columns.Add(dc);
+                foreach (T item in data)
+                {
+                    DataRow dr = table.NewRow();
+                    dr[0] = item;
+                    table.Rows.Add(dr);
+                }
+            }
+            else
+            {
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+                }
+                foreach (T item in data)
+                {
+                    DataRow row = table.NewRow();
+                    foreach (PropertyDescriptor prop in properties)
+                    {
+                        try
+                        {
+                            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                        }
+                        catch (Exception)
+                        {
+                            row[prop.Name] = DBNull.Value;
+                        }
+                    }
+                    table.Rows.Add(row);
+                }
+            }
+            return table;
+        }
+        #endregion
+
+        // Buscar Viajante
+        #region BuscarViajante
+        private void Buscar_Viajante(object sender, EventArgs e)
+        {
+            if (Tx_Buscar.Text == string.Empty)
+            {
+                Bs.RemoveFilter();
+            }
+            else
+            {
+                Bs.Filter = "Nombre LIKE '%" + Tx_Buscar.Text + "%'";
+            }
+        }
+        #endregion
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
 using Entidades;
+using Presentación.Pantallas_Búsqueda;
 
 namespace Presentación.Pantallas_Principal
 {
@@ -17,8 +18,10 @@ namespace Presentación.Pantallas_Principal
     public partial class Ingreso_Cheque : Form
     {
         // Declaración de Tablas y Variables Locales.
-        #region Declaraciones Globales
-        
+        #region Declaraciones Globales        
+        // Abre una instancia del formulario de búsqueda nula
+        private Busqueda_Clientes Fr_Busqueda = null;
+
         int indice; // Se utiliza para valorizar la línea del Grid seleccionado
         
         // Declaración de la tabla
@@ -774,21 +777,44 @@ namespace Presentación.Pantallas_Principal
             }
        }
 
-        private void Bt_Banco_Click(object sender, EventArgs e)
+        // Búsqueda de Cliente
+        #region Buscar Cliente
+        // Abre una nueva instancia del Form
+        private Busqueda_Clientes FormInstancia
         {
+            get
+            {
+                if (Fr_Busqueda == null)
+                {
+                    Fr_Busqueda = new Busqueda_Clientes();
 
+                    Fr_Busqueda.Disposed += new EventHandler(form_Disposed);
+                    Fr_Busqueda.FormClosed += new FormClosedEventHandler(Fr_Busqueda_FormClosed);
+
+                }
+                return Fr_Busqueda;
+            }
         }
 
-        private void Chequear_Cliente(object sender, KeyPressEventArgs e)
+        // Disposed del formulario.
+        void form_Disposed(object sender, EventArgs e)
         {
-
+            Fr_Busqueda = null;
         }
 
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodigoClie.Text = Fr_Busqueda.CodCliente;
+            Lb_Cliente.Text = Fr_Busqueda.Nombre;
+        }
+        // Buscar Clientes 
         private void Bt_Buscar_Click(object sender, EventArgs e)
         {
-
+            Busqueda_Clientes Frm_Busq = this.FormInstancia;
+            Frm_Busq.Show();
         }
-
+        #endregion
     }
  }
 

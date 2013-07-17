@@ -20,6 +20,7 @@ namespace Presentación.Pantallas_ABM
     {
         // Constantes para recuperar los datos envíados desde el formulario
         // Zonas.
+        #region Declaraciones Globales
         private String _codigo;
         private String _descripcion;
 
@@ -34,6 +35,7 @@ namespace Presentación.Pantallas_ABM
           get { return _descripcion; }
           set { _descripcion = value; }  
         }
+        #endregion
 
         // Inicialización
         public Fr_Modif_Zona(zonas p_zon)
@@ -41,33 +43,40 @@ namespace Presentación.Pantallas_ABM
             InitializeComponent();
         }
 
-        #region Lógica Botones
+        // Carga del Formulario
+        #region Load Form
         private void Fr_Modif_Zona_Load(object sender, EventArgs e)
         {
             // Cargar los datos enviados desde Zonas
             this.Tx_CodZona.Text  = this.Codigo;
             this.Tx_DescZona.Text = this.Descripcion;
         }
+        #endregion
 
-        // Botón Guardar
+        // Lógica Botón Guardar
+        #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
+            // Nueva Instancia de Zona
             zonas zona = new zonas();
             
             zona.Cod_Zona = Tx_CodZona.Text;   // Código de Zona
             zona.Desc_Zona = Tx_DescZona.Text; // Descripción de Zona
-
+            // Actualiza la zona
             ZonaBL.ActualizarZona(zona);
             
             // Mensaje
             MessageBox.Show("Zona actualizada correctamente", "Modifiación Zona",
                 MessageBoxButtons.OK, MessageBoxIcon.Information);
+            
             // Cierra la ventana
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-        
-        // Botón Salir
+        #endregion
+
+        // Lógica Botón Salir
+        #region Botón Salir
         private void Bt_Salir_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",

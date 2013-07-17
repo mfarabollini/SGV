@@ -62,7 +62,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(12, 12);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(413, 54);
+            this.groupBox1.Size = new System.Drawing.Size(384, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Viajante";
@@ -105,7 +105,7 @@
             this.groupBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox2.Location = new System.Drawing.Point(13, 73);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(412, 211);
+            this.groupBox2.Size = new System.Drawing.Size(383, 211);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Datos del Viajante";
@@ -132,12 +132,13 @@
             // 
             // Cb_Localidad
             // 
+            this.Cb_Localidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cb_Localidad.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cb_Localidad.FormattingEnabled = true;
             this.Cb_Localidad.Location = new System.Drawing.Point(80, 114);
             this.Cb_Localidad.Name = "Cb_Localidad";
             this.Cb_Localidad.Size = new System.Drawing.Size(174, 23);
-            this.Cb_Localidad.TabIndex = 10;
+            this.Cb_Localidad.TabIndex = 3;
             // 
             // label4
             // 
@@ -151,12 +152,13 @@
             // 
             // Cb_Provincia
             // 
+            this.Cb_Provincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cb_Provincia.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cb_Provincia.FormattingEnabled = true;
             this.Cb_Provincia.Location = new System.Drawing.Point(80, 84);
             this.Cb_Provincia.Name = "Cb_Provincia";
             this.Cb_Provincia.Size = new System.Drawing.Size(174, 23);
-            this.Cb_Provincia.TabIndex = 8;
+            this.Cb_Provincia.TabIndex = 2;
             this.Cb_Provincia.SelectedIndexChanged += new System.EventHandler(this.Carga_Localidades);
             // 
             // label3
@@ -196,7 +198,7 @@
             this.Tx_Telefono.MaxLength = 20;
             this.Tx_Telefono.Name = "Tx_Telefono";
             this.Tx_Telefono.Size = new System.Drawing.Size(162, 23);
-            this.Tx_Telefono.TabIndex = 4;
+            this.Tx_Telefono.TabIndex = 5;
             // 
             // Tx_CUIT
             // 
@@ -205,7 +207,7 @@
             this.Tx_CUIT.MaxLength = 11;
             this.Tx_CUIT.Name = "Tx_CUIT";
             this.Tx_CUIT.Size = new System.Drawing.Size(115, 23);
-            this.Tx_CUIT.TabIndex = 3;
+            this.Tx_CUIT.TabIndex = 4;
             this.Tx_CUIT.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Tx_CUIT_KeyPress);
             // 
             // Tx_Direccion
@@ -223,26 +225,26 @@
             this.Tx_Nombre.Location = new System.Drawing.Point(80, 28);
             this.Tx_Nombre.MaxLength = 40;
             this.Tx_Nombre.Name = "Tx_Nombre";
-            this.Tx_Nombre.Size = new System.Drawing.Size(307, 23);
+            this.Tx_Nombre.Size = new System.Drawing.Size(283, 23);
             this.Tx_Nombre.TabIndex = 0;
             // 
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(379, 290);
+            this.Bt_Salir.Location = new System.Drawing.Point(358, 290);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Salir.TabIndex = 14;
+            this.Bt_Salir.TabIndex = 7;
             this.Bt_Salir.UseVisualStyleBackColor = true;
             this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(335, 290);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(314, 290);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Aceptar.TabIndex = 13;
+            this.Bt_Aceptar.TabIndex = 6;
             this.Bt_Aceptar.UseVisualStyleBackColor = true;
             this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
             // 
@@ -255,7 +257,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(429, 334);
+            this.ClientSize = new System.Drawing.Size(408, 334);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.groupBox2);

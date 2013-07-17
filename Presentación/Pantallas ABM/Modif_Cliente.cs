@@ -1,4 +1,5 @@
-﻿using System;
+﻿/// -----> Declaración de Referencias <------ ///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,12 +10,14 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
 using Entidades;
+using Presentación.Pantallas_Búsqueda;
 
 namespace Presentación.Pantallas_ABM
 {
     public partial class Modif_Cliente : Form
     {
         #region Declaraciones
+        // Variables enviadas desde el formulario
         private String _Cod_Cliente;
         private String _RazonSocial;
         private String _Direccion;
@@ -85,6 +88,11 @@ namespace Presentación.Pantallas_ABM
             get { return _Contacto; }
             set { _Contacto = value; }
         }
+
+        // Búsqueda del viajante //
+        // Abre una instancia del formulario de búsqueda nula
+        private Busqueda_Viajante Fr_Busqueda = null;
+
         #endregion
 
         public Modif_Cliente()
@@ -117,7 +125,6 @@ namespace Presentación.Pantallas_ABM
                 ViajanteBL.Obtener_Viajante(Viaj);
                 if (Viaj.Nombre != null)
                 {
-                    ControlError.Clear();
                     Lb_Viajante.Text = Viaj.Nombre;
                 }
                 else
@@ -281,8 +288,7 @@ namespace Presentación.Pantallas_ABM
                 // la selección
                 if (Viajante.Nombre != null)
                 {
-                    ControlError.Clear();
-                    // Descripción del banco
+                      // Descripción del banco
                     Lb_Viajante.Text = Viajante.Nombre;
                 }
                 else
@@ -359,6 +365,46 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica para la búsqueda viajante
+        #region Búsqueda Viajante
+        // Abre una nueva instancia del Form
+        private Busqueda_Viajante FormInstancia
+        {
+            get
+            {
+                if (Fr_Busqueda == null)
+                {
+                    Fr_Busqueda = new Busqueda_Viajante();
+
+                    Fr_Busqueda.Disposed += new EventHandler(form_Disposed);
+                    Fr_Busqueda.FormClosed += new FormClosedEventHandler(Fr_Busqueda_FormClosed);
+
+                }
+                return Fr_Busqueda;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_Disposed(object sender, EventArgs e)
+        {
+            Fr_Busqueda = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodViajante.Text = Fr_Busqueda.CodViajante;
+            Lb_Viajante.Text = Fr_Busqueda.Nombre;
+        }
+
+        // Clic en la búsqueda de banco
+        private void Bt_BusViaj_Click(object sender, EventArgs e)
+        {
+            Busqueda_Viajante Frm_Busq = this.FormInstancia;
+            Frm_Busq.Show();
+        }        
+        #endregion
+
         // Limpiar Variables
         public void Limpiar_Variables()
         {
@@ -374,5 +420,20 @@ namespace Presentación.Pantallas_ABM
             Cb_Localidad.SelectedIndex = -1;
             Cb_Zona.SelectedIndex = -1;
         }
+
+        // Lógica del botón salir
+        #region Lógica Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
+                 "Salir", MessageBoxButtons.YesNo,
+                  MessageBoxIcon.Warning,
+                  MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+        #endregion
     }
 }

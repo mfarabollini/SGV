@@ -68,6 +68,12 @@
     <Compile Include="Pantallas Búsqueda\Busqueda_Banco.Designer.cs">
       <DependentUpon>Busqueda_Banco.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Búsqueda\Busqueda_Clientes.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Búsqueda\Busqueda_Clientes.Designer.cs">
+      <DependentUpon>Busqueda_Clientes.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas Búsqueda\Busqueda_Viajante.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -165,6 +171,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Búsqueda\Busqueda_Banco.resx">
       <DependentUpon>Busqueda_Banco.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Búsqueda\Busqueda_Clientes.resx">
+      <DependentUpon>Busqueda_Clientes.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Búsqueda\Busqueda_Viajante.resx">
       <DependentUpon>Busqueda_Viajante.cs</DependentUpon>

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Viajantes));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Bt_Agregar = new System.Windows.Forms.Button();
@@ -38,6 +39,9 @@
             this.Lb_Título = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Grid_Viajantes = new System.Windows.Forms.DataGridView();
+            this.Foto1 = new System.Windows.Forms.PictureBox();
+            this.Lb_Buscar = new System.Windows.Forms.Label();
+            this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Cod_Viajante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dirección = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +54,7 @@
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_Viajantes)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Foto1)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -58,9 +63,9 @@
             this.groupBox1.Controls.Add(this.Bt_Salir);
             this.groupBox1.Controls.Add(this.Bt_Editar);
             this.groupBox1.Controls.Add(this.Bt_delete);
-            this.groupBox1.Location = new System.Drawing.Point(5, 75);
+            this.groupBox1.Location = new System.Drawing.Point(7, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(638, 73);
+            this.groupBox1.Size = new System.Drawing.Size(790, 69);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -68,9 +73,9 @@
             // 
             this.Bt_Agregar.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Bt_Agregar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Agregar.Image")));
-            this.Bt_Agregar.Location = new System.Drawing.Point(12, 15);
+            this.Bt_Agregar.Location = new System.Drawing.Point(12, 16);
             this.Bt_Agregar.Name = "Bt_Agregar";
-            this.Bt_Agregar.Size = new System.Drawing.Size(51, 50);
+            this.Bt_Agregar.Size = new System.Drawing.Size(45, 45);
             this.Bt_Agregar.TabIndex = 1;
             this.Bt_Agregar.UseVisualStyleBackColor = false;
             this.Bt_Agregar.Click += new System.EventHandler(this.Bt_Agregar_Click);
@@ -79,9 +84,9 @@
             // 
             this.Bt_Salir.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(581, 15);
+            this.Bt_Salir.Location = new System.Drawing.Point(739, 16);
             this.Bt_Salir.Name = "Bt_Salir";
-            this.Bt_Salir.Size = new System.Drawing.Size(51, 50);
+            this.Bt_Salir.Size = new System.Drawing.Size(45, 45);
             this.Bt_Salir.TabIndex = 5;
             this.Bt_Salir.UseVisualStyleBackColor = true;
             this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
@@ -90,9 +95,9 @@
             // 
             this.Bt_Editar.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Bt_Editar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Editar.Image")));
-            this.Bt_Editar.Location = new System.Drawing.Point(72, 15);
+            this.Bt_Editar.Location = new System.Drawing.Point(63, 16);
             this.Bt_Editar.Name = "Bt_Editar";
-            this.Bt_Editar.Size = new System.Drawing.Size(51, 50);
+            this.Bt_Editar.Size = new System.Drawing.Size(45, 45);
             this.Bt_Editar.TabIndex = 2;
             this.Bt_Editar.UseVisualStyleBackColor = true;
             this.Bt_Editar.Click += new System.EventHandler(this.Bt_Editar_Click);
@@ -101,9 +106,9 @@
             // 
             this.Bt_delete.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Bt_delete.Image = ((System.Drawing.Image)(resources.GetObject("Bt_delete.Image")));
-            this.Bt_delete.Location = new System.Drawing.Point(132, 15);
+            this.Bt_delete.Location = new System.Drawing.Point(116, 16);
             this.Bt_delete.Name = "Bt_delete";
-            this.Bt_delete.Size = new System.Drawing.Size(51, 50);
+            this.Bt_delete.Size = new System.Drawing.Size(45, 45);
             this.Bt_delete.TabIndex = 3;
             this.Bt_delete.UseVisualStyleBackColor = true;
             this.Bt_delete.Click += new System.EventHandler(this.Bt_delete_Click);
@@ -112,7 +117,7 @@
             // 
             this.Lb_Título.AutoSize = true;
             this.Lb_Título.Font = new System.Drawing.Font("Calibri", 18F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_Título.Location = new System.Drawing.Point(10, 26);
+            this.Lb_Título.Location = new System.Drawing.Point(63, 23);
             this.Lb_Título.Name = "Lb_Título";
             this.Lb_Título.Size = new System.Drawing.Size(294, 29);
             this.Lb_Título.TabIndex = 9;
@@ -120,10 +125,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.Lb_Buscar);
             this.groupBox2.Controls.Add(this.Grid_Viajantes);
-            this.groupBox2.Location = new System.Drawing.Point(5, 154);
+            this.groupBox2.Controls.Add(this.Tx_Buscar);
+            this.groupBox2.Location = new System.Drawing.Point(7, 124);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(638, 344);
+            this.groupBox2.Size = new System.Drawing.Size(790, 343);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
             // 
@@ -144,24 +151,55 @@
             this.Teléfono,
             this.Cod_Localidad,
             this.Cod_Provincia});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Grid_Viajantes.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Grid_Viajantes.Location = new System.Drawing.Point(5, 16);
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.BottomLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Grid_Viajantes.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Grid_Viajantes.Location = new System.Drawing.Point(5, 45);
             this.Grid_Viajantes.Name = "Grid_Viajantes";
             this.Grid_Viajantes.ReadOnly = true;
-            this.Grid_Viajantes.Size = new System.Drawing.Size(627, 320);
+            this.Grid_Viajantes.Size = new System.Drawing.Size(779, 292);
             this.Grid_Viajantes.TabIndex = 0;
+            // 
+            // Foto1
+            // 
+            this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
+            this.Foto1.Location = new System.Drawing.Point(17, 17);
+            this.Foto1.Name = "Foto1";
+            this.Foto1.Size = new System.Drawing.Size(37, 39);
+            this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Foto1.TabIndex = 17;
+            this.Foto1.TabStop = false;
+            // 
+            // Lb_Buscar
+            // 
+            this.Lb_Buscar.AutoSize = true;
+            this.Lb_Buscar.Location = new System.Drawing.Point(7, 21);
+            this.Lb_Buscar.Name = "Lb_Buscar";
+            this.Lb_Buscar.Size = new System.Drawing.Size(48, 15);
+            this.Lb_Buscar.TabIndex = 19;
+            this.Lb_Buscar.Text = "Buscar:";
+            // 
+            // Tx_Buscar
+            // 
+            this.Tx_Buscar.Location = new System.Drawing.Point(61, 16);
+            this.Tx_Buscar.Name = "Tx_Buscar";
+            this.Tx_Buscar.Size = new System.Drawing.Size(419, 23);
+            this.Tx_Buscar.TabIndex = 18;
+            this.Tx_Buscar.TextChanged += new System.EventHandler(this.Buscar_Viajante);
             // 
             // Cod_Viajante
             // 
             this.Cod_Viajante.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Cod_Viajante.DataPropertyName = "Cod_Viajante";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Cod_Viajante.DefaultCellStyle = dataGridViewCellStyle1;
             this.Cod_Viajante.Frozen = true;
             this.Cod_Viajante.HeaderText = "Cód. Viajante";
             this.Cod_Viajante.Name = "Cod_Viajante";
@@ -242,7 +280,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(651, 504);
+            this.ClientSize = new System.Drawing.Size(804, 470);
+            this.Controls.Add(this.Foto1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Lb_Título);
             this.Controls.Add(this.groupBox1);
@@ -253,7 +292,9 @@
             this.Load += new System.EventHandler(this.Viajantes_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_Viajantes)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Foto1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -269,6 +310,9 @@
         private System.Windows.Forms.Label Lb_Título;
         private System.Windows.Forms.GroupBox groupBox2;
         private System.Windows.Forms.DataGridView Grid_Viajantes;
+        private System.Windows.Forms.PictureBox Foto1;
+        private System.Windows.Forms.Label Lb_Buscar;
+        private System.Windows.Forms.TextBox Tx_Buscar;
         private System.Windows.Forms.DataGridViewTextBoxColumn Cod_Viajante;
         private System.Windows.Forms.DataGridViewTextBoxColumn Nombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn Dirección;

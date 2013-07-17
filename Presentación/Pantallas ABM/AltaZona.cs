@@ -18,8 +18,7 @@ using Presentación;
 
 /// PRESENTACIÓN ///
 namespace Presentación.Pantallas_ABM
-{   
- 
+{    
     public partial class Fr_NuevaZona : Form
     {
         public Fr_NuevaZona()
@@ -27,12 +26,30 @@ namespace Presentación.Pantallas_ABM
             InitializeComponent();            
         }
 
+        // Load del Formulario
+        #region Cargar_Formulario
+        // -------------->Lógica al cargar el formulario <---------------//
+        private void Fr_NuevaZona_Load(object sender, EventArgs e)
+        {
+            /// Lógica para mostrar la información de cada botón (tooltip)
+            ToolTip l_tool_1 = new ToolTip();
+            l_tool_1.AutoPopDelay = 5000; //Tiempo que tarda en desaparecer
+            l_tool_1.InitialDelay = 100;  //Tiempo que tarda en aparecer
+            l_tool_1.ReshowDelay = 500;
+            l_tool_1.ShowAlways = true; //Mostrar aunque esté desabilitado
+            l_tool_1.SetToolTip(this.Bt_Aceptar, "Guardar Cambios"); // Botón Guardar
+            l_tool_1.SetToolTip(this.Bt_Salir, "Salir");             // Botón Salir
+        }
+        #endregion Cargar_Formulario
+
+        // Lógica Botón Aceptar
         #region Botón_Aceptar
         
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
             if (ValidacionesZona())
             {
+                // Nueva instancia de Zonas
                 zonas zona = new zonas();
 
                 zona.Cod_Zona = Tx_CodZona.Text;   // Código de Zona
@@ -43,12 +60,11 @@ namespace Presentación.Pantallas_ABM
                 
                 MessageBox.Show("Zona cargada correctamente",  "Alta Zona", 
                                 MessageBoxButtons.OK, MessageBoxIcon.Information);
-                
-                
             }
         }
         #endregion
 
+        // Lógica Botón Salir
         #region Botón_Salir
         // ---------------> Lógica del botón Salir <---------------//
         private void Bt_Salir_Click(object sender, EventArgs e)
@@ -73,22 +89,8 @@ namespace Presentación.Pantallas_ABM
             }
         }
         #endregion Botón_Salir
-
-        #region Cargar_Formulario
-        // -------------->Lógica al cargar el formulario <---------------//
-        private void Fr_NuevaZona_Load(object sender, EventArgs e)
-        {
-            /// Lógica para mostrar la información de cada botón (tooltip)
-            ToolTip l_tool_1 = new ToolTip();
-            l_tool_1.AutoPopDelay   = 5000; //Tiempo que tarda en desaparecer
-            l_tool_1.InitialDelay   = 100;  //Tiempo que tarda en aparecer
-            l_tool_1.ReshowDelay    = 500;  
-            l_tool_1.ShowAlways     = true; //Mostrar aunque esté desabilitado
-            l_tool_1.SetToolTip(this.Bt_Aceptar, "Guardar Cambios"); // Botón Guardar
-            l_tool_1.SetToolTip(this.Bt_Salir, "Salir");             // Botón Salir
-        }
-        #endregion Cargar_Formulario
-
+        
+        // Validaciones Previas al Guardado
         #region Validaciones
 
         //Metodo para validar los datos del alumno sean correctos
@@ -125,6 +127,7 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Limpieza de las variables
         #region Limpiar
         private void Limpiar()
         {

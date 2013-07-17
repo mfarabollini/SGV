@@ -72,6 +72,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 11;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
@@ -151,6 +152,7 @@
             this.Bt_BusViaj.TabIndex = 12;
             this.Bt_BusViaj.Text = "...";
             this.Bt_BusViaj.UseVisualStyleBackColor = true;
+            this.Bt_BusViaj.Click += new System.EventHandler(this.Bt_BusViaj_Click);
             // 
             // Tx_CodViajante
             // 
@@ -194,11 +196,12 @@
             // 
             // Cb_Zona
             // 
+            this.Cb_Zona.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cb_Zona.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cb_Zona.FormattingEnabled = true;
             this.Cb_Zona.Location = new System.Drawing.Point(91, 201);
             this.Cb_Zona.Name = "Cb_Zona";
-            this.Cb_Zona.Size = new System.Drawing.Size(162, 23);
+            this.Cb_Zona.Size = new System.Drawing.Size(148, 23);
             this.Cb_Zona.TabIndex = 6;
             // 
             // label8
@@ -233,6 +236,7 @@
             // 
             // Cb_Localidad
             // 
+            this.Cb_Localidad.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cb_Localidad.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cb_Localidad.FormattingEnabled = true;
             this.Cb_Localidad.Location = new System.Drawing.Point(91, 114);
@@ -252,6 +256,7 @@
             // 
             // Cb_Provincia
             // 
+            this.Cb_Provincia.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.Cb_Provincia.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Cb_Provincia.FormattingEnabled = true;
             this.Cb_Provincia.Location = new System.Drawing.Point(91, 84);
