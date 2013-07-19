@@ -1,4 +1,7 @@
-﻿using System;
+﻿/// --------------------------------------------------//
+     /// -------> EGGRESO DE CHEQUE <-----------//
+/// --------------------------------------------------//
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -157,6 +160,7 @@ namespace Presentación.Pantallas_Principal
             it_error.Rows.Add(row);
         }
 
+        // Actualiza los valores en la Grilla
         private void Actualizar_valores(DataGridViewRow row, cheques Cheque)
         { 
             // Código Cheque
@@ -174,7 +178,7 @@ namespace Presentación.Pantallas_Principal
             // Fecha de Entreda
             if (Cheque.Fecha_Entrada != null)
             {
-                row.Cells["Fecha_Entrada"].Value = Cheque.Fecha_Entrada.ToString();
+                row.Cells["Fecha_Entrada"].Value = Cheque.Fecha_Entrada;
             }
 
             // Importe
@@ -192,7 +196,7 @@ namespace Presentación.Pantallas_Principal
             // Fecha de Vencimiento
             if (Cheque.Fecha_Vec != null)
             {
-                row.Cells["Fecha_Venc"].Value = Cheque.Fecha_Vec.ToString();
+                row.Cells["Fecha_Venc"].Value = Cheque.Fecha_Vec;
             }
         }
         #endregion
@@ -632,8 +636,14 @@ namespace Presentación.Pantallas_Principal
 
         /// Método que se llama cuando se cierra la ventana de busqueda banco.
         private void Fr_Busqueda_FormClosed(object sender, FormClosedEventArgs e)
-        {
-           // it_cheques.DataSet = Fr_EgresoM.it_CheqSelec;
+        {            
+            if (Gr_Cheques.RowCount != 0)
+            {
+                // Selecciona la primer línea
+                Gr_Cheques.Rows[0].Selected = true;
+                // Carga los Textos con la línea seleccionada
+                Cargar_TextBoxs(0);  
+            }
         }
 
         // Evento Ingreso Manual

@@ -54,7 +54,7 @@
             this.Obs_Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Lb_1 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.Cb_Busqueda = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Lb_Título = new System.Windows.Forms.Label();
@@ -71,7 +71,7 @@
             this.Gr_Grupo1.Controls.Add(this.Gr_Cheques);
             this.Gr_Grupo1.Location = new System.Drawing.Point(9, 108);
             this.Gr_Grupo1.Name = "Gr_Grupo1";
-            this.Gr_Grupo1.Size = new System.Drawing.Size(804, 322);
+            this.Gr_Grupo1.Size = new System.Drawing.Size(768, 322);
             this.Gr_Grupo1.TabIndex = 0;
             this.Gr_Grupo1.TabStop = false;
             // 
@@ -104,11 +104,11 @@
             dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
             dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
             this.Gr_Cheques.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Gr_Cheques.Location = new System.Drawing.Point(6, 22);
+            this.Gr_Cheques.Location = new System.Drawing.Point(7, 22);
             this.Gr_Cheques.Name = "Gr_Cheques";
             this.Gr_Cheques.ReadOnly = true;
             this.Gr_Cheques.RowHeadersVisible = false;
-            this.Gr_Cheques.Size = new System.Drawing.Size(784, 293);
+            this.Gr_Cheques.Size = new System.Drawing.Size(752, 293);
             this.Gr_Cheques.TabIndex = 1;
             this.Gr_Cheques.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Checked);
             // 
@@ -231,11 +231,11 @@
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.Lb_1);
-            this.groupBox1.Controls.Add(this.comboBox1);
+            this.groupBox1.Controls.Add(this.Cb_Busqueda);
             this.groupBox1.Controls.Add(this.textBox1);
             this.groupBox1.Location = new System.Drawing.Point(9, 51);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(804, 58);
+            this.groupBox1.Size = new System.Drawing.Size(768, 58);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -248,13 +248,18 @@
             this.Lb_1.TabIndex = 2;
             this.Lb_1.Text = "Busqueda:";
             // 
-            // comboBox1
+            // Cb_Busqueda
             // 
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(86, 22);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(138, 23);
-            this.comboBox1.TabIndex = 1;
+            this.Cb_Busqueda.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cb_Busqueda.FormattingEnabled = true;
+            this.Cb_Busqueda.Items.AddRange(new object[] {
+            "Número de Cheque",
+            "Código Banco",
+            "Código Sucursal"});
+            this.Cb_Busqueda.Location = new System.Drawing.Point(86, 22);
+            this.Cb_Busqueda.Name = "Cb_Busqueda";
+            this.Cb_Busqueda.Size = new System.Drawing.Size(138, 23);
+            this.Cb_Busqueda.TabIndex = 1;
             // 
             // textBox1
             // 
@@ -286,7 +291,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(773, 436);
+            this.Bt_Salir.Location = new System.Drawing.Point(736, 436);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 17;
@@ -295,7 +300,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(729, 436);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(692, 436);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 16;
@@ -306,7 +311,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(821, 484);
+            this.ClientSize = new System.Drawing.Size(783, 481);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.Foto1);
@@ -335,7 +340,7 @@
         private System.Windows.Forms.DataGridView Gr_Cheques;
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.Label Lb_1;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox Cb_Busqueda;
         private System.Windows.Forms.PictureBox Foto1;
         private System.Windows.Forms.Label Lb_Título;
         private System.Windows.Forms.Button Bt_Salir;

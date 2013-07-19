@@ -14,7 +14,8 @@ namespace Presentación.Pantallas_Principal
 {
     public partial class Egreso_Manual : Form
     {
-
+        // Declaraciones Globales
+        #region Declaraciones Globales
         // Declaración de la tabla para mostrar los errores.
         private DataTable _it_CheqSelec;
         // Declaración de la tabla para mostrar los errores.
@@ -23,12 +24,14 @@ namespace Presentación.Pantallas_Principal
             get { return _it_CheqSelec; }
             set { _it_CheqSelec = value; }
         }
+        #endregion
 
         public Egreso_Manual()
         {
             InitializeComponent();
         }
 
+        // Carga del Formulario
         #region Evento Carga Formulario
         private void Egreso_Manual_Load(object sender, EventArgs e)
         {

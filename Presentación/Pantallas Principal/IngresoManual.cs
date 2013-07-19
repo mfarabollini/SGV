@@ -1,4 +1,9 @@
-﻿using System;
+﻿/// --------------------------------------------------//
+/// -------> FORM INGRESO MANUAL DE CHEQUE <-----------//
+/// --------------------------------------------------//
+
+/// -----> Declaración de Referencias <------ ///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -8,6 +13,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentación.Pantallas_Principal;
+using Presentación.Pantallas_Búsqueda;
 using Entidades;
 using LogicaDeNegocio;
 
@@ -15,6 +21,7 @@ namespace Presentación.Pantallas_Principal
 {
     public partial class IngresoManual : Form
     {
+        // Declaraciones Locales
         #region Declaración Variables              
 
         // Declaraciones de variables
@@ -35,7 +42,7 @@ namespace Presentación.Pantallas_Principal
 
         // Abre una instancia del formulario de búsqueda nula
         private Busqueda_Banco Fr_Busqueda = null;
-
+        private Busqueda_Clientes Fr_BusquedaC = null;
         #endregion
 
         public IngresoManual()
@@ -43,13 +50,14 @@ namespace Presentación.Pantallas_Principal
             InitializeComponent();
         }
         
+        // Load del Formulario
         #region Load de Formulario
-        
+        // Carga los datos del cliente si son enviados desde la carga convensional
         private void IngresoManual_Load(object sender, EventArgs e)
         {
             // Valorización del Cliente, en caso que esté valorizado en el Form Anterior
             Tx_CodCliente.Text = this.Codigo;
-            Tx_DescCliente.Text = this.DescCliente;
+            Lb_Cliente.Text = this.DescCliente;
             
             // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
             Tx_FechaVen.Format = DateTimePickerFormat.Custom;
@@ -68,6 +76,9 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Lógica para búsqueda de banco
+        #region Búsqueda de Banco
+        
         // Abre una nueva instancia del Form
         private Busqueda_Banco FormInstancia
         {
@@ -97,44 +108,123 @@ namespace Presentación.Pantallas_Principal
             Tx_CodBanco.Text = Fr_Busqueda.CodBanco;
             Lb_DescBanco.Text = Fr_Busqueda.DescBanco;
         }
-        
+
         // Clic en la búsqueda de banco
         public void Bt_Banco_Click(object sender, EventArgs e)
         {
             Busqueda_Banco Frm_Busq = this.FormInstancia;
             Frm_Busq.Show();
         }
-
-        #region Buscar Banco
-        // Busca el banco ingresado luego de la perdida de foco del Tx_CodBanco
-        private void Buscar_Banco(object sender, EventArgs e)
+        #endregion
+        
+        // Lógica para búsqueda de Cliente
+        #region Búsqueda de Cliente
+        // Abre una nueva instancia del Form
+        private Busqueda_Clientes FormInstanciaC
         {
-            if (Tx_CodBanco.Text != "")
+            get
             {
-                // Crear instancia de Banco    
-                bancos Banco = new bancos();
-                // Valorizar el código
-                Banco.Cod_Banco = Tx_CodBanco.Text;
-                //Recuperar la descripción del banco
-                BancosBL.Obtener_Banco(Banco);
-                // En caso que no este valorizado la desc, quiere decir que no fue correcta
-                // la selección
-                if (Banco.Desc_Banco != null)
+                if (Fr_BusquedaC == null)
                 {
-                    
-                    ControlError.Clear();
-                    // Descripción del banco
-                   Lb_DescBanco.Text = Banco.Desc_Banco;
+                    Fr_BusquedaC = new Busqueda_Clientes();
+
+                    Fr_BusquedaC.Disposed += new EventHandler(form_DisposedC);
+                    Fr_BusquedaC.FormClosed += new FormClosedEventHandler(Fr_BusquedaC_FormClosed);
+
                 }
-                else
-                {
-                    Lb_DescBanco.Text = "";
-                    ControlError.SetError(Tx_CodBanco, "El banco ingresado no existe");
-                }
+                return Fr_BusquedaC;
             }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedC(object sender, EventArgs e)
+        {
+            Fr_BusquedaC = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_BusquedaC_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodCliente.Text = Fr_BusquedaC.CodCliente;
+            Lb_Cliente.Text = Fr_BusquedaC.Nombre;
+        }
+
+        // Clic en la búsqueda de banco
+        private void Bt_Buscar_Click(object sender, EventArgs e)
+        {
+            Busqueda_Clientes Frm_Busq = this.FormInstanciaC;
+            Frm_Busq.Show();
         }
         #endregion
         
+        // Verifica que el banco y el cliente ingresado exista
+        #region Control Existencia.
+        // Busca el banco ingresado luego de la perdida de foco del Tx_CodBanco
+        private void Buscar_Banco(object sender, EventArgs e)
+        {
+            if (Tx_CodBanco.Text == String.Empty)
+            {
+                Lb_DescBanco.Text = string.Empty;
+                // Valoriza en la salida, la Razón Social
+                ControlError.Clear();
+                return;
+            }
+
+            // Crear instancia de Banco    
+            bancos Banco = new bancos();
+            // Valorizar el código
+            Banco.Cod_Banco = Tx_CodBanco.Text;
+            //Recuperar la descripción del banco
+            BancosBL.Obtener_Banco(Banco);
+            // En caso que no este valorizado la desc, quiere decir que no fue correcta
+            // la selección
+            if (Banco.Desc_Banco != null)
+            {   
+                ControlError.Clear();
+                // Descripción del banco
+                Lb_DescBanco.Text = Banco.Desc_Banco;
+            }
+            else
+            {
+                Lb_DescBanco.Text = "";
+                ControlError.SetError(Tx_CodBanco, "El banco ingresado no existe");
+            }         
+        }
+
+        // Cheque que el cliente ingresado exista.
+        private void Chequear_Cliente(object sender, EventArgs e)
+        {
+            if (Tx_CodCliente.Text == String.Empty)
+            {
+                Lb_Cliente.Text = string.Empty;
+                // Valoriza en la salida, la Razón Social
+                ControlError.Clear();
+                return;
+            }
+
+            // Nueva Instancia de Cliente
+            clientes Clie = new clientes();
+            // Valoriza el código de cliente
+            Clie.Cod_Cliente = Convert.ToInt16(Tx_CodCliente.Text);
+            // Busca el Cliente
+            ClientesBL.Buscar_Cliente(Clie);
+            // Si lo encuentra, valoriza la Razón Social (Es obligatorio)
+            if (Clie.razon_social != null)
+            {
+                // Valoriza en la salida, la Razón Social
+                ControlError.Clear();
+                Lb_Cliente.Text = Clie.razon_social;
+            }
+            else
+            {
+                // Borra la descripción y setea el error.
+                Lb_Cliente.Text = "";
+                ControlError.SetError(Tx_CodCliente, "El Código Ingresado no existe");
+            }
+        }
+        #endregion
+
+        // Lógica Botón Guardar
         #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
@@ -187,8 +277,23 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
-        #region Validaciones            
+        // Lógica Botón Salir
+        #region Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
+                   "Salir", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+        #endregion
 
+        // Validaciones previas al guardado
+        #region Validaciones
         // Valida que en el Código de Banco sea númerico
         private void Valida_Numeros(object sender, KeyPressEventArgs e)
         {
@@ -209,7 +314,6 @@ namespace Presentación.Pantallas_Principal
                 }
         }   
         
-        #region Validaciones de Valorización
         // Validaciones al guardar
         private bool Validaciones()
         {
@@ -274,58 +378,6 @@ namespace Presentación.Pantallas_Principal
             
             return result;
         }
-        #endregion
-        
-        #endregion
-        
-        // Limpiar las variables.
-        public void Limpiar()
-        {
-            Tx_CodBanco.Text = "";
-            Tx_Sucursal.Text = "";
-            Tx_CodPostal.Text = "";
-            Tx_NumCuenta.Text = "";
-            Tx_NumCheque.Text = "";
-            Tx_Cuit.Text = "";
-            Tx_FechaVen.Text = "";
-            Tx_Importe.Text = "";
-
-            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
-            Tx_FechaVen.CustomFormat = " ";
-        }
-        
-        // Cheque que el cliente ingresado exista.
-        private void Chequear_Cliente(object sender, EventArgs e)
-        {
-            if (Tx_CodCliente.Text != "")
-            {
-                // Nueva Instancia de Cliente
-                clientes Clie = new clientes();
-                // Valoriza el código de cliente
-                Clie.Cod_Cliente = Convert.ToInt16(Tx_CodCliente.Text);
-                // Busca el Cliente
-                ClientesBL.Buscar_Cliente(Clie);
-                // Si lo encuentra, valoriza la Razón Social (Es obligatorio)
-                if (Clie.razon_social != null)
-                {
-                    // Valoriza en la salida, la Razón Social
-                    ControlError.Clear();
-                    Tx_DescCliente.Text = Clie.razon_social;
-                }
-                else
-                {
-                    // Borra la descripción y setea el error.
-                    Tx_DescCliente.Text = "";
-                    ControlError.SetError(Tx_CodCliente, "El Código Ingresado no existe");
-                }
-            }        
-        }
-
-        private void Cambiar_Formato(object sender, EventArgs e)
-        {
-            // Cambia el formato de la fhecha
-            Tx_FechaVen.Format = DateTimePickerFormat.Short;
-        }
 
         // Controla que se inserten números y solo un punto y dos decimales.
         private void Validar_Importe(object sender, KeyPressEventArgs e)
@@ -334,7 +386,7 @@ namespace Presentación.Pantallas_Principal
             {
                 e.Handled = false;
                 return;
-            }            
+            }
             bool IsDec = false;
             int nroDec = 0;
 
@@ -357,17 +409,33 @@ namespace Presentación.Pantallas_Principal
                 e.Handled = true;
         }
 
-        //Botón Salir
-        private void Bt_Salir_Click(object sender, EventArgs e)
+        #endregion
+        
+        // Métodos Auxiliares        
+        #region Auxiliares
+        // Limpiar las variables.
+        public void Limpiar()
         {
-            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
-                   "Salir", MessageBoxButtons.YesNo,
-                    MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
-            {
-                this.DialogResult = DialogResult.Cancel;
-                this.Close();
-            }
+            Tx_CodBanco.Clear();
+            Tx_Sucursal.Clear();
+            Tx_CodPostal.Clear();
+            Tx_NumCuenta.Clear();
+            Tx_NumCheque.Clear();
+            Tx_Cuit.Clear();
+            Tx_FechaVen.Text = "";
+            Tx_Importe.Clear(); ;
+            Lb_DescBanco.Text = "";
+
+            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
+            Tx_FechaVen.CustomFormat = " ";
         }
+        // Cambiar Formato de la fecha
+        private void Cambiar_Formato(object sender, EventArgs e)
+        {
+            // Cambia el formato de la fhecha
+            Tx_FechaVen.Format = DateTimePickerFormat.Short;
+        }
+        #endregion
+
     }
 }

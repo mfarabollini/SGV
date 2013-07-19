@@ -497,6 +497,7 @@
             this.Bt_Banco.TabIndex = 14;
             this.Bt_Banco.Text = "...";
             this.Bt_Banco.UseVisualStyleBackColor = true;
+            this.Bt_Banco.Click += new System.EventHandler(this.Bt_Banco_Click);
             // 
             // Tx_CodBanco
             // 

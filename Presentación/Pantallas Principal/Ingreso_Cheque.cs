@@ -1,4 +1,7 @@
-﻿/// -----> Declaración de Referencias <------ ///
+﻿/// --------------------------------------------------//
+     /// -------> FORM INGRESO CHEQUE <----------//
+/// -------------------------------------------------//
+/// -----> Declaración de Referencias <------ ///
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -21,6 +24,7 @@ namespace Presentación.Pantallas_Principal
         #region Declaraciones Globales        
         // Abre una instancia del formulario de búsqueda nula
         private Busqueda_Clientes Fr_Busqueda = null;
+        private Busqueda_Banco Fr_Busqueda_B = null;
 
         int indice; // Se utiliza para valorizar la línea del Grid seleccionado
         
@@ -36,6 +40,7 @@ namespace Presentación.Pantallas_Principal
             InitializeComponent();
         }
 
+        // Load del Formulario
         #region Load del Formulario
         private void Ingreso_Cheque_Load(object sender, EventArgs e)
         {
@@ -44,10 +49,13 @@ namespace Presentación.Pantallas_Principal
             Tx_FechaVen.CustomFormat = " ";
             // Setea el botón de errores para que no sea visualizado.
             Tx_Errores.Visible = false;
-            d_cuit = "";          
+            d_cuit = "";
+            // Desactiva los textos de ingreso.
+            Desactivar_TextBox(false); 
         }
         #endregion
 
+        // Lógica Ingreso Manual
         #region Link de Ingreso Manual
         private void Lk_IngresoManual_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -60,6 +68,8 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Realiza el escaneo de los cheques con el escaner.
+        #region Escaneo de Cheques.
         private void Bt_Escaneo_Click(object sender, EventArgs e)
         {
             // Crea una tabla interna para poder guardar los datos leidos por el escaner.
@@ -92,11 +102,15 @@ namespace Presentación.Pantallas_Principal
             {
                 // Selecciona la primer línea
                 Gr_Cheques.Rows[0].Selected = true;
+                //Activar los TextBoxs
+                Desactivar_TextBox(true);                
                 // Carga los Textos con la línea seleccionada
                 Cargar_TextBoxs(0);
             }
         }
+        #endregion
 
+        // Adhiere los valores leidos por el escaner a la tabla interna usada por el Grid
         #region Adherir Valores a La tabla
         /// Adhiere Valor a la tabla interna
         private void Adherir_Valor(DataTable it_cheques, int Posicion, string Cod_Banco, string Cod_Sucursal,
@@ -140,6 +154,7 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Lógica para crear las tablas internas utilizadas por el Grid y Errores.
         #region Crear las tablas internas
         // Crea una tabla interna para poder guardar los datos leidos por el escaner.
         private void CrearTablaInterna(DataTable it_cheques)
@@ -223,6 +238,8 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Carga de Valores del Grid a los TExtBox y Biseversa
+        #region Carga de Valores
         // Carga los valores del datagrid en los textbox cuando se selecciona una línea
         private void CargaValores(object sender, DataGridViewCellEventArgs e)
         {
@@ -318,31 +335,6 @@ namespace Presentación.Pantallas_Principal
             }  
         }
 
-        // Limpia los textos del TextBox
-        private void Limpiar_Textos()
-        {
-            // Limpiar los Textos
-            Tx_CodBanco.Text = "";
-            Tx_Sucursal.Text = "";
-            Tx_CodPostal.Text = "";
-            Tx_NumCuenta.Text = "";
-            Tx_NumCheque.Text = "";
-            Tx_Importe.Text = "";
-
-            // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
-            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
-            Tx_FechaVen.CustomFormat = " ";
-        }
-
-        // Cambia el formato de la fecha
-        private void CambiarFormato(object sender, EventArgs e)
-        {
-            // Cambia el formato de la fecha
-            Tx_FechaVen.Format = DateTimePickerFormat.Short;
-            Gr_Cheques.Rows[indice].Cells[8].Value = Tx_FechaVen.Text;
-            Gr_Cheques.Refresh();
-        }
-
         #region Valorización Grid - Cambio en TxBox
 
         // Se valoriza el importe en el DataGrid cuando se cambia valor en el TextBox.
@@ -392,10 +384,75 @@ namespace Presentación.Pantallas_Principal
         {
             Gr_Cheques.Rows[indice].Cells[7].Value = Tx_Cuit.Text;
             Gr_Cheques.Refresh();
-        }     
-               
+        }
+
+        #endregion        
         #endregion
 
+        // Limpieza de Variables y TextBox
+        #region Limpieza
+        // Limpia los textos del TextBox
+        private void Limpiar_Textos()
+        {
+            // Limpiar los Textos
+            Tx_CodBanco.Text = "";
+            Tx_Sucursal.Text = "";
+            Tx_CodPostal.Text = "";
+            Tx_NumCuenta.Text = "";
+            Tx_NumCheque.Text = "";
+            Tx_Importe.Text = "";
+
+            // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
+            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
+            Tx_FechaVen.CustomFormat = " ";
+        }
+
+        // Limpiar las variables y datagrid - Finalización a Guardar
+        private void Limpiar()
+        {
+            // Limpiar los TextBox
+            Tx_CodigoClie.Clear();
+            Lb_Cliente.Text = "";
+            Tx_CodBanco.Clear();
+            Lb_DescBanco.Text = "";
+            Tx_Sucursal.Clear();
+            Tx_CodPostal.Clear();
+            Tx_NumCheque.Clear();
+            Tx_NumCuenta.Clear();
+            Tx_Cuit.Clear();
+            Tx_Importe.Clear();
+            // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
+            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
+            Tx_FechaVen.CustomFormat = " ";
+
+            // Limpiar DataGridView
+            try
+            {
+                Gr_Cheques.Rows.Clear();
+            }
+            catch (Exception)
+            {
+
+            }
+
+            // Limpia las tablas internas
+            it_cheques.Clear();
+            it_error.Clear();
+
+            Tx_Errores.Enabled = false;
+        }
+        #endregion
+
+        // Cambia el formato de la fecha
+        private void CambiarFormato(object sender, EventArgs e)
+        {
+            // Cambia el formato de la fecha
+            Tx_FechaVen.Format = DateTimePickerFormat.Short;
+            Gr_Cheques.Rows[indice].Cells[8].Value = Tx_FechaVen.Text;
+            Gr_Cheques.Refresh();
+        }
+
+        // Validaciones antes de Guardar
         #region Validaciones 
         // Controla que se inserten números y solo un punto y dos decimales.
         private void Validar_Importe(object sender, KeyPressEventArgs e)
@@ -457,31 +514,37 @@ namespace Presentación.Pantallas_Principal
         // Verifica que exista el cliente y busca la descripción
         private void Chequear_Cliente(object sender, EventArgs e)
         {
-            if (Tx_CodigoClie.Text != "")
+            if (Tx_CodigoClie.Text == String.Empty)
             {
-                // Nueva Instancia de Cliente
-                clientes Clie = new clientes();
-                // Valoriza el código de cliente
-                Clie.Cod_Cliente = Convert.ToInt16(Tx_CodigoClie.Text);
-                // Busca el Cliente
-                ClientesBL.Buscar_Cliente(Clie);
-                // Si lo encuentra, valoriza la Razón Social (Es obligatorio)
-                if (Clie.razon_social != null)
-                {
-                    // Valoriza en la salida, la Razón Social
-                    ControlError.Clear();
-                    Lb_Cliente.Text = Clie.razon_social;
-                    
-                    // Valoriza la variable global de CUIT
-                    d_cuit = Clie.CUIT.ToString();                
-                }
-                else
-                {
-                    // Borra la descripción y setea el error.
-                    Lb_Cliente.Text = "";
-                    ControlError.SetError(Tx_CodigoClie, "El Código Ingresado no existe");                    
-                }
+                Lb_Cliente.Text = string.Empty;
+                // Valoriza en la salida, la Razón Social
+                ControlError.Clear();
+                return;
             }
+
+            // Nueva Instancia de Cliente
+            clientes Clie = new clientes();
+            // Valoriza el código de cliente
+            Clie.Cod_Cliente = Convert.ToInt16(Tx_CodigoClie.Text);
+            // Busca el Cliente
+            ClientesBL.Buscar_Cliente(Clie);
+            // Si lo encuentra, valoriza la Razón Social (Es obligatorio)
+            if (Clie.razon_social != null)
+            {
+                // Valoriza en la salida, la Razón Social
+                ControlError.Clear();
+                Lb_Cliente.Text = Clie.razon_social;
+                    
+                // Valoriza la variable global de CUIT
+                d_cuit = Clie.CUIT.ToString();                
+            }
+            else
+            {
+                // Borra la descripción y setea el error.
+                Lb_Cliente.Text = "";
+                ControlError.SetError(Tx_CodigoClie, "El Código Ingresado no existe");                    
+            }
+            
         }
 
         private void ValidaNumero(object sender, KeyPressEventArgs e)
@@ -504,7 +567,8 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
-        #region Botón Guardar
+        // Lógica de los distintos botones
+        #region Lógica de Botones
         // Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
@@ -540,7 +604,6 @@ namespace Presentación.Pantallas_Principal
             /// ----------------------------------------------------////
             foreach (DataGridViewRow row in Gr_Cheques.Rows)
             {
-
                 #region Validación De Valorización
                 
                 // Código de Banco
@@ -583,7 +646,6 @@ namespace Presentación.Pantallas_Principal
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Fecha de vencimiento");
                 }
-                #endregion
 
                 #region Validar_Banco
                 // Valida que el Banco exista
@@ -619,6 +681,7 @@ namespace Presentación.Pantallas_Principal
                     }                    
                 }
                 #endregion       
+            #endregion
             }
             // Finaliza el recorrido de la tabla
 
@@ -669,6 +732,7 @@ namespace Presentación.Pantallas_Principal
                    //Limpiar los TextBox
                    Limpiar();
                    Tx_CodigoClie.Focus();
+                   Desactivar_TextBox(false);
                 }
                 else
                 {
@@ -678,50 +742,16 @@ namespace Presentación.Pantallas_Principal
             }
             #endregion
         }
-        #endregion
-
-        // Botón para visualizar los errores
+        
+        // Lógica Botón para visualizar los errores
         private void Tx_Errores_Click(object sender, EventArgs e)
         {
             // Muestra el PopUp de errores
             Mostrar_Errores Fr_Errores = new Mostrar_Errores();
             Fr_Errores.it_errores = it_error;
-            Fr_Errores.Show();         
+            Fr_Errores.Show();
         }
         
-        // Limpiar las variables y datagrid - Finalización a Guardar
-        private void Limpiar()
-        {
-            // Limpiar los TextBox
-            Tx_CodigoClie.Clear();
-            Lb_Cliente.Text = "";
-            Tx_CodBanco.Clear();
-            Lb_DescBanco.Text = "";
-            Tx_Sucursal.Clear();
-            Tx_CodPostal.Clear();
-            Tx_NumCheque.Clear();
-            Tx_NumCuenta.Clear();
-            Tx_Cuit.Clear();
-            Tx_Importe.Clear();
-            // Le da formato a la fecha, para que no se muestre nada (Formato vacio)
-            Tx_FechaVen.Format = DateTimePickerFormat.Custom;
-            Tx_FechaVen.CustomFormat = " ";
-
-            // Limpiar DataGridView
-            try
-            {
-                Gr_Cheques.Rows.Clear();    
-            }
-            catch (Exception)
-            {              
-            
-            }                    
-
-            // Limpia las tablas internas
-            it_cheques.Clear();
-            it_error.Clear();
-        }
-
         // Lógica para salir del Form
         private void Bt_Salir_Click(object sender, EventArgs e)
         {
@@ -736,8 +766,13 @@ namespace Presentación.Pantallas_Principal
                     this.Close();
                 }
             }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
         }
-
+        
         // Borrar linea del DataGrid
         private void Bt_Borrar_Click(object sender, EventArgs e)
         {
@@ -746,27 +781,30 @@ namespace Presentación.Pantallas_Principal
 
             if (select == 1)
             {
-
                 if (MessageBox.Show("¿Confirma eliminar la linea seleccionada?",
                    "Confirmación", MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
                 {
-                    int indice = Gr_Cheques.SelectedRows[0].Index;
+                    int indice_1 = Gr_Cheques.SelectedRows[0].Index;
                     // Eliminar el registro de la tabla interna y actualiza el grid
-                    it_cheques.Rows[indice].Delete();
+                    it_cheques.Rows[indice_1].Delete();
                     Gr_Cheques.Refresh();
 
                     if (Gr_Cheques.Rows.Count != 0)
                     {
                         // Selecciona la primer línea
                         Gr_Cheques.Rows[0].Selected = true;
+                        // Asigna el índice
+                        indice = 0;
                         // Carga los Textos con la línea seleccionada
                         Cargar_TextBoxs(0);
                     }
                     else 
                     {
                         Limpiar();
+                        // Desactiva los TextBox
+                        Desactivar_TextBox(false);
                     }                   
                 }
             }
@@ -775,7 +813,24 @@ namespace Presentación.Pantallas_Principal
                 MessageBox.Show("Seleccione una única fila", "Eliminar línea", 
                                 MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
             }
-       }
+       }       
+
+        // Desactivar los Textbox de ingreso cuando el grid está vacio
+        private void Desactivar_TextBox(bool Action)
+        {
+            Tx_CodBanco.Enabled = Action;
+            Bt_Banco.Enabled = Action;
+            Tx_Sucursal.Enabled = Action;
+            Tx_CodPostal.Enabled = Action;
+            Tx_NumCuenta.Enabled = Action;
+            Tx_NumCheque.Enabled = Action;
+            Tx_Cuit.Enabled = Action;
+            Tx_FechaVen.Enabled = Action;
+            Tx_Importe.Enabled = Action;
+
+            Bt_Aceptar.Enabled = Action;
+        }
+        #endregion
 
         // Búsqueda de Cliente
         #region Buscar Cliente
@@ -815,7 +870,46 @@ namespace Presentación.Pantallas_Principal
             Frm_Busq.Show();
         }
         #endregion
+        
+        // Búsqueda de Banco
+        #region Buscar Banco
+        // Abre una nueva instancia del Form
+        private Busqueda_Banco FormInstancia_B
+        {
+            get
+            {
+                if (Fr_Busqueda_B == null)
+                {
+                    Fr_Busqueda_B = new Busqueda_Banco();
+
+                    Fr_Busqueda_B.Disposed += new EventHandler(form_Disposed_B);
+                    Fr_Busqueda_B.FormClosed += new FormClosedEventHandler(Fr_Busqueda_B_FormClosed);
+
+                }
+                return Fr_Busqueda_B;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_Disposed_B(object sender, EventArgs e)
+        {
+            Fr_Busqueda_B = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Busqueda_B_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Tx_CodBanco.Text = Fr_Busqueda_B.CodBanco;
+            Lb_DescBanco.Text = Fr_Busqueda_B.DescBanco;
+        }
+
+        //Abre Instancia de Form de búsqueda de Banco
+        private void Bt_Banco_Click(object sender, EventArgs e)
+        {
+            Busqueda_Banco Frm_Busq = this.FormInstancia_B;
+            Frm_Busq.Show();
+        }
+        #endregion
+  
     }
  }
-
-

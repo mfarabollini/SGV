@@ -56,8 +56,8 @@
             this.Gr_GrupoCliente = new System.Windows.Forms.GroupBox();
             this.Bt_Buscar = new System.Windows.Forms.Button();
             this.label9 = new System.Windows.Forms.Label();
-            this.Tx_DescCliente = new System.Windows.Forms.TextBox();
             this.Tx_CodCliente = new System.Windows.Forms.TextBox();
+            this.Lb_Cliente = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
@@ -154,6 +154,7 @@
             // 
             this.Tx_NumCuenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_NumCuenta.Location = new System.Drawing.Point(106, 111);
+            this.Tx_NumCuenta.MaxLength = 10;
             this.Tx_NumCuenta.Name = "Tx_NumCuenta";
             this.Tx_NumCuenta.Size = new System.Drawing.Size(135, 23);
             this.Tx_NumCuenta.TabIndex = 5;
@@ -184,6 +185,7 @@
             // 
             this.Tx_NumCheque.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_NumCheque.Location = new System.Drawing.Point(390, 53);
+            this.Tx_NumCheque.MaxLength = 10;
             this.Tx_NumCheque.Name = "Tx_NumCheque";
             this.Tx_NumCheque.Size = new System.Drawing.Size(102, 23);
             this.Tx_NumCheque.TabIndex = 6;
@@ -194,6 +196,7 @@
             // 
             this.Tx_CodPostal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_CodPostal.Location = new System.Drawing.Point(106, 82);
+            this.Tx_CodPostal.MaxLength = 10;
             this.Tx_CodPostal.Name = "Tx_CodPostal";
             this.Tx_CodPostal.Size = new System.Drawing.Size(48, 23);
             this.Tx_CodPostal.TabIndex = 4;
@@ -202,6 +205,7 @@
             // 
             this.Tx_Sucursal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Sucursal.Location = new System.Drawing.Point(106, 53);
+            this.Tx_Sucursal.MaxLength = 3;
             this.Tx_Sucursal.Name = "Tx_Sucursal";
             this.Tx_Sucursal.Size = new System.Drawing.Size(48, 23);
             this.Tx_Sucursal.TabIndex = 3;
@@ -257,7 +261,7 @@
             this.groupBox2.Controls.Add(this.Tx_Importe);
             this.groupBox2.Location = new System.Drawing.Point(13, 215);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(509, 56);
+            this.groupBox2.Size = new System.Drawing.Size(509, 54);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             // 
@@ -284,7 +288,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(484, 286);
+            this.Bt_Salir.Location = new System.Drawing.Point(484, 275);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 11;
@@ -294,7 +298,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(440, 286);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(440, 275);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 10;
@@ -307,9 +311,9 @@
             // 
             // Gr_GrupoCliente
             // 
+            this.Gr_GrupoCliente.Controls.Add(this.Lb_Cliente);
             this.Gr_GrupoCliente.Controls.Add(this.Bt_Buscar);
             this.Gr_GrupoCliente.Controls.Add(this.label9);
-            this.Gr_GrupoCliente.Controls.Add(this.Tx_DescCliente);
             this.Gr_GrupoCliente.Controls.Add(this.Tx_CodCliente);
             this.Gr_GrupoCliente.Font = new System.Drawing.Font("Calibri", 11.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Gr_GrupoCliente.Location = new System.Drawing.Point(13, 7);
@@ -321,12 +325,13 @@
             // Bt_Buscar
             // 
             this.Bt_Buscar.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bt_Buscar.Location = new System.Drawing.Point(423, 18);
+            this.Bt_Buscar.Location = new System.Drawing.Point(182, 18);
             this.Bt_Buscar.Name = "Bt_Buscar";
-            this.Bt_Buscar.Size = new System.Drawing.Size(53, 24);
+            this.Bt_Buscar.Size = new System.Drawing.Size(23, 23);
             this.Bt_Buscar.TabIndex = 13;
-            this.Bt_Buscar.Text = "Buscar";
+            this.Bt_Buscar.Text = "...";
             this.Bt_Buscar.UseVisualStyleBackColor = true;
+            this.Bt_Buscar.Click += new System.EventHandler(this.Bt_Buscar_Click);
             // 
             // label9
             // 
@@ -337,15 +342,6 @@
             this.label9.Size = new System.Drawing.Size(48, 15);
             this.label9.TabIndex = 20;
             this.label9.Text = "Cliente:";
-            // 
-            // Tx_DescCliente
-            // 
-            this.Tx_DescCliente.Enabled = false;
-            this.Tx_DescCliente.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tx_DescCliente.Location = new System.Drawing.Point(186, 19);
-            this.Tx_DescCliente.Name = "Tx_DescCliente";
-            this.Tx_DescCliente.Size = new System.Drawing.Size(226, 23);
-            this.Tx_DescCliente.TabIndex = 12;
             // 
             // Tx_CodCliente
             // 
@@ -358,12 +354,21 @@
             this.Tx_CodCliente.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             this.Tx_CodCliente.Leave += new System.EventHandler(this.Chequear_Cliente);
             // 
+            // Lb_Cliente
+            // 
+            this.Lb_Cliente.AutoSize = true;
+            this.Lb_Cliente.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Lb_Cliente.Location = new System.Drawing.Point(208, 22);
+            this.Lb_Cliente.Name = "Lb_Cliente";
+            this.Lb_Cliente.Size = new System.Drawing.Size(0, 15);
+            this.Lb_Cliente.TabIndex = 21;
+            // 
             // IngresoManual
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(534, 328);
+            this.ClientSize = new System.Drawing.Size(534, 316);
             this.Controls.Add(this.Gr_GrupoCliente);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
@@ -373,7 +378,7 @@
             this.MaximizeBox = false;
             this.Name = "IngresoManual";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "IngresoManual";
+            this.Text = "Ingreso Manual de Cheque";
             this.Load += new System.EventHandler(this.IngresoManual_Load);
             this.Leave += new System.EventHandler(this.Chequear_Cliente);
             this.groupBox1.ResumeLayout(false);
@@ -413,9 +418,9 @@
         private System.Windows.Forms.ErrorProvider ControlError;
         private System.Windows.Forms.GroupBox Gr_GrupoCliente;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.TextBox Tx_DescCliente;
         private System.Windows.Forms.TextBox Tx_CodCliente;
         private System.Windows.Forms.Button Bt_Buscar;
         private System.Windows.Forms.DateTimePicker Tx_FechaVen;
+        private System.Windows.Forms.Label Lb_Cliente;
     }
 }

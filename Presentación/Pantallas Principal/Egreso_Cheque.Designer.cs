@@ -29,8 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Egreso_Cheque));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -88,16 +88,18 @@
             this.groupBox3.Controls.Add(this.Lk_IngresoManual);
             this.groupBox3.Location = new System.Drawing.Point(12, 60);
             this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(653, 70);
+            this.groupBox3.Size = new System.Drawing.Size(655, 49);
             this.groupBox3.TabIndex = 8;
             this.groupBox3.TabStop = false;
             // 
             // Bt_Escaneo
             // 
             this.Bt_Escaneo.Font = new System.Drawing.Font("Calibri", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Bt_Escaneo.Location = new System.Drawing.Point(11, 16);
+            this.Bt_Escaneo.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Escaneo.Image")));
+            this.Bt_Escaneo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Bt_Escaneo.Location = new System.Drawing.Point(8, 13);
             this.Bt_Escaneo.Name = "Bt_Escaneo";
-            this.Bt_Escaneo.Size = new System.Drawing.Size(631, 31);
+            this.Bt_Escaneo.Size = new System.Drawing.Size(378, 31);
             this.Bt_Escaneo.TabIndex = 4;
             this.Bt_Escaneo.Text = "Comenzar Escaneo de Cheques";
             this.Bt_Escaneo.UseVisualStyleBackColor = true;
@@ -106,19 +108,19 @@
             // Lk_IngresoManual
             // 
             this.Lk_IngresoManual.AutoSize = true;
-            this.Lk_IngresoManual.Location = new System.Drawing.Point(500, 50);
+            this.Lk_IngresoManual.Location = new System.Drawing.Point(425, 21);
             this.Lk_IngresoManual.Name = "Lk_IngresoManual";
-            this.Lk_IngresoManual.Size = new System.Drawing.Size(137, 15);
+            this.Lk_IngresoManual.Size = new System.Drawing.Size(199, 15);
             this.Lk_IngresoManual.TabIndex = 5;
             this.Lk_IngresoManual.TabStop = true;
-            this.Lk_IngresoManual.Text = "Realizar Egreso Manual";
+            this.Lk_IngresoManual.Text = "Seleccionar Cheques Manualmente";
             this.Lk_IngresoManual.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.Lk_IngresoManual_LinkClicked);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.Bt_Borrar);
             this.groupBox1.Controls.Add(this.Gr_Cheques);
-            this.groupBox1.Location = new System.Drawing.Point(11, 131);
+            this.groupBox1.Location = new System.Drawing.Point(11, 113);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4, 3, 4, 3);
@@ -206,7 +208,7 @@
             this.Group_Datos.Controls.Add(this.label1);
             this.Group_Datos.Controls.Add(this.Tx_Recibido);
             this.Group_Datos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Group_Datos.Location = new System.Drawing.Point(12, 373);
+            this.Group_Datos.Location = new System.Drawing.Point(13, 357);
             this.Group_Datos.Name = "Group_Datos";
             this.Group_Datos.Size = new System.Drawing.Size(654, 116);
             this.Group_Datos.TabIndex = 12;
@@ -248,6 +250,7 @@
             // 
             this.Tx_Observaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Observaciones.Location = new System.Drawing.Point(104, 78);
+            this.Tx_Observaciones.MaxLength = 200;
             this.Tx_Observaciones.Name = "Tx_Observaciones";
             this.Tx_Observaciones.Size = new System.Drawing.Size(538, 23);
             this.Tx_Observaciones.TabIndex = 26;
@@ -301,12 +304,11 @@
             this.Tx_Recibido.Name = "Tx_Recibido";
             this.Tx_Recibido.Size = new System.Drawing.Size(290, 23);
             this.Tx_Recibido.TabIndex = 21;
-            this.Tx_Recibido.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(627, 496);
+            this.Bt_Salir.Location = new System.Drawing.Point(627, 478);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 14;
@@ -315,7 +317,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(583, 496);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(583, 478);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 13;
@@ -454,7 +456,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(677, 541);
+            this.ClientSize = new System.Drawing.Size(677, 518);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.Group_Datos);

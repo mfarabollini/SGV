@@ -19,7 +19,7 @@ namespace Presentación
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Ingreso_Cheque());
+            Application.Run(new Egreso_Cheque());
         }
     }
 }
