@@ -16,6 +16,10 @@ namespace Presentación.Pantallas_Principal
     {
         // Declaraciones Globales
         #region Declaraciones Globales
+
+        // Binding Source para poder realizar la busque en DataGrid
+        BindingSource Bs = new BindingSource();
+
         // Declaración de la tabla para mostrar los errores.
         private DataTable _it_CheqSelec;
         // Declaración de la tabla para mostrar los errores.
@@ -36,8 +40,20 @@ namespace Presentación.Pantallas_Principal
         private void Egreso_Manual_Load(object sender, EventArgs e)
         {
             Gr_Cheques.AutoGenerateColumns = false;
-            // Recupera los cheques en cartera
-            Gr_Cheques.DataSource = ChequesBL.Cheques_Cartera();
+
+            // Crea un Data Table. La lista no permite filtrado en DataGrid
+            DataTable Tabla = new DataTable();
+            // recupera los datos y lo guarda en una lista
+            var Lista = ChequesBL.Cheques_Cartera();
+            // Transforma la lista en Tabla interna
+            Tabla = ListToDataTable(Lista);
+            // Asigna al BindingSource la tabla creada.
+            Bs.DataSource = Tabla;
+            // Datasource de la grilla, BindingSource
+            Gr_Cheques.DataSource = Bs;
+            // Selecciona el primer ítem del ComboBox
+            Cb_Busqueda.SelectedIndex = 0;
+
         }
         #endregion
 
@@ -75,6 +91,12 @@ namespace Presentación.Pantallas_Principal
             // Nueva Instancia de Línea
             DataRow Linea = null;
             int i = 0;
+            // En caso que la tabla venga con datos.
+            if (it_CheqSelec.Rows.Count != 0)
+            {
+                i = it_CheqSelec.Rows.Count;
+            }
+            
             // Para Cada línea seleccionada.
             foreach (DataGridViewRow row in Gr_Cheques.Rows)
             {
@@ -154,6 +176,101 @@ namespace Presentación.Pantallas_Principal
                 }
             }
             // Cierra la Ventana
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
+        #endregion
+
+        // Transforma la Lista en Tabla interna
+        #region Generar Tabla
+        // Transforma la Lista en tabla interna
+        public static DataTable ListToDataTable<T>(IList<T> data)
+        {
+            DataTable table = new DataTable();
+
+            //special handling for value types and string
+            if (typeof(T).IsValueType || typeof(T).Equals(typeof(string)))
+            {
+
+                DataColumn dc = new DataColumn("Value");
+                table.Columns.Add(dc);
+                foreach (T item in data)
+                {
+                    DataRow dr = table.NewRow();
+                    dr[0] = item;
+                    table.Rows.Add(dr);
+                }
+            }
+            else
+            {
+                PropertyDescriptorCollection properties = TypeDescriptor.GetProperties(typeof(T));
+                foreach (PropertyDescriptor prop in properties)
+                {
+                    table.Columns.Add(prop.Name, Nullable.GetUnderlyingType(prop.PropertyType) ?? prop.PropertyType);
+                }
+                foreach (T item in data)
+                {
+                    DataRow row = table.NewRow();
+                    foreach (PropertyDescriptor prop in properties)
+                    {
+                        try
+                        {
+                            row[prop.Name] = prop.GetValue(item) ?? DBNull.Value;
+                        }
+                        catch (Exception)
+                        {
+                            row[prop.Name] = DBNull.Value;
+                        }
+                    }
+                    table.Rows.Add(row);
+                }
+            }
+            return table;
+        }
+        #endregion
+
+        // Busca cheque de acuerdo a los parametros ingresados.
+        #region Buscar Cheque
+        private void Buscar_Cheque(object sender, EventArgs e)
+        {                
+            if (Tx_Buscar.Text == string.Empty)
+            {
+                Bs.RemoveFilter();
+            }
+            else
+            {
+                // Según el filtro seleccionado, aplica el filtro
+                switch (Cb_Busqueda.SelectedItem.ToString())
+                {
+                    case "Número de Cheque":                     
+                        Bs.Filter = "Num_Cheque LIKE '%" + Tx_Buscar.Text + "%'";
+                        break;
+
+                    case "Código Banco":
+                        Bs.Filter = "Cod_Banco LIKE '%" + Tx_Buscar.Text + "%'";
+                        break;
+                    
+                    case "Código Sucursal":
+                        Bs.Filter = "Cod_Sucursal LIKE '%" + Tx_Buscar.Text + "%'";
+                        break;
+                }
+            }
+        }
+        #endregion
+
+        // Inicializa las búsqueda.
+        #region Limpieza
+        private void Inicializa(object sender, EventArgs e)
+        {
+            Tx_Buscar.Clear();
+            Bs.RemoveFilter();
+        }
+        #endregion
+
+        // Lógica botón Salir
+        #region Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }

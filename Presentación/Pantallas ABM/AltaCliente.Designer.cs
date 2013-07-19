@@ -67,7 +67,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(372, 404);
+            this.Bt_Salir.Location = new System.Drawing.Point(365, 395);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 11;
@@ -77,7 +77,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(328, 404);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(321, 395);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 10;
@@ -109,7 +109,7 @@
             this.Grupo2.Controls.Add(this.Tx_Direccion);
             this.Grupo2.Controls.Add(this.Tx_RazSocial);
             this.Grupo2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Grupo2.Location = new System.Drawing.Point(13, 72);
+            this.Grupo2.Location = new System.Drawing.Point(7, 66);
             this.Grupo2.Name = "Grupo2";
             this.Grupo2.Size = new System.Drawing.Size(397, 323);
             this.Grupo2.TabIndex = 16;
@@ -318,9 +318,9 @@
             // 
             this.Tx_Direccion.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Direccion.Location = new System.Drawing.Point(91, 56);
-            this.Tx_Direccion.MaxLength = 20;
+            this.Tx_Direccion.MaxLength = 30;
             this.Tx_Direccion.Name = "Tx_Direccion";
-            this.Tx_Direccion.Size = new System.Drawing.Size(174, 23);
+            this.Tx_Direccion.Size = new System.Drawing.Size(240, 23);
             this.Tx_Direccion.TabIndex = 1;
             // 
             // Tx_RazSocial
@@ -337,7 +337,7 @@
             this.Grupo1.Controls.Add(this.Lb_CodZona);
             this.Grupo1.Controls.Add(this.Tx_Codigo);
             this.Grupo1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Grupo1.Location = new System.Drawing.Point(12, 12);
+            this.Grupo1.Location = new System.Drawing.Point(6, 6);
             this.Grupo1.Name = "Grupo1";
             this.Grupo1.Size = new System.Drawing.Size(398, 54);
             this.Grupo1.TabIndex = 15;
@@ -374,7 +374,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(420, 450);
+            this.ClientSize = new System.Drawing.Size(410, 435);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.Grupo2);

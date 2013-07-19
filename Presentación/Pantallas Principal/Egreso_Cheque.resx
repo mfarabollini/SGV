@@ -121,7 +121,7 @@
   <data name="Bt_Escaneo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAB4AAAAeCAYAAAA7MK6iAAAABHNCSVQICAgIfAhkiAAAAAFzUkdCAK7O
-        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAArvAAAK7wF9dopIAAAAIHRFWHRTb2Z0d2FyZQBNYWNy
+        HOkAAAAEZ0FNQQAAsY8L/GEFAAAACXBIWXMAAAruAAAK7gGvMWisAAAAIHRFWHRTb2Z0d2FyZQBNYWNy
         b21lZGlhIEZpcmV3b3JrcyBNWLuRKiQAAAGpcHJWV3ic7dVRctowEAZgJY4WSNNdEYkEcCUnFLiA76Tn
         XEeX6QE6uktvEHftTF56ADUP/2eNZDDMv0aW+P3+6495M2/TrE611s+hzooetWify1TLVMqUS53KcqHU
         XOa39ExlPUrOuU651qxfqDkvn87LtVzGPA9qHOs4ljyW0QAAAAAAAAAAAAAAAAB8IZ0e/y/cdnZu37bH
@@ -2202,5 +2202,8 @@
   </data>
   <metadata name="ControlError.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>52</value>
   </metadata>
 </root>

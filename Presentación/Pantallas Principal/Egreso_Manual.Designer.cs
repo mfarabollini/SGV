@@ -28,14 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle19 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle20 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle21 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Egreso_Manual));
             this.Gr_Grupo1 = new System.Windows.Forms.GroupBox();
             this.Gr_Cheques = new System.Windows.Forms.DataGridView();
@@ -55,7 +55,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Lb_1 = new System.Windows.Forms.Label();
             this.Cb_Busqueda = new System.Windows.Forms.ComboBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Lb_Título = new System.Windows.Forms.Label();
             this.Bt_Salir = new System.Windows.Forms.Button();
@@ -94,16 +94,16 @@
             this.CUIT,
             this.Fecha_venc,
             this.Obs_Salida});
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle8.Format = "d";
-            dataGridViewCellStyle8.NullValue = null;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.Gr_Cheques.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle24.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle24.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle24.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle24.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle24.Format = "d";
+            dataGridViewCellStyle24.NullValue = null;
+            dataGridViewCellStyle24.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle24.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle24.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.Gr_Cheques.DefaultCellStyle = dataGridViewCellStyle24;
             this.Gr_Cheques.Location = new System.Drawing.Point(7, 22);
             this.Gr_Cheques.Name = "Gr_Cheques";
             this.Gr_Cheques.ReadOnly = true;
@@ -127,8 +127,8 @@
             // Cod_Cheque
             // 
             this.Cod_Cheque.DataPropertyName = "Cod_Cheque";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Cheque.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Cheque.DefaultCellStyle = dataGridViewCellStyle17;
             this.Cod_Cheque.HeaderText = "Código Cheque";
             this.Cod_Cheque.Name = "Cod_Cheque";
             this.Cod_Cheque.ReadOnly = true;
@@ -137,8 +137,8 @@
             // Cod_Banco
             // 
             this.Cod_Banco.DataPropertyName = "Cod_Banco";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle18;
             this.Cod_Banco.HeaderText = "Cod. Banco";
             this.Cod_Banco.Name = "Cod_Banco";
             this.Cod_Banco.ReadOnly = true;
@@ -146,8 +146,8 @@
             // Cod_Sucursal
             // 
             this.Cod_Sucursal.DataPropertyName = "Cod_Sucursal";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Sucursal.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle19.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Sucursal.DefaultCellStyle = dataGridViewCellStyle19;
             this.Cod_Sucursal.HeaderText = "Sucursal";
             this.Cod_Sucursal.Name = "Cod_Sucursal";
             this.Cod_Sucursal.ReadOnly = true;
@@ -176,8 +176,8 @@
             // Cod_Cliente
             // 
             this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Cliente.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle20.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Cliente.DefaultCellStyle = dataGridViewCellStyle20;
             this.Cod_Cliente.HeaderText = "Código Cliente";
             this.Cod_Cliente.Name = "Cod_Cliente";
             this.Cod_Cliente.ReadOnly = true;
@@ -185,9 +185,9 @@
             // Fecha_Entrada
             // 
             this.Fecha_Entrada.DataPropertyName = "Fecha_Entrada";
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Fecha_Entrada.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle21.Format = "d";
+            dataGridViewCellStyle21.NullValue = null;
+            this.Fecha_Entrada.DefaultCellStyle = dataGridViewCellStyle21;
             this.Fecha_Entrada.HeaderText = "Fecha Entrada";
             this.Fecha_Entrada.Name = "Fecha_Entrada";
             this.Fecha_Entrada.ReadOnly = true;
@@ -195,10 +195,10 @@
             // Importe
             // 
             this.Importe.DataPropertyName = "Importe";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N2";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle22.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle22.Format = "N2";
+            dataGridViewCellStyle22.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle22;
             this.Importe.HeaderText = "Importe";
             this.Importe.Name = "Importe";
             this.Importe.ReadOnly = true;
@@ -213,9 +213,9 @@
             // Fecha_venc
             // 
             this.Fecha_venc.DataPropertyName = "Fecha_Vec";
-            dataGridViewCellStyle7.Format = "d";
-            dataGridViewCellStyle7.NullValue = null;
-            this.Fecha_venc.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle23.Format = "d";
+            dataGridViewCellStyle23.NullValue = null;
+            this.Fecha_venc.DefaultCellStyle = dataGridViewCellStyle23;
             this.Fecha_venc.HeaderText = "Fecha Vencimiento";
             this.Fecha_venc.Name = "Fecha_venc";
             this.Fecha_venc.ReadOnly = true;
@@ -232,7 +232,7 @@
             // 
             this.groupBox1.Controls.Add(this.Lb_1);
             this.groupBox1.Controls.Add(this.Cb_Busqueda);
-            this.groupBox1.Controls.Add(this.textBox1);
+            this.groupBox1.Controls.Add(this.Tx_Buscar);
             this.groupBox1.Location = new System.Drawing.Point(9, 51);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(768, 58);
@@ -260,13 +260,15 @@
             this.Cb_Busqueda.Name = "Cb_Busqueda";
             this.Cb_Busqueda.Size = new System.Drawing.Size(138, 23);
             this.Cb_Busqueda.TabIndex = 1;
+            this.Cb_Busqueda.SelectedValueChanged += new System.EventHandler(this.Inicializa);
             // 
-            // textBox1
+            // Tx_Buscar
             // 
-            this.textBox1.Location = new System.Drawing.Point(230, 22);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(324, 23);
-            this.textBox1.TabIndex = 0;
+            this.Tx_Buscar.Location = new System.Drawing.Point(230, 22);
+            this.Tx_Buscar.Name = "Tx_Buscar";
+            this.Tx_Buscar.Size = new System.Drawing.Size(324, 23);
+            this.Tx_Buscar.TabIndex = 0;
+            this.Tx_Buscar.TextChanged += new System.EventHandler(this.Buscar_Cheque);
             // 
             // Foto1
             // 
@@ -296,6 +298,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 17;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
@@ -338,7 +341,7 @@
         private System.Windows.Forms.GroupBox Gr_Grupo1;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView Gr_Cheques;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Tx_Buscar;
         private System.Windows.Forms.Label Lb_1;
         private System.Windows.Forms.ComboBox Cb_Busqueda;
         private System.Windows.Forms.PictureBox Foto1;

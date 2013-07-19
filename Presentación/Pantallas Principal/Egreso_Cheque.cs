@@ -359,7 +359,7 @@ namespace Presentación.Pantallas_Principal
 	       {
 		    clientes Clie = new clientes();
             Clie.Cod_Cliente = Convert.ToInt16(Gr_Cheques.Rows[Index].Cells[7].Value);
-            ClientesBL.Buscar_Cliente(Clie);
+            ClientesBL.Buscar_Cliente_Todos(Clie);
             Tx_Recibido.Text = Clie.razon_social;
 	       }           
 
@@ -603,6 +603,7 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
+        // Ingreso Manual
         #region Lógica Ingreso Manual
         // Valoriza en el Grid las observaciones.
         private void Valoriza_Obs(object sender, KeyEventArgs e)
@@ -655,6 +656,29 @@ namespace Presentación.Pantallas_Principal
 
             Gr_Cheques.Refresh();
         }                
+        #endregion
+
+        // Lógica botón salir
+        #region Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (Gr_Cheques.Rows.Count != 0)
+            {
+                if (MessageBox.Show("¿Confirma Salir sin Guardar los datos?",
+                  "Confirmación", MessageBoxButtons.YesNo,
+                   MessageBoxIcon.Warning,
+                   MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+                {
+                    this.DialogResult = DialogResult.Cancel;
+                    this.Close();
+                }
+            }
+            else
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
         #endregion
     }
 }

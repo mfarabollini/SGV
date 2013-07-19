@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using LogicaDeNegocio;
+using Presentación.Pantallas_ABM;
 
 namespace Presentación.Pantallas_ABM
 {
@@ -19,6 +20,10 @@ namespace Presentación.Pantallas_ABM
         BindingSource Bs = new BindingSource();
         // Tabla interna
         DataTable it_Clientes = new DataTable();
+        // Abre una instancia del formulario de Alta Viajante
+        private AltaViajante Fr_AltaViajante = null;
+        // Abre una instancia del formulario de Alta Viajante
+        private Modif_Viajante Fr_ModifViajante = null;
         #endregion
         
         public Viajantes()
@@ -60,6 +65,9 @@ namespace Presentación.Pantallas_ABM
 
             Fr_AltaViajante.Show(); // Mostrar el Formulario
         }
+
+
+
         #endregion
 
         // Lógica Botón editar

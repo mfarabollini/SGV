@@ -22,6 +22,12 @@ namespace LogicaDeNegocio
             return ClientesDAL.Buscar_Cliente(Clie);
         }
 
+        // Busca el Cliente enviandole el código
+        public static clientes Buscar_Cliente_Todos(clientes Clie)
+        {
+            return ClientesDAL.Buscar_Cliente_Todos(Clie);
+        }
+
         // Cargar Cliente
         public static clientes Alta_Cliente(clientes Cliente)
         {

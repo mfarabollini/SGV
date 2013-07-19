@@ -1,4 +1,6 @@
-﻿/// -----> Declaración de Referencias <------ ///
+﻿/// ----------------------------------------///
+/// -----> Declaración de Referencias <------///
+/// ----------------------------------------///
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -20,6 +22,10 @@ namespace Presentación.Pantallas_ABM
         BindingSource Bs = new BindingSource();
         // Tabla interna
         DataTable it_Clientes = new DataTable();
+        // Instacias de Form Abrir
+        private AltaCliente Fr_AltaCliente = null;
+        // instacia de Form Modificar
+        private Modif_Cliente Fr_ModifCliente = null;
         #endregion
 
         public Clientes()
@@ -130,8 +136,9 @@ namespace Presentación.Pantallas_ABM
             {
                 // Índice de la línea seleccionada                    
                 int indice = Gr_Clientes.SelectedRows[0].Index;
-                
-                Modif_Cliente Fr_Modif = new Modif_Cliente();
+
+                Modif_Cliente Fr_Modif = this.FormInstanciaMC;
+
                 // Código de Cliente
                 Fr_Modif.Codigo = Gr_Clientes.Rows[indice].Cells[0].Value.ToString();
                 // Razón Social
@@ -179,10 +186,31 @@ namespace Presentación.Pantallas_ABM
                                 
                 // Definimos el método (Fr_ClieModif_FormClosed) que vuelve a cargar la grilla cuando 
                 // se cierra la ventana Alta de Viajantes.
-                Fr_Modif.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ClieModif_FormClosed);
-
-                Fr_Modif.Show();
+                Fr_Modif.Show();                
             }
+        }
+
+        // Abre una nueva instancia del Form
+        private Modif_Cliente FormInstanciaMC
+        {
+            get
+            {
+                if (Fr_ModifCliente == null)
+                {
+                    Fr_ModifCliente = new Modif_Cliente();
+
+                    Fr_ModifCliente.Disposed += new EventHandler(form_DisposedMC);
+                    Fr_ModifCliente.FormClosed += new FormClosedEventHandler(Fr_ClieModif_FormClosed);
+
+                }
+                return Fr_ModifCliente;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedMC(object sender, EventArgs e)
+        {
+            Fr_ModifCliente = null;
         }
         #endregion
 
@@ -190,9 +218,31 @@ namespace Presentación.Pantallas_ABM
         #region Botón Agregar
         private void Bt_Agregar_Click(object sender, EventArgs e)
         {
-            AltaCliente Fr_Cliente = new AltaCliente();
-            Fr_Cliente.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ClieModif_FormClosed);
-            Fr_Cliente.Show();
+            AltaCliente Frm_AltaClie = this.FormInstanciaAC;
+            Frm_AltaClie.Show();
+        }
+
+        // Abre una nueva instancia del Form
+        private AltaCliente FormInstanciaAC
+        {
+            get
+            {
+                if (Fr_AltaCliente == null)
+                {
+                    Fr_AltaCliente = new AltaCliente();
+
+                    Fr_AltaCliente.Disposed += new EventHandler(form_DisposedAC);
+                    Fr_AltaCliente.FormClosed += new FormClosedEventHandler(Fr_ClieModif_FormClosed);
+
+                }
+                return Fr_AltaCliente;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedAC(object sender, EventArgs e)
+        {
+            Fr_AltaCliente = null;
         }
         #endregion
 

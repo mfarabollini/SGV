@@ -38,10 +38,8 @@
             this.Bt_delete = new System.Windows.Forms.Button();
             this.Lb_Título = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Grid_Viajantes = new System.Windows.Forms.DataGridView();
-            this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Lb_Buscar = new System.Windows.Forms.Label();
-            this.Tx_Buscar = new System.Windows.Forms.TextBox();
+            this.Grid_Viajantes = new System.Windows.Forms.DataGridView();
             this.Cod_Viajante = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Nombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Dirección = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +49,8 @@
             this.Teléfono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Localidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Cod_Provincia = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Tx_Buscar = new System.Windows.Forms.TextBox();
+            this.Foto1 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_Viajantes)).BeginInit();
@@ -65,7 +65,7 @@
             this.groupBox1.Controls.Add(this.Bt_delete);
             this.groupBox1.Location = new System.Drawing.Point(7, 55);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(790, 69);
+            this.groupBox1.Size = new System.Drawing.Size(775, 69);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             // 
@@ -84,7 +84,7 @@
             // 
             this.Bt_Salir.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(739, 16);
+            this.Bt_Salir.Location = new System.Drawing.Point(717, 16);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(45, 45);
             this.Bt_Salir.TabIndex = 5;
@@ -130,9 +130,18 @@
             this.groupBox2.Controls.Add(this.Tx_Buscar);
             this.groupBox2.Location = new System.Drawing.Point(7, 124);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(790, 343);
+            this.groupBox2.Size = new System.Drawing.Size(775, 357);
             this.groupBox2.TabIndex = 10;
             this.groupBox2.TabStop = false;
+            // 
+            // Lb_Buscar
+            // 
+            this.Lb_Buscar.AutoSize = true;
+            this.Lb_Buscar.Location = new System.Drawing.Point(7, 21);
+            this.Lb_Buscar.Name = "Lb_Buscar";
+            this.Lb_Buscar.Size = new System.Drawing.Size(48, 15);
+            this.Lb_Buscar.TabIndex = 19;
+            this.Lb_Buscar.Text = "Buscar:";
             // 
             // Grid_Viajantes
             // 
@@ -162,35 +171,8 @@
             this.Grid_Viajantes.Location = new System.Drawing.Point(5, 45);
             this.Grid_Viajantes.Name = "Grid_Viajantes";
             this.Grid_Viajantes.ReadOnly = true;
-            this.Grid_Viajantes.Size = new System.Drawing.Size(779, 292);
+            this.Grid_Viajantes.Size = new System.Drawing.Size(766, 306);
             this.Grid_Viajantes.TabIndex = 0;
-            // 
-            // Foto1
-            // 
-            this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
-            this.Foto1.Location = new System.Drawing.Point(17, 17);
-            this.Foto1.Name = "Foto1";
-            this.Foto1.Size = new System.Drawing.Size(37, 39);
-            this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.Foto1.TabIndex = 17;
-            this.Foto1.TabStop = false;
-            // 
-            // Lb_Buscar
-            // 
-            this.Lb_Buscar.AutoSize = true;
-            this.Lb_Buscar.Location = new System.Drawing.Point(7, 21);
-            this.Lb_Buscar.Name = "Lb_Buscar";
-            this.Lb_Buscar.Size = new System.Drawing.Size(48, 15);
-            this.Lb_Buscar.TabIndex = 19;
-            this.Lb_Buscar.Text = "Buscar:";
-            // 
-            // Tx_Buscar
-            // 
-            this.Tx_Buscar.Location = new System.Drawing.Point(61, 16);
-            this.Tx_Buscar.Name = "Tx_Buscar";
-            this.Tx_Buscar.Size = new System.Drawing.Size(419, 23);
-            this.Tx_Buscar.TabIndex = 18;
-            this.Tx_Buscar.TextChanged += new System.EventHandler(this.Buscar_Viajante);
             // 
             // Cod_Viajante
             // 
@@ -275,12 +257,30 @@
             this.Cod_Provincia.Visible = false;
             this.Cod_Provincia.Width = 126;
             // 
+            // Tx_Buscar
+            // 
+            this.Tx_Buscar.Location = new System.Drawing.Point(61, 16);
+            this.Tx_Buscar.Name = "Tx_Buscar";
+            this.Tx_Buscar.Size = new System.Drawing.Size(419, 23);
+            this.Tx_Buscar.TabIndex = 18;
+            this.Tx_Buscar.TextChanged += new System.EventHandler(this.Buscar_Viajante);
+            // 
+            // Foto1
+            // 
+            this.Foto1.Image = ((System.Drawing.Image)(resources.GetObject("Foto1.Image")));
+            this.Foto1.Location = new System.Drawing.Point(17, 17);
+            this.Foto1.Name = "Foto1";
+            this.Foto1.Size = new System.Drawing.Size(37, 39);
+            this.Foto1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.Foto1.TabIndex = 17;
+            this.Foto1.TabStop = false;
+            // 
             // Viajantes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(804, 470);
+            this.ClientSize = new System.Drawing.Size(787, 486);
             this.Controls.Add(this.Foto1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Lb_Título);

@@ -144,7 +144,7 @@ namespace Presentación.Pantallas_ABM
             Cb_Provincia.DataSource = ProvinciaBL.CargarProvincias();
             Cb_Provincia.SelectedIndex = -1;
 
-            if (this.Localidad != null)
+            if (this.Localidad != "")
             {
                 string CodProv = "1";
                 CodProv = LocalidadesBL.Obtener_Provincia(this.Localidad, CodProv);

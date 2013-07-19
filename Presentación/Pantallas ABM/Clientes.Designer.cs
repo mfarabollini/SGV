@@ -69,7 +69,7 @@
             this.groupBox2.Controls.Add(this.Tx_Buscar);
             this.groupBox2.Location = new System.Drawing.Point(8, 126);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(800, 390);
+            this.groupBox2.Size = new System.Drawing.Size(767, 390);
             this.groupBox2.TabIndex = 13;
             this.groupBox2.TabStop = false;
             // 
@@ -116,7 +116,7 @@
             this.Gr_Clientes.Location = new System.Drawing.Point(10, 45);
             this.Gr_Clientes.Name = "Gr_Clientes";
             this.Gr_Clientes.ReadOnly = true;
-            this.Gr_Clientes.Size = new System.Drawing.Size(781, 334);
+            this.Gr_Clientes.Size = new System.Drawing.Size(746, 334);
             this.Gr_Clientes.TabIndex = 0;
             // 
             // Tx_Buscar
@@ -145,7 +145,7 @@
             this.groupBox1.Controls.Add(this.Bt_delete);
             this.groupBox1.Location = new System.Drawing.Point(8, 56);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(798, 69);
+            this.groupBox1.Size = new System.Drawing.Size(767, 69);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             // 
@@ -164,7 +164,7 @@
             // 
             this.Bt_Salir.FlatAppearance.BorderColor = System.Drawing.Color.Maroon;
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(747, 15);
+            this.Bt_Salir.Location = new System.Drawing.Point(711, 15);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(45, 45);
             this.Bt_Salir.TabIndex = 5;
@@ -205,6 +205,7 @@
             // 
             // Cod_Cliente
             // 
+            this.Cod_Cliente.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
             this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
             this.Cod_Cliente.Frozen = true;
             this.Cod_Cliente.HeaderText = "Cód. Cliente";
@@ -346,7 +347,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(811, 518);
+            this.ClientSize = new System.Drawing.Size(780, 518);
             this.Controls.Add(this.Foto1);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.Lb_Título);

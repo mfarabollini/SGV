@@ -119,6 +119,11 @@ namespace Presentación.Pantallas_ABM
                                    MessageBoxIcon.Information);
                     Limpiar_Variables();
                 }
+                else
+                {
+                    MessageBox.Show("Ha ocurrido error guardando el Cliente", "Error guardando el Cliente", 
+                                    MessageBoxButtons.OK, MessageBoxIcon.Error);                                    
+                }
             }
         }
         #endregion

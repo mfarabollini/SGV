@@ -45,6 +45,20 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Bt_Borrar = new System.Windows.Forms.Button();
             this.Gr_Cheques = new System.Windows.Forms.DataGridView();
+            this.Posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cod_Cheque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cod_Sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cod_Postal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Num_Cheque = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Num_Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Cod_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha_Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fecha_venc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Obs_Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lb_Título = new System.Windows.Forms.Label();
             this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Group_Datos = new System.Windows.Forms.GroupBox();
@@ -60,20 +74,6 @@
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.ControlError = new System.Windows.Forms.ErrorProvider(this.components);
-            this.Posicion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cod_Cheque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cod_Banco = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cod_Sucursal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cod_Postal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Num_Cheque = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Num_Cuenta = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Cod_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha_Entrada = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha_Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Importe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.CUIT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fecha_venc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Obs_Salida = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox3.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_Cheques)).BeginInit();
@@ -175,6 +175,129 @@
             this.Gr_Cheques.Size = new System.Drawing.Size(638, 184);
             this.Gr_Cheques.TabIndex = 0;
             this.Gr_Cheques.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Carga_Valores);
+            // 
+            // Posicion
+            // 
+            this.Posicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
+            this.Posicion.DataPropertyName = "Posicion";
+            this.Posicion.HeaderText = "Pos.";
+            this.Posicion.Name = "Posicion";
+            this.Posicion.ReadOnly = true;
+            this.Posicion.Width = 55;
+            // 
+            // Cod_Cheque
+            // 
+            this.Cod_Cheque.DataPropertyName = "Cod_Cheque";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Cheque.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Cod_Cheque.HeaderText = "Código Cheque";
+            this.Cod_Cheque.Name = "Cod_Cheque";
+            this.Cod_Cheque.ReadOnly = true;
+            this.Cod_Cheque.Visible = false;
+            // 
+            // Cod_Banco
+            // 
+            this.Cod_Banco.DataPropertyName = "Cod_Banco";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle2;
+            this.Cod_Banco.HeaderText = "Cod. Banco";
+            this.Cod_Banco.Name = "Cod_Banco";
+            this.Cod_Banco.ReadOnly = true;
+            // 
+            // Cod_Sucursal
+            // 
+            this.Cod_Sucursal.DataPropertyName = "Cod_Sucursal";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Sucursal.DefaultCellStyle = dataGridViewCellStyle3;
+            this.Cod_Sucursal.HeaderText = "Sucursal";
+            this.Cod_Sucursal.Name = "Cod_Sucursal";
+            this.Cod_Sucursal.ReadOnly = true;
+            // 
+            // Cod_Postal
+            // 
+            this.Cod_Postal.DataPropertyName = "Cod_Postal";
+            this.Cod_Postal.HeaderText = "Cod. Postal";
+            this.Cod_Postal.Name = "Cod_Postal";
+            this.Cod_Postal.ReadOnly = true;
+            // 
+            // Num_Cheque
+            // 
+            this.Num_Cheque.DataPropertyName = "Num_Cheque";
+            this.Num_Cheque.HeaderText = "Num. Cheque";
+            this.Num_Cheque.Name = "Num_Cheque";
+            this.Num_Cheque.ReadOnly = true;
+            // 
+            // Num_Cuenta
+            // 
+            this.Num_Cuenta.DataPropertyName = "Num_Cuenta";
+            this.Num_Cuenta.HeaderText = "Num. Cuenta";
+            this.Num_Cuenta.Name = "Num_Cuenta";
+            this.Num_Cuenta.ReadOnly = true;
+            // 
+            // Cod_Cliente
+            // 
+            this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.Cod_Cliente.DefaultCellStyle = dataGridViewCellStyle4;
+            this.Cod_Cliente.HeaderText = "Código Cliente";
+            this.Cod_Cliente.Name = "Cod_Cliente";
+            this.Cod_Cliente.ReadOnly = true;
+            // 
+            // Fecha_Entrada
+            // 
+            this.Fecha_Entrada.DataPropertyName = "Fecha_Entrada";
+            dataGridViewCellStyle5.Format = "d";
+            dataGridViewCellStyle5.NullValue = null;
+            this.Fecha_Entrada.DefaultCellStyle = dataGridViewCellStyle5;
+            this.Fecha_Entrada.HeaderText = "Fecha Entrada";
+            this.Fecha_Entrada.Name = "Fecha_Entrada";
+            this.Fecha_Entrada.ReadOnly = true;
+            // 
+            // Fecha_Salida
+            // 
+            this.Fecha_Salida.DataPropertyName = "Fecha_Salida";
+            dataGridViewCellStyle6.Format = "d";
+            dataGridViewCellStyle6.NullValue = null;
+            this.Fecha_Salida.DefaultCellStyle = dataGridViewCellStyle6;
+            this.Fecha_Salida.HeaderText = "Fecha Salida";
+            this.Fecha_Salida.Name = "Fecha_Salida";
+            this.Fecha_Salida.ReadOnly = true;
+            this.Fecha_Salida.Visible = false;
+            // 
+            // Importe
+            // 
+            this.Importe.DataPropertyName = "Importe";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N2";
+            dataGridViewCellStyle7.NullValue = null;
+            this.Importe.DefaultCellStyle = dataGridViewCellStyle7;
+            this.Importe.HeaderText = "Importe";
+            this.Importe.Name = "Importe";
+            this.Importe.ReadOnly = true;
+            // 
+            // CUIT
+            // 
+            this.CUIT.DataPropertyName = "CUIT_Cheque";
+            this.CUIT.HeaderText = "CUIT";
+            this.CUIT.Name = "CUIT";
+            this.CUIT.ReadOnly = true;
+            // 
+            // Fecha_venc
+            // 
+            this.Fecha_venc.DataPropertyName = "Fecha_Vec";
+            dataGridViewCellStyle8.Format = "d";
+            dataGridViewCellStyle8.NullValue = null;
+            this.Fecha_venc.DefaultCellStyle = dataGridViewCellStyle8;
+            this.Fecha_venc.HeaderText = "Fecha Vencimiento";
+            this.Fecha_venc.Name = "Fecha_venc";
+            this.Fecha_venc.ReadOnly = true;
+            // 
+            // Obs_Salida
+            // 
+            this.Obs_Salida.DataPropertyName = "Obs_Salida";
+            this.Obs_Salida.HeaderText = "Obs. Salida";
+            this.Obs_Salida.Name = "Obs_Salida";
+            this.Obs_Salida.ReadOnly = true;
             // 
             // Lb_Título
             // 
@@ -313,6 +436,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 14;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
@@ -327,129 +451,6 @@
             // ControlError
             // 
             this.ControlError.ContainerControl = this;
-            // 
-            // Posicion
-            // 
-            this.Posicion.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.ColumnHeader;
-            this.Posicion.DataPropertyName = "Posicion";
-            this.Posicion.HeaderText = "Pos.";
-            this.Posicion.Name = "Posicion";
-            this.Posicion.ReadOnly = true;
-            this.Posicion.Width = 55;
-            // 
-            // Cod_Cheque
-            // 
-            this.Cod_Cheque.DataPropertyName = "Cod_Cheque";
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Cheque.DefaultCellStyle = dataGridViewCellStyle1;
-            this.Cod_Cheque.HeaderText = "Código Cheque";
-            this.Cod_Cheque.Name = "Cod_Cheque";
-            this.Cod_Cheque.ReadOnly = true;
-            this.Cod_Cheque.Visible = false;
-            // 
-            // Cod_Banco
-            // 
-            this.Cod_Banco.DataPropertyName = "Cod_Banco";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Banco.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Cod_Banco.HeaderText = "Cod. Banco";
-            this.Cod_Banco.Name = "Cod_Banco";
-            this.Cod_Banco.ReadOnly = true;
-            // 
-            // Cod_Sucursal
-            // 
-            this.Cod_Sucursal.DataPropertyName = "Cod_Sucursal";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Sucursal.DefaultCellStyle = dataGridViewCellStyle3;
-            this.Cod_Sucursal.HeaderText = "Sucursal";
-            this.Cod_Sucursal.Name = "Cod_Sucursal";
-            this.Cod_Sucursal.ReadOnly = true;
-            // 
-            // Cod_Postal
-            // 
-            this.Cod_Postal.DataPropertyName = "Cod_Postal";
-            this.Cod_Postal.HeaderText = "Cod. Postal";
-            this.Cod_Postal.Name = "Cod_Postal";
-            this.Cod_Postal.ReadOnly = true;
-            // 
-            // Num_Cheque
-            // 
-            this.Num_Cheque.DataPropertyName = "Num_Cheque";
-            this.Num_Cheque.HeaderText = "Num. Cheque";
-            this.Num_Cheque.Name = "Num_Cheque";
-            this.Num_Cheque.ReadOnly = true;
-            // 
-            // Num_Cuenta
-            // 
-            this.Num_Cuenta.DataPropertyName = "Num_Cuenta";
-            this.Num_Cuenta.HeaderText = "Num. Cuenta";
-            this.Num_Cuenta.Name = "Num_Cuenta";
-            this.Num_Cuenta.ReadOnly = true;
-            // 
-            // Cod_Cliente
-            // 
-            this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.Cod_Cliente.DefaultCellStyle = dataGridViewCellStyle4;
-            this.Cod_Cliente.HeaderText = "Código Cliente";
-            this.Cod_Cliente.Name = "Cod_Cliente";
-            this.Cod_Cliente.ReadOnly = true;
-            // 
-            // Fecha_Entrada
-            // 
-            this.Fecha_Entrada.DataPropertyName = "Fecha_Entrada";
-            dataGridViewCellStyle5.Format = "d";
-            dataGridViewCellStyle5.NullValue = null;
-            this.Fecha_Entrada.DefaultCellStyle = dataGridViewCellStyle5;
-            this.Fecha_Entrada.HeaderText = "Fecha Entrada";
-            this.Fecha_Entrada.Name = "Fecha_Entrada";
-            this.Fecha_Entrada.ReadOnly = true;
-            // 
-            // Fecha_Salida
-            // 
-            this.Fecha_Salida.DataPropertyName = "Fecha_Salida";
-            dataGridViewCellStyle6.Format = "d";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Fecha_Salida.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Fecha_Salida.HeaderText = "Fecha Salida";
-            this.Fecha_Salida.Name = "Fecha_Salida";
-            this.Fecha_Salida.ReadOnly = true;
-            this.Fecha_Salida.Visible = false;
-            // 
-            // Importe
-            // 
-            this.Importe.DataPropertyName = "Importe";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N2";
-            dataGridViewCellStyle7.NullValue = null;
-            this.Importe.DefaultCellStyle = dataGridViewCellStyle7;
-            this.Importe.HeaderText = "Importe";
-            this.Importe.Name = "Importe";
-            this.Importe.ReadOnly = true;
-            // 
-            // CUIT
-            // 
-            this.CUIT.DataPropertyName = "CUIT_Cheque";
-            this.CUIT.HeaderText = "CUIT";
-            this.CUIT.Name = "CUIT";
-            this.CUIT.ReadOnly = true;
-            // 
-            // Fecha_venc
-            // 
-            this.Fecha_venc.DataPropertyName = "Fecha_Vec";
-            dataGridViewCellStyle8.Format = "d";
-            dataGridViewCellStyle8.NullValue = null;
-            this.Fecha_venc.DefaultCellStyle = dataGridViewCellStyle8;
-            this.Fecha_venc.HeaderText = "Fecha Vencimiento";
-            this.Fecha_venc.Name = "Fecha_venc";
-            this.Fecha_venc.ReadOnly = true;
-            // 
-            // Obs_Salida
-            // 
-            this.Obs_Salida.DataPropertyName = "Obs_Salida";
-            this.Obs_Salida.HeaderText = "Obs. Salida";
-            this.Obs_Salida.Name = "Obs_Salida";
-            this.Obs_Salida.ReadOnly = true;
             // 
             // Egreso_Cheque
             // 
