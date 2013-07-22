@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Modif_Viajante));
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.Bt_Aceptar = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Lb_CodZona = new System.Windows.Forms.Label();
             this.Tx_Codigo = new System.Windows.Forms.TextBox();
+            this.l_tool_1 = new System.Windows.Forms.ToolTip(this.components);
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -253,6 +255,7 @@
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.MaximizeBox = false;
             this.Name = "Modif_Viajante";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Viajante";
@@ -285,5 +288,6 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label Lb_CodZona;
         private System.Windows.Forms.TextBox Tx_Codigo;
+        private System.Windows.Forms.ToolTip l_tool_1;
     }
 }

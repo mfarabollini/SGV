@@ -53,6 +53,42 @@ namespace AccesoADatos
             }
         }
 
+        // Datos del Cheque
+        public static cheques Datos_Cheque(cheques Cheque)
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                cheques Cheq = new cheques();
+                
+                try
+                {
+                    var query = (from n in bd.cheques
+                                where n.Cod_Cheques == Cheque.Cod_Cheques
+                                select n).Single();
+
+                    Cheque.Cod_Cheques = query.Cod_Cheques;     // Código de Cheque
+                    Cheque.Cod_Banco = query.Cod_Banco;         // Código de Banco 
+                    Cheque.Cod_Sucursal = query.Cod_Sucursal;   // Sucursal
+                    Cheque.Cod_Postal = query.Cod_Postal;       // Código Postal
+                    Cheque.Num_Cheque = query.Num_Cheque;       // Número de Cheque
+                    Cheque.Num_Cuenta = query.Num_Cuenta;       // Número de Cuenta
+                    Cheque.Cod_Cliente = query.Cod_Cliente;     // Código de Cliente
+                    Cheque.Fecha_Entrada = query.Fecha_Entrada; // Fecha de Entrada
+                    Cheque.Fecha_Salida = query.Fecha_Salida;   // Fecha de Salida
+                    Cheque.Importe = query.Importe;             // Importe
+                    Cheque.CUIT_Cheque = query.CUIT_Cheque;     // CUIT
+                    Cheque.Fecha_Vec = query.Fecha_Vec;         // Fecha de Vencimiento
+                    Cheque.Obs_Salida = query.Obs_Salida;       // Observaciones
+                
+                }
+                catch (Exception)
+                {
+                    Cheq.Cod_Cheques = 0;
+                }
+                return Cheq;
+            }
+        }
+
         // Devolver los datos del cheque
         public static cheques Devolver_Cheque(cheques Cheque)
         {

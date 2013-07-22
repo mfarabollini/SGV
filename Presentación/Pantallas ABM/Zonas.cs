@@ -22,6 +22,11 @@ namespace Presentación
         BindingSource Bs = new BindingSource();
         // Tabla interna
         DataTable it_Viajantes = new DataTable();
+
+        // Abre una instancia de los formularios de Alta y Modif
+        private Fr_NuevaZona Fr_AltaZona = null;
+        private Fr_Modif_Zona Fr_ModifZona = null;
+        
         #endregion
         
         public Zonas()
@@ -56,13 +61,36 @@ namespace Presentación
         #region Botón Alta
         private void button1_Click(object sender, EventArgs e)
         {
-            // Nueva instancia de Formulario de Alta
-            Fr_NuevaZona fr_nueva = new Fr_NuevaZona();
-            // Definimos el método (Fr_ZonaNew) que vuelve a cargar la grilla cuando se cierra la ventana
-            // Alta de Zonas.
-            fr_nueva.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ZonaNew_FormClosed);
-            // Mostrar el Formulario
-            fr_nueva.Show(); 
+            Fr_NuevaZona Frm_Nueva = this.FormInstanciaAZ;
+            Frm_Nueva.Show();
+        }
+
+        // Abre una nueva instancia del Form
+        private Fr_NuevaZona FormInstanciaAZ
+        {
+            get
+            {
+                if (Fr_AltaZona == null)
+                {
+                    Fr_AltaZona = new Fr_NuevaZona();
+                    Fr_AltaZona.Disposed += new EventHandler(form_DisposedAZ);
+                    Fr_AltaZona.FormClosed += new FormClosedEventHandler(Fr_ZonaNew_FormClosed);
+                }
+                return Fr_AltaZona;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedAZ(object sender, EventArgs e)
+        {
+            Fr_AltaZona = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de Alta Zona para refrezcar la grilla
+        private void Fr_ZonaNew_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Carga la grilla con los datos
+            Carga_Grid();
         }
         #endregion
 
@@ -129,17 +157,42 @@ namespace Presentación
                 zona.Cod_Zona = Grid_Zonas.Rows[indice].Cells[0].Value.ToString();
                 zona.Desc_Zona = Grid_Zonas.Rows[indice].Cells[1].Value.ToString();
 
-                Fr_Modif_Zona fr_modif = new Fr_Modif_Zona(zona);
+                Fr_Modif_Zona fr_modif = this.FormInstanciaMZ;
 
                 fr_modif.Codigo = zona.Cod_Zona;
                 fr_modif.Descripcion = zona.Desc_Zona;
-
-                // Definimos el método (Fr_ZonaNew) que vuelve a cargar la grilla cuando se cierra la ventana
-                // Alta de Zonas.
-                fr_modif.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ZonaModif_FormClosed);
+                
                 // Mostrar el Form
                 fr_modif.Show();
             }
+        }
+
+        // Abre una nueva instancia del Form
+        private Fr_Modif_Zona FormInstanciaMZ
+        {
+            get
+            {
+                if (Fr_ModifZona == null)
+                {
+                    Fr_ModifZona = new Fr_Modif_Zona();
+                    Fr_ModifZona.Disposed += new EventHandler(form_DisposedMZ);
+                    Fr_ModifZona.FormClosed += new FormClosedEventHandler(Fr_ZonaModif_FormClosed);
+                }
+                return Fr_ModifZona;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedMZ(object sender, EventArgs e)
+        {
+            Fr_ModifZona = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de Modif Zona para refrezcar la grilla
+        private void Fr_ZonaModif_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Carga la grilla con los datos
+            Carga_Grid();
         }
         #endregion
 
@@ -154,20 +207,6 @@ namespace Presentación
 
         // Métodos cargar la grilla, cerrados de forms
         #region Métodos
-        /// Método que se llama cuando se cierra la ventana de Alta Zona para refrezcar la grilla
-        private void Fr_ZonaNew_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Carga la grilla con los datos
-            Carga_Grid();
-        }
-
-        /// Método que se llama cuando se cierra la ventana de Modif Zona para refrezcar la grilla
-        private void Fr_ZonaModif_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Carga la grilla con los datos
-            Carga_Grid();
-        }
-
         // Recargar la Grilla
         private void Carga_Grid()
         {

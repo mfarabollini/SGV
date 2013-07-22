@@ -58,16 +58,37 @@ namespace Presentación.Pantallas_ABM
         private void Bt_Agregar_Click(object sender, EventArgs e)
         {
             // Nueva instancia de Formulario de Alta
-            AltaViajante Fr_AltaViajante = new AltaViajante();
-            // Definimos el método (AltaViajante) que vuelve a cargar la grilla cuando se cierra la ventana
-            // Alta de Zonas.
-            Fr_AltaViajante.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_AltaViajante_FormClosed);
-
-            Fr_AltaViajante.Show(); // Mostrar el Formulario
+            AltaViajante Frm_Alta = this.FormInstanciaAV;
+            Frm_Alta.Show();
+        }
+        
+        // Abre una nueva instancia del Form
+        private AltaViajante FormInstanciaAV
+        {
+            get
+            {
+                if (Fr_AltaViajante == null)
+                {
+                    Fr_AltaViajante = new AltaViajante();
+                    Fr_AltaViajante.Disposed += new EventHandler(form_DisposedAV);
+                    Fr_AltaViajante.FormClosed += new FormClosedEventHandler(Fr_AltaViajante_FormClosed);
+                }
+                return Fr_AltaViajante;
+            }
         }
 
+        // Disposed del formulario.
+        void form_DisposedAV(object sender, EventArgs e)
+        {
+            Fr_AltaViajante = null;
+        }
 
-
+        /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
+        private void Fr_AltaViajante_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Recargar la grilla
+            Recarga_grid();
+        }
         #endregion
 
         // Lógica Botón editar
@@ -133,27 +154,52 @@ namespace Presentación.Pantallas_ABM
                 {
                     Viaj.Cod_Localidad = Grid_Viajantes.Rows[indice].Cells[7].Value.ToString();
                 }
-                
-                Modif_Viajante Fr_Modif = new Modif_Viajante();
+
+                // Valoriza la Instancia del Form
+                Modif_Viajante Frm_Modif = this.FormInstanciaMV;
                 // Código
-                Fr_Modif.Codigo     = Viaj.Cod_Viajante.ToString();
+                Frm_Modif.Codigo = Viaj.Cod_Viajante.ToString();
                 // Nombre
-                Fr_Modif.Nombre     = Viaj.Nombre;
+                Frm_Modif.Nombre = Viaj.Nombre;
                 // Dirección
-                Fr_Modif.Direccion  = Viaj.Direccion;
+                Frm_Modif.Direccion = Viaj.Direccion;
                 // Localidad        
-                Fr_Modif.Localidad  = Viaj.Cod_Localidad;
+                Frm_Modif.Localidad = Viaj.Cod_Localidad;
                 // CUIT
-                Fr_Modif.Cuit       = Viaj.CUIT;
+                Frm_Modif.Cuit = Viaj.CUIT;
                 // Teléfono
-                Fr_Modif.Telefono   = Viaj.Telefono;
-
-                // Definimos el método (Fr_ViajModif_FormClosed) que vuelve a cargar la grilla cuando 
-                // se cierra la ventana Alta de Viajantes.
-                Fr_Modif.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Fr_ViajModif_FormClosed);
-
-                Fr_Modif.Show();
+                Frm_Modif.Telefono = Viaj.Telefono;
+                // Mostrar el Formulario
+                Frm_Modif.Show();
             }
+        }
+
+        // Abre una nueva instancia del Form
+        private Modif_Viajante FormInstanciaMV
+        {
+            get
+            {
+                if (Fr_ModifViajante == null)
+                {
+                    Fr_ModifViajante = new Modif_Viajante();
+                    Fr_ModifViajante.Disposed += new EventHandler(form_DisposedMV);
+                    Fr_ModifViajante.FormClosed += new FormClosedEventHandler(Fr_ViajModif_FormClosed);
+                }
+                return Fr_ModifViajante;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedMV(object sender, EventArgs e)
+        {
+            Fr_ModifViajante = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
+        private void Fr_ViajModif_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Recargar la grilla
+            Recarga_grid();
         }
         #endregion
 
@@ -198,20 +244,6 @@ namespace Presentación.Pantallas_ABM
 
         // Métodos Cerrado de los Forms y recarga de grilla
         #region Metodos
-        /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
-        private void Fr_AltaViajante_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Recargar la grilla
-            Recarga_grid();
-        }
-
-        /// Método que se llama cuando se cierra la ventana de Modif Viajante para refrezcar la grilla
-        private void Fr_ViajModif_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            // Recargar la grilla
-            Recarga_grid();
-        }
-
         // Recargar la Grilla
         private void Recarga_grid()
         {

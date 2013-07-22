@@ -38,7 +38,7 @@ namespace Presentación.Pantallas_ABM
         #endregion
 
         // Inicialización
-        public Fr_Modif_Zona(zonas p_zon)
+        public Fr_Modif_Zona()
         {
             InitializeComponent();
         }

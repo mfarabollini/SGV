@@ -211,7 +211,7 @@
           <Property Name="razon_social" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
           <Property Name="direccion" Type="String" MaxLength="30" Unicode="false" FixedLength="false" />
           <Property Name="codigo_postal" Type="String" MaxLength="10" Unicode="false" FixedLength="false" />
-          <Property Name="cod_localidad" Type="String" MaxLength="8" Unicode="false" FixedLength="false" />
+          <Property Name="cod_localidad" Type="String" MaxLength="8" Unicode="false" FixedLength="false" ConcurrencyMode="None" />
           <Property Name="Cod_Viajante" Type="String" Nullable="false" MaxLength="4" Unicode="false" FixedLength="false" />
           <Property Name="CUIT" Type="String" />
           <Property Name="contacto" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
@@ -249,7 +249,7 @@
           <Property Type="Int32" Name="Cod_Viajante" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="Nombre" MaxLength="40" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Direccion" MaxLength="20" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Cod_Localidad" MaxLength="8" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="Cod_Localidad" MaxLength="8" FixedLength="false" Unicode="false" ConcurrencyMode="None" />
           <Property Type="String" Name="CUIT" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Telefono" MaxLength="20" FixedLength="false" Unicode="false" />
         </EntityType>

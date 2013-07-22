@@ -379,6 +379,7 @@
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.Grupo2);
             this.Controls.Add(this.Grupo1);
+            this.MaximizeBox = false;
             this.Name = "Modif_Cliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Modificar Cliente";

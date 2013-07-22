@@ -380,7 +380,7 @@
             this.Controls.Add(this.Grupo2);
             this.Controls.Add(this.Grupo1);
             this.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.MinimizeBox = false;
+            this.MaximizeBox = false;
             this.Name = "AltaCliente";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Nuevo Cliente";

@@ -339,7 +339,7 @@
             this.Group_Datos.Controls.Add(this.Tx_CodBanco);
             this.Group_Datos.Controls.Add(this.label9);
             this.Group_Datos.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Group_Datos.Location = new System.Drawing.Point(12, 402);
+            this.Group_Datos.Location = new System.Drawing.Point(12, 399);
             this.Group_Datos.Name = "Group_Datos";
             this.Group_Datos.Size = new System.Drawing.Size(654, 148);
             this.Group_Datos.TabIndex = 7;

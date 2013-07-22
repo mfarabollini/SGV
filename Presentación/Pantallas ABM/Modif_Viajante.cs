@@ -1,4 +1,7 @@
-﻿using System;
+﻿/// ----------------------------------------///
+/// -----> Declaración de Referencias <------///
+/// ----------------------------------------///
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -78,6 +81,16 @@ namespace Presentación
         #region Load Formulario
         private void Modif_Viajante_Load(object sender, EventArgs e)
         {
+
+            /// Lógica para mostrar la información de cada botón (tooltip)
+            ToolTip l_tool_1 = new ToolTip();
+            l_tool_1.AutoPopDelay = 5000; //Tiempo que tarda en desaparecer
+            l_tool_1.InitialDelay = 100;  //Tiempo que tarda en aparecer
+            l_tool_1.ReshowDelay = 500;
+            l_tool_1.ShowAlways = true; //Mostrar aunque esté desabilitado
+            l_tool_1.SetToolTip(this.Bt_Aceptar, "Guardar Cambios"); // Botón Guardar
+            l_tool_1.SetToolTip(this.Bt_Salir, "Salir");             // Botón Salir
+            
             //Código de Viajante
             Tx_Codigo.Text = this.Codigo;
             //Nombre

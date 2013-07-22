@@ -80,6 +80,12 @@
     <Compile Include="Pantallas Búsqueda\Busqueda_Viajante.Designer.cs">
       <DependentUpon>Busqueda_Viajante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Principal\AnularMovimiento.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Principal\AnularMovimiento.Designer.cs">
+      <DependentUpon>AnularMovimiento.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas Principal\Egreso_Cheque.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -177,6 +183,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Búsqueda\Busqueda_Viajante.resx">
       <DependentUpon>Busqueda_Viajante.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Principal\AnularMovimiento.resx">
+      <DependentUpon>AnularMovimiento.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\Egreso_Cheque.resx">
       <DependentUpon>Egreso_Cheque.cs</DependentUpon>
