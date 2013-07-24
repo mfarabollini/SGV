@@ -28,13 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnularMovimiento));
             this.Gr_Grupo1 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
+            this.Tx_Mov = new System.Windows.Forms.TextBox();
             this.Foto1 = new System.Windows.Forms.PictureBox();
             this.Lb_Título = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
             this.Group_Datos = new System.Windows.Forms.GroupBox();
+            this.Tx_FecSal = new System.Windows.Forms.TextBox();
+            this.label12 = new System.Windows.Forms.Label();
+            this.Tx_FecEnt = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
+            this.Tx_Recibido = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.Tx_FechaVec = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.Tx_Importe = new System.Windows.Forms.TextBox();
             this.Lb_DescBanco = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -49,47 +60,59 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Tx_CodBanco = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.Tx_Importe = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button1 = new System.Windows.Forms.Button();
-            this.label10 = new System.Windows.Forms.Label();
-            this.Tx_Recibido = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
-            this.label11 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
-            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.Bt_Salir = new System.Windows.Forms.Button();
-            this.Bt_Aceptar = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.Tx_Observaciones = new System.Windows.Forms.TextBox();
             this.Rb_Entrada = new System.Windows.Forms.RadioButton();
             this.Rb_Salida = new System.Windows.Forms.RadioButton();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.Bt_Salir = new System.Windows.Forms.Button();
+            this.Bt_Aceptar = new System.Windows.Forms.Button();
+            this.ControlError = new System.Windows.Forms.ErrorProvider(this.components);
             this.Gr_Grupo1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Foto1)).BeginInit();
             this.Group_Datos.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
             this.SuspendLayout();
             // 
             // Gr_Grupo1
             // 
             this.Gr_Grupo1.Controls.Add(this.button1);
             this.Gr_Grupo1.Controls.Add(this.label1);
-            this.Gr_Grupo1.Controls.Add(this.textBox1);
+            this.Gr_Grupo1.Controls.Add(this.Tx_Mov);
             this.Gr_Grupo1.Location = new System.Drawing.Point(8, 66);
             this.Gr_Grupo1.Name = "Gr_Grupo1";
             this.Gr_Grupo1.Size = new System.Drawing.Size(636, 55);
             this.Gr_Grupo1.TabIndex = 0;
             this.Gr_Grupo1.TabStop = false;
             // 
-            // textBox1
+            // button1
             // 
-            this.textBox1.Location = new System.Drawing.Point(157, 20);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(63, 23);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Leave += new System.EventHandler(this.Cargar_Valores);
+            this.button1.Location = new System.Drawing.Point(226, 20);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(25, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "...";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(15, 25);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(138, 15);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "Número de Movimiento:";
+            // 
+            // Tx_Mov
+            // 
+            this.Tx_Mov.Location = new System.Drawing.Point(157, 20);
+            this.Tx_Mov.Name = "Tx_Mov";
+            this.Tx_Mov.Size = new System.Drawing.Size(63, 23);
+            this.Tx_Mov.TabIndex = 0;
+            this.Tx_Mov.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.Validacion_Numerica);
+            this.Tx_Mov.KeyUp += new System.Windows.Forms.KeyEventHandler(this.Valoriza_Textos);
+            this.Tx_Mov.Leave += new System.EventHandler(this.Cargar_Valores);
             // 
             // Foto1
             // 
@@ -111,24 +134,15 @@
             this.Lb_Título.TabIndex = 16;
             this.Lb_Título.Text = "Anular Movimiento de Cheque";
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(15, 25);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(138, 15);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "Número de Movimiento:";
-            // 
             // Group_Datos
             // 
-            this.Group_Datos.Controls.Add(this.textBox4);
+            this.Group_Datos.Controls.Add(this.Tx_FecSal);
             this.Group_Datos.Controls.Add(this.label12);
-            this.Group_Datos.Controls.Add(this.textBox3);
+            this.Group_Datos.Controls.Add(this.Tx_FecEnt);
             this.Group_Datos.Controls.Add(this.label11);
             this.Group_Datos.Controls.Add(this.Tx_Recibido);
             this.Group_Datos.Controls.Add(this.label10);
-            this.Group_Datos.Controls.Add(this.textBox2);
+            this.Group_Datos.Controls.Add(this.Tx_FechaVec);
             this.Group_Datos.Controls.Add(this.label8);
             this.Group_Datos.Controls.Add(this.Tx_Importe);
             this.Group_Datos.Controls.Add(this.Lb_DescBanco);
@@ -153,11 +167,100 @@
             this.Group_Datos.TabStop = false;
             this.Group_Datos.Text = "Datos del Cheque";
             // 
+            // Tx_FecSal
+            // 
+            this.Tx_FecSal.Enabled = false;
+            this.Tx_FecSal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_FecSal.Location = new System.Drawing.Point(522, 174);
+            this.Tx_FecSal.MaxLength = 10;
+            this.Tx_FecSal.Name = "Tx_FecSal";
+            this.Tx_FecSal.Size = new System.Drawing.Size(80, 23);
+            this.Tx_FecSal.TabIndex = 27;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label12.Location = new System.Drawing.Point(435, 180);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(80, 15);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Fecha Salida:";
+            // 
+            // Tx_FecEnt
+            // 
+            this.Tx_FecEnt.Enabled = false;
+            this.Tx_FecEnt.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_FecEnt.Location = new System.Drawing.Point(522, 145);
+            this.Tx_FecEnt.MaxLength = 10;
+            this.Tx_FecEnt.Name = "Tx_FecEnt";
+            this.Tx_FecEnt.Size = new System.Drawing.Size(80, 23);
+            this.Tx_FecEnt.TabIndex = 25;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(428, 151);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(88, 15);
+            this.label11.TabIndex = 24;
+            this.label11.Text = "Fecha Entrada:";
+            // 
+            // Tx_Recibido
+            // 
+            this.Tx_Recibido.Enabled = false;
+            this.Tx_Recibido.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_Recibido.Location = new System.Drawing.Point(106, 177);
+            this.Tx_Recibido.Name = "Tx_Recibido";
+            this.Tx_Recibido.Size = new System.Drawing.Size(270, 23);
+            this.Tx_Recibido.TabIndex = 23;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(26, 182);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(74, 15);
+            this.label10.TabIndex = 22;
+            this.label10.Text = "Recibido de:";
+            // 
+            // Tx_FechaVec
+            // 
+            this.Tx_FechaVec.Enabled = false;
+            this.Tx_FechaVec.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_FechaVec.Location = new System.Drawing.Point(522, 116);
+            this.Tx_FechaVec.MaxLength = 10;
+            this.Tx_FechaVec.Name = "Tx_FechaVec";
+            this.Tx_FechaVec.Size = new System.Drawing.Size(80, 23);
+            this.Tx_FechaVec.TabIndex = 21;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(43, 151);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(56, 15);
+            this.label8.TabIndex = 20;
+            this.label8.Text = "Importe:";
+            // 
+            // Tx_Importe
+            // 
+            this.Tx_Importe.Enabled = false;
+            this.Tx_Importe.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tx_Importe.Location = new System.Drawing.Point(106, 146);
+            this.Tx_Importe.Name = "Tx_Importe";
+            this.Tx_Importe.Size = new System.Drawing.Size(100, 23);
+            this.Tx_Importe.TabIndex = 19;
+            this.Tx_Importe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
+            // 
             // Lb_DescBanco
             // 
             this.Lb_DescBanco.AutoSize = true;
             this.Lb_DescBanco.Font = new System.Drawing.Font("Calibri", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_DescBanco.Location = new System.Drawing.Point(167, 29);
+            this.Lb_DescBanco.Location = new System.Drawing.Point(163, 27);
             this.Lb_DescBanco.Name = "Lb_DescBanco";
             this.Lb_DescBanco.Size = new System.Drawing.Size(0, 17);
             this.Lb_DescBanco.TabIndex = 18;
@@ -247,7 +350,7 @@
             this.Tx_CodPostal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_CodPostal.Location = new System.Drawing.Point(106, 85);
             this.Tx_CodPostal.Name = "Tx_CodPostal";
-            this.Tx_CodPostal.Size = new System.Drawing.Size(48, 23);
+            this.Tx_CodPostal.Size = new System.Drawing.Size(80, 23);
             this.Tx_CodPostal.TabIndex = 4;
             // 
             // Tx_Sucursal
@@ -291,105 +394,10 @@
             this.label9.TabIndex = 0;
             this.label9.Text = "Código Banco:";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(43, 151);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(56, 15);
-            this.label8.TabIndex = 20;
-            this.label8.Text = "Importe:";
-            // 
-            // Tx_Importe
-            // 
-            this.Tx_Importe.Enabled = false;
-            this.Tx_Importe.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tx_Importe.Location = new System.Drawing.Point(106, 146);
-            this.Tx_Importe.Name = "Tx_Importe";
-            this.Tx_Importe.Size = new System.Drawing.Size(100, 23);
-            this.Tx_Importe.TabIndex = 19;
-            this.Tx_Importe.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
-            // 
-            // textBox2
-            // 
-            this.textBox2.Enabled = false;
-            this.textBox2.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox2.Location = new System.Drawing.Point(522, 116);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(85, 23);
-            this.textBox2.TabIndex = 21;
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(226, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(26, 182);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(74, 15);
-            this.label10.TabIndex = 22;
-            this.label10.Text = "Recibido de:";
-            // 
-            // Tx_Recibido
-            // 
-            this.Tx_Recibido.Enabled = false;
-            this.Tx_Recibido.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tx_Recibido.Location = new System.Drawing.Point(106, 177);
-            this.Tx_Recibido.Name = "Tx_Recibido";
-            this.Tx_Recibido.Size = new System.Drawing.Size(270, 23);
-            this.Tx_Recibido.TabIndex = 23;
-            // 
-            // textBox3
-            // 
-            this.textBox3.Enabled = false;
-            this.textBox3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox3.Location = new System.Drawing.Point(522, 145);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(85, 23);
-            this.textBox3.TabIndex = 25;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(428, 151);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(88, 15);
-            this.label11.TabIndex = 24;
-            this.label11.Text = "Fecha Entrada:";
-            // 
-            // textBox4
-            // 
-            this.textBox4.Enabled = false;
-            this.textBox4.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox4.Location = new System.Drawing.Point(522, 174);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(85, 23);
-            this.textBox4.TabIndex = 27;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(434, 180);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(80, 15);
-            this.label12.TabIndex = 26;
-            this.label12.Text = "Fecha Salida:";
-            // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.label13);
-            this.groupBox1.Controls.Add(this.textBox5);
+            this.groupBox1.Controls.Add(this.Tx_Observaciones);
             this.groupBox1.Controls.Add(this.Rb_Entrada);
             this.groupBox1.Controls.Add(this.Rb_Salida);
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -400,23 +408,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos Anulación";
             // 
-            // Bt_Salir
+            // label13
             // 
-            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(605, 461);
-            this.Bt_Salir.Name = "Bt_Salir";
-            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Salir.TabIndex = 21;
-            this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(18, 77);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(92, 15);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Observaciones:";
             // 
-            // Bt_Aceptar
+            // Tx_Observaciones
             // 
-            this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(561, 461);
-            this.Bt_Aceptar.Name = "Bt_Aceptar";
-            this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
-            this.Bt_Aceptar.TabIndex = 20;
-            this.Bt_Aceptar.UseVisualStyleBackColor = true;
+            this.Tx_Observaciones.Location = new System.Drawing.Point(112, 70);
+            this.Tx_Observaciones.Name = "Tx_Observaciones";
+            this.Tx_Observaciones.Size = new System.Drawing.Size(512, 23);
+            this.Tx_Observaciones.TabIndex = 4;
             // 
             // Rb_Entrada
             // 
@@ -442,22 +449,28 @@
             this.Rb_Salida.Text = "Anular Salida";
             this.Rb_Salida.UseVisualStyleBackColor = true;
             // 
-            // textBox5
+            // Bt_Salir
             // 
-            this.textBox5.Location = new System.Drawing.Point(112, 70);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.Size = new System.Drawing.Size(512, 23);
-            this.textBox5.TabIndex = 4;
+            this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
+            this.Bt_Salir.Location = new System.Drawing.Point(605, 461);
+            this.Bt_Salir.Name = "Bt_Salir";
+            this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Salir.TabIndex = 21;
+            this.Bt_Salir.UseVisualStyleBackColor = true;
             // 
-            // label13
+            // Bt_Aceptar
             // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(18, 77);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(92, 15);
-            this.label13.TabIndex = 28;
-            this.label13.Text = "Observaciones:";
+            this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
+            this.Bt_Aceptar.Location = new System.Drawing.Point(561, 461);
+            this.Bt_Aceptar.Name = "Bt_Aceptar";
+            this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
+            this.Bt_Aceptar.TabIndex = 20;
+            this.Bt_Aceptar.UseVisualStyleBackColor = true;
+            this.Bt_Aceptar.Click += new System.EventHandler(this.Bt_Aceptar_Click);
+            // 
+            // ControlError
+            // 
+            this.ControlError.ContainerControl = this;
             // 
             // AnularMovimiento
             // 
@@ -477,6 +490,7 @@
             this.Name = "AnularMovimiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Anular Movimiento";
+            this.Load += new System.EventHandler(this.AnularMovimiento_Load);
             this.Gr_Grupo1.ResumeLayout(false);
             this.Gr_Grupo1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Foto1)).EndInit();
@@ -484,6 +498,7 @@
             this.Group_Datos.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ControlError)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -492,7 +507,7 @@
         #endregion
 
         private System.Windows.Forms.GroupBox Gr_Grupo1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox Tx_Mov;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.PictureBox Foto1;
         private System.Windows.Forms.Label Lb_Título;
@@ -512,21 +527,22 @@
         private System.Windows.Forms.TextBox Tx_CodBanco;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox2;
+        private System.Windows.Forms.TextBox Tx_FechaVec;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Tx_Importe;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.TextBox Tx_Recibido;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox Tx_FecSal;
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox Tx_FecEnt;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Button Bt_Salir;
         private System.Windows.Forms.Button Bt_Aceptar;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox5;
+        private System.Windows.Forms.TextBox Tx_Observaciones;
         private System.Windows.Forms.RadioButton Rb_Entrada;
         private System.Windows.Forms.RadioButton Rb_Salida;
+        private System.Windows.Forms.ErrorProvider ControlError;
     }
 }

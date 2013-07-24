@@ -70,6 +70,10 @@
           <Property Name="CUIT_Cheque" Type="varchar" MaxLength="20" />
           <Property Name="Fecha_Vec" Type="date" />
           <Property Name="Obs_Salida" Type="varchar" MaxLength="200" />
+          <Property Name="FechaAnulaSalida" Type="datetime" Nullable="false" />
+          <Property Name="ObservAnulaSalida" Type="varchar" Nullable="false" MaxLength="256" />
+          <Property Name="FechaAnulaEntrada" Type="datetime" Nullable="false" />
+          <Property Name="ObservAnulaEntrada" Type="varchar" Nullable="false" MaxLength="256" />
         </EntityType>
         <EntityType Name="clientes">
           <Key>
@@ -202,6 +206,10 @@
           <Property Name="CUIT_Cheque" Type="String" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="Fecha_Vec" Type="DateTime" Precision="0" />
           <Property Name="Obs_Salida" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Type="DateTime" Name="FechaAnulaSalida" Nullable="false" />
+          <Property Type="String" Name="ObservAnulaSalida" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="FechaAnulaEntrada" Nullable="false" />
+          <Property Type="String" Name="ObservAnulaEntrada" Nullable="false" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="clientes">
           <Key>
@@ -306,6 +314,10 @@
           <EntitySetMapping Name="cheques">
             <EntityTypeMapping TypeName="ChequesModel.cheques">
               <MappingFragment StoreEntitySet="cheques">
+                <ScalarProperty Name="ObservAnulaEntrada" ColumnName="ObservAnulaEntrada" />
+                <ScalarProperty Name="FechaAnulaEntrada" ColumnName="FechaAnulaEntrada" />
+                <ScalarProperty Name="ObservAnulaSalida" ColumnName="ObservAnulaSalida" />
+                <ScalarProperty Name="FechaAnulaSalida" ColumnName="FechaAnulaSalida" />
                 <ScalarProperty Name="Cod_Cheques" ColumnName="Cod_Cheques" />
                 <ScalarProperty Name="Cod_Banco" ColumnName="Cod_Banco" />
                 <ScalarProperty Name="Cod_Sucursal" ColumnName="Cod_Sucursal" />

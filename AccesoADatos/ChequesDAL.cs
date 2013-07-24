@@ -57,9 +57,7 @@ namespace AccesoADatos
         public static cheques Datos_Cheque(cheques Cheque)
         {
             using (ChequeEntidades bd = new ChequeEntidades())
-            {
-                cheques Cheq = new cheques();
-                
+            {                     
                 try
                 {
                     var query = (from n in bd.cheques
@@ -83,9 +81,9 @@ namespace AccesoADatos
                 }
                 catch (Exception)
                 {
-                    Cheq.Cod_Cheques = 0;
+                    Cheque.Cod_Cheques = 0;
                 }
-                return Cheq;
+                return Cheque;
             }
         }
 
@@ -222,5 +220,49 @@ namespace AccesoADatos
             }
             return ChequesAlDia;
         }
+
+        // 
+        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, string Mensaje)
+        {
+            bool Resultado = true;
+            
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                // Realiza la actualización a la tabla
+                var query = (from n in bd.cheques
+                             where n.Cod_Cheques == Cod_Cheque
+                             select n).Single();
+
+                // Determiana el tipo de anulación para borrar la Fecha    
+                if (Tipo_Anula == "E")
+	            {
+                    query.Fecha_Entrada = null;
+	            }
+                else if (Tipo_Anula == "S")
+                {
+                    query.Fecha_Salida = null;
+                }
+                             
+
+                try
+                {
+                    bd.SaveChanges();
+                }
+                catch (DbEntityValidationException ex)
+                {
+                    // Captura las Excepciones del insert
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                }
+            }
+
+            return Resultado;
+        }       
+
+
     }
 }

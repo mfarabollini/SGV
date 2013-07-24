@@ -41,6 +41,12 @@ namespace LogicaDeNegocio
             
         }
 
+        // Grabar Anulación del Cheque
+        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, string Mensaje)
+        {
+            return ChequesDAL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, Mensaje);
+        }
+
         // Recupera los Cheques en Cartera.
         public static List<cheques> Cheques_Cartera()
         {
