@@ -166,12 +166,23 @@ namespace Presentación.Pantallas_Principal
             string Tipo_Anula = String.Empty;
             string Mensaje = String.Empty;
 
+            // Valoriza el tipo de Anulación
+            if (Rb_Entrada.Checked)
+            {
+                Tipo_Anula = "E";
+            }
+            else if (Rb_Salida.Checked)
+            {
+                Tipo_Anula = "S";
+            }
+
             // Borra los errores
             ControlError.Clear();
             
             if (Validaciones())
-            {
-                if (ChequesBL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, Mensaje))
+            {   
+                // Efectua la anulación del movimiento, y de acuerdo al resultado muestr el mensaje
+                if (ChequesBL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, Mensaje, Tx_Observaciones.Text))
                 {
                     MessageBox.Show("La Anulación fue registrada correctamente", "Anulación",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

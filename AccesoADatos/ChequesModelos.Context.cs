@@ -27,7 +27,6 @@ namespace AccesoADatos
         }
     
         public DbSet<bancos> bancos { get; set; }
-        public DbSet<cheques> cheques { get; set; }
         public DbSet<clientes> clientes { get; set; }
         public DbSet<localidades> localidades { get; set; }
         public DbSet<provincias> provincias { get; set; }
@@ -35,5 +34,6 @@ namespace AccesoADatos
         public DbSet<viajantes> viajantes { get; set; }
         public DbSet<viajantes_view> viajantes_view { get; set; }
         public DbSet<clientes_view> clientes_view { get; set; }
+        public DbSet<cheques> cheques { get; set; }
     }
 }

@@ -221,8 +221,9 @@ namespace AccesoADatos
             return ChequesAlDia;
         }
 
-        // 
-        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, string Mensaje)
+        // Anular Movimientos
+        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, 
+                                          string Mensaje, string Observaciones)
         {
             bool Resultado = true;
             
@@ -236,13 +237,14 @@ namespace AccesoADatos
                 // Determiana el tipo de anulación para borrar la Fecha    
                 if (Tipo_Anula == "E")
 	            {
-                    query.Fecha_Entrada = null;
-	            }
+                    //query.FechaAnulaEntrada  = DateTime.Now;
+                    //query.ObservAnulaEntrada = Observaciones;
+                }
                 else if (Tipo_Anula == "S")
                 {
-                    query.Fecha_Salida = null;
-                }
-                             
+                    //query.FechaAnulaSalida = DateTime.Now;
+                    //query.ObservAnulaSalida = Observaciones;
+                }                             
 
                 try
                 {
@@ -256,13 +258,11 @@ namespace AccesoADatos
                             .Select(x => x.ErrorMessage);
 
                     var fullErrorMessage = string.Join("; ", errorMessages);
-                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                    Mensaje = string.Concat(ex.Message, fullErrorMessage);                    
                 }
             }
 
             return Resultado;
-        }       
-
-
+        }
     }
 }

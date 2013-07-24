@@ -27,9 +27,9 @@ namespace Entidades
         public string CUIT_Cheque { get; set; }
         public Nullable<System.DateTime> Fecha_Vec { get; set; }
         public string Obs_Salida { get; set; }
-        public Nullable<System.DateTime> FechaAnulaSalida { get; set; }
-        public string ObservAnulaSalida { get; set; }
-        public Nullable<System.DateTime> FechaAnulaEntrada { get; set; }
-        public string ObservAnulaEntrada { get; set; }
+        public Nullable<System.DateTime> FechaAnulSal { get; set; }
+        public string ObserAnulSal { get; set; }
+        public Nullable<System.DateTime> FechaAnulEnt { get; set; }
+        public string ObserAnulEnt { get; set; }
     }
 }
