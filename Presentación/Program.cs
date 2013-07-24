@@ -19,7 +19,7 @@ namespace Presentación
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new AnularMovimiento());
+            Application.Run(new Menú_Principal());
         }
     }
 }

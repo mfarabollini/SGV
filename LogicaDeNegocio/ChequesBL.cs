@@ -68,5 +68,11 @@ namespace LogicaDeNegocio
             // Recupera la cantidad Cheques en Cartera
             return ChequesDAL.Indicador_AlDia();            
         }
+
+        // Recupera Los movimientos de los cheques
+        public static List<cheques> Movimiento_Cheques()
+        {
+            return ChequesDAL.Movimiento_Cheques();
+        }
     }
 }

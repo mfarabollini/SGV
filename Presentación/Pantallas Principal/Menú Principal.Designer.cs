@@ -30,21 +30,23 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Menú_Principal));
-            System.Windows.Forms.TreeNode treeNode46 = new System.Windows.Forms.TreeNode("Ingresar Cheque");
-            System.Windows.Forms.TreeNode treeNode47 = new System.Windows.Forms.TreeNode("Egreso de Cheque");
-            System.Windows.Forms.TreeNode treeNode48 = new System.Windows.Forms.TreeNode("Cheques", new System.Windows.Forms.TreeNode[] {
-            treeNode46,
-            treeNode47});
-            System.Windows.Forms.TreeNode treeNode49 = new System.Windows.Forms.TreeNode("Cheques en Cartera");
-            System.Windows.Forms.TreeNode treeNode50 = new System.Windows.Forms.TreeNode("Reportes", new System.Windows.Forms.TreeNode[] {
-            treeNode49});
-            System.Windows.Forms.TreeNode treeNode51 = new System.Windows.Forms.TreeNode("Clientes");
-            System.Windows.Forms.TreeNode treeNode52 = new System.Windows.Forms.TreeNode("Viajantes");
-            System.Windows.Forms.TreeNode treeNode53 = new System.Windows.Forms.TreeNode("Zonas");
-            System.Windows.Forms.TreeNode treeNode54 = new System.Windows.Forms.TreeNode("Actualizar", new System.Windows.Forms.TreeNode[] {
-            treeNode51,
-            treeNode52,
-            treeNode53});
+            System.Windows.Forms.TreeNode treeNode1 = new System.Windows.Forms.TreeNode("Ingresar Cheque");
+            System.Windows.Forms.TreeNode treeNode2 = new System.Windows.Forms.TreeNode("Egreso de Cheque");
+            System.Windows.Forms.TreeNode treeNode3 = new System.Windows.Forms.TreeNode("Anular Movimiento");
+            System.Windows.Forms.TreeNode treeNode4 = new System.Windows.Forms.TreeNode("Cheques", new System.Windows.Forms.TreeNode[] {
+            treeNode1,
+            treeNode2,
+            treeNode3});
+            System.Windows.Forms.TreeNode treeNode5 = new System.Windows.Forms.TreeNode("Cheques en Cartera");
+            System.Windows.Forms.TreeNode treeNode6 = new System.Windows.Forms.TreeNode("Reportes", new System.Windows.Forms.TreeNode[] {
+            treeNode5});
+            System.Windows.Forms.TreeNode treeNode7 = new System.Windows.Forms.TreeNode("Clientes");
+            System.Windows.Forms.TreeNode treeNode8 = new System.Windows.Forms.TreeNode("Viajantes");
+            System.Windows.Forms.TreeNode treeNode9 = new System.Windows.Forms.TreeNode("Zonas");
+            System.Windows.Forms.TreeNode treeNode10 = new System.Windows.Forms.TreeNode("Actualizar", new System.Windows.Forms.TreeNode[] {
+            treeNode7,
+            treeNode8,
+            treeNode9});
             this.Gr_Box = new System.Windows.Forms.GroupBox();
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -58,6 +60,7 @@
             this.Lb_cartera = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.Bt_Anular = new System.Windows.Forms.Button();
             this.Bt_Egreso = new System.Windows.Forms.Button();
             this.Bt_Ingreso = new System.Windows.Forms.Button();
             this.Gr_1 = new System.Windows.Forms.GroupBox();
@@ -219,6 +222,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.Bt_Anular);
             this.groupBox1.Controls.Add(this.Bt_Egreso);
             this.groupBox1.Controls.Add(this.Bt_Ingreso);
             this.groupBox1.Location = new System.Drawing.Point(7, 57);
@@ -227,6 +231,20 @@
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cheques";
+            // 
+            // Bt_Anular
+            // 
+            this.Bt_Anular.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(64)))), ((int)(((byte)(64)))));
+            this.Bt_Anular.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Anular.Image")));
+            this.Bt_Anular.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Bt_Anular.Location = new System.Drawing.Point(320, 23);
+            this.Bt_Anular.Name = "Bt_Anular";
+            this.Bt_Anular.Size = new System.Drawing.Size(144, 29);
+            this.Bt_Anular.TabIndex = 2;
+            this.Bt_Anular.Text = "Anular Movimiento";
+            this.Bt_Anular.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.Bt_Anular.UseVisualStyleBackColor = true;
+            this.Bt_Anular.Click += new System.EventHandler(this.Bt_Anular_Click);
             // 
             // Bt_Egreso
             // 
@@ -304,38 +322,41 @@
             this.Tr_VistaTree.Font = new System.Drawing.Font("Calibri", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tr_VistaTree.Location = new System.Drawing.Point(0, 52);
             this.Tr_VistaTree.Name = "Tr_VistaTree";
-            treeNode46.ForeColor = System.Drawing.Color.White;
-            treeNode46.Name = "Nd_Ingreso";
-            treeNode46.Text = "Ingresar Cheque";
-            treeNode47.ForeColor = System.Drawing.Color.White;
-            treeNode47.Name = "Nd_Egreso";
-            treeNode47.Text = "Egreso de Cheque";
-            treeNode48.ForeColor = System.Drawing.Color.White;
-            treeNode48.Name = "Nd_Cheques";
-            treeNode48.Text = "Cheques";
-            treeNode49.ForeColor = System.Drawing.Color.White;
-            treeNode49.Name = "Nd_CheCartera";
-            treeNode49.Text = "Cheques en Cartera";
-            treeNode50.ForeColor = System.Drawing.Color.White;
-            treeNode50.Name = "Nb_Reportes";
-            treeNode50.Text = "Reportes";
-            treeNode51.ForeColor = System.Drawing.Color.White;
-            treeNode51.Name = "Nd_Clientes";
-            treeNode51.Text = "Clientes";
-            treeNode52.ForeColor = System.Drawing.Color.White;
-            treeNode52.Name = "Nd_Viajantes";
-            treeNode52.Text = "Viajantes";
-            treeNode53.ForeColor = System.Drawing.Color.White;
-            treeNode53.Name = "Nd_Zonas";
-            treeNode53.Text = "Zonas";
-            treeNode54.Checked = true;
-            treeNode54.ForeColor = System.Drawing.Color.White;
-            treeNode54.Name = "Nd_Actualizar";
-            treeNode54.Text = "Actualizar";
+            treeNode1.ForeColor = System.Drawing.Color.White;
+            treeNode1.Name = "Nd_Ingreso";
+            treeNode1.Text = "Ingresar Cheque";
+            treeNode2.ForeColor = System.Drawing.Color.White;
+            treeNode2.Name = "Nd_Egreso";
+            treeNode2.Text = "Egreso de Cheque";
+            treeNode3.ForeColor = System.Drawing.Color.White;
+            treeNode3.Name = "Anular";
+            treeNode3.Text = "Anular Movimiento";
+            treeNode4.ForeColor = System.Drawing.Color.White;
+            treeNode4.Name = "Nd_Cheques";
+            treeNode4.Text = "Cheques";
+            treeNode5.ForeColor = System.Drawing.Color.White;
+            treeNode5.Name = "Nd_CheCartera";
+            treeNode5.Text = "Cheques en Cartera";
+            treeNode6.ForeColor = System.Drawing.Color.White;
+            treeNode6.Name = "Nb_Reportes";
+            treeNode6.Text = "Reportes";
+            treeNode7.ForeColor = System.Drawing.Color.White;
+            treeNode7.Name = "Nd_Clientes";
+            treeNode7.Text = "Clientes";
+            treeNode8.ForeColor = System.Drawing.Color.White;
+            treeNode8.Name = "Nd_Viajantes";
+            treeNode8.Text = "Viajantes";
+            treeNode9.ForeColor = System.Drawing.Color.White;
+            treeNode9.Name = "Nd_Zonas";
+            treeNode9.Text = "Zonas";
+            treeNode10.Checked = true;
+            treeNode10.ForeColor = System.Drawing.Color.White;
+            treeNode10.Name = "Nd_Actualizar";
+            treeNode10.Text = "Actualizar";
             this.Tr_VistaTree.Nodes.AddRange(new System.Windows.Forms.TreeNode[] {
-            treeNode48,
-            treeNode50,
-            treeNode54});
+            treeNode4,
+            treeNode6,
+            treeNode10});
             this.Tr_VistaTree.Size = new System.Drawing.Size(183, 429);
             this.Tr_VistaTree.TabIndex = 4;
             this.Tr_VistaTree.NodeMouseDoubleClick += new System.Windows.Forms.TreeNodeMouseClickEventHandler(this.Abre_Form);
@@ -417,5 +438,6 @@
         private System.Windows.Forms.Timer Timer;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Timer Timer2;
+        private System.Windows.Forms.Button Bt_Anular;
     }
 }

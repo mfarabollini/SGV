@@ -44,7 +44,9 @@ namespace AccesoADatos
                 var query = (from n in bd.cheques
                              where n.Cod_Banco    == Cheque.Cod_Banco &&
                                    n.Cod_Sucursal == Cheque.Cod_Sucursal &&
-                                   n.Num_Cheque   == Cheque.Num_Cheque
+                                   n.Num_Cheque   == Cheque.Num_Cheque &&
+                                   n.Estado == "C" // verifica que el cheque exista con estado "En Cartera". 
+                                                   // Es posible que exista con anulaciones en otro estado.
                              select n).Count();
                 if (query == 0)
                     return false;
@@ -99,7 +101,8 @@ namespace AccesoADatos
                     var query = (from n in bd.cheques
                                  where n.Cod_Banco == Cheque.Cod_Banco &&
                                        n.Cod_Sucursal == Cheque.Cod_Sucursal &&
-                                       n.Num_Cheque == Cheque.Num_Cheque
+                                       n.Num_Cheque == Cheque.Num_Cheque &&
+                                       ( n.Estado == "C" || n.Estado == "S" )
                                  select n).Single();
 
                     Cheque.Cod_Cheques = query.Cod_Cheques;     // Código de Cheque
@@ -138,11 +141,13 @@ namespace AccesoADatos
                                  where n.Cod_Banco == Cheque.Cod_Banco &&
                                        n.Cod_Sucursal == Cheque.Cod_Sucursal &&
                                        n.Cod_Postal == Cheque.Cod_Postal &&
-                                       n.Num_Cheque == Cheque.Num_Cheque
+                                       n.Num_Cheque == Cheque.Num_Cheque &&
+                                       n.Estado == "C"
                                  select n).Single();
 
                     // Valoriza
                     query.Fecha_Salida  = Cheque.Fecha_Salida;
+                    query.Estado        = Cheque.Estado;
                     query.Obs_Salida    = Cheque.Obs_Salida;
 
                     // Guarda los cambios.
@@ -171,7 +176,20 @@ namespace AccesoADatos
                return query;    
             }
         }
-    
+
+        // Movimiento de Cheques
+        public static List<cheques> Movimiento_Cheques()
+        {
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                var query = (from n in bd.cheques
+                             where n.Estado == "C" || n.Estado == "S"
+                             select n).ToList();
+
+                return query;
+            }
+        }
+
         // Recupera los indicadores.
         public static int Indicador_Cartera()
         {
@@ -183,7 +201,7 @@ namespace AccesoADatos
                 try 
                 {
                     var query = (from n in bd.cheques
-                                 where n.Fecha_Salida == null
+                                 where n.Estado == "C"
                                  select n).Count();
                     
                     ChequesCartera = query;
@@ -208,8 +226,8 @@ namespace AccesoADatos
                 try
                 {
                     var query = (from n in bd.cheques
-                                 where n.Fecha_Salida == null &&
-                                       n.Fecha_Vec >= DateTime.Now 
+                                 where n.Estado == "C" &&
+                                       n.Fecha_Vec <= DateTime.Now 
                                  select n).Count();
 
                     ChequesAlDia = query;
@@ -224,8 +242,7 @@ namespace AccesoADatos
         }
 
         // Anular Movimientos
-        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, 
-                                          string Mensaje, string Observaciones)
+        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, string Mensaje, string Observaciones)
         {
             bool Resultado = true;
             
@@ -239,15 +256,15 @@ namespace AccesoADatos
                 // Determiana el tipo de anulación Setear la Fecha
                 if (Tipo_Anula == "E")
 	            {
-                    query.FechaAnulEnt  = DateTime.Now;
-                    query.Estado = "A";
-                    query.ObserAnulEnt = Observaciones;
+                    query.FechaAnulEnt  = DateTime.Now; // Fecha Anulación Entrada
+                    query.Estado = "A";                 // Anulando la Entrada, el Cheque queda Anulado totalemente (Estado = A).
+                    query.ObserAnulEnt = Observaciones; // Observaciones.
                 }
                 else if (Tipo_Anula == "S")
                 {
-                    query.FechaAnulSal = DateTime.Now;
-                    query.Estado = "C";
-                    query.ObserAnulSal = Observaciones;
+                    query.FechaAnulSal = DateTime.Now;  // Fecha Anulación Salida
+                    query.Estado = "C";                 // Anulando la Salida, El estado es "C" (En cartera).
+                    query.ObserAnulSal = Observaciones; // Observaciones.
                 }                             
 
 
@@ -255,7 +272,7 @@ namespace AccesoADatos
                 try
                 {
                     bd.SaveChanges();
-                    Resultado = true;
+                    Resultado = true; // Devuelve True.
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -266,7 +283,7 @@ namespace AccesoADatos
 
                     var fullErrorMessage = string.Join("; ", errorMessages);
                     Mensaje = string.Concat(ex.Message, fullErrorMessage);
-                    Resultado = false;
+                    Resultado = false; // Devuelve Falso.
                 }
             }
 

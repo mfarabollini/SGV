@@ -89,7 +89,7 @@ namespace Presentación.Pantallas_Principal
                             Adherir_Error(row.Cells["Posicion"].Value.ToString(), "El cheque no fue ingresado previamente");
                         }
                         // El egreso ya fue registrado.
-                        else if (Cheque.Fecha_Salida != null)
+                        else if (Cheque.Estado == "S")
                         {
                             Adherir_Error(row.Cells["Posicion"].Value.ToString(), "La Salida del cheque ya fue registrada");
                         }
@@ -453,9 +453,9 @@ namespace Presentación.Pantallas_Principal
                     MessageBoxIcon.Warning,
                     MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
                 {
-                    int indice = Gr_Cheques.SelectedRows[0].Index;
+                    int indice_i = Gr_Cheques.SelectedRows[0].Index;
                     // Eliminar el registro de la tabla interna y actualiza el grid
-                    it_cheques.Rows[indice].Delete();
+                    it_cheques.Rows[indice_i].Delete();
                     Gr_Cheques.Refresh();
 
                     if (Gr_Cheques.Rows.Count != 0)
@@ -464,7 +464,8 @@ namespace Presentación.Pantallas_Principal
                         Gr_Cheques.Rows[0].Selected = true;
                         // Carga los Textos con la línea seleccionada
                         Cargar_TextBoxs(0);
-
+                        // Valoriza la variable global con el nuevo indice.
+                        indice = 0;
                     }
                     else
                     {
@@ -575,7 +576,7 @@ namespace Presentación.Pantallas_Principal
                     Result = false;
                     l_control = "X";
                 }
-                else if (Cheque.Fecha_Salida != null)
+                else if (Cheque.Estado == "S")
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "La Salida del cheque ya fue registrada");
                     Result = false;
@@ -605,15 +606,8 @@ namespace Presentación.Pantallas_Principal
         }
         #endregion
 
-        // Ingreso Manual
-        #region Lógica Ingreso Manual
-        // Valoriza en el Grid las observaciones.
-        private void Valoriza_Obs(object sender, KeyEventArgs e)
-        {
-            Gr_Cheques.Rows[indice].Cells[13].Value = Tx_Observaciones.Text;
-            Gr_Cheques.Refresh();
-        }
-
+        // Egreso Manual
+        #region Lógica Egreso Manual
         // Abre una nueva instancia del Form
         private Egreso_Manual FormInstancia
         {
@@ -659,6 +653,13 @@ namespace Presentación.Pantallas_Principal
             Gr_Cheques.Refresh();
         }                
         #endregion
+
+        // Valoriza en el Grid las observaciones.
+        private void Valoriza_Obs(object sender, KeyEventArgs e)
+        {
+            Gr_Cheques.Rows[indice].Cells[13].Value = Tx_Observaciones.Text;
+            Gr_Cheques.Refresh();
+        }
 
         // Lógica botón salir
         #region Botón Salir

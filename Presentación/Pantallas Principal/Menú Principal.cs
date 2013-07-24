@@ -24,12 +24,14 @@ namespace Presentación.Pantallas_ABM
         private Ingreso_Cheque Fr_Ingreso = null;
         // Abre una instancia de Egreso de Cheque
         private Egreso_Cheque Fr_Egreso = null;
+        // Abre instancia de Anulación
+        private AnularMovimiento Fr_Anula = null;
         // Abre instancia de Clientes
         private Clientes Fr_Clie = null;
         // Abre Instancia de Zonas
         private Zonas Fr_Zona = null;
         // Abre Instancia de Viajantes
-        private Viajantes Fr_Viajante = null;
+        private Viajantes Fr_Viajante = null;        
         #endregion
 
         public Menú_Principal()
@@ -144,6 +146,42 @@ namespace Presentación.Pantallas_ABM
         }
         #endregion
 
+        // Lógica para abrir instancia de Viajante
+        #region Botón Anulación
+        // Abre el Formulario de Anulación
+        private void Bt_Anular_Click(object sender, EventArgs e)
+        {
+            AnularMovimiento Frm_an = this.FormInstanciaA;
+            Frm_an.Show();
+        }
+        // Abre una nueva instancia del Form
+        private AnularMovimiento FormInstanciaA
+        {
+            get
+            {
+                if (Fr_Anula == null)
+                {
+                    Fr_Anula = new AnularMovimiento();
+                    Fr_Anula.Disposed += new EventHandler(form_DisposedA);
+                    Fr_Anula.FormClosed += new FormClosedEventHandler(Fr_Anula_FormClosed);
+                }
+                return Fr_Anula;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedA(object sender, EventArgs e)
+        {
+            Fr_Anula = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Anula_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Lógica cuando se cierra el formulario abierto.
+        }
+        #endregion
+
         // Control del árbol del menú
         #region Árbol Formularios
         private void Abre_Form(object sender, TreeNodeMouseClickEventArgs e)
@@ -166,6 +204,13 @@ namespace Presentación.Pantallas_ABM
                 
                 Egreso_Cheque Frm_Egr = this.FormInstanciaEC;
                 Frm_Egr.Show();
+                break;
+                
+                // Anulación
+                case "Anular":
+
+                AnularMovimiento Frm_Anu = this.FormInstanciaA;
+                Frm_Anu.Show();
                 break;
 
                 // ------> Menú ACTUALIZAR <------//
@@ -282,7 +327,7 @@ namespace Presentación.Pantallas_ABM
            
         }
         #endregion
-
+                
         // Actualiza los valores de los indicadores
         #region Lógica Indicadores
         private void Actualiza_Valores(object sender, EventArgs e)

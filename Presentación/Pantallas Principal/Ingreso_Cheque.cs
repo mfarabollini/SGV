@@ -646,6 +646,7 @@ namespace Presentación.Pantallas_Principal
                 {
                     Adherir_Error(row.Cells["Posicion"].Value.ToString(), "Valorizar Fecha de vencimiento");
                 }
+                #endregion
 
                 #region Validar_Banco
                 // Valida que el Banco exista
@@ -681,7 +682,7 @@ namespace Presentación.Pantallas_Principal
                     }                    
                 }
                 #endregion       
-            #endregion
+            
             }
             // Finaliza el recorrido de la tabla
 
@@ -692,7 +693,7 @@ namespace Presentación.Pantallas_Principal
             {
                 // Muestra el alerta de error y pone visible el Botón para visualizarlos
                 ControlError.Clear();
-                ControlError.SetError(Tx_Errores, "Existen errores en la valorización. Por favo, Verifique");                
+                ControlError.SetError(Tx_Errores, "Existen errores en la valorización. Por favor, Verifique");                
                 Tx_Errores.Visible = true;
             }
             else

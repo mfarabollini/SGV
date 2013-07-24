@@ -9,11 +9,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Entidades;
 using LogicaDeNegocio;
+using Presentación.Pantallas_Principal;
 
 namespace Presentación.Pantallas_Principal
 {
     public partial class AnularMovimiento : Form
     {
+        // Definiciones Globales    
+        #region Definiciones Globales
+        // Abre una instancia del formulario de búsqueda nula
+        private Cheques_Anular Fr_Cheques = null;
+        #endregion
+
         public AnularMovimiento()
         {
             InitializeComponent();
@@ -67,6 +74,7 @@ namespace Presentación.Pantallas_Principal
                         Tx_FecSal.Text = Cheque.Fecha_Salida.Value.ToShortDateString();    
                     }
 
+                    // Recupera el cliente y la descripción del Banco
                     #region Recupera Cliente - Banco
                     // Recupera los datos del cliente
                     clientes Clie = new clientes();
@@ -86,15 +94,15 @@ namespace Presentación.Pantallas_Principal
                     #region Radio Buttons
                     if (Cheque.Estado == "C")
                     {
-                        Rb_Entrada.Enabled = false;
-                        Rb_Salida.Enabled = true;
-                        Rb_Salida.Checked = true;
-                    }
-                    else if (Cheque.Estado == "S") 
-                    {
                         Rb_Entrada.Enabled = true;
                         Rb_Entrada.Checked = true;
                         Rb_Salida.Enabled = false;
+                    }
+                    else if (Cheque.Estado == "S") 
+                    {                        
+                        Rb_Entrada.Enabled = false;
+                        Rb_Salida.Enabled = true;
+                        Rb_Salida.Checked = true;
                     }
                     #endregion
                 }
@@ -161,27 +169,31 @@ namespace Presentación.Pantallas_Principal
             }
         }
 
-        // Botón Guardar
+        // Lógica Botón Guardar
+        #region Botón Guardar
         private void Bt_Aceptar_Click(object sender, EventArgs e)
         {
             // Declaraciones Locales
-            int Cod_Cheque = Convert.ToInt16(Tx_Mov.Text);
-            string Tipo_Anula = String.Empty;
-            string Mensaje = String.Empty;
+            int Cod_Cheque = Convert.ToInt16(Tx_Mov.Text);  // Código de Cheque
+            string Tipo_Anula = String.Empty;               // Tipo Anulación
+            string Mensaje = String.Empty;                  // Mensaje
 
             // Valoriza el tipo de Anulación
             if (Rb_Entrada.Checked)
             {
-                Tipo_Anula = "E";
+                Tipo_Anula = "E"; // Anulación de la Entrada
             }
             else if (Rb_Salida.Checked)
             {
-                Tipo_Anula = "S";
+                Tipo_Anula = "S"; // Anulación de salida
             }
 
             // Borra los errores
             ControlError.Clear();
             
+            /// --------------------------------------------------------- ///
+                            /// Lógica Crear anulación ///
+            /// ---------------------------------------------------------///
             if (Validaciones())
             {
                 // Efectua la anulación del movimiento, y de acuerdo al resultado muestr el mensaje
@@ -190,8 +202,8 @@ namespace Presentación.Pantallas_Principal
                     MessageBox.Show("La Anulación fue registrada correctamente", "Anulación",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                    Limpiar_Valores();
-                    Tx_Mov.Clear();
+                    Limpiar_Valores();  // Limpiar los Textbox.
+                    Tx_Mov.Clear();     // Limpia el Número de Movimiento
                     ControlError.Clear();
                 }
                 else
@@ -201,8 +213,10 @@ namespace Presentación.Pantallas_Principal
                 }                
             }
         }
+        #endregion
 
         // Validaciones Previas de Guardar
+        #region Validaciones
         private bool Validaciones()
         {
             bool Resultado = true;
@@ -214,5 +228,60 @@ namespace Presentación.Pantallas_Principal
             }
             return Resultado;
         }
+        #endregion
+
+        // Lógica Botón Salir
+        #region Botón Salir
+        private void Bt_Salir_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("¿Los datos no guardados se perderán, ¿Desea salir de todas formas?",
+                 "Salir", MessageBoxButtons.YesNo,
+                  MessageBoxIcon.Warning,
+                  MessageBoxDefaultButton.Button2, 0, false) == DialogResult.Yes)
+            {
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
+            }
+        }
+        #endregion
+
+        // Lógica Botón Buscar
+        #region Botón buscar
+        // Lógica Botón Buscar
+        private void Bt_Buscar_Click(object sender, EventArgs e)
+        {
+            Cheques_Anular Frm_Cheq = this.FormInstancia;
+            Frm_Cheq.Show();
+        }
+        // Abre una nueva instancia del Form
+        private Cheques_Anular FormInstancia
+        {
+            get
+            {
+                if (Fr_Cheques == null)
+                {
+                    Fr_Cheques = new Cheques_Anular();
+                    Fr_Cheques.Disposed += new EventHandler(form_Disposed);
+                    Fr_Cheques.FormClosed += new FormClosedEventHandler(Fr_Cheques_FormClosed);
+                }
+                return Fr_Cheques;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_Disposed(object sender, EventArgs e)
+        {
+            Fr_Cheques = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de busqueda banco.
+        private void Fr_Cheques_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            // Recupera el Código de Movimiento seleccionado
+            Tx_Mov.Text = Fr_Cheques.CodCheque;
+            // Carga los valores en los Texboxs
+            Cargar_TextBox();
+        }
+        #endregion
     }
 }

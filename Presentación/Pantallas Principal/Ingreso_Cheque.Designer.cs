@@ -400,6 +400,7 @@
             // 
             this.Tx_Cuit.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Cuit.Location = new System.Drawing.Point(463, 82);
+            this.Tx_Cuit.MaxLength = 11;
             this.Tx_Cuit.Name = "Tx_Cuit";
             this.Tx_Cuit.Size = new System.Drawing.Size(102, 23);
             this.Tx_Cuit.TabIndex = 7;
@@ -420,6 +421,7 @@
             // 
             this.Tx_NumCuenta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_NumCuenta.Location = new System.Drawing.Point(106, 111);
+            this.Tx_NumCuenta.MaxLength = 10;
             this.Tx_NumCuenta.Name = "Tx_NumCuenta";
             this.Tx_NumCuenta.Size = new System.Drawing.Size(135, 23);
             this.Tx_NumCuenta.TabIndex = 5;
@@ -451,6 +453,7 @@
             // 
             this.Tx_NumCheque.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_NumCheque.Location = new System.Drawing.Point(463, 53);
+            this.Tx_NumCheque.MaxLength = 10;
             this.Tx_NumCheque.Name = "Tx_NumCheque";
             this.Tx_NumCheque.Size = new System.Drawing.Size(102, 23);
             this.Tx_NumCheque.TabIndex = 6;
@@ -462,6 +465,7 @@
             // 
             this.Tx_CodPostal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_CodPostal.Location = new System.Drawing.Point(106, 82);
+            this.Tx_CodPostal.MaxLength = 10;
             this.Tx_CodPostal.Name = "Tx_CodPostal";
             this.Tx_CodPostal.Size = new System.Drawing.Size(48, 23);
             this.Tx_CodPostal.TabIndex = 4;
@@ -471,6 +475,7 @@
             // 
             this.Tx_Sucursal.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Sucursal.Location = new System.Drawing.Point(106, 53);
+            this.Tx_Sucursal.MaxLength = 3;
             this.Tx_Sucursal.Name = "Tx_Sucursal";
             this.Tx_Sucursal.Size = new System.Drawing.Size(48, 23);
             this.Tx_Sucursal.TabIndex = 3;

@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AnularMovimiento));
             this.Gr_Grupo1 = new System.Windows.Forms.GroupBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Bt_Buscar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.Tx_Mov = new System.Windows.Forms.TextBox();
             this.Foto1 = new System.Windows.Forms.PictureBox();
@@ -77,7 +77,7 @@
             // 
             // Gr_Grupo1
             // 
-            this.Gr_Grupo1.Controls.Add(this.button1);
+            this.Gr_Grupo1.Controls.Add(this.Bt_Buscar);
             this.Gr_Grupo1.Controls.Add(this.label1);
             this.Gr_Grupo1.Controls.Add(this.Tx_Mov);
             this.Gr_Grupo1.Location = new System.Drawing.Point(8, 66);
@@ -86,14 +86,15 @@
             this.Gr_Grupo1.TabIndex = 0;
             this.Gr_Grupo1.TabStop = false;
             // 
-            // button1
+            // Bt_Buscar
             // 
-            this.button1.Location = new System.Drawing.Point(226, 20);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(25, 23);
-            this.button1.TabIndex = 2;
-            this.button1.Text = "...";
-            this.button1.UseVisualStyleBackColor = true;
+            this.Bt_Buscar.Location = new System.Drawing.Point(226, 19);
+            this.Bt_Buscar.Name = "Bt_Buscar";
+            this.Bt_Buscar.Size = new System.Drawing.Size(25, 23);
+            this.Bt_Buscar.TabIndex = 2;
+            this.Bt_Buscar.Text = "...";
+            this.Bt_Buscar.UseVisualStyleBackColor = true;
+            this.Bt_Buscar.Click += new System.EventHandler(this.Bt_Buscar_Click);
             // 
             // label1
             // 
@@ -420,6 +421,7 @@
             // 
             // Tx_Observaciones
             // 
+            this.Tx_Observaciones.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Tx_Observaciones.Location = new System.Drawing.Point(112, 70);
             this.Tx_Observaciones.Name = "Tx_Observaciones";
             this.Tx_Observaciones.Size = new System.Drawing.Size(512, 23);
@@ -457,6 +459,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 21;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // Bt_Aceptar
             // 
@@ -526,7 +529,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox Tx_CodBanco;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button Bt_Buscar;
         private System.Windows.Forms.TextBox Tx_FechaVec;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.TextBox Tx_Importe;
