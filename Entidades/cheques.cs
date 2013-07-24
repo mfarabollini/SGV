@@ -31,5 +31,6 @@ namespace Entidades
         public string ObserAnulSal { get; set; }
         public Nullable<System.DateTime> FechaAnulEnt { get; set; }
         public string ObserAnulEnt { get; set; }
+        public string Estado { get; set; }
     }
 }

@@ -517,6 +517,8 @@ namespace Presentación.Pantallas_Principal
 
                     // Fecha de Salida
                     Cheque.Fecha_Salida = DateTime.Today;
+                    // Estado del Cheque
+                    Cheque.Estado = "S";
                     // Observaciones
                     Cheque.Obs_Salida = row.Cells["Obs_Salida"].Value.ToString();
 

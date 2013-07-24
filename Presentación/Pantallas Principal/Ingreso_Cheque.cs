@@ -709,6 +709,7 @@ namespace Presentación.Pantallas_Principal
                     Cheque.Num_Cuenta   = row.Cells["Num_Cuenta"].Value.ToString();
                     Cheque.Cod_Cliente  = Convert.ToInt16(Tx_CodBanco.Text);
                     Cheque.Fecha_Entrada = DateTime.Now;
+                    Cheque.Estado       = "C";  //Cheque en Cartera
                     Cheque.Importe      = float.Parse(row.Cells["Importe"].Value.ToString());
                     Cheque.CUIT_Cheque  = row.Cells["CUIT"].Value.ToString();
                     Cheque.Fecha_Vec    = Convert.ToDateTime(row.Cells["Fecha_Venc"].Value);

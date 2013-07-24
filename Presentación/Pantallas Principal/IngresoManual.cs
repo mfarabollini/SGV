@@ -242,6 +242,7 @@ namespace Presentación.Pantallas_Principal
                 Cheque.Num_Cuenta    = Tx_NumCuenta.Text;
                 Cheque.Cod_Cliente   = Convert.ToInt16(Tx_CodCliente.Text);
                 Cheque.Fecha_Entrada = DateTime.Now;
+                Cheque.Estado        = "C";
                 Cheque.Importe       = float.Parse(Tx_Importe.Text);
                 Cheque.CUIT_Cheque   = Tx_Cuit.Text;
                 Cheque.Fecha_Vec     = Tx_FechaVen.Value;

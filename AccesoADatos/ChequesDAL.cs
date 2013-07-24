@@ -73,6 +73,7 @@ namespace AccesoADatos
                     Cheque.Cod_Cliente = query.Cod_Cliente;     // Código de Cliente
                     Cheque.Fecha_Entrada = query.Fecha_Entrada; // Fecha de Entrada
                     Cheque.Fecha_Salida = query.Fecha_Salida;   // Fecha de Salida
+                    Cheque.Estado = query.Estado;               // Estado
                     Cheque.Importe = query.Importe;             // Importe
                     Cheque.CUIT_Cheque = query.CUIT_Cheque;     // CUIT
                     Cheque.Fecha_Vec = query.Fecha_Vec;         // Fecha de Vencimiento
@@ -110,6 +111,7 @@ namespace AccesoADatos
                     Cheque.Cod_Cliente = query.Cod_Cliente;     // Código de Cliente
                     Cheque.Fecha_Entrada = query.Fecha_Entrada; // Fecha de Entrada
                     Cheque.Fecha_Salida = query.Fecha_Salida;   // Fecha de Salida
+                    Cheque.Estado = query.Estado;               // Estado
                     Cheque.Importe = query.Importe;             // Importe
                     Cheque.CUIT_Cheque = query.CUIT_Cheque;     // CUIT
                     Cheque.Fecha_Vec = query.Fecha_Vec;         // Fecha de Vencimiento
@@ -163,8 +165,8 @@ namespace AccesoADatos
             using (ChequeEntidades bd = new ChequeEntidades())
             {                
                var query = (from n in bd.cheques
-                           where n.Fecha_Salida == null
-                           select n).ToList();                
+                           where n.Estado == "C"
+                          select n).ToList();                
                 
                return query;    
             }
@@ -234,21 +236,26 @@ namespace AccesoADatos
                              where n.Cod_Cheques == Cod_Cheque
                              select n).Single();
 
-                // Determiana el tipo de anulación para borrar la Fecha    
+                // Determiana el tipo de anulación Setear la Fecha
                 if (Tipo_Anula == "E")
 	            {
-                    //query.FechaAnulaEntrada  = DateTime.Now;
-                    //query.ObservAnulaEntrada = Observaciones;
+                    query.FechaAnulEnt  = DateTime.Now;
+                    query.Estado = "A";
+                    query.ObserAnulEnt = Observaciones;
                 }
                 else if (Tipo_Anula == "S")
                 {
-                    //query.FechaAnulaSalida = DateTime.Now;
-                    //query.ObservAnulaSalida = Observaciones;
+                    query.FechaAnulSal = DateTime.Now;
+                    query.Estado = "C";
+                    query.ObserAnulSal = Observaciones;
                 }                             
 
+
+                /// Guarda los cambios
                 try
                 {
                     bd.SaveChanges();
+                    Resultado = true;
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -258,7 +265,8 @@ namespace AccesoADatos
                             .Select(x => x.ErrorMessage);
 
                     var fullErrorMessage = string.Join("; ", errorMessages);
-                    Mensaje = string.Concat(ex.Message, fullErrorMessage);                    
+                    Mensaje = string.Concat(ex.Message, fullErrorMessage);
+                    Resultado = false;
                 }
             }
 

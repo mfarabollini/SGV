@@ -23,9 +23,7 @@ namespace Presentación.Pantallas_Principal
         private void Cargar_Valores(object sender, EventArgs e)
         {
             Cargar_TextBox();
-
         }
-
         
         ///  Carga los valores de los TextBoxs
         private void Cargar_TextBox()
@@ -39,7 +37,7 @@ namespace Presentación.Pantallas_Principal
                 //Recuperar los datos del chueque
                 ChequesBL.Datos_Cheque(Cheque);
                 
-                if (Cheque.Cod_Cheques != 0)
+                if ((Cheque.Cod_Cheques != 0) && (Cheque.Estado != "A"))
                 {
                     // Borra el error
                     ControlError.Clear();
@@ -86,13 +84,13 @@ namespace Presentación.Pantallas_Principal
                     #endregion
 
                     #region Radio Buttons
-                    if (Cheque.Fecha_Salida != null)
+                    if (Cheque.Estado == "C")
                     {
                         Rb_Entrada.Enabled = false;
                         Rb_Salida.Enabled = true;
                         Rb_Salida.Checked = true;
                     }
-                    else
+                    else if (Cheque.Estado == "S") 
                     {
                         Rb_Entrada.Enabled = true;
                         Rb_Entrada.Checked = true;
@@ -140,8 +138,13 @@ namespace Presentación.Pantallas_Principal
             Tx_Cuit.Clear();
             Tx_FechaVec.Clear();
             Tx_FecEnt.Clear();
-            Tx_FecSal.Clear();
+            Tx_FecSal.Clear();            
+            Tx_Recibido.Clear();
+            Tx_Observaciones.Clear();
             Lb_DescBanco.Text = "";
+
+            Rb_Entrada.Enabled = true;
+            Rb_Salida.Enabled = true;
         }
 
         private void AnularMovimiento_Load(object sender, EventArgs e)
@@ -180,7 +183,7 @@ namespace Presentación.Pantallas_Principal
             ControlError.Clear();
             
             if (Validaciones())
-            {   
+            {
                 // Efectua la anulación del movimiento, y de acuerdo al resultado muestr el mensaje
                 if (ChequesBL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, Mensaje, Tx_Observaciones.Text))
                 {
@@ -188,6 +191,7 @@ namespace Presentación.Pantallas_Principal
                     MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                     Limpiar_Valores();
+                    Tx_Mov.Clear();
                     ControlError.Clear();
                 }
                 else
