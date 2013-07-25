@@ -11,8 +11,11 @@ namespace AccesoADatos
     public class ChequesDAL
     {
         // Adherir Cheque a la base de datos
-        public static cheques Agregar_Cheque(cheques Cheque)
+        public static bool Agregar_Cheque(cheques Cheque, out string Mensaje)
         {
+            // Declaraciones Locales
+            bool Resultado = true;
+
             using (ChequeEntidades bd = new ChequeEntidades())
             {
                 // Adhiere los datos a la tabla
@@ -21,6 +24,7 @@ namespace AccesoADatos
                 try
                 {
                     bd.SaveChanges();
+                    Mensaje = string.Empty;
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -30,10 +34,11 @@ namespace AccesoADatos
                             .Select(x => x.ErrorMessage);
 
                     var fullErrorMessage = string.Join("; ", errorMessages);
-                    var exceptionMessage = string.Concat(ex.Message, fullErrorMessage);
+                    Resultado = false;
+                    Mensaje = fullErrorMessage;
                 }
            }
-            return Cheque;
+            return Resultado;
         }
         
         //Control de existencia del cheque
@@ -129,7 +134,7 @@ namespace AccesoADatos
         }
         
         // Grabar la salida del cheque
-        public static bool Salida_Cheque(cheques Cheque)
+        public static bool Salida_Cheque(cheques Cheque, out string Mensaje)
         {
             bool Result = true;
             
@@ -153,11 +158,18 @@ namespace AccesoADatos
                     // Guarda los cambios.
                     bd.SaveChanges();
                     Result = true;
+                    Mensaje = string.Empty;
                 }
 
-                catch (Exception)
+                catch (DbEntityValidationException ex)
                 {
-                    Result = false;
+                    // Captura las Excepciones del insert
+                    var errorMessages = ex.EntityValidationErrors
+                            .SelectMany(x => x.ValidationErrors)
+                            .Select(x => x.ErrorMessage);
+
+                    var fullErrorMessage = string.Join("; ", errorMessages);
+                    Mensaje = fullErrorMessage;
                 }
             }
             
@@ -242,7 +254,7 @@ namespace AccesoADatos
         }
 
         // Anular Movimientos
-        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, string Mensaje, string Observaciones)
+        public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, out string Mensaje, string Observaciones)
         {
             bool Resultado = true;
             
@@ -273,6 +285,7 @@ namespace AccesoADatos
                 {
                     bd.SaveChanges();
                     Resultado = true; // Devuelve True.
+                    Mensaje = string.Empty;
                 }
                 catch (DbEntityValidationException ex)
                 {
@@ -282,7 +295,7 @@ namespace AccesoADatos
                             .Select(x => x.ErrorMessage);
 
                     var fullErrorMessage = string.Join("; ", errorMessages);
-                    Mensaje = string.Concat(ex.Message, fullErrorMessage);
+                    Mensaje = fullErrorMessage;
                     Resultado = false; // Devuelve Falso.
                 }
             }

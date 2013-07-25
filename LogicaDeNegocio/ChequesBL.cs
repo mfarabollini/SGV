@@ -11,9 +11,9 @@ namespace LogicaDeNegocio
     public class ChequesBL
     {
         // Agregar registro Cheque        
-        public static cheques Agregar_Cheque(cheques Cheque)
+        public static bool Agregar_Cheque(cheques Cheque, out string Mensaje)
         {
-            return ChequesDAL.Agregar_Cheque(Cheque);
+            return ChequesDAL.Agregar_Cheque(Cheque, out Mensaje);
         }
 
         // Chequear si existe el Cheque
@@ -35,17 +35,17 @@ namespace LogicaDeNegocio
         }
 
         // Grabar la salida del cheque
-        public static bool Salida_Cheque(cheques Cheque)
+        public static bool Salida_Cheque(cheques Cheque, out string Mensaje)
         {
-            return ChequesDAL.Salida_Cheque(Cheque);
+            return ChequesDAL.Salida_Cheque(Cheque, out Mensaje);
             
         }
 
         // Grabar Anulación del Cheque
         public static bool Anular_Movimiento(int Cod_Cheque, string Tipo_Anula, 
-                                             string Mensaje, string Observaciones)
+                                             out string Mensaje, string Observaciones)
         {
-            return ChequesDAL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, Mensaje, Observaciones);
+            return ChequesDAL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, out Mensaje, Observaciones);
         }
 
         // Recupera los Cheques en Cartera.

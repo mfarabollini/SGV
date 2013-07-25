@@ -79,8 +79,8 @@ namespace Presentación.Pantallas_Principal
                     // Recupera los datos del cliente
                     clientes Clie = new clientes();
                     Clie.Cod_Cliente = Convert.ToInt16(Cheque.Cod_Cliente);
-                    
-                    ClientesBL.Buscar_Cliente(Clie);
+
+                    ClientesBL.Buscar_Cliente_Todos(Clie);
                     Tx_Recibido.Text = Clie.razon_social;
 
                     // Recupera los datos del Banco
@@ -155,11 +155,6 @@ namespace Presentación.Pantallas_Principal
             Rb_Salida.Enabled = true;
         }
 
-        private void AnularMovimiento_Load(object sender, EventArgs e)
-        {
-
-        }
-
         // En caso de presionar Enter, carga Valores.
         private void Valoriza_Textos(object sender, KeyEventArgs e)
         {
@@ -197,7 +192,7 @@ namespace Presentación.Pantallas_Principal
             if (Validaciones())
             {
                 // Efectua la anulación del movimiento, y de acuerdo al resultado muestr el mensaje
-                if (ChequesBL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, Mensaje, Tx_Observaciones.Text))
+                if (ChequesBL.Anular_Movimiento(Cod_Cheque, Tipo_Anula, out Mensaje, Tx_Observaciones.Text))
                 {
                     MessageBox.Show("La Anulación fue registrada correctamente", "Anulación",
                     MessageBoxButtons.OK, MessageBoxIcon.Information);

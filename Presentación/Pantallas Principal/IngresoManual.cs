@@ -250,9 +250,9 @@ namespace Presentación.Pantallas_Principal
                 if (ChequesBL.Exite_Cheque(Cheque) == false)
                 {
                     // Llamar al método que añade el registro
-                    ChequesBL.Agregar_Cheque(Cheque);
+                    string Mensaje;
 
-                    if (Cheque.Cod_Cheques != 0)
+                    if (ChequesBL.Agregar_Cheque(Cheque, out Mensaje))
                     {
                         MessageBox.Show("Cheque cargado correctamente", "Registro de Cheque",
                         MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -264,8 +264,8 @@ namespace Presentación.Pantallas_Principal
                     }
                     else
                     {
-                        MessageBox.Show("Ha ocurrido un error guardando el Cheque", "Registro de Cheque",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MessageBox.Show("Ha ocurrido un error guardando el Cheque" + Mensaje, "Registro de Cheque",
+                        MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else

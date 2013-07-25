@@ -506,6 +506,9 @@ namespace Presentación.Pantallas_Principal
                 // Nueva instancia de Cheque
                 cheques Cheque = new cheques();
                 bool l_result = true;
+                string Mensaje = string.Empty;
+                // Limpiar la tabla
+                it_error.Rows.Clear();
 
                 // Para cada registro
                 foreach (DataGridViewRow row in Gr_Cheques.Rows)
@@ -524,8 +527,9 @@ namespace Presentación.Pantallas_Principal
                     Cheque.Obs_Salida = row.Cells["Obs_Salida"].Value.ToString();
 
                     /// Registra la salida del Cheque
-                    if (!ChequesBL.Salida_Cheque(Cheque))
+                    if (!ChequesBL.Salida_Cheque(Cheque, out Mensaje))
                     {
+                        Adherir_Error(row.Cells["Posicion"].Value.ToString(), Mensaje);
                         l_result = false;                  
                     }
                 }
@@ -540,8 +544,8 @@ namespace Presentación.Pantallas_Principal
                 }
                 else
                 {
-                    MessageBox.Show("Egreso registrado correctamente", "Egreso de Cheque",
-                                     MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Ha ocurrido un problema registrando el egreso. Verifique los errores", "Egreso de Cheque",
+                                     MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }

@@ -493,7 +493,6 @@
             this.Name = "AnularMovimiento";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Anular Movimiento";
-            this.Load += new System.EventHandler(this.AnularMovimiento_Load);
             this.Gr_Grupo1.ResumeLayout(false);
             this.Gr_Grupo1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Foto1)).EndInit();

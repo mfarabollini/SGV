@@ -698,7 +698,10 @@ namespace Presentación.Pantallas_Principal
             }
             else
             {
-                string d_error = "";
+                string Mensaje = string.Empty;
+                bool l_result = true;
+                it_error.Rows.Clear();
+
                 // Guarda cada uno de los registros
                 foreach (DataGridViewRow row in Gr_Cheques.Rows)
                 {                    
@@ -715,19 +718,18 @@ namespace Presentación.Pantallas_Principal
                     Cheque.CUIT_Cheque  = row.Cells["CUIT"].Value.ToString();
                     Cheque.Fecha_Vec    = Convert.ToDateTime(row.Cells["Fecha_Venc"].Value);
 
-                    // Adherir el registro
-                    ChequesBL.Agregar_Cheque(Cheque);
-
+             
                     // Si el código no está valorizado, no fue correcta la inserción.
-                    if (Cheque.Cod_Cheques == 0)
+                    if (!ChequesBL.Agregar_Cheque(Cheque, out Mensaje))
                     {
                         // Existió un error en el registro
-                        d_error = "X";
+                        l_result = false;
+                        Adherir_Error(row.Cells["Posicion"].Value.ToString(), Mensaje);
                     }
                 } // Finalización ForEach
 
                 // Verifica la existencia de errores
-                if (d_error != "X")
+                if (l_result)
                 {
                    MessageBox.Show("Cheque cargado correctamente", "Registro de Cheque",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -738,7 +740,7 @@ namespace Presentación.Pantallas_Principal
                 }
                 else
                 {
-                   MessageBox.Show("Ha ocurrido un error guardando el Cheque", "Registro de Cheque",
+                   MessageBox.Show("Ha ocurrido un problema guardando el Cheque. Verifique los errores", "Registro de Cheque",
                    MessageBoxButtons.OK, MessageBoxIcon.Information);    
                 }            
             }
