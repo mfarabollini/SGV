@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Presentación.Pantallas_Principal;
 using Presentación.Pantallas_ABM;
 using Presentación.Pantallas_Búsqueda;
+using Presentación.Pantallas_Consultas;
 
 namespace Presentación
 {
@@ -19,7 +20,7 @@ namespace Presentación
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menú_Principal());
+            Application.Run(new FiltroMovimientos());
         }
     }
 }

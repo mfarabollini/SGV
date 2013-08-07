@@ -85,7 +85,7 @@ namespace AccesoADatos
                     Cheque.CUIT_Cheque = query.CUIT_Cheque;     // CUIT
                     Cheque.Fecha_Vec = query.Fecha_Vec;         // Fecha de Vencimiento
                     Cheque.Obs_Salida = query.Obs_Salida;       // Observaciones
-                
+
                 }
                 catch (Exception)
                 {
@@ -93,6 +93,83 @@ namespace AccesoADatos
                 }
                 return Cheque;
             }
+        }
+
+        // Lista de Cheques en Consulta
+        public static List<cheques> Consulta_Cheques(string Consulta, int Valor,
+                                                     DateTime Fecha_IngDesde1, DateTime Fecha_IngDesde2, bool l_ingreso,
+                                                     DateTime Fecha_EgrDesde1, DateTime Fecha_EgrDesde2, bool l_egreso)
+        {
+            var query = new List<cheques>();
+            
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                if (Consulta == "C")
+                {
+                    if (l_ingreso == true && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 where n.Cod_Cliente == Valor &&
+                                         (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2) &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+                    else if (l_ingreso == true && l_egreso == false)
+                    {
+                        query = (from n in bd.cheques
+                                 where n.Cod_Cliente == Valor &&
+                                      (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == false && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 where n.Cod_Cliente == Valor &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }                    
+                }
+
+                else if (Consulta == "V")
+                {
+                    String CodViajante = Valor.ToString();
+
+                    if (l_ingreso == true && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 join j in bd.clientes
+                                     on n.Cod_Cliente equals j.Cod_Cliente
+                                 where j.Cod_Viajante == CodViajante &&
+                                         (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2) &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == true && l_egreso == false)
+                    {
+                        query = (from n in bd.cheques
+                                 join j in bd.clientes
+                                     on n.Cod_Cliente equals j.Cod_Cliente
+                                 where j.Cod_Viajante == CodViajante &&
+                                      (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == false && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 join j in bd.clientes
+                                     on n.Cod_Cliente equals j.Cod_Cliente
+                                 where j.Cod_Viajante == CodViajante &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+                }               
+            }    
+            
+            return query;
+
         }
 
         // Devolver los datos del cheque
@@ -124,6 +201,11 @@ namespace AccesoADatos
                     Cheque.CUIT_Cheque = query.CUIT_Cheque;     // CUIT
                     Cheque.Fecha_Vec = query.Fecha_Vec;         // Fecha de Vencimiento
                     Cheque.Obs_Salida = query.Obs_Salida;       // Observaciones
+                    Cheque.FechaAnulEnt = query.FechaAnulEnt;   // Fecha Anulación Entrada
+                    Cheque.ObserAnulEnt = query.ObserAnulEnt;   // Observación Anulación Salida
+                    Cheque.FechaAnulSal = query.FechaAnulSal;   // Fecha Anulación Salida
+                    Cheque.ObserAnulSal = query.ObserAnulSal;   // Observaciones Anulación Salida.
+                   
                 }
                 catch (Exception)
                 {
@@ -186,6 +268,19 @@ namespace AccesoADatos
                           select n).ToList();                
                 
                return query;    
+            }
+        }
+
+
+        public static List<cheques> Informe_Movimientos()
+        {           
+            using (ChequeEntidades bd = new ChequeEntidades())
+            {
+                var query = (from n in bd.cheques
+                             where n.Estado == "C"
+                             select n).ToList();     
+
+                return query;
             }
         }
 

@@ -80,6 +80,24 @@
     <Compile Include="Pantallas Búsqueda\Busqueda_Viajante.Designer.cs">
       <DependentUpon>Busqueda_Viajante.cs</DependentUpon>
     </Compile>
+    <Compile Include="Pantallas Consultas\Cargando.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Consultas\Cargando.Designer.cs">
+      <DependentUpon>Cargando.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas Consultas\FiltroMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Consultas\FiltroMovimientos.Designer.cs">
+      <DependentUpon>FiltroMovimientos.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Pantallas Consultas\ReporteMovimientos.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Pantallas Consultas\ReporteMovimientos.Designer.cs">
+      <DependentUpon>ReporteMovimientos.cs</DependentUpon>
+    </Compile>
     <Compile Include="Pantallas Principal\AnularMovimiento.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -190,6 +208,15 @@
     <EmbeddedResource Include="Pantallas Búsqueda\Busqueda_Viajante.resx">
       <DependentUpon>Busqueda_Viajante.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Consultas\Cargando.resx">
+      <DependentUpon>Cargando.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Consultas\FiltroMovimientos.resx">
+      <DependentUpon>FiltroMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Pantallas Consultas\ReporteMovimientos.resx">
+      <DependentUpon>ReporteMovimientos.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Pantallas Principal\AnularMovimiento.resx">
       <DependentUpon>AnularMovimiento.cs</DependentUpon>
     </EmbeddedResource>
@@ -269,6 +296,7 @@
       <Name>LogicaDeNegocio</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
