@@ -96,7 +96,7 @@ namespace AccesoADatos
         }
 
         // Lista de Cheques en Consulta
-        public static List<cheques> Consulta_Cheques(string Consulta, int Valor,
+        public static List<cheques> Consulta_Cheques(string Consulta, int Valor_Viajante, int Valor_Cliente,
                                                      DateTime Fecha_IngDesde1, DateTime Fecha_IngDesde2, bool l_ingreso,
                                                      DateTime Fecha_EgrDesde1, DateTime Fecha_EgrDesde2, bool l_egreso)
         {
@@ -109,7 +109,7 @@ namespace AccesoADatos
                     if (l_ingreso == true && l_egreso == true)
                     {
                         query = (from n in bd.cheques
-                                 where n.Cod_Cliente == Valor &&
+                                 where n.Cod_Cliente == Valor_Cliente &&
                                          (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2) &&
                                          (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
                                  select n).ToList();
@@ -117,7 +117,7 @@ namespace AccesoADatos
                     else if (l_ingreso == true && l_egreso == false)
                     {
                         query = (from n in bd.cheques
-                                 where n.Cod_Cliente == Valor &&
+                                 where n.Cod_Cliente == Valor_Cliente &&
                                       (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2)
                                  select n).ToList();
                     }
@@ -125,7 +125,7 @@ namespace AccesoADatos
                     else if (l_ingreso == false && l_egreso == true)
                     {
                         query = (from n in bd.cheques
-                                 where n.Cod_Cliente == Valor &&
+                                 where n.Cod_Cliente == Valor_Cliente &&
                                          (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
                                  select n).ToList();
                     }                    
@@ -133,7 +133,7 @@ namespace AccesoADatos
 
                 else if (Consulta == "V")
                 {
-                    String CodViajante = Valor.ToString();
+                    String CodViajante = Valor_Viajante.ToString();
 
                     if (l_ingreso == true && l_egreso == true)
                     {
@@ -165,7 +165,72 @@ namespace AccesoADatos
                                          (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
                                  select n).ToList();
                     }
-                }               
+                }
+
+                else if (Consulta == "B")                
+                {
+                    if (l_ingreso == true && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 where  (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2) &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == true && l_egreso == false)
+                    {
+                        query = (from n in bd.cheques                                
+                                 where (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == false && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques                               
+                                 where (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+                }
+
+                else if (Consulta == "A")
+                {
+                    String CodViajante = Valor_Viajante.ToString();
+
+                    if (l_ingreso == true && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 join j in bd.clientes
+                                     on n.Cod_Cliente equals j.Cod_Cliente
+                                 where j.Cod_Viajante == CodViajante &&
+                                         n.Cod_Cliente == Valor_Cliente &&
+                                         (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2) &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == true && l_egreso == false)
+                    {
+                        query = (from n in bd.cheques
+                                 join j in bd.clientes
+                                     on n.Cod_Cliente equals j.Cod_Cliente                                        
+                                 where j.Cod_Viajante == CodViajante &&
+                                       n.Cod_Cliente == Valor_Cliente &&
+                                      (n.Fecha_Entrada >= Fecha_IngDesde1 && n.Fecha_Entrada <= Fecha_IngDesde2)
+                                 select n).ToList();
+                    }
+
+                    else if (l_ingreso == false && l_egreso == true)
+                    {
+                        query = (from n in bd.cheques
+                                 join j in bd.clientes
+                                     on n.Cod_Cliente equals j.Cod_Cliente
+                                 where j.Cod_Viajante == CodViajante &&
+                                       n.Cod_Cliente == Valor_Cliente &&
+                                         (n.Fecha_Salida >= Fecha_EgrDesde1 && n.Fecha_Salida <= Fecha_EgrDesde2)
+                                 select n).ToList();
+                    }
+                }
+
             }    
             
             return query;

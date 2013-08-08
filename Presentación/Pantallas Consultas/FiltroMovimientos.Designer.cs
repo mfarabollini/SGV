@@ -59,6 +59,8 @@
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.Bt_Aceptar = new System.Windows.Forms.Button();
             this.ControlError = new System.Windows.Forms.ErrorProvider(this.components);
+            this.Cb_Orden = new System.Windows.Forms.ComboBox();
+            this.label8 = new System.Windows.Forms.Label();
             this.Gr_Cheque.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.ControlError)).BeginInit();
@@ -168,6 +170,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label8);
+            this.groupBox1.Controls.Add(this.Cb_Orden);
             this.groupBox1.Controls.Add(this.Lb_DescClie);
             this.groupBox1.Controls.Add(this.Lb_DescViaj);
             this.groupBox1.Controls.Add(this.Bt_BusViaj);
@@ -187,7 +191,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(10, 125);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(459, 155);
+            this.groupBox1.Size = new System.Drawing.Size(459, 175);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Datos del Movimiento";
@@ -225,7 +229,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(219, 119);
+            this.label6.Location = new System.Drawing.Point(219, 149);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(14, 15);
             this.label6.TabIndex = 25;
@@ -257,7 +261,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(219, 89);
+            this.label3.Location = new System.Drawing.Point(219, 119);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(14, 15);
             this.label3.TabIndex = 24;
@@ -300,7 +304,7 @@
             // 
             this.Dt_Egr_Hasta.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dt_Egr_Hasta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dt_Egr_Hasta.Location = new System.Drawing.Point(240, 114);
+            this.Dt_Egr_Hasta.Location = new System.Drawing.Point(240, 144);
             this.Dt_Egr_Hasta.Name = "Dt_Egr_Hasta";
             this.Dt_Egr_Hasta.Size = new System.Drawing.Size(101, 23);
             this.Dt_Egr_Hasta.TabIndex = 8;
@@ -310,7 +314,7 @@
             // 
             this.Dt_Egr_Desde.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dt_Egr_Desde.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dt_Egr_Desde.Location = new System.Drawing.Point(112, 114);
+            this.Dt_Egr_Desde.Location = new System.Drawing.Point(112, 144);
             this.Dt_Egr_Desde.Name = "Dt_Egr_Desde";
             this.Dt_Egr_Desde.Size = new System.Drawing.Size(101, 23);
             this.Dt_Egr_Desde.TabIndex = 7;
@@ -320,7 +324,7 @@
             // 
             this.Dt_Ingr_Hasta.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dt_Ingr_Hasta.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dt_Ingr_Hasta.Location = new System.Drawing.Point(240, 83);
+            this.Dt_Ingr_Hasta.Location = new System.Drawing.Point(240, 113);
             this.Dt_Ingr_Hasta.Name = "Dt_Ingr_Hasta";
             this.Dt_Ingr_Hasta.Size = new System.Drawing.Size(101, 23);
             this.Dt_Ingr_Hasta.TabIndex = 6;
@@ -330,7 +334,7 @@
             // 
             this.Dt_Ingr_Desde.CalendarFont = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Dt_Ingr_Desde.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Dt_Ingr_Desde.Location = new System.Drawing.Point(112, 83);
+            this.Dt_Ingr_Desde.Location = new System.Drawing.Point(112, 113);
             this.Dt_Ingr_Desde.Name = "Dt_Ingr_Desde";
             this.Dt_Ingr_Desde.Size = new System.Drawing.Size(101, 23);
             this.Dt_Ingr_Desde.TabIndex = 5;
@@ -340,7 +344,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(25, 119);
+            this.label5.Location = new System.Drawing.Point(25, 149);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(81, 15);
             this.label5.TabIndex = 1;
@@ -350,7 +354,7 @@
             // 
             this.Lb_FecEntrada.AutoSize = true;
             this.Lb_FecEntrada.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Lb_FecEntrada.Location = new System.Drawing.Point(19, 89);
+            this.Lb_FecEntrada.Location = new System.Drawing.Point(19, 119);
             this.Lb_FecEntrada.Name = "Lb_FecEntrada";
             this.Lb_FecEntrada.Size = new System.Drawing.Size(86, 15);
             this.Lb_FecEntrada.TabIndex = 0;
@@ -359,7 +363,7 @@
             // Bt_Salir
             // 
             this.Bt_Salir.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Salir.Image")));
-            this.Bt_Salir.Location = new System.Drawing.Point(431, 286);
+            this.Bt_Salir.Location = new System.Drawing.Point(429, 304);
             this.Bt_Salir.Name = "Bt_Salir";
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 10;
@@ -369,7 +373,7 @@
             // Bt_Aceptar
             // 
             this.Bt_Aceptar.Image = ((System.Drawing.Image)(resources.GetObject("Bt_Aceptar.Image")));
-            this.Bt_Aceptar.Location = new System.Drawing.Point(387, 286);
+            this.Bt_Aceptar.Location = new System.Drawing.Point(389, 304);
             this.Bt_Aceptar.Name = "Bt_Aceptar";
             this.Bt_Aceptar.Size = new System.Drawing.Size(38, 38);
             this.Bt_Aceptar.TabIndex = 9;
@@ -380,12 +384,36 @@
             // 
             this.ControlError.ContainerControl = this;
             // 
+            // Cb_Orden
+            // 
+            this.Cb_Orden.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.Cb_Orden.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Cb_Orden.FormattingEnabled = true;
+            this.Cb_Orden.Items.AddRange(new object[] {
+            "Número de Cheque",
+            "Código Cliente",
+            "Código Banco"});
+            this.Cb_Orden.Location = new System.Drawing.Point(112, 83);
+            this.Cb_Orden.Name = "Cb_Orden";
+            this.Cb_Orden.Size = new System.Drawing.Size(135, 23);
+            this.Cb_Orden.TabIndex = 28;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Calibri", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(27, 90);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(78, 15);
+            this.label8.TabIndex = 29;
+            this.label8.Text = "Ordenar por:";
+            // 
             // FiltroMovimientos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
-            this.ClientSize = new System.Drawing.Size(477, 327);
+            this.ClientSize = new System.Drawing.Size(477, 345);
             this.Controls.Add(this.Bt_Salir);
             this.Controls.Add(this.Bt_Aceptar);
             this.Controls.Add(this.groupBox1);
@@ -436,6 +464,8 @@
         private System.Windows.Forms.Label Lb_DescClie;
         private System.Windows.Forms.Label Lb_DescViaj;
         private System.Windows.Forms.ErrorProvider ControlError;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.ComboBox Cb_Orden;
 
     }
 }

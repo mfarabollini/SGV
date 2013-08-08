@@ -35,8 +35,8 @@
             this.Lb_Título = new System.Windows.Forms.Label();
             this.Bt_Salir = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.Bt_Expandir = new System.Windows.Forms.Button();
             this.Bt_Contraer = new System.Windows.Forms.Button();
+            this.Bt_Expandir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Foto1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -86,6 +86,7 @@
             this.Bt_Salir.Size = new System.Drawing.Size(38, 38);
             this.Bt_Salir.TabIndex = 24;
             this.Bt_Salir.UseVisualStyleBackColor = true;
+            this.Bt_Salir.Click += new System.EventHandler(this.Bt_Salir_Click);
             // 
             // groupBox2
             // 
@@ -97,16 +98,6 @@
             this.groupBox2.TabIndex = 25;
             this.groupBox2.TabStop = false;
             // 
-            // Bt_Expandir
-            // 
-            this.Bt_Expandir.Location = new System.Drawing.Point(8, 20);
-            this.Bt_Expandir.Name = "Bt_Expandir";
-            this.Bt_Expandir.Size = new System.Drawing.Size(75, 23);
-            this.Bt_Expandir.TabIndex = 0;
-            this.Bt_Expandir.Text = "Expandir";
-            this.Bt_Expandir.UseVisualStyleBackColor = true;
-            this.Bt_Expandir.Click += new System.EventHandler(this.Bt_Expandir_Click);
-            // 
             // Bt_Contraer
             // 
             this.Bt_Contraer.Location = new System.Drawing.Point(89, 20);
@@ -116,6 +107,16 @@
             this.Bt_Contraer.Text = "Contraer";
             this.Bt_Contraer.UseVisualStyleBackColor = true;
             this.Bt_Contraer.Click += new System.EventHandler(this.Bt_Contraer_Click);
+            // 
+            // Bt_Expandir
+            // 
+            this.Bt_Expandir.Location = new System.Drawing.Point(8, 20);
+            this.Bt_Expandir.Name = "Bt_Expandir";
+            this.Bt_Expandir.Size = new System.Drawing.Size(75, 23);
+            this.Bt_Expandir.TabIndex = 0;
+            this.Bt_Expandir.Text = "Expandir";
+            this.Bt_Expandir.UseVisualStyleBackColor = true;
+            this.Bt_Expandir.Click += new System.EventHandler(this.Bt_Expandir_Click);
             // 
             // ReporteMovimientos
             // 

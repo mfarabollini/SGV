@@ -213,6 +213,8 @@ namespace Presentación
             var l_lista = ZonaBL.CargarZonas();
             // Guarga en la tabla interna los datos de lista
             it_Viajantes = ListToDataTable(l_lista);
+            // Ordenar Lista por Cod Zona
+            l_lista = l_lista.OrderBy(p => p.Cod_Zona).ToList();
             // guarda en el BildingSource la tabla
             Bs.DataSource = it_Viajantes;
             // Asigna el Bs al DataGrid

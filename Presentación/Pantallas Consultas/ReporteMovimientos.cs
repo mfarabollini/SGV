@@ -17,6 +17,9 @@ namespace Presentación.Pantallas_Consultas
         #region Declaraciones
 
         TreeNode Nodo = null;
+        bancos Banco = new bancos();
+        clientes Cliente = new clientes();            
+        string Linea = null;
 
         private String _TipoConsulta;
         private String _CodBanco;
@@ -24,13 +27,15 @@ namespace Presentación.Pantallas_Consultas
         private String _NumCheque;
 
         private String _Consulta;
-        private int _Valor ;
+        private int _Valor_Cliente ;
+        private int _Valor_Viajante;
         private DateTime _Fecha_IngDesde1;
         private DateTime _Fecha_IngDesde2;
         private bool _ingreso;
         private DateTime _Fecha_EgrDesde1;
         private DateTime _Fecha_EgrDesde2;
         private bool _egreso;
+        private int _Orden;
 
         // Binding Source para poder realizar la busque en DataGrid
         List<cheques> Datos = new List<cheques>();
@@ -65,10 +70,16 @@ namespace Presentación.Pantallas_Consultas
             set { _Consulta = value; }
         }
 
-        public int Valor
+        public int Valor_Cliente
         {
-            get { return _Valor; }
-            set { _Valor = value; }
+            get { return _Valor_Cliente; }
+            set { _Valor_Cliente = value; }
+        }
+
+        public int Valor_Viajante
+        {
+            get { return _Valor_Viajante; }
+            set { _Valor_Viajante = value; }
         }
 
         public DateTime Fecha_IngDesde1
@@ -106,6 +117,12 @@ namespace Presentación.Pantallas_Consultas
             get { return _egreso; }
             set { _egreso = value; }
         }
+
+        public int Orden
+        {
+            get { return _Orden; }
+            set { _Orden = value; }
+        }
         #endregion
 
         public ReporteMovimientos()
@@ -117,15 +134,10 @@ namespace Presentación.Pantallas_Consultas
         {
             // Muestra el Loading
             VentanaLoading();
-    
-            // Declaraciones Locales //
-            bancos Banco = new bancos();
-            clientes Cliente = new clientes();            
-            string Linea = null;
 
             /// Determian el tipo de Consulta y recupera los datos
             #region Determina Consulta - Recupera los datos
-            
+
             if (TipoConsulta == "1") // Consulta Directa de Cheque
             {
                 cheques Cheq = new cheques();
@@ -135,22 +147,124 @@ namespace Presentación.Pantallas_Consultas
                 // Recupera el dato del cheque
                 ChequesBL.Devolver_Cheque(Cheq);
                 Datos.Add(Cheq); // Adhiere el Cheque a la lista.
-                
+
             }
             else                   // Consulta por Viajante o bien por Cliente
             {
                 // Consulta los cheques
-                Datos = ChequesBL.Consulta_Cheques(Consulta, Valor, Fecha_IngDesde1, Fecha_IngDesde2, ingreso,
-                                                                    Fecha_EgrDesde1, Fecha_EgrDesde2, egreso);
+                Datos = ChequesBL.Consulta_Cheques(Consulta, Valor_Viajante, Valor_Cliente,
+                                                             Fecha_IngDesde1, Fecha_IngDesde2, ingreso,
+                                                             Fecha_EgrDesde1, Fecha_EgrDesde2, egreso);
+                // Ordena la lista según los elegido por el usuario
+                switch (Orden)
+                {
+                    // Orden por Número de Cheque
+                    case 0:
+                        Datos = Datos.OrderBy(p => p.Num_Cheque).ToList();
+                        break;
+                    // Orden por Código de Cliente
+                    case 1:
+                        Datos = Datos.OrderBy(p => p.Cod_Cliente).ToList();
+                        break;
+                    // Orden por Código de Banco
+                    case 2:
+                        Datos = Datos.OrderBy(p => p.Cod_Banco).ToList();
+                        break;
+                }
             }
             #endregion
 
             // Recorre la lista y Forma el reporte
             #region Valorización Árbol.
-            // Para cada Cheque.
-            foreach (cheques Cheque in Datos)
+            int Index;
+
+            switch (Orden)
             {
-                // Recupera los datos del cheque, banco y cliente
+                // Orden por Número de Cheque
+                case 0:
+                    foreach (cheques Cheque in Datos)
+                    {
+                        Valoriza_Tree_Cheque(Cheque);
+                    }
+                    break;
+                // Orden por Código de Cliente
+                case 1:
+                    
+                    int Clie = 0;
+                    Nodo = null;
+                    Index = -1;
+                    foreach (cheques Cheque in Datos)
+                    {
+                        if (Clie != Cheque.Cod_Cliente)
+                        {
+                            Index++;
+                            Clie = Convert.ToInt16(Cheque.Cod_Cliente);
+                            // Datos del Cliente
+                            Cliente.Cod_Cliente = Convert.ToInt16(Cheque.Cod_Cliente);
+                            ClientesBL.Buscar_Cliente_Todos(Cliente);
+
+                            // Primer Nodo: Datos Cheque
+                            Linea = String.Concat("Cliente: ", Cliente.Cod_Cliente, " - ", Cliente.razon_social);
+                            Nodo = new TreeNode(Linea);
+                            Tr_Reporte.Nodes.Add(Nodo);
+                        }
+
+                        Valoriza_Tree_Cliente(Cheque, Index);
+                    }
+                    break;
+                // Orden por Código de Banco
+                case 2:
+                    
+                    String CodBanco = String.Empty;
+                    Nodo = null;
+                    Index = -1;
+                    foreach (cheques Cheque in Datos)
+                    {
+                        if (CodBanco != Cheque.Cod_Banco)
+                        {
+                            Index++;
+                            CodBanco = Cheque.Cod_Banco;
+                            // Datos del Banco
+                            Banco.Cod_Banco = Cheque.Cod_Banco;
+                            BancosBL.Obtener_Banco(Banco);
+
+                            Linea = String.Concat("Banco: ", Banco.Cod_Banco, " - ", Banco.Desc_Banco);
+                            Nodo = new TreeNode(Linea);
+                            Tr_Reporte.Nodes.Add(Nodo);
+                        }
+
+                        Valoriza_Tree_Banco(Cheque,Index);
+                    }
+                    break;
+               }
+            }
+            #endregion                                               
+       
+            // Metodos Auxiliares.
+            #region Metodos
+
+            // Lógica Ventana Loading
+            private void VentanaLoading()
+            {
+                using (Cargando fsplash = new Cargando())
+                {
+                    if (fsplash.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) this.Close();
+                }
+            }
+
+            private void Bt_Expandir_Click(object sender, EventArgs e)
+            {
+              Tr_Reporte.ExpandAll();            
+            }
+
+            private void Bt_Contraer_Click(object sender, EventArgs e)
+            {
+              Tr_Reporte.CollapseAll();
+            }
+
+            // Rutina para valorizar el árbol ordenado por Cheque
+            private void Valoriza_Tree_Cheque(cheques Cheque)
+            {
                 #region RecuperaDatos
                 // Datos Cliente
                 Cliente.Cod_Cliente = Convert.ToInt16(Cheque.Cod_Cliente);
@@ -164,13 +278,62 @@ namespace Presentación.Pantallas_Consultas
                 // Primer Nodo: Datos Cheque
                 Linea = String.Concat("Cheque: ", Cheque.Num_Cheque, " - Banco: ", Banco.Cod_Banco, " - ", Banco.Desc_Banco);
                 Nodo = new TreeNode(Linea);
-                
+
                 Tr_Reporte.Nodes.Add(Nodo);
 
                 // Segundo Nodo: Datos Cliente
                 Linea = String.Empty;
                 Linea = String.Concat("Cliente: ", Cliente.Cod_Cliente, " - ", Cliente.razon_social);
                 Nodo.Nodes.Add(Linea);
+
+                // Rutina para valorizar las Fechas del TreeView
+                Valoriza_Fechas(Nodo, Cheque, Linea);
+            }
+
+            // Rutina para valorizar el árbol ordenado por Cliente
+            private void Valoriza_Tree_Cliente(cheques Cheque, int Indexer)
+            {
+                // Datos del Banco
+                Banco.Cod_Banco = Cheque.Cod_Banco;
+                BancosBL.Obtener_Banco(Banco);
+
+                // Primer Nodo: Datos Cheque
+                Linea = String.Empty;
+                Linea = String.Concat("Cheque: ", Cheque.Num_Cheque, " - Banco: ", Banco.Cod_Banco, " - ", Banco.Desc_Banco);
+
+                TreeNode Nodo1 = new TreeNode(Linea);
+                Tr_Reporte.Nodes[Indexer].Nodes.Add(Nodo1);
+
+                // Rutina para valorizar las Fechas del TreeView
+                Valoriza_Fechas(Nodo1, Cheque, Linea);
+            }
+
+            // Rutina para valorizar el árbol ordenado por Banco
+            private void Valoriza_Tree_Banco(cheques Cheque, int Indexer)
+            {
+                // Datos Cliente
+                Cliente.Cod_Cliente = Convert.ToInt16(Cheque.Cod_Cliente);
+                ClientesBL.Buscar_Cliente_Todos(Cliente);
+
+                // Primer Nodo: Datos Cheque
+                Linea = String.Empty;
+                Linea = String.Concat("Cheque: ", Cheque.Num_Cheque);
+
+                TreeNode Nodo1 = new TreeNode(Linea);
+                Tr_Reporte.Nodes[Indexer].Nodes.Add(Nodo1);
+
+                // Segundo Nodo: Datos Cliente
+                Linea = String.Empty;
+                Linea = String.Concat("Cliente: ", Cliente.Cod_Cliente, " - ", Cliente.razon_social);
+                Nodo1.Nodes.Add(Linea);
+
+                // Rutina para valorizar las Fechas del TreeView
+                Valoriza_Fechas(Nodo1, Cheque, Linea);
+            }
+
+            // Rutina para valorizar las Fechas del TreeView
+            private void Valoriza_Fechas(TreeNode Nodo, cheques Cheque, String Linea)
+            {
 
                 if (Cheque.FechaAnulEnt >= Cheque.Fecha_Entrada)
                 {
@@ -221,32 +384,17 @@ namespace Presentación.Pantallas_Consultas
                     {
                         Linea = String.Empty;
                         Linea = String.Concat("Fecha Salida: ", Cheque.Fecha_Salida, " - Observaciones: ", Cheque.Obs_Salida);
-                        Nodo.Nodes.Add(Linea);                        
+                        Nodo.Nodes.Add(Linea);
                     }
                 }
-            }
-            #endregion
+            } 
+             #endregion
             
-        }
-        // Lógica Ventana Loading
-        private void VentanaLoading()
-        {
-            using (Cargando fsplash = new Cargando())
+            // Botón Salir
+            private void Bt_Salir_Click(object sender, EventArgs e)
             {
-                if (fsplash.ShowDialog() == System.Windows.Forms.DialogResult.Cancel) this.Close();
+                this.DialogResult = DialogResult.Cancel;
+                this.Close();
             }
-        }
-        // Metodos Auxiliares.
-        #region Metodos
-        private void Bt_Expandir_Click(object sender, EventArgs e)
-        {
-          Tr_Reporte.ExpandAll();            
-        }
-
-        private void Bt_Contraer_Click(object sender, EventArgs e)
-        {
-          Tr_Reporte.CollapseAll();
-        }
-        #endregion
-    }
+      }
 }

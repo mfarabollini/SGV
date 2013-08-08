@@ -55,12 +55,13 @@ namespace LogicaDeNegocio
         }
 
         // Lista de Cheques en Consulta
-        public static List<cheques> Consulta_Cheques(string Consulta, int Valor,
+        public static List<cheques> Consulta_Cheques(string Consulta, int Valor_Viajante, int Valor_Cliente,
                                                      DateTime Fecha_IngDesde1, DateTime Fecha_IngDesde2, bool l_ingreso,                                     
                                                      DateTime Fecha_EgrDesde1, DateTime Fecha_EgrDesde2, bool l_egreso)
         {
-            return ChequesDAL.Consulta_Cheques(Consulta, Valor, Fecha_IngDesde1, Fecha_IngDesde2, l_ingreso,                                                               
-                                                                Fecha_EgrDesde1, Fecha_EgrDesde2, l_egreso);
+            return ChequesDAL.Consulta_Cheques(Consulta, Valor_Viajante, Valor_Cliente, 
+                                                         Fecha_IngDesde1, Fecha_IngDesde2, l_ingreso,                                                               
+                                                         Fecha_EgrDesde1, Fecha_EgrDesde2, l_egreso);
         }
 
         // Indicador Cheque en Cartera

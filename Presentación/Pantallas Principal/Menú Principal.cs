@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Presentación.Pantallas_ABM;
 using Presentación.Pantallas_Principal;
+using Presentación.Pantallas_Consultas;
 using LogicaDeNegocio;
 
 
@@ -31,7 +32,10 @@ namespace Presentación.Pantallas_ABM
         // Abre Instancia de Zonas
         private Zonas Fr_Zona = null;
         // Abre Instancia de Viajantes
-        private Viajantes Fr_Viajante = null;        
+        private Viajantes Fr_Viajante = null;
+        // Abre Instancia de Reporte de Cheque (Trazabilidad)
+        private FiltroMovimientos Fr_Movimientos = null;
+
         #endregion
 
         public Menú_Principal()
@@ -233,7 +237,13 @@ namespace Presentación.Pantallas_ABM
 
                 Zonas Frm_Zon = this.FormInstanciaZ;
                 Frm_Zon.Show();
-                break;             
+                break;
+             
+                case "Consulta_Cheque":    
+                            
+                FiltroMovimientos Fr_Mov = this.FormInstanciaRM;
+                Fr_Mov.Show();
+                break;
             }
         }
         #endregion
@@ -327,7 +337,45 @@ namespace Presentación.Pantallas_ABM
            
         }
         #endregion
-                
+
+        // Lógica para abrir instancia del reporte de Movimientos
+        #region Form Reporte movimientos
+
+        private void Bt_Movimientos_Click(object sender, EventArgs e)
+        {
+            // Nueva Instancia del formulario de Ingreso
+            FiltroMovimientos Fr_Mov = this.FormInstanciaRM;
+            Fr_Mov.Show();            
+        }
+
+        // Abre una nueva instancia del Form
+        private FiltroMovimientos FormInstanciaRM
+        {
+            get
+            {
+                if (Fr_Movimientos == null)
+                {
+                    Fr_Movimientos = new FiltroMovimientos();
+                    Fr_Movimientos.Disposed += new EventHandler(form_DisposedRM);
+                    Fr_Movimientos.FormClosed += new FormClosedEventHandler(Fr_Movimientos_FormClosed);
+                }
+                return Fr_Movimientos;
+            }
+        }
+
+        // Disposed del formulario.
+        void form_DisposedRM(object sender, EventArgs e)
+        {
+            Fr_Movimientos = null;
+        }
+
+        /// Método que se llama cuando se cierra la ventana de Movimientos .
+        private void Fr_Movimientos_FormClosed(object sender, FormClosedEventArgs e)
+        {
+
+        }
+        #endregion
+        
         // Actualiza los valores de los indicadores
         #region Lógica Indicadores
         private void Actualiza_Valores(object sender, EventArgs e)

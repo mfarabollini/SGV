@@ -54,6 +54,8 @@ namespace Presentación.Pantallas_ABM
             Gr_Clientes.AutoGenerateColumns = false;
             // Guarda los clientes en una lista
             var l_lista = ClientesBL.Cargar_Clientes();
+            // Ordenar Lista por Número de Cliente
+            l_lista = l_lista.OrderBy(p => p.Cod_Cliente).ToList();
             // Guarga en la tabla interna los datos de lista
             it_Clientes = ListToDataTable(l_lista);
             // guarda en el BildingSource la tabla

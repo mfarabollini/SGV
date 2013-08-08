@@ -43,6 +43,8 @@ namespace Presentación.Pantallas_Consultas
 
             Dt_Egr_Hasta.Format = DateTimePickerFormat.Custom;
             Dt_Egr_Hasta.CustomFormat = " ";
+
+            Cb_Orden.SelectedIndex = 0;
         }
 
         #region Botón Aceptar
@@ -83,7 +85,8 @@ namespace Presentación.Pantallas_Consultas
                     #region Consulta Global
                     // Declaraciones Locales
                     String Consulta;
-                    int Valor;
+                    int Valor_Cliente;
+                    int Valor_Viajante;
 
                     #region Valorizar Fecha
                     DateTime Fecha_IngDesde1;
@@ -137,15 +140,29 @@ namespace Presentación.Pantallas_Consultas
                     #endregion
 
                     // Determina el tipo de consulta
-                    if (Tx_CodCliente.Text != String.Empty)
+                    if (Tx_CodCliente.Text != String.Empty && Tx_CodViajante.Text == String.Empty)
                     {
                         Consulta = "C"; // Solo Clientes
-                        Valor = Convert.ToInt16(Tx_CodCliente.Text);
+                        Valor_Cliente = Convert.ToInt16(Tx_CodCliente.Text);
+                        Valor_Viajante = 0;
                     }
-                    else 
+                    else if (Tx_CodCliente.Text == String.Empty && Tx_CodViajante.Text != String.Empty)
                     {
                         Consulta = "V"; // Con Vendedores
-                        Valor = Convert.ToInt16(Tx_CodViajante.Text);
+                        Valor_Viajante = Convert.ToInt16(Tx_CodViajante.Text);
+                        Valor_Cliente = 0;
+                    }
+                    else if (Tx_CodCliente.Text == String.Empty && Tx_CodViajante.Text == String.Empty)
+                    {
+                        Consulta = "B"; // Consulta Vacia
+                        Valor_Cliente = 0;
+                        Valor_Viajante = 0;
+                    }
+                    else
+                    {
+                        Consulta = "A"; // Ambos valores valorizados
+                        Valor_Cliente = Convert.ToInt16(Tx_CodCliente.Text);
+                        Valor_Viajante = Convert.ToInt16(Tx_CodViajante.Text);
                     }
 
                     // Abre el Formulario y le envía todos los datos de la consulta.
@@ -153,13 +170,15 @@ namespace Presentación.Pantallas_Consultas
 
                     Frm_RM.TipoConsulta     = "2";
                     Frm_RM.Consulta         = Consulta;
-                    Frm_RM.Valor            = Valor;
+                    Frm_RM.Valor_Cliente    = Valor_Cliente;
+                    Frm_RM.Valor_Viajante   = Valor_Viajante;
                     Frm_RM.Fecha_IngDesde1  = Fecha_IngDesde1;
                     Frm_RM.Fecha_IngDesde2  = Fecha_IngDesde2;
                     Frm_RM.ingreso          = l_ingreso;
                     Frm_RM.Fecha_EgrDesde1  = Fecha_EgrDesde1;
                     Frm_RM.Fecha_EgrDesde2  = Fecha_EgrDesde2;
                     Frm_RM.egreso           = l_egreso;
+                    Frm_RM.Orden            = Cb_Orden.SelectedIndex;
 
                     Frm_RM.Show();
                     #endregion
@@ -201,19 +220,6 @@ namespace Presentación.Pantallas_Consultas
             bool Resultado = true;
 
             /// ----------------------------------------------------------///
-            /// Al menos datos del cheque o del movimiento deben ser ingresados
-            if (Tx_CodBanco.Text == String.Empty && Tx_Sucursal.Text == String.Empty && 
-                Tx_NumCheque.Text == String.Empty && Tx_CodCliente.Text == String.Empty &&
-                Tx_CodViajante.Text == String.Empty)
-            {
-                MessageBox.Show("Valorice al menos un campo", "Consulta Cheque",
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                Resultado = false;
-                return Resultado;
-            }
-
-            /// ----------------------------------------------------------///
             /// Se podrá valorizar datos del Cheque o bien del movimiento
             
             if ((Tx_CodBanco.Text != String.Empty || Tx_Sucursal.Text != String.Empty || Tx_NumCheque.Text != String.Empty)
@@ -243,19 +249,7 @@ namespace Presentación.Pantallas_Consultas
                 Resultado = false;
                 return Resultado;
             }
-
-
-            /// ----------------------------------------------------------///
-            /// Verificar que el cliente o el viajante esté valorizado
-            /// 
-            if (Tx_CodViajante.Text != String.Empty && Tx_CodCliente.Text != String.Empty)
-            {
-                MessageBox.Show("Valorizar el Cliente o el Viajante", "Consulta Cheque",
-                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-
-                Resultado = false;
-                return Resultado;
-            }
+            
             
             /// --------------------------------------------------------///
             // Verifica que el banco ingresado exista
@@ -319,7 +313,9 @@ namespace Presentación.Pantallas_Consultas
             /// -------------------------------------------------------///
             /// Verificación de la valorización de Fechas.
             /// 
-            if ((Tx_CodCliente.Text != String.Empty || Tx_CodViajante.Text != String.Empty))
+            if (Tx_CodBanco.Text  == String.Empty && 
+                Tx_Sucursal.Text  == String.Empty && 
+                Tx_NumCheque.Text == String.Empty)
             {
                 /// Si la fecha hasta está valorizada, la Fecha desde tmb debe estarlo
                 if (Dt_Ingr_Desde.Text == " " && Dt_Ingr_Hasta.Text != " ")
