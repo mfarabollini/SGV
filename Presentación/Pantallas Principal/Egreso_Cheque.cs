@@ -520,7 +520,7 @@ namespace Presentación.Pantallas_Principal
                     Cheque.Num_Cheque = row.Cells["Num_Cheque"].Value.ToString();
 
                     // Fecha de Salida
-                    Cheque.Fecha_Salida = DateTime.Today;
+                    Cheque.Fecha_Salida = DateTime.Now;
                     // Estado del Cheque
                     Cheque.Estado = "S";
                     // Observaciones

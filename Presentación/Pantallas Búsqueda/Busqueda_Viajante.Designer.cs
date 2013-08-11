@@ -48,9 +48,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(10, 342);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 15);
+            this.label1.Size = new System.Drawing.Size(230, 15);
             this.label1.TabIndex = 5;
-            this.label1.Text = "* Doble Clic para seleccionar el banco";
+            this.label1.Text = "* Doble Clic para seleccionar el Viajante";
             // 
             // groupBox2
             // 

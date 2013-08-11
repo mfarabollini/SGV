@@ -64,16 +64,16 @@
           <Property Name="Num_Cheque" Type="varchar" Nullable="false" MaxLength="10" />
           <Property Name="Num_Cuenta" Type="varchar" MaxLength="10" />
           <Property Name="Cod_Cliente" Type="int" />
-          <Property Name="Fecha_Entrada" Type="date" />
-          <Property Name="Fecha_Salida" Type="date" />
+          <Property Name="Fecha_Entrada" Type="datetime" />
+          <Property Name="Fecha_Salida" Type="datetime" />
           <Property Name="Estado" Type="varchar" MaxLength="1" />
           <Property Name="Importe" Type="float" />
           <Property Name="CUIT_Cheque" Type="varchar" MaxLength="20" />
           <Property Name="Fecha_Vec" Type="date" />
           <Property Name="Obs_Salida" Type="varchar" MaxLength="200" />
-          <Property Name="FechaAnulSal" Type="date" />
+          <Property Name="FechaAnulSal" Type="datetime" />
           <Property Name="ObserAnulSal" Type="varchar" MaxLength="200" />
-          <Property Name="FechaAnulEnt" Type="date" />
+          <Property Name="FechaAnulEnt" Type="datetime" />
           <Property Name="ObserAnulEnt" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="clientes">

@@ -13,7 +13,7 @@ namespace AccesoADatos
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using Entidades;
-
+    
     public partial class ChequeEntidades : DbContext
     {
         public ChequeEntidades()

@@ -6,6 +6,7 @@ using System.Windows.Forms;
 using Presentación.Pantallas_Principal;
 using Presentación.Pantallas_ABM;
 using Presentación.Pantallas_Búsqueda;
+using Presentación.Pantallas_Consultas;
 
 namespace Presentación
 {

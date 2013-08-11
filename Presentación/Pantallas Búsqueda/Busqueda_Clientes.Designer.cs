@@ -28,16 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.Lb_Viajante = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.Gr_GrillaViajantes = new System.Windows.Forms.DataGridView();
+            this.Cod_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.Tx_Buscar = new System.Windows.Forms.TextBox();
             this.Lb_Banco = new System.Windows.Forms.Label();
-            this.Cod_Cliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.razon_social = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Gr_GrillaViajantes)).BeginInit();
             this.groupBox1.SuspendLayout();
@@ -58,9 +58,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 343);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(218, 15);
+            this.label1.Size = new System.Drawing.Size(222, 15);
             this.label1.TabIndex = 9;
-            this.label1.Text = "* Doble Clic para seleccionar el banco";
+            this.label1.Text = "* Doble Clic para seleccionar el Cliente";
             // 
             // groupBox2
             // 
@@ -86,6 +86,26 @@
             this.Gr_GrillaViajantes.Size = new System.Drawing.Size(455, 230);
             this.Gr_GrillaViajantes.TabIndex = 0;
             this.Gr_GrillaViajantes.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.Enviar_Codigo);
+            // 
+            // Cod_Cliente
+            // 
+            this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            this.Cod_Cliente.DefaultCellStyle = dataGridViewCellStyle1;
+            this.Cod_Cliente.HeaderText = "Cód Cliente";
+            this.Cod_Cliente.Name = "Cod_Cliente";
+            this.Cod_Cliente.ReadOnly = true;
+            // 
+            // razon_social
+            // 
+            this.razon_social.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
+            this.razon_social.DataPropertyName = "razon_social";
+            this.razon_social.HeaderText = "Nombre";
+            this.razon_social.Name = "razon_social";
+            this.razon_social.ReadOnly = true;
+            this.razon_social.Width = 75;
             // 
             // groupBox1
             // 
@@ -114,26 +134,6 @@
             this.Lb_Banco.Size = new System.Drawing.Size(48, 15);
             this.Lb_Banco.TabIndex = 0;
             this.Lb_Banco.Text = "Buscar:";
-            // 
-            // Cod_Cliente
-            // 
-            this.Cod_Cliente.DataPropertyName = "Cod_Cliente";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.Cod_Cliente.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Cod_Cliente.HeaderText = "Cód Cliente";
-            this.Cod_Cliente.Name = "Cod_Cliente";
-            this.Cod_Cliente.ReadOnly = true;
-            // 
-            // razon_social
-            // 
-            this.razon_social.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.AllCells;
-            this.razon_social.DataPropertyName = "razon_social";
-            this.razon_social.HeaderText = "Nombre";
-            this.razon_social.Name = "razon_social";
-            this.razon_social.ReadOnly = true;
-            this.razon_social.Width = 75;
             // 
             // Busqueda_Clientes
             // 

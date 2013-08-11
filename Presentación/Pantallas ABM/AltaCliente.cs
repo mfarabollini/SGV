@@ -282,6 +282,26 @@ namespace Presentación.Pantallas_ABM
                     resul = false;
                 }
             }
+
+            /// Verificar si es correcto el CUIT ///
+            /// 
+            // Verifica la Longitud
+            if (Tx_CUIT.Text != String.Empty)
+            {
+                int Long = Tx_CUIT.Text.Length;
+                if (Long != 11)
+                {
+                    ControlError.SetError(Tx_CUIT, "El CUIT ingresado no es correcto");
+                    resul = false;
+                }
+            }
+
+            if (!CalcularDigitoCuit(Tx_CUIT.Text))
+            {
+                ControlError.SetError(Tx_CUIT, "El CUIT ingresado no es correcto");
+                resul = false;
+            }
+
             return resul;
         }
         #endregion
@@ -313,6 +333,35 @@ namespace Presentación.Pantallas_ABM
                 this.Close();
             }            
         }
+        
+        /// Calcula el dígito verificador dado un CUIT completo o sin él.
+        /// <param name="cuit">El CUIT como String sin guiones</param>
+        /// <returns>El valor del dígito verificador calculado.</returns>
+        public static bool CalcularDigitoCuit(string cuit)
+        {
+            bool Resultado = true;
+            int Long = cuit.Length;
 
+            if (Long == 11)
+            {
+                int ultimo = Convert.ToInt16(cuit.Substring(Long - 1, 1));
+            
+                int[] mult = new[] { 5, 4, 3, 2, 7, 6, 5, 4, 3, 2 };
+                char[] nums = cuit.ToCharArray();
+                int total = 0;
+                for (int i = 0; i < mult.Length; i++)
+                {
+                    total += int.Parse(nums[i].ToString()) * mult[i];
+                }
+        
+                int resto = (11 - (total % 11)) % 11;
+
+                if (resto != ultimo )
+                {
+                    Resultado = false;
+                }
+            }
+            return Resultado;
+        }
     }
 }

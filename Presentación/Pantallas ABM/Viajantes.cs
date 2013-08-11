@@ -248,6 +248,8 @@ namespace Presentación.Pantallas_ABM
         private void Recarga_grid()
         {
             var l_lista = ViajanteBL.Cargar_Viajantes();
+            // Ordenar Lista por Código Cliente
+            l_lista = l_lista.OrderBy(p => p.Cod_Viajante).ToList();
             // Guarga en la tabla interna los datos de lista
             it_Clientes = ListToDataTable(l_lista);
             // guarda en el BildingSource la tabla
