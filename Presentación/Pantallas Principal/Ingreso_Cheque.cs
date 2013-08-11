@@ -17,6 +17,8 @@ using Presentación.Pantallas_Búsqueda;
 
 namespace Presentación.Pantallas_Principal
 {
+
+
     /// -----> Lógica Principal <------ ///
     public partial class Ingreso_Cheque : Form
     {
@@ -31,8 +33,19 @@ namespace Presentación.Pantallas_Principal
         // Declaración de la tabla
         DataTable it_cheques = new DataTable();
         DataTable it_error = new DataTable();
-        
+        List<cheques> cheques = new List<cheques>();
         string d_cuit; // Número de Cuit de Cliente
+
+        private Properties m_objConfig = null;
+        private ApiUsage m_objApi = null;
+        private int m_iStartTransactionNumber = 0;
+        private DateTime m_dtStartTime;
+        private DeviceStatusForm m_objDeviceStatusF = null;
+        //private IqaResultForm m_objIqaResultF = null;
+        private System.Windows.Forms.Button buttonIqa;
+        public bool m_bDeviceStatus = false;
+
+
         #endregion
 
         public Ingreso_Cheque()
@@ -52,6 +65,12 @@ namespace Presentación.Pantallas_Principal
             d_cuit = "";
             // Desactiva los textos de ingreso.
             Desactivar_TextBox(false); 
+
+            //ApiEpson
+            m_objConfig = new Properties();
+            m_objApi = new ApiUsage();
+            m_objApi.MainFormItem(this);
+            m_objApi.Configure(m_objConfig);
         }
         #endregion
 
@@ -72,7 +91,11 @@ namespace Presentación.Pantallas_Principal
         #region Escaneo de Cheques.
         private void Bt_Escaneo_Click(object sender, EventArgs e)
         {
-            // Crea una tabla interna para poder guardar los datos leidos por el escaner.
+
+            /// Leo los cheques desde la lectora
+            //cheques = ChequesBL.leerCheques();
+       
+           // Crea una tabla interna para poder guardar los datos leidos por el escaner.
             if (it_cheques.Columns.Count == 0)
             {
                 CrearTablaInterna(it_cheques);
@@ -82,31 +105,28 @@ namespace Presentación.Pantallas_Principal
             Gr_Cheques.AutoGenerateColumns = false;
             Gr_Cheques.DataSource = it_cheques;
 
-            /// ********************************************************************
-            /// Adhiere el valor a la tabla interna
-            Adherir_Valor(it_cheques, 1, "005", "138", "5000","9849938","73892", d_cuit);
-            /// Adhiere el valor a la tabla interna
-            Adherir_Valor(it_cheques, 2, "007", "198", "7000", "1234567", "987654", d_cuit);
-            /// Adhiere el valor a la tabla interna
-            Adherir_Valor(it_cheques, 3, "007", "198", "7000", "1234567", "", d_cuit);
-            /// ********************************************************************          
+            //Api Epson
+            //textBoxMICR.Text = "";
+            //textBoxOCR.Text = "";
+            //if (pictureBoxFront.Image != null)
+            //{
+            //    pictureBoxFront.Image.Dispose();
+            //}
+            //if (pictureBoxBack.Image != null)
+            //{
+            //    pictureBoxBack.Image.Dispose();
+            //}
+            //pictureBoxFront.Image = null;
+            //pictureBoxBack.Image = null;
+            //this.Text = "TM-S1000SampleStep8";
 
-            /// En caso que no haya ninguna línea 
-            if (it_cheques.Rows.Count == 0)
-            {
-                MessageBox.Show("No se ha leido ningún cheque", "Lectura de Cheques",
-                                MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
-                               
-            }
-            else
-            {
-                // Selecciona la primer línea
-                Gr_Cheques.Rows[0].Selected = true;
-                //Activar los TextBoxs
-                Desactivar_TextBox(true);                
-                // Carga los Textos con la línea seleccionada
-                Cargar_TextBoxs(0);
-            }
+            //buttonScan.Enabled = false;
+            //buttonConfigure.Enabled = false;
+            //buttonCleaning.Enabled = false;
+            //m_iStartTransactionNumber = m_objApi.GetTransactionNumber();
+            //m_dtStartTime = DateTime.Now;
+            m_objApi.Scan();
+
         }
         #endregion
 
@@ -914,6 +934,62 @@ namespace Presentación.Pantallas_Principal
             Frm_Busq.Show();
         }
         #endregion
-  
+        
+        // This delegate enables asynchronous calls for setting.
+        delegate void ComplateCallback(int transactionNumber);
+
+        // This method is called when the Complete scan
+        public void Complate(int transactionNumber)
+        {
+            if (this.Bt_Escaneo.InvokeRequired)
+            {
+                ComplateCallback c = new ComplateCallback(Complate);
+                this.Invoke(c, new object[] { transactionNumber });
+            }
+            else
+            {
+                Bt_Escaneo.Enabled = true;
+                int cont = 0;
+                foreach (cheques c in cheques)
+                {
+                    cont++;
+                    Adherir_Valor(it_cheques, cont, c.Cod_Banco, c.Cod_Sucursal,
+                                  c.Cod_Postal, c.Num_Cuenta, c.Num_Cheque, d_cuit);
+                }
+
+                /// En caso que no haya ninguna línea 
+                if (it_cheques.Rows.Count == 0)
+                {
+                    MessageBox.Show("No se ha leido ningún cheque", "Lectura de Cheques",
+                                    MessageBoxButtons.OK, MessageBoxIcon.Exclamation);
+
+                }
+                else
+                {
+                    // Selecciona la primer línea
+                    Gr_Cheques.Rows[0].Selected = true;
+                    //Activar los TextBoxs
+                    Desactivar_TextBox(true);
+                    // Carga los Textos con la línea seleccionada
+                    Cargar_TextBoxs(0);
+                }
+            }
+        }
+        // this method is called when the confirmation mode
+        public bool Confirmation()
+        {
+            //ConfirmationForm pDlg = new ConfirmationForm();
+            //pDlg.SetProc(m_objConfig, m_objApi.GetErrorOccured());
+            //pDlg.ShowDialog();
+            //m_objConfig = pDlg.GetProc();
+            //m_objApi.SetProc(m_objConfig);
+            return true;// m_objConfig.GetValueBool(Properties.CONF_OK);
+        }
+        public void llenoTablaCheques(cheques chequeScan) 
+        {
+            cheques.Add(chequeScan);
+        }
+
+
     }
  }

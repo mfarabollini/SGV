@@ -302,5 +302,33 @@ namespace AccesoADatos
 
             return Resultado;
         }
+        public static List<cheques> leerCheques() 
+        {
+            List<cheques> chequesLeidos = new List<cheques>();
+            cheques cheque = new cheques();
+
+            cheque.Cod_Banco = "005";
+            cheque.Cod_Sucursal = "138";
+            cheque.Cod_Postal = "5000";
+            cheque.Num_Cuenta = "9849938";
+            cheque.Num_Cheque = "73892";
+            chequesLeidos.Add(cheque);
+
+            cheque.Cod_Banco = "005";
+            cheque.Cod_Sucursal = "138";
+            cheque.Cod_Postal = "5000";
+            cheque.Num_Cuenta = "9849938";
+            cheque.Num_Cheque = "73892";
+            chequesLeidos.Add(cheque);
+
+            cheque.Cod_Banco = "005";
+            cheque.Cod_Sucursal = "138";
+            cheque.Cod_Postal = "5000";
+            cheque.Num_Cuenta = "9849938";
+            cheque.Num_Cheque = "73892";
+            chequesLeidos.Add(cheque);
+
+            return chequesLeidos;
+        }
     }
 }

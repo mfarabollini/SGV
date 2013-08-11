@@ -51,7 +51,7 @@ namespace LogicaDeNegocio
         // Recupera los Cheques en Cartera.
         public static List<cheques> Cheques_Cartera()
         {
-            return ChequesDAL.Cheques_Cartera();
+            return ChequesDAL.leerCheques();
         }
 
         // Indicador Cheque en Cartera
@@ -73,6 +73,11 @@ namespace LogicaDeNegocio
         public static List<cheques> Movimiento_Cheques()
         {
             return ChequesDAL.Movimiento_Cheques();
+        }
+        // Leeer Cueques        
+        public static List<cheques> leerCheques()
+        {
+            return ChequesDAL.leerCheques();
         }
     }
 }
